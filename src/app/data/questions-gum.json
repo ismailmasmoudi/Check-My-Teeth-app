@@ -1,0 +1,28 @@
+[
+  {
+    "id": "q1",
+    "text": {
+      "en": "Do your gums bleed during brushing?",
+      "fr": "Vos gencives saignent-elles lors du brossage ?",
+      "de": "Bluten Ihre Zahnfleisch beim Zähneputzen?",
+      "ar": "هل تنزف لثتك أثناء تنظيف الأسنان؟"
+    },
+    "options": [
+      { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "next": "q2" },
+      { "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" }, "diagnosisId": "healthy_gums" }
+    ]
+  },
+  {
+    "id": "q2",
+    "text": {
+      "en": "Do you have red, swollen or painful gums?",
+      "fr": "Vos gencives sont-elles rouges, enflées ou douloureuses ?",
+      "de": "Sind Ihre Zahnfleisch gerötet, geschwollen oder schmerzhaft?",
+      "ar": "هل لثتك حمراء أو متورمة أو مؤلمة؟"
+    },
+    "options": [
+      { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "diagnosisId": "gingivitis" },
+      { "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" }, "diagnosisId": "mild_gingivitis" }
+    ]
+  }
+]

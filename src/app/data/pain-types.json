@@ -1,0 +1,5 @@
+[
+  { "id": "tooth", "label": { "en": "Tooth pain", "fr": "Douleur dentaire", "ar": "ألم الأسنان", "de": "Zahnschmerzen" } },
+  { "id": "gum", "label": { "en": "Gum pain", "fr": "Douleur gingivale", "ar": "ألم اللثة", "de": "Zahnfleischschmerzen" } },
+  { "id": "tmj", "label": { "en": "Temporomandibular joint pain", "fr": "Douleur de l'articulation temporomandibulaire", "ar": "ألم مفصل الفك", "de": "Kiefergelenkschmerzen" } }
+]

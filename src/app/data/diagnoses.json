@@ -1,0 +1,191 @@
+[
+  {
+    "id": "irreversible_pulpitis",
+    "title": {
+      "en": "Irreversible Pulpitis",
+      "fr": "Pulpite irréversible",
+      "ar": "التهاب لب السن غير القابل للعلاج",
+      "de": "Irreversible Pulpitis"
+    },
+    "description": {
+      "en": "A severe inflammation of the dental pulp that cannot heal on its own. Often causes spontaneous or long-lasting pain.",
+      "fr": "Une inflammation sévère de la pulpe dentaire qui ne peut pas guérir seule. Elle provoque souvent une douleur spontanée ou persistante.",
+      "ar": "التهاب شديد في لب السن لا يشفى من تلقاء نفسه. غالبًا ما يسبب ألمًا تلقائيًا أو طويل الأمد.",
+      "de": "Eine schwere Entzündung des Zahnnervs, die sich nicht von selbst heilt. Verursacht oft spontane oder langanhaltende Schmerzen."
+    },
+    "treatment": {
+      "en": "You need a root canal treatment (endodontic therapy).",
+      "fr": "Vous avez besoin d'un traitement de canal (thérapie endodontique).",
+      "ar": "تحتاج إلى علاج عصب (علاج جذور الأسنان).",
+      "de": "Sie benötigen eine Wurzelbehandlung (endodontische Therapie)."
+    }
+  },
+  {
+    "id": "reversible_pulpitis",
+    "title": {
+      "en": "Reversible Pulpitis",
+      "fr": "Pulpite réversible",
+      "ar": "التهاب لب السن القابل للعلاج",
+      "de": "Reversible Pulpitis"
+    },
+    "description": {
+      "en": "Mild inflammation of the dental pulp that usually occurs with sensitivity to cold or sweets. Pain goes away quickly.",
+      "fr": "Inflammation légère de la pulpe dentaire, généralement causée par une sensibilité au froid ou au sucre. La douleur disparaît rapidement.",
+      "ar": "التهاب خفيف في لب السن يحدث عادة مع حساسية تجاه البرد أو الحلويات. يزول الألم بسرعة.",
+      "de": "Leichte Entzündung des Zahnnervs, oft durch Kälte- oder Süßempfindlichkeit. Der Schmerz vergeht schnell."
+    },
+    "treatment": {
+      "en": "No root canal needed. You may need a filling or to avoid irritants.",
+      "fr": "Pas de traitement de canal nécessaire. Un simple plombage ou éviter les irritants peut suffire.",
+      "ar": "لا حاجة لعلاج العصب. قد تحتاج إلى حشو فقط أو تجنب المهيجات.",
+      "de": "Keine Wurzelbehandlung nötig. Möglicherweise reicht eine Füllung oder das Vermeiden von Reizen."
+    }
+  },
+  {
+    "id": "dentin_hypersensitivity",
+    "title": {
+      "en": "Dentin Hypersensitivity",
+      "fr": "Hypersensibilité dentinaire",
+      "ar": "حساسية العاج",
+      "de": "Dentinüberempfindlichkeit"
+    },
+    "description": {
+      "en": "Short, sharp pain from exposed dentin, especially with cold or sweet stimuli.",
+      "fr": "Douleur brève et vive due à la dentine exposée, surtout au froid ou au sucre.",
+      "ar": "ألم حاد وقصير بسبب تعرض العاج، خاصة عند تناول شيء بارد أو حلو.",
+      "de": "Kurzer, scharfer Schmerz durch freiliegendes Dentin, besonders bei Kälte oder Süßem."
+    },
+    "treatment": {
+      "en": "Use desensitizing toothpaste and avoid extreme temperatures.",
+      "fr": "Utilisez un dentifrice désensibilisant et évitez les températures extrêmes.",
+      "ar": "استخدم معجون أسنان مضاد للحساسية وتجنب المشروبات أو الأطعمة الباردة جدًا أو الساخنة.",
+      "de": "Verwenden Sie Zahnpasta für empfindliche Zähne und meiden Sie extreme Temperaturen."
+    }
+  },
+  {
+    "id": "gingivitis",
+    "title": {
+      "en": "Gingivitis",
+      "fr": "Gingivite",
+      "ar": "التهاب اللثة",
+      "de": "Gingivitis"
+    },
+    "description": {
+      "en": "Inflammation of the gums caused by plaque buildup. Gums may be red, swollen, and bleed easily.",
+      "fr": "Inflammation des gencives causée par l'accumulation de plaque. Les gencives peuvent être rouges, enflées et saigner facilement.",
+      "ar": "التهاب في اللثة ناتج عن تراكم البلاك. قد تكون اللثة حمراء أو متورمة وتنزف بسهولة.",
+      "de": "Entzündung des Zahnfleisches durch Plaqueansammlung. Das Zahnfleisch ist oft gerötet, geschwollen und blutet leicht."
+    },
+    "treatment": {
+      "en": "Professional cleaning and improved oral hygiene are needed.",
+      "fr": "Un nettoyage professionnel et une meilleure hygiène bucco-dentaire sont nécessaires.",
+      "ar": "يجب تنظيف الأسنان عند الطبيب وتحسين العناية بالفم.",
+      "de": "Professionelle Zahnreinigung und verbesserte Mundhygiene sind notwendig."
+    }
+  },
+  {
+    "id": "mild_gingivitis",
+    "title": {
+      "en": "Mild Gingivitis",
+      "fr": "Gingivite légère",
+      "ar": "التهاب لثة خفيف",
+      "de": "Leichte Gingivitis"
+    },
+    "description": {
+      "en": "Early stage of gum inflammation. Usually no pain, but gums may bleed slightly.",
+      "fr": "Stade précoce de l'inflammation des gencives. Peu de douleur mais légers saignements possibles.",
+      "ar": "مرحلة مبكرة من التهاب اللثة. عادةً لا يوجد ألم، ولكن قد يحدث نزيف بسيط.",
+      "de": "Frühes Stadium einer Zahnfleischentzündung. Meist keine Schmerzen, aber gelegentliches Bluten."
+    },
+    "treatment": {
+      "en": "Improve brushing and flossing. Professional check-up is advised.",
+      "fr": "Améliorer le brossage et le fil dentaire. Un contrôle professionnel est recommandé.",
+      "ar": "تحسين التنظيف بالخيط والفرشاة. يُنصح بمراجعة الطبيب.",
+      "de": "Bessere Zahnpflege und ein Besuch beim Zahnarzt werden empfohlen."
+    }
+  },
+  {
+    "id": "tmj_disorder",
+    "title": {
+      "en": "TMJ Disorder",
+      "fr": "Trouble de l'ATM",
+      "ar": "اضطراب مفصل الفك",
+      "de": "Kiefergelenksstörung"
+    },
+    "description": {
+      "en": "A disorder of the jaw joint causing clicking, pain, and limited movement.",
+      "fr": "Un trouble de l'articulation de la mâchoire provoquant des claquements, des douleurs et une mobilité limitée.",
+      "ar": "اضطراب في مفصل الفك يسبب طقطقة، ألم، وصعوبة في الحركة.",
+      "de": "Erkrankung des Kiefergelenks mit Knacken, Schmerzen und eingeschränkter Beweglichkeit."
+    },
+    "treatment": {
+      "en": "Use a night guard, apply warm compresses, and avoid hard foods. Physical therapy may help.",
+      "fr": "Utilisez une gouttière nocturne, appliquez des compresses chaudes, évitez les aliments durs. La kinésithérapie peut aider.",
+      "ar": "استخدم واقيًا ليليًا، ضع كمادات دافئة، وتجنب الأطعمة القاسية. يمكن أن تساعد جلسات العلاج الطبيعي.",
+      "de": "Tragen Sie eine Aufbissschiene, benutzen Sie warme Kompressen und meiden Sie harte Speisen. Physiotherapie kann hilfreich sein."
+    }
+  },
+  {
+    "id": "tmj_muscle_pain",
+    "title": {
+      "en": "TMJ Muscle Pain",
+      "fr": "Douleur musculaire de l'ATM",
+      "ar": "ألم عضلات مفصل الفك",
+      "de": "Muskulärer Kiefergelenksschmerz"
+    },
+    "description": {
+      "en": "Jaw pain caused by muscle tension, often from stress or clenching.",
+      "fr": "Douleur de la mâchoire causée par une tension musculaire, souvent due au stress ou au grincement des dents.",
+      "ar": "ألم في الفك ناتج عن توتر عضلي، غالبًا بسبب التوتر أو الضغط على الأسنان.",
+      "de": "Kieferschmerzen durch Muskelverspannungen, oft ausgelöst durch Stress oder Zähnepressen."
+    },
+    "treatment": {
+      "en": "Stress reduction, jaw relaxation exercises, and sometimes medication.",
+      "fr": "Réduction du stress, exercices de relaxation de la mâchoire et parfois médicaments.",
+      "ar": "تقليل التوتر، تمارين استرخاء الفك، وأحيانًا أدوية.",
+      "de": "Stressabbau, Kieferentspannungsübungen und ggf. medikamentöse Therapie."
+    }
+  },
+  {
+    "id": "healthy_gums",
+    "title": {
+      "en": "Healthy Gums",
+      "fr": "Gencives saines",
+      "ar": "لثة صحية",
+      "de": "Gesundes Zahnfleisch"
+    },
+    "description": {
+      "en": "Your gums appear to be healthy. No signs of disease detected.",
+      "fr": "Vos gencives semblent saines. Aucun signe de maladie détecté.",
+      "ar": "لثتك تبدو صحية. لا توجد علامات على وجود مرض.",
+      "de": "Ihr Zahnfleisch scheint gesund zu sein. Keine Krankheitsanzeichen festgestellt."
+    },
+    "treatment": {
+      "en": "Keep up with regular oral hygiene and routine dental check-ups.",
+      "fr": "Maintenez une bonne hygiène bucco-dentaire et des contrôles réguliers chez le dentiste.",
+      "ar": "استمر في العناية الجيدة بالفم وزيارات منتظمة لطبيب الأسنان.",
+      "de": "Behalten Sie Ihre Mundhygiene bei und machen Sie regelmäßige Zahnarztbesuche."
+    }
+  },
+  {
+    "id": "no_tmj_disorder",
+    "title": {
+      "en": "No TMJ Disorder Detected",
+      "fr": "Aucun trouble de l'ATM détecté",
+      "ar": "لا يوجد اضطراب في مفصل الفك",
+      "de": "Kein Kiefergelenksproblem festgestellt"
+    },
+    "description": {
+      "en": "Your symptoms do not suggest any temporomandibular joint disorder.",
+      "fr": "Vos symptômes ne suggèrent aucun trouble de l'articulation temporo-mandibulaire.",
+      "ar": "أعراضك لا تشير إلى وجود اضطراب في مفصل الفك.",
+      "de": "Ihre Symptome deuten nicht auf eine Kiefergelenkerkrankung hin."
+    },
+    "treatment": {
+      "en": "No treatment is required at this time.",
+      "fr": "Aucun traitement n'est requis pour le moment.",
+      "ar": "لا حاجة للعلاج في الوقت الحالي.",
+      "de": "Es ist derzeit keine Behandlung erforderlich."
+    }
+  }
+]

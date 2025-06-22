@@ -1,0 +1,42 @@
+[
+  {
+    "id": "q1",
+    "text": {
+      "en": "Do you feel spontaneous tooth pain?",
+      "fr": "Ressentez-vous une douleur dentaire spontanée ?",
+      "de": "Haben Sie spontane Zahnschmerzen?",
+      "ar": "هل تشعر بألم في الأسنان بدون سبب واضح؟"
+    },
+    "options": [
+      { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "next": "q2" },
+      { "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" }, "next": "q3" }
+    ]
+  },
+  {
+    "id": "q2",
+    "text": {
+      "en": "Does the pain last more than 30 seconds?",
+      "fr": "La douleur dure-t-elle plus de 30 secondes ?",
+      "de": "Dauert der Schmerz länger als 30 Sekunden?",
+      "ar": "هل يستمر الألم لأكثر من 30 ثانية؟"
+    },
+    "options": [
+      { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "diagnosisId": "irreversible_pulpitis" },
+      { "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" }, "diagnosisId": "reversible_pulpitis" }
+    ]
+  },
+  {
+    "id": "q3",
+    "text": {
+      "en": "Is the tooth sensitive to cold, sweet, or heat?",
+      "fr": "La dent est-elle sensible au froid, au sucré ou à la chaleur ?",
+      "de": "Ist der Zahn empfindlich auf Kälte, Süßes oder Wärme?",
+      "ar": "هل السن حساس للبرد أو الحلو أو الحرارة؟"
+    },
+    "options": [
+      { "label": { "en": "Cold", "fr": "Froid", "de": "Kälte", "ar": "البرد" }, "diagnosisId": "reversible_pulpitis" },
+      { "label": { "en": "Heat", "fr": "Chaleur", "de": "Wärme", "ar": "الحرارة" }, "diagnosisId": "irreversible_pulpitis" },
+      { "label": { "en": "No sensitivity", "fr": "Aucune sensibilité", "de": "Keine Empfindlichkeit", "ar": "لا يوجد حساسية" }, "diagnosisId": "dentin_hypersensitivity" }
+    ]
+  }
+]

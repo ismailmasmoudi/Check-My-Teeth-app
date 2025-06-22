@@ -1,0 +1,15 @@
+<div *ngIf="currentQuestion">
+  <h3>{{ currentQuestion.text[language] }}</h3>
+  <ul>
+    <li *ngFor="let option of currentQuestion.options">
+      <button (click)="selectOption(option)">{{ option.label[language] }}</button>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="selectedDiagnosis">
+  <app-diagnosis-result
+    [diagnosis]="selectedDiagnosis"
+    [language]="language"
+  ></app-diagnosis-result>
+</div>

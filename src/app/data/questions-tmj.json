@@ -1,0 +1,28 @@
+[
+  {
+    "id": "q1",
+    "text": {
+      "en": "Do you feel pain in front of the ear or when chewing?",
+      "fr": "Ressentez-vous une douleur devant l'oreille ou en mâchant ?",
+      "de": "Haben Sie Schmerzen vor dem Ohr oder beim Kauen?",
+      "ar": "هل تشعر بألم أمام الأذن أو عند المضغ؟"
+    },
+    "options": [
+      { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "next": "q2" },
+      { "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" }, "diagnosisId": "no_tmj_disorder" }
+    ]
+  },
+  {
+    "id": "q2",
+    "text": {
+      "en": "Do you hear clicking or popping sounds when opening your mouth?",
+      "fr": "Entendez-vous des clics ou des craquements en ouvrant la bouche ?",
+      "de": "Hören Sie Klick- oder Knackgeräusche beim Öffnen des Mundes?",
+      "ar": "هل تسمع أصوات طقطقة أو فرقعة عند فتح الفم؟"
+    },
+    "options": [
+      { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "diagnosisId": "tmj_disorder" },
+      { "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" }, "diagnosisId": "tmj_muscle_pain" }
+    ]
+  }
+]

@@ -1,0 +1,97 @@
+.tooth-selector-container {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  margin-top: 20px;
+  text-align: center;
+
+  h2 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+}
+
+.tooth-schema {
+  display: grid;
+  grid-template-columns: 1fr 1fr; // Two columns for upper/lower quadrants
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.quadrant {
+  border: 1px solid #eee;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.quadrant-label {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.teeth-row {
+  display: flex;
+  flex-wrap: wrap; // Allow buttons to wrap if too many
+  gap: 5px;
+  justify-content: center;
+}
+
+.teeth-row button {
+  padding: 8px 12px;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, transform 0.1s;
+
+  &:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    transform: translateY(-1px);
+  }
+
+  &.selected {
+    background-color: #28a745; // Green for selected
+    border-color: #28a745;
+    font-weight: bold;
+    transform: scale(1.05);
+  }
+}
+
+.selection-info {
+  margin-top: 20px;
+  p {
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 15px;
+  }
+  strong {
+    color: #007bff;
+  }
+}
+
+.selection-info button {
+  padding: 10px 20px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background-color 0.2s;
+
+  &:hover:not(:disabled) {
+    background-color: #5a6268;
+  }
+
+  &:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+}

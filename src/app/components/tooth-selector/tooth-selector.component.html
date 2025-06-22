@@ -1,1 +1,64 @@
-<p>tooth-selector works!</p>
+<div class="tooth-selector-container">
+  <h2>{{ titleText[language] }}</h2>
+
+  <div class="tooth-schema">
+    <div class="quadrant upper">
+      <div class="quadrant-label">{{ quadrantLabels.upperRight[language] }}</div>
+      <div class="teeth-row">
+        <button
+          *ngFor="let tooth of teeth.upperRight"
+          [class.selected]="toothIdentifier === tooth.toString()"
+          (click)="selectTooth(tooth)"
+        >
+          {{ tooth }}
+        </button>
+      </div>
+    </div>
+
+    <div class="quadrant upper">
+      <div class="quadrant-label">{{ quadrantLabels.upperLeft[language] }}</div>
+      <div class="teeth-row">
+        <button
+          *ngFor="let tooth of teeth.upperLeft"
+          [class.selected]="toothIdentifier === tooth.toString()"
+          (click)="selectTooth(tooth)"
+        >
+          {{ tooth }}
+        </button>
+      </div>
+    </div>
+
+    <div class="quadrant lower">
+      <div class="quadrant-label">{{ quadrantLabels.lowerLeft[language] }}</div>
+      <div class="teeth-row">
+        <button
+          *ngFor="let tooth of teeth.lowerLeft"
+          [class.selected]="toothIdentifier === tooth.toString()"
+          (click)="selectTooth(tooth)"
+        >
+          {{ tooth }}
+        </button>
+      </div>
+    </div>
+
+    <div class="quadrant lower">
+      <div class="quadrant-label">{{ quadrantLabels.lowerRight[language] }}</div>
+      <div class="teeth-row">
+        <button
+          *ngFor="let tooth of teeth.lowerRight"
+          [class.selected]="toothIdentifier === tooth.toString()"
+          (click)="selectTooth(tooth)"
+        >
+          {{ tooth }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="selection-info">
+    <p *ngIf="toothIdentifier">{{ selectedToothText[language] }} <strong>{{ toothIdentifier }}</strong></p>
+    <button (click)="confirmSelection()" [disabled]="!toothIdentifier">
+      {{ confirmButtonText[language] }}
+    </button>
+  </div>
+</div>

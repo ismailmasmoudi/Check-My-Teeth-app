@@ -1,30 +1,89 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { QuestionFlowComponent } from './components/question-flow/question-flow.component';
 import { CommonModule } from '@angular/common';
-import { PainTypeSelectorComponent } from './components/pain-type-selector/pain-type-selector.component'; // Import PainTypeSelectorComponent
+import { PainTypeSelectorComponent } from './components/pain-type-selector/pain-type-selector.component';
+import { ToothSelectorComponent } from "./components/tooth-selector/tooth-selector.component";
+import { LanguageSelectorComponent } from "./components/language-selector/language-selector.component"; // Import PainTypeSelectorComponent
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [QuestionFlowComponent, CommonModule, PainTypeSelectorComponent],
+  imports: [QuestionFlowComponent, CommonModule, PainTypeSelectorComponent, ToothSelectorComponent, LanguageSelectorComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 
 export class AppComponent {
-  title = 'DentApp';
-  selectedPainType: string | null = null;
-  language: 'en' | 'fr' | 'ar' | 'de' = 'en';
+  @ViewChild(QuestionFlowComponent) questionFlowComponent?: QuestionFlowComponent;
 
-  constructor() {
-    const browserLang = navigator.language.substring(0, 2).toLowerCase();
-    if (['en', 'fr', 'ar', 'de'].includes(browserLang)) {
-      this.language = browserLang as any;
-    }
-  }
+  selectedLanguage: 'en' | 'fr' | 'de' | 'ar' = 'en';
+  selectedPainType: string | null = null;
+  selectedTooth: string | null = null;
+
+  painTypeQuestionText = {
+    en: 'What type of pain do you have?',
+    fr: 'Quel type de douleur avez-vous ?',
+    de: 'Welche Art von Schmerzen haben Sie?',
+    ar: 'ما نوع الألم الذي تعاني منه؟'
+  };
+
+  selectPainTypeLabel = {
+    en: 'Select pain type',
+    fr: 'Sélectionnez le type de douleur',
+    de: 'Schmerzart auswählen',
+    ar: 'اختر نوع الألم'
+  };
+
+  painTypesText = {
+    tooth: { en: 'Tooth pain', fr: 'Douleur dentaire', de: 'Zahnschmerzen', ar: 'ألم الأسنان' },
+    gum: { en: 'Gum pain', fr: 'Douleur des gencives', de: 'Zahnfleischschmerzen', ar: 'ألم اللثة' },
+    tmj: { en: 'TMJ pain', fr: 'Douleur de l\'ATM', de: 'Kiefergelenkschmerzen', ar: 'ألم مفصل الفك' }
+  };
+
+  backButtonLabel = {
+    en: 'Back',
+    fr: 'Retour',
+    de: 'Zurück',
+    ar: 'رجوع'
+  };
 
   onPainTypeSelected(painType: string) {
     this.selectedPainType = painType;
+  }
+
+  onToothSelected(toothId: string) {
+    this.selectedTooth = toothId;
+  }
+
+ onLanguageChanged(lang: 'en' | 'fr' | 'de' | 'ar') {
+  this.selectedLanguage = lang;
+}
+
+  triggerBackAction() {
+    // If the question flow component is currently displayed, delegate the back action to it.
+    // It will handle its internal history (going back to the previous question).
+    if (this.questionFlowComponent) {
+      this.questionFlowComponent.goBackInternal();
+    }
+    // If we are on the tooth selector screen, go back to the pain type selection.
+    else if (this.selectedPainType === 'tooth' && !this.selectedTooth) {
+      this.selectedPainType = null;
+    }
+  }
+
+  onQuestionFlowBack() {
+    // If we came from the tooth selector (i.e., pain type is 'tooth'), go back to it.
+    if (this.selectedPainType === 'tooth') {
+      this.selectedTooth = null;
+    } else {
+      // Otherwise, go back to the main pain type selection.
+      this.resetSelection();
+    }
+  }
+
+  resetSelection() {
+    this.selectedPainType = null;
+    this.selectedTooth = null;
   }
 }

@@ -1,11 +1,28 @@
-<!-- Schritt 1: Schmerzart-Auswahl -->
-<app-pain-type-selector
-  (painTypeSelected)="onPainTypeSelected($event)">
-</app-pain-type-selector>
+<app-language-selector (languageChanged)="onLanguageChanged($event)"></app-language-selector>
 
-<!-- Schritt 2: Fragen anzeigen, wenn Schmerzart gewählt -->
-<app-question-flow
-  *ngIf="selectedPainType"
-  [painType]="selectedPainType"
-  [language]="language">
+<div *ngIf="!selectedPainType">
+  <p>{{ painTypeQuestionText[selectedLanguage] }}</p>
+  <select #painTypeSelect (change)="onPainTypeSelected(painTypeSelect.value)">
+    <option value="" disabled selected>-- {{ selectPainTypeLabel[selectedLanguage] }} --</option>
+    <option value="tooth">{{ painTypesText['tooth'][selectedLanguage] }}</option>
+    <option value="gum">{{ painTypesText['gum'][selectedLanguage] }}</option>
+    <option value="tmj">{{ painTypesText['tmj'][selectedLanguage] }}</option>
+  </select>
+</div>
+
+<app-tooth-selector 
+  *ngIf="selectedPainType === 'tooth' && !selectedTooth" 
+  (toothSelected)="onToothSelected($event)"
+  [language]="selectedLanguage">
+</app-tooth-selector>
+
+<app-question-flow 
+  *ngIf="selectedPainType && !(selectedPainType === 'tooth' && !selectedTooth)" 
+  [painType]="selectedPainType" 
+  [language]="selectedLanguage"                                                                                                                             
+  (back)="onQuestionFlowBack()">
 </app-question-flow>
+
+<button *ngIf="selectedPainType" (click)="triggerBackAction()">
+  {{ backButtonLabel[selectedLanguage] }}
+</button>

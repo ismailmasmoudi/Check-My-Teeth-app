@@ -1,6 +1,7 @@
 <app-language-selector (languageChanged)="onLanguageChanged($event)"></app-language-selector>
 
-<div *ngIf="!selectedPainType">
+<!-- Step 1: Pain Type Selection -->
+<div *ngIf="!selectedPainType && !finalDiagnosis">
   <p>{{ painTypeQuestionText[selectedLanguage] }}</p>
   <select #painTypeSelect (change)="onPainTypeSelected(painTypeSelect.value)">
     <option value="" disabled selected>-- {{ selectPainTypeLabel[selectedLanguage] }} --</option>
@@ -10,19 +11,43 @@
   </select>
 </div>
 
+<!-- Step 2: Tooth Selection (only for tooth pain) -->
 <app-tooth-selector 
-  *ngIf="selectedPainType === 'tooth' && !selectedTooth" 
+  *ngIf="selectedPainType === 'tooth' && !selectedTooth && !finalDiagnosis" 
   (toothSelected)="onToothSelected($event)"
   [language]="selectedLanguage">
 </app-tooth-selector>
 
+<!-- Step 3: Tooth Status Flow (after tooth selection) -->
+<app-tooth-status-flow 
+  *ngIf="selectedPainType === 'tooth' && selectedTooth && !isToothStatusFlowComplete && !finalDiagnosis" 
+  [selectedTooth]="selectedTooth" 
+  [language]="selectedLanguage"
+  (diagnosisReady)="onDiagnosisReady($event)"
+  (flowCompletedWithoutDiagnosis)="onToothStatusFlowCompleted()">
+</app-tooth-status-flow>
+
+<!-- Step 4: General Question Flow (for gum/tmj OR after tooth status flow) -->
 <app-question-flow 
-  *ngIf="selectedPainType && !(selectedPainType === 'tooth' && !selectedTooth)" 
-  [painType]="selectedPainType" 
+  *ngIf="!finalDiagnosis && ((selectedPainType === 'gum' || selectedPainType === 'tmj') || isToothStatusFlowComplete)" 
+  [painType]="selectedPainType!" 
   [language]="selectedLanguage"                                                                                                                             
   (back)="onQuestionFlowBack()">
 </app-question-flow>
 
-<button *ngIf="selectedPainType" (click)="triggerBackAction()">
+<!-- Final Diagnosis Display -->
+<div *ngIf="finalDiagnosis" class="diagnosis-card">
+  <h2 class="diagnosis-title">{{ finalDiagnosis.title }}</h2>
+  <div class="diagnosis-content">
+    <h3>Explanation</h3>
+    <p>{{ finalDiagnosis.explanation }}</p>
+    <h3>Suggested Treatment</h3>
+    <p>{{ finalDiagnosis.treatment }}</p>
+  </div>
+  <button (click)="resetSelection()" class="reset-button">Start Over</button>
+</div>
+
+<!-- Global Back Button (hidden when diagnosis is shown) -->
+<button *ngIf="selectedPainType && !finalDiagnosis" (click)="triggerBackAction()">
   {{ backButtonLabel[selectedLanguage] }}
 </button>

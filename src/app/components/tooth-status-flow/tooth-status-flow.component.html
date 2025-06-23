@@ -1,0 +1,41 @@
+<h3>{{ titleText }}</h3>
+
+<!-- Step 1: Select status -->
+<label><input type="checkbox" [(ngModel)]="toothStatus.rootCanal" /> {{ getTranslation('rootCanal') }}</label>
+<label><input type="checkbox" [(ngModel)]="toothStatus.hasFilling" [disabled]="toothStatus.rootCanal && rootCanalFinished === false" /> {{ getTranslation('hasFilling') }}</label>
+<label><input type="checkbox" [(ngModel)]="toothStatus.hasCrown" [disabled]="toothStatus.rootCanal && rootCanalFinished === false" /> {{ getTranslation('hasCrown') }}</label>
+
+<!-- Step 2: Root Canal Questions -->
+<div *ngIf="toothStatus.rootCanal">
+  <p>{{ getTranslation('howLongAgo') }}</p>
+  <label><input type="radio" [(ngModel)]="rootCanalSince" name="rootCanalSince" value="less" /> {{ getTranslation('lessThan3Months') }}</label>
+  <label><input type="radio" [(ngModel)]="rootCanalSince" name="rootCanalSince" value="more" /> {{ getTranslation('moreThan3Months') }}</label>
+
+  <p>{{ getTranslation('isFullyCompleted') }}</p>
+  <label><input type="radio" [(ngModel)]="rootCanalFinished" name="rootCanalFinished" [value]="true" (change)="onRootCanalStatusChange()" /> {{ getTranslation('yes') }}</label>
+  <label><input type="radio" [(ngModel)]="rootCanalFinished" name="rootCanalFinished" [value]="false" (change)="onRootCanalStatusChange()" /> {{ getTranslation('no') }}</label>
+</div>
+
+<!-- Step 3: Filling Questions -->
+<div *ngIf="toothStatus.hasFilling && !(toothStatus.rootCanal && rootCanalFinished === true)">
+  <p>{{ getTranslation('wasFillingDeep') }}</p>
+  <label><input type="radio" [(ngModel)]="fillingDeep" name="fillingDeep" [value]="true" /> {{ getTranslation('yes') }}</label>
+  <label><input type="radio" [(ngModel)]="fillingDeep" name="fillingDeep" [value]="false" /> {{ getTranslation('no') }}</label>
+
+  <p>{{ getTranslation('isFillingBroken') }}</p>
+  <label><input type="radio" [(ngModel)]="fillingBroken" name="fillingBroken" [value]="true" /> {{ getTranslation('yes') }}</label>
+  <label><input type="radio" [(ngModel)]="fillingBroken" name="fillingBroken" [value]="false" /> {{ getTranslation('no') }}</label>
+</div>
+
+<!-- Step 4: Crown Questions -->
+<div *ngIf="toothStatus.hasCrown">
+  <p>{{ getTranslation('didCrownFallOff') }}</p>
+  <label><input type="radio" [(ngModel)]="crownFell" name="crownFell" [value]="true" /> {{ getTranslation('yes') }}</label>
+  <label><input type="radio" [(ngModel)]="crownFell" name="crownFell" [value]="false" /> {{ getTranslation('no') }}</label>
+
+  <p>{{ getTranslation('isCrownBroken') }}</p>
+  <label><input type="radio" [(ngModel)]="crownBroken" name="crownBroken" [value]="true" /> {{ getTranslation('yes') }}</label>
+  <label><input type="radio" [(ngModel)]="crownBroken" name="crownBroken" [value]="false" /> {{ getTranslation('no') }}</label>
+</div>
+
+<button (click)="explainDiagnosis()" [disabled]="!isFormValid()">{{ getTranslation('showDiagnosis') }}</button>

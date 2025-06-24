@@ -4,7 +4,7 @@ import diagnosesData from '../data/diagnoses.json';
 export interface Diagnosis {
   id: string;
   title: { en: string; fr: string; ar: string; de: string };
-  description: { en: string; fr: string; ar: string; de: string };
+  explanation: { en: string; fr: string; ar: string; de: string };
   treatment: { en: string; fr: string; ar: string; de: string };
 }
 

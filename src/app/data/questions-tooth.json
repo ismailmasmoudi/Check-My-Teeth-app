@@ -15,10 +15,10 @@
   {
     "id": "q2",
     "text": {
-      "en": "Does the pain last more than 30 seconds?",
-      "fr": "La douleur dure-t-elle plus de 30 secondes ?",
-      "de": "Dauert der Schmerz länger als 30 Sekunden?",
-      "ar": "هل يستمر الألم لأكثر من 30 ثانية؟"
+      "en": "Does the pain last more than 5 seconds?",
+      "fr": "La douleur dure-t-elle plus de 5 secondes ?",
+      "de": "Dauert der Schmerz länger als 5 Sekunden?",
+      "ar": "هل يستمر الألم لأكثر من 5 ثوان؟"
     },
     "options": [
       { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "diagnosisId": "irreversible_pulpitis" },
@@ -28,15 +28,40 @@
   {
     "id": "q3",
     "text": {
-      "en": "Is the tooth sensitive to cold, sweet, or heat?",
-      "fr": "La dent est-elle sensible au froid, au sucré ou à la chaleur ?",
-      "de": "Ist der Zahn empfindlich auf Kälte, Süßes oder Wärme?",
-      "ar": "هل السن حساس للبرد أو الحلو أو الحرارة؟"
+      "en": "Is there a pimple on the gum (abscess) or is pus coming out?",
+      "fr": "Y a-t-il un bouton sur la gencive (abcès) ou du pus qui sort ?",
+      "de": "Gibt es eine Beule am Zahnfleisch (Abszess) oder tritt Eiter aus?",
+      "ar": "هل يوجد خراج على اللثة أو يخرج صديد؟"
     },
     "options": [
-      { "label": { "en": "Cold", "fr": "Froid", "de": "Kälte", "ar": "البرد" }, "diagnosisId": "reversible_pulpitis" },
-      { "label": { "en": "Heat", "fr": "Chaleur", "de": "Wärme", "ar": "الحرارة" }, "diagnosisId": "irreversible_pulpitis" },
-      { "label": { "en": "No sensitivity", "fr": "Aucune sensibilité", "de": "Keine Empfindlichkeit", "ar": "لا يوجد حساسية" }, "diagnosisId": "dentin_hypersensitivity" }
+      { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "diagnosisId": "dent_necrosis" },
+      { "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" }, "next": "q4" }
+    ]
+  },
+  {
+    "id": "q4",
+    "text": {
+      "en": "Is the tooth sensitive to cold, sweet, or sour?",
+      "fr": "La dent est-elle sensible au froid, au sucré ou à l'acide ?",
+      "de": "Ist der Zahn empfindlich auf Kälte, Süßes oder Saures?",
+      "ar": "هل السن حساس للبرد أو الحلو أو الحامض؟"
+    },
+    "options": [
+      { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "next": "q5" },
+      { "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" }, "diagnosisId": "healthy_tooth" }
+    ]
+  },
+  {
+    "id": "q5",
+    "text": {
+      "en": "Is the pain a short, sharp shock that disappears quickly?",
+      "fr": "La douleur est-elle un choc bref et aigu qui disparaît rapidement ?",
+      "de": "Ist der Schmerz ein kurzer, scharfer Stich, der schnell wieder verschwindet?",
+      "ar": "هل الألم عبارة عن صدمة قصيرة وحادة تختفي بسرعة؟"
+    },
+    "options": [
+      { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "diagnosisId": "dentin_hypersensitivity" },
+      { "label": { "en": "No, it's more of a dull ache", "fr": "Non, c'est plutôt une douleur sourde", "de": "Nein, es ist eher ein dumpfer Schmerz", "ar": "لا، إنه أشبه بألم خفيف" }, "diagnosisId": "reversible_pulpitis" }
     ]
   }
 ]

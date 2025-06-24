@@ -31,8 +31,9 @@
 <app-question-flow 
   *ngIf="!finalDiagnosis && ((selectedPainType === 'gum' || selectedPainType === 'tmj') || isToothStatusFlowComplete)" 
   [painType]="selectedPainType!" 
-  [language]="selectedLanguage"                                                                                                                             
-  (back)="onQuestionFlowBack()">
+  [language]="selectedLanguage"
+  (back)="onQuestionFlowBack()"
+  (diagnosisReady)="onDiagnosisReady($event)">
 </app-question-flow>
 
 <!-- Final Diagnosis Display -->

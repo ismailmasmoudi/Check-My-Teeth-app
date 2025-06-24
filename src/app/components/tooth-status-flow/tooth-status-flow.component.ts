@@ -57,10 +57,10 @@ export class ToothStatusFlowComponent implements OnChanges {
       ar: 'لديه تاج',
     },
     howLongAgo: {
-      en: '1. How long ago?',
-      fr: '1. Il y a combien de temps ?',
-      de: '1. Wie lange ist das her?',
-      ar: '1. منذ متى؟',
+      en: 'How long ago?',
+      fr: 'Il y a combien de temps ?',
+      de: 'Wie lange ist das her?',
+      ar: 'منذ متى؟',
     },
     lessThan3Months: {
       en: 'Less than 3 months',
@@ -75,34 +75,34 @@ export class ToothStatusFlowComponent implements OnChanges {
       ar: 'أكثر من 3 أشهر',
     },
     isFullyCompleted: {
-      en: '2. Is root canal fully completed (with filling)?',
-      fr: '2. Le traitement de canal est-il entièrement terminé (avec obturation) ?',
-      de: '2. Ist die Wurzelkanalbehandlung vollständig abgeschlossen (mit Füllung)?',
-      ar: '2. هل اكتمل علاج قناة الجذر بالكامل (مع الحشوة)؟',
+      en: 'Is root canal fully completed (with filling)?',
+      fr: 'Le traitement de canal est-il entièrement terminé (avec obturation) ?',
+      de: 'Ist die Wurzelkanalbehandlung vollständig abgeschlossen (mit Füllung)?',
+      ar: 'هل اكتمل علاج قناة الجذر بالكامل (مع الحشوة)؟',
     },
     wasFillingDeep: {
-      en: '1. Was the filling deep?',
-      fr: "1. L'obturation était-elle profonde ?",
-      de: '1. War die Füllung tief?',
-      ar: '1. هل كانت الحشوة عميقة؟',
+      en: 'Was the filling deep?',
+      fr: "L'obturation était-elle profonde ?",
+      de: 'War die Füllung tief?',
+      ar: 'هل كانت الحشوة عميقة؟',
     },
     isFillingBroken: {
-      en: '2. Is the filling broken?',
-      fr: "2. L'obturation est-elle cassée ?",
-      de: '2. Ist die Füllung abgebrochen?',
-      ar: '2. هل الحشوة مكسورة؟',
+      en: 'Is the filling broken?',
+      fr: "L'obturation est-elle cassée ?",
+      de: 'Ist die Füllung abgebrochen?',
+      ar: 'هل الحشوة مكسورة؟',
     },
     didCrownFallOff: {
-      en: '1. Did the crown fall off?',
-      fr: '1. La couronne est-elle tombée ?',
-      de: '1. Ist die Krone herausgefallen?',
-      ar: '1. هل سقط التاج؟',
+      en: 'Did the crown fall off?',
+      fr: 'La couronne est-elle tombée ?',
+      de: 'Ist die Krone herausgefallen?',
+      ar: 'هل سقط التاج؟',
     },
     isCrownBroken: {
-      en: '2. Is the crown broken?',
-      fr: '2. La couronne est-elle cassée ?',
-      de: '2. Ist die Krone gebrochen?',
-      ar: '2. Ist die Krone gebrochen?',
+      en: 'Is the crown broken?',
+      fr: 'La couronne est-elle cassée ?',
+      de: 'Ist die Krone gebrochen?',
+      ar: 'Ist die Krone gebrochen?',
     },
     yes: { en: 'Yes', fr: 'Oui', de: 'Ja', ar: 'نعم' },
     no: { en: 'No', fr: 'Non', de: 'Nein', ar: 'لا' },
@@ -111,6 +111,19 @@ export class ToothStatusFlowComponent implements OnChanges {
       fr: 'Continuer / Afficher le diagnostic',
       de: 'Weiter / Diagnose anzeigen',
       ar: 'متابعة / إظهار التشخيص',
+    },
+    noneOfTheAbove: {
+      en: 'The tooth has none of these options',
+      fr: "La dent n'a aucune de ces options",
+      de: 'Der Zahn hat keine dieser Optionen',
+      ar: 'السن ليس به أي من هذه الخيارات',
+    },
+
+    painOnBitingQuestion: {
+      en: 'Does it hurt when biting?',
+      fr: 'Est-ce que ça fait mal en mordant ?',
+      de: 'Tut es weh beim Beißen?',
+      ar: 'هل يؤلم عند العض؟',
     },
 
     // Diagnosis Titles
@@ -138,12 +151,13 @@ export class ToothStatusFlowComponent implements OnChanges {
       fr: 'Couronne tombée',
       ar: 'سقوط التاج',
     },
-    'title.brokenCrown': {
+    'title.crownBroken': {
       en: 'Broken Crown',
       de: 'Krone gebrochen',
       fr: 'Couronne cassée',
       ar: 'تاج مكسور',
     },
+
     'title.rctFinishedStillPain': {
       en: 'Root Canal Treated Tooth with Persistent Issues',
       fr: 'Dent traitée par canal avec problèmes persistants',
@@ -183,12 +197,13 @@ export class ToothStatusFlowComponent implements OnChanges {
       fr: 'La couronne est tombée, exposant la structure dentaire sous-jacente.',
       ar: 'سقط التاج، مما يكشف عن بنية السن الأساسية.',
     },
-    'explanation.brokenCrown': {
+    'explanation.crownBroken': {
       en: 'The crown is broken, which can have sharp edges and no longer protects the tooth.',
       de: 'Die Krone ist beschädigt, was scharfe Kanten haben kann und den Zahn nicht mehr schützt.',
       fr: 'La couronne est cassée, ce qui peut présenter des bords tranchants et ne protège plus la dent.',
       ar: 'التاج مكسور، مما قد يكون له حواف حادة ولم يعد يحمي السن.',
     },
+
     'explanation.rctFinishedStillPain': {
       en: 'Despite completed root canal treatment, the tooth still presents issues, possibly indicating a need for retreatment or extraction.',
       fr: "Malgré un traitement de canal terminé, la dent présente toujours des problèmes, indiquant peut-être un besoin de retraitement ou d'extraction.",
@@ -227,7 +242,7 @@ export class ToothStatusFlowComponent implements OnChanges {
       fr: 'La couronne doit être recollée ou remplacée. Conservez la couronne et consultez un dentiste.',
       ar: 'يجب إعادة تثبيت التاج أو استبداله. احتفظ بالتاج وراجع طبيب الأسنان.',
     },
-    'treatment.brokenCrown': {
+    'treatment.crownBroken': {
       en: 'A new crown must be made.',
       de: 'Eine neue Krone muss angefertigt werden.',
       fr: 'Eine neue Krone doit être fabriquée.',
@@ -266,6 +281,7 @@ export class ToothStatusFlowComponent implements OnChanges {
     rootCanal: false,
     hasFilling: false,
     hasCrown: false,
+    noneOfTheAbove: false,
   };
 
   // Root canal questions
@@ -280,6 +296,9 @@ export class ToothStatusFlowComponent implements OnChanges {
   crownFell: boolean | null = null;
   crownBroken: boolean | null = null;
 
+  // New question A3
+  painOnBiting: boolean | null = null;
+
   onRootCanalStatusChange(): void {
     // If root canal is checked AND it's explicitly marked as NOT completed (false),
     // then disable and uncheck filling/crown options.
@@ -289,12 +308,36 @@ export class ToothStatusFlowComponent implements OnChanges {
     }
   }
 
+  onStatusChange(changedStatus: 'a' | 'b' | 'c' | 'd'): void {
+    if (changedStatus === 'd' && this.toothStatus.noneOfTheAbove) {
+      // If "none" is checked, uncheck others
+      this.toothStatus.rootCanal = false;
+      this.toothStatus.hasFilling = false;
+      this.toothStatus.hasCrown = false;
+    } else if (['a', 'b', 'c'].includes(changedStatus)) {
+      // If any of a, b, or c is checked, uncheck "none"
+      if (
+        this.toothStatus.rootCanal ||
+        this.toothStatus.hasFilling ||
+        this.toothStatus.hasCrown
+      ) {
+        this.toothStatus.noneOfTheAbove = false;
+      }
+    }
+
+    // New Logic: If 'a' and 'b' are selected, automatically set A2 to 'Yes'
+    if (this.toothStatus.rootCanal && this.toothStatus.hasFilling) {
+      this.rootCanalFinished = true;
+      // No need to call onRootCanalStatusChange here, as it's handled by the HTML change event
+    }
+  }
+
   // New method to check if all relevant questions are answered
   isFormValid(): boolean {
     let isValid = true;
 
-    // At least one main status checkbox must be selected to proceed
     if (
+      !this.toothStatus.noneOfTheAbove &&
       !this.toothStatus.rootCanal &&
       !this.toothStatus.hasFilling &&
       !this.toothStatus.hasCrown
@@ -302,11 +345,26 @@ export class ToothStatusFlowComponent implements OnChanges {
       return false;
     }
 
+    // If "none of the above" is selected, the form is valid to proceed.
+    if (this.toothStatus.noneOfTheAbove) {
+      return true;
+    }
+
     // Validate Root Canal questions if selected
     if (this.toothStatus.rootCanal) {
-      if (this.rootCanalSince === null || this.rootCanalFinished === null) {
+      // A2 must always be answered if rootCanal is selected
+      if (this.rootCanalFinished === null) {
         isValid = false;
       }
+      // If A2 is 'No' (false), then A1 must be answered for the 'Incomplete Root Canal' diagnosis path
+      else if (this.rootCanalFinished === false && this.rootCanalSince === null) {
+        isValid = false;
+      }
+      // If A2 is 'Yes' (true), then A3 must be answered (A1 is not strictly required for A3's visibility here)
+      else if (this.rootCanalFinished === true && this.painOnBiting === null) {
+        isValid = false;
+      }
+      // A1 is only required if rootCanalFinished is false (for the "Incomplete Root Canal" diagnosis)
     }
 
     // Validate Filling questions if selected and not skipped by a finished root canal
@@ -329,6 +387,12 @@ export class ToothStatusFlowComponent implements OnChanges {
   }
 
   explainDiagnosis() {
+    // If "none of the above" is selected, go straight to pain questions.
+    if (this.toothStatus.noneOfTheAbove) {
+      this.flowCompletedWithoutDiagnosis.emit();
+      return;
+    }
+
     if (!this.isFormValid()) {
       // This case should ideally not be reached if the button is disabled,
       // but it's a good safeguard.
@@ -379,9 +443,8 @@ export class ToothStatusFlowComponent implements OnChanges {
       // This covers both C1=Yes & C2=Yes, and C1=No & C2=Yes
       if (this.crownBroken === true) {
         foundDiagnoses.push({
-          title: this.getTranslation('title.brokenCrown'),
-
-          explanation: this.getTranslation('explanation.brokenCrown'),
+          title: this.getTranslation('title.crownBroken'),
+          explanation: this.getTranslation('explanation.crownBroken'),
           treatment: this.getTranslation('treatment.crownBroken'),
         });
       }
@@ -438,7 +501,9 @@ export class ToothStatusFlowComponent implements OnChanges {
     const combinedTreatment =
       this.getTranslation('treatment.multipleIssuesIntro') +
       '\n\n' +
-      diagnoses.map((d, index) => `${index + 1}. ${d.treatment}`).join(`\n\n${andWord}\n\n`);
+      diagnoses
+        .map((d, index) => `${index + 1}. ${d.treatment}`)
+        .join(`\n\n${andWord}\n\n`);
     return {
       title: combinedTitle,
       explanation: combinedExplanation,

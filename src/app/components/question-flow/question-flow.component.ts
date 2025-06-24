@@ -2,7 +2,6 @@
 import { Component, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { QuestionFlowService, Question } from '../../services/question-flow.service';
 import { DiagnosisService, Diagnosis } from '../../services/diagnosis.service';
-import { DiagnosisResultComponent } from '../diagnosis-result/diagnosis-result.component';
 import { CommonModule } from '@angular/common';
 
 // For better type safety inside the component
@@ -16,7 +15,7 @@ interface Option {
 @Component({
   selector: 'app-question-flow',
   standalone: true,
-  imports: [CommonModule, DiagnosisResultComponent],
+  imports: [CommonModule],
   templateUrl: './question-flow.component.html',
   styleUrls: ['./question-flow.component.scss']
 })
@@ -24,11 +23,11 @@ export class QuestionFlowComponent implements OnChanges {
   @Input() painType!: string;
   @Input() language: Language = 'en';
   @Output() back = new EventEmitter<void>();
+  @Output() diagnosisReady = new EventEmitter<{ title: string; explanation: string; treatment: string }>();
 
   // Component State
   allQuestions: Question[] = [];
   currentQuestion: Question | null = null;
-  selectedDiagnosis: Diagnosis | null = null;
 
   // History for internal back-navigation
   private questionHistory: Question[] = [];
@@ -57,7 +56,14 @@ export class QuestionFlowComponent implements OnChanges {
     this.questionHistory.push(this.currentQuestion);
 
     if (option.diagnosisId) {
-      this.selectedDiagnosis = this.diagnosisService.getDiagnosisById(option.diagnosisId) || null;
+      const diagnosis = this.diagnosisService.getDiagnosisById(option.diagnosisId);
+      if (diagnosis) {
+        this.diagnosisReady.emit({
+          title: diagnosis.title[this.language],
+          explanation: diagnosis.explanation[this.language],
+          treatment: diagnosis.treatment[this.language]
+        });
+      }
       this.currentQuestion = null;
     } else if (option.next) {
       this.currentQuestion = this.questionFlowService.getQuestionById(this.painType, option.next) || null;
@@ -65,13 +71,8 @@ export class QuestionFlowComponent implements OnChanges {
   }
 
   public goBackInternal(): void {
-    // If a diagnosis is shown, go back to the last question
-    if (this.selectedDiagnosis) {
-      this.selectedDiagnosis = null;
-      this.currentQuestion = this.questionHistory.pop() || null;
-    }
     // If we are on a question and there's history, go to the previous question
-    else if (this.questionHistory.length > 0) {
+    if (this.questionHistory.length > 0) {
       this.currentQuestion = this.questionHistory.pop() || null;
     }
     // If there's no more history, tell the parent component to take over
@@ -82,7 +83,6 @@ export class QuestionFlowComponent implements OnChanges {
 
   private resetState(): void {
     this.currentQuestion = null;
-    this.selectedDiagnosis = null;
     this.allQuestions = [];
     this.questionHistory = [];
   }

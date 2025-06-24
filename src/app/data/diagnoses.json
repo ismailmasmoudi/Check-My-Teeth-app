@@ -7,7 +7,7 @@
       "ar": "التهاب لب السن غير القابل للعلاج",
       "de": "Irreversible Pulpitis"
     },
-    "description": {
+    "explanation": {
       "en": "A severe inflammation of the dental pulp that cannot heal on its own. Often causes spontaneous or long-lasting pain.",
       "fr": "Une inflammation sévère de la pulpe dentaire qui ne peut pas guérir seule. Elle provoque souvent une douleur spontanée ou persistante.",
       "ar": "التهاب شديد في لب السن لا يشفى من تلقاء نفسه. غالبًا ما يسبب ألمًا تلقائيًا أو طويل الأمد.",
@@ -23,16 +23,16 @@
   {
     "id": "reversible_pulpitis",
     "title": {
-      "en": "Reversible Pulpitis",
-      "fr": "Pulpite réversible",
-      "ar": "التهاب لب السن القابل للعلاج",
-      "de": "Reversible Pulpitis"
+      "en": "CARIE PROFUNDA",
+      "fr": "CARIE PROFONDE",
+      "ar": "تسوس عميق",
+      "de": "CARIE PROFUNDA"
     },
-    "description": {
-      "en": "Mild inflammation of the dental pulp that usually occurs with sensitivity to cold or sweets. Pain goes away quickly.",
-      "fr": "Inflammation légère de la pulpe dentaire, généralement causée par une sensibilité au froid ou au sucre. La douleur disparaît rapidement.",
-      "ar": "التهاب خفيف في لب السن يحدث عادة مع حساسية تجاه البرد أو الحلويات. يزول الألم بسرعة.",
-      "de": "Leichte Entzündung des Zahnnervs, oft durch Kälte- oder Süßempfindlichkeit. Der Schmerz vergeht schnell."
+    "explanation": {
+      "en": "A large cavity that has reached deep into the tooth, close to the nerve. It can cause sensitivity to cold or sweets.",
+      "fr": "Une carie importante qui a atteint profondément la dent, près du nerf. Elle peut provoquer une sensibilité au froid ou au sucré.",
+      "ar": "تسوس كبير وصل عميقًا إلى السن، بالقرب من العصب. يمكن أن يسبب حساسية للبرد أو الحلويات.",
+      "de": "Ein großes Loch, das tief in den Zahn, nahe am Nerv, vorgedrungen ist. Es kann Empfindlichkeit auf Kälte oder Süßes verursachen."
     },
     "treatment": {
       "en": "No root canal needed. You may need a filling or to avoid irritants.",
@@ -49,17 +49,17 @@
       "ar": "حساسية العاج",
       "de": "Dentinüberempfindlichkeit"
     },
-    "description": {
+    "explanation": {
       "en": "Short, sharp pain from exposed dentin, especially with cold or sweet stimuli.",
       "fr": "Douleur brève et vive due à la dentine exposée, surtout au froid ou au sucre.",
       "ar": "ألم حاد وقصير بسبب تعرض العاج، خاصة عند تناول شيء بارد أو حلو.",
       "de": "Kurzer, scharfer Schmerz durch freiliegendes Dentin, besonders bei Kälte oder Süßem."
     },
     "treatment": {
-      "en": "Use desensitizing toothpaste and avoid extreme temperatures.",
-      "fr": "Utilisez un dentifrice désensibilisant et évitez les températures extrêmes.",
-      "ar": "استخدم معجون أسنان مضاد للحساسية وتجنب المشروبات أو الأطعمة الباردة جدًا أو الساخنة.",
-      "de": "Verwenden Sie Zahnpasta für empfindliche Zähne und meiden Sie extreme Temperaturen."
+      "en": "Use desensitizing toothpaste and avoid extreme temperatures. A professional application of desensitizing varnish (e.g., Duraphat) by a dentist can also help.",
+      "fr": "Utilisez un dentifrice désensibilisant et évitez les températures extrêmes. Une application professionnelle de vernis désensibilisant (par ex. Duraphat) par un dentiste peut également aider.",
+      "ar": "استخدم معجون أسنان مضاد للحساسية وتجنب المشروبات أو الأطعمة الباردة جدًا أو الساخنة. يمكن لطبيب الأسنان أيضًا وضع ورنيش مزيل للحساسية (مثل دورافهات) بشكل احترافي للمساعدة.",
+      "de": "Verwenden Sie Zahnpasta für empfindliche Zähne und meiden Sie extreme Temperaturen. Zusätzlich kann das Auftragen von Desensibilisierungslack (z.B. Dulaphat) beim Zahnarzt helfen."
     }
   },
   {
@@ -70,7 +70,7 @@
       "ar": "التهاب اللثة",
       "de": "Gingivitis"
     },
-    "description": {
+    "explanation": {
       "en": "Inflammation of the gums caused by plaque buildup. Gums may be red, swollen, and bleed easily.",
       "fr": "Inflammation des gencives causée par l'accumulation de plaque. Les gencives peuvent être rouges, enflées et saigner facilement.",
       "ar": "التهاب في اللثة ناتج عن تراكم البلاك. قد تكون اللثة حمراء أو متورمة وتنزف بسهولة.",
@@ -91,7 +91,7 @@
       "ar": "التهاب لثة خفيف",
       "de": "Leichte Gingivitis"
     },
-    "description": {
+    "explanation": {
       "en": "Early stage of gum inflammation. Usually no pain, but gums may bleed slightly.",
       "fr": "Stade précoce de l'inflammation des gencives. Peu de douleur mais légers saignements possibles.",
       "ar": "مرحلة مبكرة من التهاب اللثة. عادةً لا يوجد ألم، ولكن قد يحدث نزيف بسيط.",
@@ -112,7 +112,7 @@
       "ar": "اضطراب مفصل الفك",
       "de": "Kiefergelenksstörung"
     },
-    "description": {
+    "explanation": {
       "en": "A disorder of the jaw joint causing clicking, pain, and limited movement.",
       "fr": "Un trouble de l'articulation de la mâchoire provoquant des claquements, des douleurs et une mobilité limitée.",
       "ar": "اضطراب في مفصل الفك يسبب طقطقة، ألم، وصعوبة في الحركة.",
@@ -133,7 +133,7 @@
       "ar": "ألم عضلات مفصل الفك",
       "de": "Muskulärer Kiefergelenksschmerz"
     },
-    "description": {
+    "explanation": {
       "en": "Jaw pain caused by muscle tension, often from stress or clenching.",
       "fr": "Douleur de la mâchoire causée par une tension musculaire, souvent due au stress ou au grincement des dents.",
       "ar": "ألم في الفك ناتج عن توتر عضلي، غالبًا بسبب التوتر أو الضغط على الأسنان.",
@@ -154,7 +154,7 @@
       "ar": "لثة صحية",
       "de": "Gesundes Zahnfleisch"
     },
-    "description": {
+    "explanation": {
       "en": "Your gums appear to be healthy. No signs of disease detected.",
       "fr": "Vos gencives semblent saines. Aucun signe de maladie détecté.",
       "ar": "لثتك تبدو صحية. لا توجد علامات على وجود مرض.",
@@ -175,7 +175,7 @@
       "ar": "لا يوجد اضطراب في مفصل الفك",
       "de": "Kein Kiefergelenksproblem festgestellt"
     },
-    "description": {
+    "explanation": {
       "en": "Your symptoms do not suggest any temporomandibular joint disorder.",
       "fr": "Vos symptômes ne suggèrent aucun trouble de l'articulation temporo-mandibulaire.",
       "ar": "أعراضك لا تشير إلى وجود اضطراب في مفصل الفك.",
@@ -186,6 +186,48 @@
       "fr": "Aucun traitement n'est requis pour le moment.",
       "ar": "لا حاجة للعلاج في الوقت الحالي.",
       "de": "Es ist derzeit keine Behandlung erforderlich."
+    }
+  },
+  {
+    "id": "dent_necrosis",
+    "title": {
+      "en": "Dental Necrosis",
+      "fr": "Nécrose dentaire",
+      "de": "Zahnnerv-Nekrose",
+      "ar": "نخر الأسنان"
+    },
+    "explanation": {
+      "en": "The nerve inside the tooth has died, which often leads to an infection or abscess at the root tip.",
+      "fr": "Le nerf à l'intérieur de la dent est mort, ce qui entraîne souvent une infection ou un abcès à l'extrémité de la racine.",
+      "de": "Der Nerv im Zahn ist abgestorben, was oft zu einer Infektion oder einem Abszess an der Wurzelspitze führt.",
+      "ar": "مات العصب داخل السن، مما يؤدي غالبًا إلى عدوى أو خراج في طرف الجذر."
+    },
+    "treatment": {
+      "en": "A root canal treatment is necessary. Antibiotics might be needed, but do not take them without consulting a dentist first.",
+      "fr": "Un traitement de canal est nécessaire. Des antibiotiques peuvent être nécessaires, mais ne les prenez pas sans consulter d'abord un dentiste.",
+      "de": "Eine Wurzelbehandlung ist notwendig. Antibiotika können erforderlich sein, aber nehmen Sie diese nicht ohne vorherige Rücksprache mit einem Zahnarzt ein.",
+      "ar": "علاج قناة الجذر ضروري. قد تكون هناك حاجة إلى مضادات حيوية، ولكن لا تتناولها دون استشارة طبيب الأسنان أولاً."
+    }
+  },
+  {
+    "id": "healthy_tooth",
+    "title": {
+      "en": "Healthy Tooth",
+      "fr": "Dent saine",
+      "de": "Gesunder Zahn",
+      "ar": "سن سليم"
+    },
+    "explanation": {
+      "en": "Based on your answers, there are no signs of a common dental problem.",
+      "fr": "D'après vos réponses, il n'y a aucun signe d'un problème dentaire courant.",
+      "de": "Basierend auf Ihren Antworten gibt es keine Anzeichen für ein häufiges Zahnproblem.",
+      "ar": "بناءً على إجاباتك، لا توجد علامات على وجود مشكلة أسنان شائعة."
+    },
+    "treatment": {
+      "en": "Continue with good oral hygiene and regular dental check-ups.",
+      "fr": "Continuez avec une bonne hygiène bucco-dentaire et des contrôles dentaires réguliers.",
+      "de": "Fahren Sie mit einer guten Mundhygiene und regelmäßigen zahnärztlichen Kontrollen fort.",
+      "ar": "استمر في نظافة الفم الجيدة والفحوصات الدورية للأسنان."
     }
   }
 ]

@@ -1,9 +1,10 @@
 <h3>{{ titleText }}</h3>
 
 <!-- Step 1: Select status -->
-<label><input type="checkbox" [(ngModel)]="toothStatus.rootCanal" /> {{ getTranslation('rootCanal') }}</label>
-<label><input type="checkbox" [(ngModel)]="toothStatus.hasFilling" [disabled]="toothStatus.rootCanal && rootCanalFinished === false" /> {{ getTranslation('hasFilling') }}</label>
-<label><input type="checkbox" [(ngModel)]="toothStatus.hasCrown" [disabled]="toothStatus.rootCanal && rootCanalFinished === false" /> {{ getTranslation('hasCrown') }}</label>
+<label><input type="checkbox" [(ngModel)]="toothStatus.rootCanal" [disabled]="toothStatus.noneOfTheAbove" (change)="onStatusChange('a')" /> {{ getTranslation('rootCanal') }}</label>
+<label><input type="checkbox" [(ngModel)]="toothStatus.hasFilling" [disabled]="(toothStatus.rootCanal && rootCanalFinished === false) || toothStatus.noneOfTheAbove" (change)="onStatusChange('b')" /> {{ getTranslation('hasFilling') }}</label>
+<label><input type="checkbox" [(ngModel)]="toothStatus.hasCrown" [disabled]="(toothStatus.rootCanal && rootCanalFinished === false) || toothStatus.noneOfTheAbove" (change)="onStatusChange('c')" /> {{ getTranslation('hasCrown') }}</label>
+<label><input type="checkbox" [(ngModel)]="toothStatus.noneOfTheAbove" [disabled]="toothStatus.rootCanal || toothStatus.hasFilling || toothStatus.hasCrown" (change)="onStatusChange('d')" /> {{ getTranslation('noneOfTheAbove') }}</label>
 
 <!-- Step 2: Root Canal Questions -->
 <div *ngIf="toothStatus.rootCanal">
@@ -11,9 +12,20 @@
   <label><input type="radio" [(ngModel)]="rootCanalSince" name="rootCanalSince" value="less" /> {{ getTranslation('lessThan3Months') }}</label>
   <label><input type="radio" [(ngModel)]="rootCanalSince" name="rootCanalSince" value="more" /> {{ getTranslation('moreThan3Months') }}</label>
 
-  <p>{{ getTranslation('isFullyCompleted') }}</p>
-  <label><input type="radio" [(ngModel)]="rootCanalFinished" name="rootCanalFinished" [value]="true" (change)="onRootCanalStatusChange()" /> {{ getTranslation('yes') }}</label>
-  <label><input type="radio" [(ngModel)]="rootCanalFinished" name="rootCanalFinished" [value]="false" (change)="onRootCanalStatusChange()" /> {{ getTranslation('no') }}</label>
+  <!-- A2: Is root canal fully completed? -->
+  <!-- Hidden if (a) and (b) are selected, as it's automatically "Yes" -->
+  <div *ngIf="!(toothStatus.rootCanal && toothStatus.hasFilling)">
+    <p>{{ getTranslation('isFullyCompleted') }}</p>
+    <label><input type="radio" [(ngModel)]="rootCanalFinished" name="rootCanalFinished" [value]="true" (change)="onRootCanalStatusChange()" /> {{ getTranslation('yes') }}</label>
+    <label><input type="radio" [(ngModel)]="rootCanalFinished" name="rootCanalFinished" [value]="false" (change)="onRootCanalStatusChange()" /> {{ getTranslation('no') }}</label>
+  </div>
+
+  <!-- A3: Does it hurt when biting? -->
+ <div *ngIf="toothStatus.rootCanal">
+    <p>{{ getTranslation('painOnBitingQuestion') }}</p>
+    <label><input type="radio" [(ngModel)]="painOnBiting" name="painOnBiting" [value]="true" /> {{ getTranslation('yes') }}</label>
+    <label><input type="radio" [(ngModel)]="painOnBiting" name="painOnBiting" [value]="false" /> {{ getTranslation('no') }}</label>
+  </div>
 </div>
 
 <!-- Step 3: Filling Questions -->

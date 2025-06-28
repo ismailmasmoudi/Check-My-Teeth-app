@@ -1,3 +1,14 @@
 .diagnosis-card .diagnosis-content p {
   white-space: pre-wrap; /* This will respect newlines in the text */
 }
+
+.disclaimer {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #fcf8e3;
+  border: 1px solid #faebcc;
+  border-radius: 4px;
+  color: #8a6d3b;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}

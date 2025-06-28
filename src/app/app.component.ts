@@ -16,7 +16,7 @@ import { ToothStatusFlowComponent } from './components/tooth-status-flow/tooth-s
     CommonModule,
     ToothSelectorComponent,
     LanguageSelectorComponent,
-    
+
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -26,6 +26,8 @@ export class AppComponent {
   questionFlowComponent?: QuestionFlowComponent;
 
   selectedLanguage: 'en' | 'fr' | 'de' | 'ar' = this.getInitialLanguage();
+  patientName: string | null = null;
+  greeting: string = '';
 
   selectedPainType: string | null = null;
   selectedTooth: string | null = null;
@@ -36,6 +38,48 @@ export class AppComponent {
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2
   ) {}
+
+  namePromptText = {
+    en: 'To get started, please tell me your name.',
+    de: 'Um zu beginnen, sagen Sie mir bitte Ihren Namen.',
+    fr: 'Pour commencer, veuillez me dire votre nom.',
+    ar: 'للبدء، من فضلك قل لي اسمك.',
+  };
+
+  nameInputPlaceholder = {
+    en: 'Your name',
+    de: 'Ihr Name',
+    fr: 'Votre nom',
+    ar: 'اسمك',
+  };
+
+  continueButtonLabel = {
+    en: 'Continue',
+    de: 'Weiter',
+    fr: 'Continuer',
+    ar: 'متابعة',
+  };
+
+  greetings = {
+    morning: {
+      en: 'Good morning,',
+      de: 'Guten Morgen,',
+      fr: 'Bonjour,',
+      ar: 'صباح الخير،',
+    },
+    afternoon: {
+      en: 'Good afternoon,',
+      de: 'Guten Tag,',
+      fr: 'Bonjour,', // French uses Bonjour for both
+      ar: 'مساء الخير،',
+    },
+    evening: {
+      en: 'Good evening,',
+      de: 'Guten Abend,',
+      fr: 'Bonsoir,',
+      ar: 'مساء الخير،',
+    },
+  };
 
   painTypeQuestionText = {
     en: 'What type of pain do you have?',
@@ -99,6 +143,15 @@ export class AppComponent {
     de: 'Von vorne beginnen',
     ar: 'البدء من جديد',
   };
+
+   disclaimerText = {
+    en: 'The diagnosis shown here is based on the information you have provided and is approximately 80 % accurate. However, a clinical examination in a dental practice is necessary for an exact diagnosis. If necessary, an X-ray should also be taken.',
+    fr: 'Le diagnostic affiché ici est basé sur les informations que vous avez fournies et est correct à environ 80 %. Cependant, un examen clinique dans un cabinet dentaire est nécessaire pour un diagnostic exact. Si nécessaire, une radiographie doit également être réalisée.',
+    de: 'Die hier angezeigte Diagnose basiert auf den von Ihnen angegebenen Informationen und ist mit einer Wahrscheinlichkeit von etwa 80 % korrekt. Für eine exakte Diagnose ist jedoch eine klinische Untersuchung in einer Zahnarztpraxis erforderlich. Falls notwendig, sollte zusätzlich ein Röntgenbild angefertigt werden.',
+    ar: 'التشخيص المعروض هنا يعتمد على المعلومات التي قدمتها وهو صحيح بنسبة 80 % تقريبًا. ومع ذلك، فإن الفحص السريري في عيادة الأسنان ضروري لتشخيص دقيق. إذا لزم الأمر، يجب أيضًا إجراء صورة أشعة.',
+  };
+
+  
  ngOnInit(): void {
     this.updateHtmlLangAndDir(this.selectedLanguage);
   }
@@ -117,19 +170,32 @@ export class AppComponent {
     return foundLang || 'en'; // Fallback to English if not supported
   }
 
-  onDiagnosisReady(result: Diagnosis) {
-    // --- DEBUGGING STEP ---
-    // Let's log the received result to the browser's console to see what's happening.
-    console.log('onDiagnosisReady event received with:', result);
+  onNameSubmitted(name: string): void {
+    if (name && name.trim()) {
+      this.patientName = name.trim();
+      this.setGreeting();
+    }
+  }
 
-    // If the result is a valid diagnosis object, we set it.
+  private setGreeting(): void {
+    if (!this.patientName) {
+      this.greeting = '';
+      return;
+    }
+
+    const hour = new Date().getHours();
+    let timeOfDay: 'morning' | 'afternoon' | 'evening';
+
+    if (hour >= 5 && hour < 12) timeOfDay = 'morning';
+    else if (hour >= 12 && hour < 18) timeOfDay = 'afternoon';
+    else timeOfDay = 'evening';
+
+    this.greeting = `${this.greetings[timeOfDay][this.selectedLanguage]} ${this.patientName}!`;
+  }
+
+  onDiagnosisReady(result: Diagnosis): void {
     if (result) {
       this.finalDiagnosis = result;
-    } else {
-      // If we receive null or undefined, we log an error.
-      console.error(
-        'Diagnosis event was received, but the result was null or undefined. The view will not update.'
-      );
     }
   }
 
@@ -150,6 +216,7 @@ export class AppComponent {
   onLanguageChanged(lang: 'en' | 'fr' | 'de' | 'ar') {
     this.selectedLanguage = lang;
     this.updateHtmlLangAndDir(lang);
+    this.setGreeting();
   }
 
   private updateHtmlLangAndDir(lang: 'en' | 'fr' | 'de' | 'ar'): void {
@@ -196,6 +263,8 @@ export class AppComponent {
   }
 
   resetSelection() {
+    this.patientName = null;
+    this.greeting = '';
     this.selectedPainType = null;
     this.selectedTooth = null;
     this.finalDiagnosis = null;

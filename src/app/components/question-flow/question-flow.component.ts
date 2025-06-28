@@ -22,8 +22,8 @@ interface Option {
 export class QuestionFlowComponent implements OnChanges {
   @Input() painType!: string;
   @Input() language: Language = 'en';
-  @Output() back = new EventEmitter<void>();
-  @Output() diagnosisReady = new EventEmitter<{ title: string; explanation: string; treatment: string }>();
+  @Output() back = new EventEmitter<void>(); // This remains as is
+  @Output() diagnosisReady = new EventEmitter<Diagnosis>(); // Change this to emit the full Diagnosis object
 
   // Component State
   allQuestions: Question[] = [];
@@ -58,11 +58,7 @@ export class QuestionFlowComponent implements OnChanges {
     if (option.diagnosisId) {
       const diagnosis = this.diagnosisService.getDiagnosisById(option.diagnosisId);
       if (diagnosis) {
-        this.diagnosisReady.emit({
-          title: diagnosis.title[this.language],
-          explanation: diagnosis.explanation[this.language],
-          treatment: diagnosis.treatment[this.language]
-        });
+        this.diagnosisReady.emit(diagnosis); // Emit the full Diagnosis object
       }
       this.currentQuestion = null;
     } else if (option.next) {

@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Diagnosis, DiagnosisService } from '../../services/diagnosis.service';
 
 type Language = 'en' | 'fr' | 'de' | 'ar';
 
@@ -19,18 +20,17 @@ type Language = 'en' | 'fr' | 'de' | 'ar';
   styleUrls: ['./tooth-status-flow.component.scss'],
 })
 export class ToothStatusFlowComponent implements OnChanges {
+isDetailedFormValid() {
+throw new Error('Method not implemented.');
+}
   @Input() selectedTooth: string = '';
   @Input() language: Language = 'en';
-  @Output() diagnosisReady = new EventEmitter<{
-    title: string;
-    explanation: string;
-    treatment: string;
-  }>();
+  @Output() diagnosisReady = new EventEmitter<Diagnosis>();
   @Output() flowCompletedWithoutDiagnosis = new EventEmitter<void>();
 
   // --- Translation Dictionary ---
   // Moved here for efficiency. It's created only once per component instance.
-  private readonly allTexts: Record<string, Record<string, string>> = {
+  private readonly allTexts: Record<string, Record<Language, string>> = {
     // Template Texts
     title: {
       en: 'Status for tooth',
@@ -55,6 +55,12 @@ export class ToothStatusFlowComponent implements OnChanges {
       fr: 'A une couronne',
       de: 'Hat eine Krone',
       ar: 'لديه تاج',
+    },
+    isLoose: {
+      en: 'Tooth is loose',
+      fr: 'La dent est mobile',
+      de: 'Zahn ist locker',
+      ar: 'السن متحرك',
     },
     howLongAgo: {
       en: 'How long ago?',
@@ -102,7 +108,31 @@ export class ToothStatusFlowComponent implements OnChanges {
       en: 'Is the crown broken?',
       fr: 'La couronne est-elle cassée ?',
       de: 'Ist die Krone gebrochen?',
-      ar: 'Ist die Krone gebrochen?',
+      ar: 'هل التاج مكسور؟',
+    },
+    mobilityGradeQuestion: {
+      en: 'What is the grade of mobility (1-3)?',
+      fr: 'Quel est le degré de mobilité (1-3) ?',
+      de: 'Welchen Lockerungsgrad hat der Zahn (1-3)?',
+      ar: 'ما هي درجة حركة السن (1-3)؟',
+    },
+    grade1: {
+      en: 'Grade 1 (slight movement)',
+      fr: 'Grade 1 (mouvement léger)',
+      de: 'Grad 1 (leichte Bewegung)',
+      ar: 'درجة 1 (حركة طفيفة)',
+    },
+    grade2: {
+      en: 'Grade 2 (moderate movement)',
+      fr: 'Grade 2 (mouvement modéré)',
+      de: 'Grad 2 (mäßige Bewegung)',
+      ar: 'درجة 2 (حركة متوسطة)',
+    },
+    grade3: {
+      en: 'Grade 3 (severe movement)',
+      fr: 'Grade 3 (mouvement sévère)',
+      de: 'Grad 3 (starke Bewegung)',
+      ar: 'درجة 3 (حركة شديدة)',
     },
     yes: { en: 'Yes', fr: 'Oui', de: 'Ja', ar: 'نعم' },
     no: { en: 'No', fr: 'Non', de: 'Nein', ar: 'لا' },
@@ -112,150 +142,38 @@ export class ToothStatusFlowComponent implements OnChanges {
       de: 'Weiter / Diagnose anzeigen',
       ar: 'متابعة / إظهار التشخيص',
     },
+    continueButton: {
+      en: 'Continue',
+      fr: 'Continuer',
+      de: 'Weiter',
+      ar: 'متابعة',
+    },
     noneOfTheAbove: {
       en: 'The tooth has none of these options',
       fr: "La dent n'a aucune de ces options",
       de: 'Der Zahn hat keine dieser Optionen',
       ar: 'السن ليس به أي من هذه الخيارات',
     },
-
     painOnBitingQuestion: {
       en: 'Does it hurt when biting?',
       fr: 'Est-ce que ça fait mal en mordant ?',
       de: 'Tut es weh beim Beißen?',
       ar: 'هل يؤلم عند العض؟',
     },
-
-    // Diagnosis Titles
-    'title.rootCanalNotFinished': {
-      en: 'Incomplete Root Canal',
-      de: 'Unvollständige Wurzelbehandlung',
-      fr: 'Traitement de canal incomplet',
-      ar: 'علاج عصب غير مكتمل',
-    },
-    'title.deepFilling': {
-      en: 'Possible Irreversible Pulpitis',
-      de: 'Mögliche irreversible Pulpitis',
-      fr: 'Pulpite irréversible possible',
-      ar: 'التهاب لب السن اللاعكوس المحتمل',
-    },
-    'title.fillingBroken': {
-      en: 'Broken Filling',
-      de: 'Defekte Füllung',
-      fr: 'Obturation cassée',
-      ar: 'حشوة مكسورة',
-    },
-    'title.crownFell': {
-      en: 'Crown Fell Off',
-      de: 'Krone herausgefallen',
-      fr: 'Couronne tombée',
-      ar: 'سقوط التاج',
-    },
-    'title.crownBroken': {
-      en: 'Broken Crown',
-      de: 'Krone gebrochen',
-      fr: 'Couronne cassée',
-      ar: 'تاج مكسور',
-    },
-
-    'title.rctFinishedStillPain': {
-      en: 'Root Canal Treated Tooth with Persistent Issues',
-      fr: 'Dent traitée par canal avec problèmes persistants',
-      de: 'Wurzelkanalbehandelter Zahn mit anhaltenden Problemen',
-      ar: 'سن معالج بقناة الجذر بمشاكل مستمرة',
-    },
-    'title.multipleIssues': {
+    andWord: { en: 'and', fr: 'et', de: 'und', ar: 'و' },
+    multipleIssuesTitle: {
       en: 'Multiple Issues Found',
       fr: 'Plusieurs problèmes détectés',
       de: 'Mehrere Probleme festgestellt',
       ar: 'تم العثور على مشاكل متعددة',
     },
-    andWord: { en: 'and', fr: 'et', de: 'und', ar: 'و' },
-
-    // Diagnosis Explanations
-    'explanation.rootCanalNotFinished': {
-      en: 'The root canal treatment is not yet completed. The tooth canals are likely still infected.',
-      de: 'Die Wurzelkanalbehandlung ist noch nicht abgeschlossen. Die Wurzelkanäle sind wahrscheinlich entzündet.',
-      fr: 'Le traitement de canal n’est pas terminé. Les canaux sont probablement encore infectés.',
-      ar: 'لم يكتمل علاج العصب بعد. من المحتمل أن تكون القنوات لا تزال ملتهبة.',
-    },
-    'explanation.deepFilling': {
-      en: 'A deep filling is close to the nerve, which may cause inflammation (pulpitis).',
-      de: 'Eine tiefe Füllung liegt nahe am Nerv, was eine Entzündung (Pulpitis) verursachen kann.',
-      fr: 'Une obturation profonde est proche du nerf, ce qui peut provoquer une inflammation (pulpite).',
-      ar: 'الحشوة العميقة قريبة من العصب، مما قد يسبب التهابًا (التهاب العصب).',
-    },
-    'explanation.fillingBroken': {
-      en: 'The filling is broken, which can lead to new decay or sensitivity.',
-      de: 'Die Füllung ist abgebrochen, was zu neuer Karies oder Empfindlichkeit führen kann.',
-      fr: 'La restauration est cassée, ce qui peut entraîner une nouvelle carie ou une sensibilité.',
-      ar: 'الحشوة مكسورة، مما قد يؤدي إلى تسوس جديد أو حساسية.',
-    },
-    'explanation.crownFell': {
-      en: 'The crown has fallen off, exposing the underlying tooth structure.',
-      de: 'Die Krone ist herausgefallen und legt die darunterliegende Zahnstruktur frei.',
-      fr: 'La couronne est tombée, exposant la structure dentaire sous-jacente.',
-      ar: 'سقط التاج، مما يكشف عن بنية السن الأساسية.',
-    },
-    'explanation.crownBroken': {
-      en: 'The crown is broken, which can have sharp edges and no longer protects the tooth.',
-      de: 'Die Krone ist beschädigt, was scharfe Kanten haben kann und den Zahn nicht mehr schützt.',
-      fr: 'La couronne est cassée, ce qui peut présenter des bords tranchants et ne protège plus la dent.',
-      ar: 'التاج مكسور، مما قد يكون له حواف حادة ولم يعد يحمي السن.',
-    },
-
-    'explanation.rctFinishedStillPain': {
-      en: 'Despite completed root canal treatment, the tooth still presents issues, possibly indicating a need for retreatment or extraction.',
-      fr: "Malgré un traitement de canal terminé, la dent présente toujours des problèmes, indiquant peut-être un besoin de retraitement ou d'extraction.",
-      de: 'Trotz abgeschlossener Wurzelkanalbehandlung weist der Zahn weiterhin Probleme auf, was möglicherweise auf die Notwendigkeit einer Revision oder Extraktion hindeutet.',
-      ar: 'على الرغم من اكتمال علاج قناة الجذر، لا يزال السن يعاني من مشاكل، مما قد يشير إلى الحاجة إلى إعادة العلاج أو الخلع.',
-    },
-
-    'explanation.multipleIssuesIntro': {
+    multipleIssuesExplanationIntro: {
       en: 'This tooth presents with the following issues:',
       fr: 'Cette dent présente les problèmes suivants :',
       de: 'Dieser Zahn weist folgende Probleme auf:',
       ar: 'هذا السن يعاني من المشاكل التالية:',
     },
-    // Diagnosis Treatments
-    'treatment.rootCanalNotFinished': {
-      en: 'Must finish the root canal treatment as soon as possible. Might need antibiotics – but only after seeing a dentist. Never take antibiotics alone without diagnosis.',
-      de: 'Die Wurzelkanalbehandlung muss so schnell wie möglich abgeschlossen werden. Möglicherweise sind Antibiotika erforderlich – aber nur nach einem Zahnarztbesuch. Nehmen Sie niemals Antibiotika ohne Diagnose ein.',
-      fr: "Il faut terminer le traitement de canal dès que possible. Des antibiotiques peuvent être nécessaires, mais seulement après avoir vu un dentiste. Ne prenez jamais d'antibiotiques seul sans diagnostic.",
-      ar: 'يجب إنهاء علاج قناة الجذر في أسرع وقت ممكن. قد تحتاج إلى مضادات حيوية - ولكن فقط بعد زيارة طبيب الأسنان. لا تتناول المضادات الحيوية بمفردك أبدًا بدون تشخيص.',
-    },
-    'treatment.deepFilling': {
-      en: 'A root canal treatment is likely necessary to save the tooth.',
-      de: 'Eine Wurzelkanalbehandlung ist wahrscheinlich notwendig, um den Zahn zu retten.',
-      fr: 'Un traitement de canal est probablement nécessaire pour sauver la dent.',
-      ar: 'من المرجح أن يكون علاج قناة الجذر ضروريًا لإنقاذ السن.',
-    },
-    'treatment.fillingBroken': {
-      en: 'You need a new filling.',
-      de: 'Sie benötigen eine neue Füllung.',
-      fr: 'Vous avez besoin d’une nouvelle restauration.',
-      ar: 'تحتاج إلى حشوة جديدة.',
-    },
-    'treatment.crownFell': {
-      en: 'The crown must be reattached or replaced. Keep the crown and see a dentist.',
-      de: 'Die Krone muss wieder befestigt oder ersetzt werden. Bewahren Sie die Krone auf und suchen Sie einen Zahnarzt auf.',
-      fr: 'La couronne doit être recollée ou remplacée. Conservez la couronne et consultez un dentiste.',
-      ar: 'يجب إعادة تثبيت التاج أو استبداله. احتفظ بالتاج وراجع طبيب الأسنان.',
-    },
-    'treatment.crownBroken': {
-      en: 'A new crown must be made.',
-      de: 'Eine neue Krone muss angefertigt werden.',
-      fr: 'Eine neue Krone doit être fabriquée.',
-      ar: 'يجب عمل تاج جديد.',
-    },
-    'treatment.rctFinishedStillPain': {
-      en: 'Antibiotics might be considered (only after dentist consultation), followed by root canal revision or tooth extraction.',
-      fr: "Des antibiotiques peuvent être envisagés (uniquement après consultation dentaire), suivis d'une révision du canal radiculaire ou d'une extraction dentaire.",
-      de: 'Antibiotika können in Betracht gezogen werden (nur nach Zahnarztkonsultation), gefolgt von einer Wurzelkanalrevision oder Zahnextraktion.',
-      ar: 'قد يتم النظر في المضادات الحيوية (فقط بعد استشارة طبيب الأسنان)، يليها إعادة علاج قناة الجذر أو خلع السن.',
-    },
-
-    'treatment.multipleIssuesIntro': {
+    multipleIssuesTreatmentIntro: {
       en: 'The recommended treatment plan is as follows:',
       fr: 'Le plan de traitement recommandé est le suivant :',
       de: 'Der empfohlene Behandlungsplan ist wie folgt:',
@@ -276,11 +194,14 @@ export class ToothStatusFlowComponent implements OnChanges {
     this.titleText = `${this.getTranslation('title')} #${this.selectedTooth}`;
   }
 
+  constructor(private diagnosisService: DiagnosisService) {}
+
   // Tooth status checkboxes
   toothStatus = {
     rootCanal: false,
     hasFilling: false,
     hasCrown: false,
+    isLoose: false,
     noneOfTheAbove: false,
   };
 
@@ -296,6 +217,9 @@ export class ToothStatusFlowComponent implements OnChanges {
   crownFell: boolean | null = null;
   crownBroken: boolean | null = null;
 
+  // Loose tooth question
+  mobilityGrade: 1 | 2 | 3 | null = null;
+
   // New question A3
   painOnBiting: boolean | null = null;
 
@@ -308,27 +232,41 @@ export class ToothStatusFlowComponent implements OnChanges {
     }
   }
 
-  onStatusChange(changedStatus: 'a' | 'b' | 'c' | 'd'): void {
+  onStatusChange(changedStatus: 'a' | 'b' | 'c' | 'd' | 'e'): void {
     if (changedStatus === 'd' && this.toothStatus.noneOfTheAbove) {
       // If "none" is checked, uncheck others
       this.toothStatus.rootCanal = false;
       this.toothStatus.hasFilling = false;
       this.toothStatus.hasCrown = false;
+      this.toothStatus.isLoose = false;
+      this.mobilityGrade = null; // Reset grade
+    } else if (changedStatus === 'e' && this.toothStatus.isLoose) {
+      // If "isLoose" is checked, uncheck others
+      this.toothStatus.rootCanal = false;
+      this.toothStatus.hasFilling = false;
+      this.toothStatus.hasCrown = false;
+      this.toothStatus.noneOfTheAbove = false;
     } else if (['a', 'b', 'c'].includes(changedStatus)) {
-      // If any of a, b, or c is checked, uncheck "none"
+      // If any of a, b, or c is checked, uncheck "none" and "isLoose"
       if (
         this.toothStatus.rootCanal ||
         this.toothStatus.hasFilling ||
         this.toothStatus.hasCrown
       ) {
         this.toothStatus.noneOfTheAbove = false;
+        this.toothStatus.isLoose = false;
+        this.mobilityGrade = null; // Reset grade
       }
+    }
+
+    // If isLoose is unchecked manually, reset its question
+    if (!this.toothStatus.isLoose) {
+      this.mobilityGrade = null;
     }
 
     // New Logic: If 'a' and 'b' are selected, automatically set A2 to 'Yes'
     if (this.toothStatus.rootCanal && this.toothStatus.hasFilling) {
       this.rootCanalFinished = true;
-      // No need to call onRootCanalStatusChange here, as it's handled by the HTML change event
     }
   }
 
@@ -340,7 +278,8 @@ export class ToothStatusFlowComponent implements OnChanges {
       !this.toothStatus.noneOfTheAbove &&
       !this.toothStatus.rootCanal &&
       !this.toothStatus.hasFilling &&
-      !this.toothStatus.hasCrown
+      !this.toothStatus.hasCrown &&
+      !this.toothStatus.isLoose
     ) {
       return false;
     }
@@ -348,6 +287,15 @@ export class ToothStatusFlowComponent implements OnChanges {
     // If "none of the above" is selected, the form is valid to proceed.
     if (this.toothStatus.noneOfTheAbove) {
       return true;
+    }
+
+    // Validate Loose Tooth question if selected
+    if (this.toothStatus.isLoose) {
+      if (this.mobilityGrade === null) {
+        isValid = false;
+      }
+      // If valid, we can return true because it's a definitive path
+      return isValid;
     }
 
     // Validate Root Canal questions if selected
@@ -400,21 +348,29 @@ export class ToothStatusFlowComponent implements OnChanges {
       return;
     }
 
-    const foundDiagnoses: {
-      title: string;
-      explanation: string;
-      treatment: string;
-    }[] = [];
+    // Evaluation for Loose Tooth (Highest Priority)
+    if (this.toothStatus.isLoose) {
+      switch (this.mobilityGrade) {
+        case 1:
+          this.emitDiagnosisById('mobility_grade_1');
+          break;
+        case 2:
+          this.emitDiagnosisById('mobility_grade_2');
+          break;
+        case 3:
+          this.emitDiagnosisById('mobility_grade_3');
+          break;
+      }
+      return; // Definitive diagnosis, stop here.
+    }
+
+    const foundDiagnosisIds: string[] = [];
 
     // Evaluation A: Root Canal Treated (Highest Priority)
     if (this.toothStatus.rootCanal) {
       // Case 1: Not Completed
       if (this.rootCanalFinished === false) {
-        this.diagnosisReady.emit({
-          title: this.getTranslation('title.rootCanalNotFinished'),
-          explanation: this.getTranslation('explanation.rootCanalNotFinished'),
-          treatment: this.getTranslation('treatment.rootCanalNotFinished'),
-        });
+        this.emitDiagnosisById('rootCanalNotFinished');
         return; // Definitive diagnosis, stop here.
       }
       // Case 2: Completed but still issues (A1 answered AND A2 = "Yes")
@@ -422,31 +378,17 @@ export class ToothStatusFlowComponent implements OnChanges {
         this.rootCanalFinished === true &&
         this.rootCanalSince !== null
       ) {
-        this.diagnosisReady.emit({
-          title: this.getTranslation('title.rctFinishedStillPain'),
-          explanation: this.getTranslation('explanation.rctFinishedStillPain'),
-          treatment: this.getTranslation('treatment.rctFinishedStillPain'),
-        });
+        this.emitDiagnosisById('rctFinishedStillPain');
         return; // Definitive diagnosis, stop here.
       }
     }
 
     // Evaluation C: Crown Issues (only if no direct RCT diagnosis was made)
     else if (this.toothStatus.hasCrown) {
-      if (this.crownFell === true && this.crownBroken === false) {
-        foundDiagnoses.push({
-          title: this.getTranslation('title.crownFell'),
-          explanation: this.getTranslation('explanation.crownFell'),
-          treatment: this.getTranslation('treatment.crownFell'),
-        });
-      }
+      if (this.crownFell === true) foundDiagnosisIds.push('crownFell');
       // This covers both C1=Yes & C2=Yes, and C1=No & C2=Yes
       if (this.crownBroken === true) {
-        foundDiagnoses.push({
-          title: this.getTranslation('title.crownBroken'),
-          explanation: this.getTranslation('explanation.crownBroken'),
-          treatment: this.getTranslation('treatment.crownBroken'),
-        });
+        foundDiagnosisIds.push('crownBroken');
       }
     }
 
@@ -455,60 +397,101 @@ export class ToothStatusFlowComponent implements OnChanges {
     const isFillingSkippedByRCT =
       this.toothStatus.rootCanal && this.rootCanalFinished === true;
     if (this.toothStatus.hasFilling && !isFillingSkippedByRCT) {
-      if (this.fillingDeep === true) {
-        foundDiagnoses.push({
-          title: this.getTranslation('title.deepFilling'),
-          explanation: this.getTranslation('explanation.deepFilling'),
-          treatment: this.getTranslation('treatment.deepFilling'),
-        });
-      }
-      if (this.fillingBroken === true && this.fillingDeep === false) {
-        // B2=Yes and B1=No
-        foundDiagnoses.push({
-          title: this.getTranslation('title.fillingBroken'),
-          explanation: this.getTranslation('explanation.fillingBroken'),
-          treatment: this.getTranslation('treatment.fillingBroken'),
-        });
-      }
+      if (this.fillingDeep === true) foundDiagnosisIds.push('deepFilling');
+      if (this.fillingBroken === true) foundDiagnosisIds.push('fillingBroken');
     }
 
     // Now, process the collected diagnoses
-    if (foundDiagnoses.length === 0) {
+    if (foundDiagnosisIds.length === 0) {
       // No direct diagnosis, signal to parent to continue to the next flow
       this.flowCompletedWithoutDiagnosis.emit();
-    } else if (foundDiagnoses.length === 1) {
+    } else if (foundDiagnosisIds.length === 1) {
       // Only one issue found, emit it directly
-      this.diagnosisReady.emit(foundDiagnoses[0]);
+      this.emitDiagnosisById(foundDiagnosisIds[0]);
     } else {
       // Multiple issues found, combine them
-      const combinedDiagnosis = this.combineDiagnoses(foundDiagnoses);
+      const combinedDiagnosis = this.combineDiagnoses(foundDiagnosisIds);
       this.diagnosisReady.emit(combinedDiagnosis);
     }
   }
 
-  private combineDiagnoses(
-    diagnoses: { title: string; explanation: string; treatment: string }[]
-  ): { title: string; explanation: string; treatment: string } {
-    const combinedTitle = this.getTranslation('title.multipleIssues');
-    const andWord = this.getTranslation('andWord');
+  private emitDiagnosisById(id: string): void {
+    const diagnosis = this.diagnosisService.getDiagnosisById(id);
+    if (diagnosis) {
+      // Emit the entire diagnosis object, not just the translated strings
+      this.diagnosisReady.emit(diagnosis);
+    }
+  }
 
-    const combinedExplanation =
-      this.getTranslation('explanation.multipleIssuesIntro') +
-      '\n\n' +
-      diagnoses
-        .map((d, index) => `${index + 1}. ${d.title}:\n${d.explanation}`)
-        .join(`\n\n${andWord}\n\n`);
-    const combinedTreatment =
-      this.getTranslation('treatment.multipleIssuesIntro') +
-      '\n\n' +
-      diagnoses
-        .map((d, index) => `${index + 1}. ${d.treatment}`)
-        .join(`\n\n${andWord}\n\n`);
-    return {
-      title: combinedTitle,
-      explanation: combinedExplanation,
-      treatment: combinedTreatment,
+  private combineDiagnoses(diagnosisIds: string[]): Diagnosis {
+    const diagnoses: Diagnosis[] = diagnosisIds
+      .map((id) => this.diagnosisService.getDiagnosisById(id))
+      .filter((d): d is Diagnosis => !!d);
+
+    if (diagnoses.length === 0) {
+      // Return an empty Diagnosis object to avoid errors
+      return { id: 'multiple_empty', title: {
+        en: '',
+        fr: '',
+        ar: '',
+        de: ''
+      }, explanation: {
+        en: '',
+        fr: '',
+        ar: '',
+        de: ''
+      }, treatment: {
+        en: '',
+        fr: '',
+        ar: '',
+        de: ''
+      } };
+    }
+
+    // Create a new Diagnosis object to hold the combined, multilingual texts
+    const combinedDiagnosis: Diagnosis = {
+      id: 'multiple_issues',
+      title: {
+        en: '',
+        fr: '',
+        ar: '',
+        de: ''
+      },
+      explanation: {
+        en: '',
+        fr: '',
+        ar: '',
+        de: ''
+      },
+      treatment: {
+        en: '',
+        fr: '',
+        ar: '',
+        de: ''
+      },
     };
+
+    const languages: Language[] = ['en', 'fr', 'de', 'ar'];
+
+    // Loop through each language to build the combined texts for that language
+    for (const lang of languages) {
+      combinedDiagnosis.title[lang] = this.allTexts['multipleIssuesTitle'][lang];
+      const andWord = this.allTexts['andWord'][lang];
+
+      combinedDiagnosis.explanation[lang] =
+        this.allTexts['multipleIssuesExplanationIntro'][lang] +
+        '\n\n' +
+        diagnoses
+          .map((d, index) => `${index + 1}. ${d.title[lang]}:\n${d.explanation[lang]}`)
+          .join(`\n\n${andWord}\n\n`);
+
+      combinedDiagnosis.treatment[lang] =
+        this.allTexts['multipleIssuesTreatmentIntro'][lang] +
+        '\n\n' +
+        diagnoses.map((d, index) => `${index + 1}. ${d.treatment[lang]}`).join(`\n\n${andWord}\n\n`);
+    }
+
+    return combinedDiagnosis;
   }
 
   // This method is now public so it can be accessed by the template.

@@ -1,107 +1,170 @@
 [
   {
-    "id": "irreversible_pulpitis",
+    "id": "rootCanalNotFinished",
     "title": {
-      "en": "Irreversible Pulpitis",
-      "fr": "Pulpite irréversible",
-      "ar": "التهاب لب السن غير القابل للعلاج",
-      "de": "Irreversible Pulpitis"
+      "en": "Incomplete Root Canal",
+      "de": "Unvollständige Wurzelbehandlung",
+      "fr": "Traitement de canal incomplet",
+      "ar": "علاج عصب غير مكتمل"
     },
     "explanation": {
-      "en": "A severe inflammation of the dental pulp that cannot heal on its own. Often causes spontaneous or long-lasting pain.",
-      "fr": "Une inflammation sévère de la pulpe dentaire qui ne peut pas guérir seule. Elle provoque souvent une douleur spontanée ou persistante.",
-      "ar": "التهاب شديد في لب السن لا يشفى من تلقاء نفسه. غالبًا ما يسبب ألمًا تلقائيًا أو طويل الأمد.",
-      "de": "Eine schwere Entzündung des Zahnnervs, die sich nicht von selbst heilt. Verursacht oft spontane oder langanhaltende Schmerzen."
+      "en": "The root canal treatment is not yet completed. The tooth canals are likely still infected.",
+      "de": "Die Wurzelkanalbehandlung ist noch nicht abgeschlossen. Die Wurzelkanäle sind wahrscheinlich entzündet.",
+      "fr": "Le traitement de canal n’est pas terminé. Les canaux sont probablement encore infectés.",
+      "ar": "لم يكتمل علاج العصب بعد. من المحتمل أن تكون القنوات لا تزال ملتهبة."
     },
     "treatment": {
-      "en": "You need a root canal treatment (endodontic therapy).",
-      "fr": "Vous avez besoin d'un traitement de canal (thérapie endodontique).",
-      "ar": "تحتاج إلى علاج عصب (علاج جذور الأسنان).",
-      "de": "Sie benötigen eine Wurzelbehandlung (endodontische Therapie)."
+      "en": "The root canal treatment must be completed as soon as possible. Antibiotics might be necessary, but they should never be taken without a dentist's prescription and consultation.",
+      "de": "Die Wurzelkanalbehandlung muss so schnell wie möglich abgeschlossen werden. Möglicherweise sind Antibiotika erforderlich, diese dürfen jedoch niemals ohne zahnärztliche Anweisung eingenommen werden.",
+      "fr": "Il faut terminer le traitement de canal dès que possible. Des antibiotiques peuvent être nécessaires, mais ne doivent jamais être pris sans l'avis et la prescription d'un dentiste.",
+      "ar": "يجب إتمام علاج قناة الجذر في أسرع وقت ممكن. قد تكون المضادات الحيوية ضرورية، ولكن لا يجب تناولها أبدًا بدون استشارة ووصفة من طبيب الأسنان."
     }
   },
   {
-    "id": "reversible_pulpitis",
+    "id": "deepFilling",
     "title": {
-      "en": "CARIE PROFUNDA",
-      "fr": "CARIE PROFONDE",
-      "ar": "تسوس عميق",
-      "de": "CARIE PROFUNDA"
+      "en": "Possible Irreversible Pulpitis",
+      "de": "Mögliche irreversible Pulpitis",
+      "fr": "Pulpite irréversible possible",
+      "ar": "التهاب لب السن اللاعكوس المحتمل"
     },
     "explanation": {
-      "en": "A large cavity that has reached deep into the tooth, close to the nerve. It can cause sensitivity to cold or sweets.",
-      "fr": "Une carie importante qui a atteint profondément la dent, près du nerf. Elle peut provoquer une sensibilité au froid ou au sucré.",
-      "ar": "تسوس كبير وصل عميقًا إلى السن، بالقرب من العصب. يمكن أن يسبب حساسية للبرد أو الحلويات.",
-      "de": "Ein großes Loch, das tief in den Zahn, nahe am Nerv, vorgedrungen ist. Es kann Empfindlichkeit auf Kälte oder Süßes verursachen."
+      "en": "A deep filling is close to the nerve, which may cause inflammation (pulpitis).",
+      "de": "Eine tiefe Füllung liegt nahe am Nerv, was eine Entzündung (Pulpitis) verursachen kann.",
+      "fr": "Une obturation profonde est proche du nerf, ce qui peut provoquer une inflammation (pulpite).",
+      "ar": "الحشوة العميقة قريبة من العصب، مما قد يسبب التهابًا (التهاب العصب)."
     },
     "treatment": {
-      "en": "No root canal needed. You may need a filling or to avoid irritants.",
-      "fr": "Pas de traitement de canal nécessaire. Un simple plombage ou éviter les irritants peut suffire.",
-      "ar": "لا حاجة لعلاج العصب. قد تحتاج إلى حشو فقط أو تجنب المهيجات.",
-      "de": "Keine Wurzelbehandlung nötig. Möglicherweise reicht eine Füllung oder das Vermeiden von Reizen."
+      "en": "A root canal treatment is likely necessary to save the tooth.",
+      "de": "Eine Wurzelkanalbehandlung ist wahrscheinlich notwendig, um den Zahn zu retten.",
+      "fr": "Un traitement de canal est probablement nécessaire pour sauver la dent.",
+      "ar": "من المرجح أن يكون علاج قناة الجذر ضروريًا لإنقاذ السن."
     }
   },
   {
-    "id": "dentin_hypersensitivity",
+    "id": "fillingBroken",
     "title": {
-      "en": "Dentin Hypersensitivity",
-      "fr": "Hypersensibilité dentinaire",
-      "ar": "حساسية العاج",
-      "de": "Dentinüberempfindlichkeit"
+      "en": "Broken Filling",
+      "de": "Defekte Füllung",
+      "fr": "Obturation cassée",
+      "ar": "حشوة مكسورة"
     },
     "explanation": {
-      "en": "Short, sharp pain from exposed dentin, especially with cold or sweet stimuli.",
-      "fr": "Douleur brève et vive due à la dentine exposée, surtout au froid ou au sucre.",
-      "ar": "ألم حاد وقصير بسبب تعرض العاج، خاصة عند تناول شيء بارد أو حلو.",
-      "de": "Kurzer, scharfer Schmerz durch freiliegendes Dentin, besonders bei Kälte oder Süßem."
+      "en": "The filling is broken, which can lead to new decay or sensitivity.",
+      "de": "Die Füllung ist abgebrochen, was zu neuer Karies oder Empfindlichkeit führen kann.",
+      "fr": "L'obturation est cassée, ce qui peut entraîner une nouvelle carie ou une sensibilité.",
+      "ar": "الحشوة مكسورة، مما قد يؤدي إلى تسوس جديد أو حساسية."
     },
     "treatment": {
-      "en": "Use desensitizing toothpaste and avoid extreme temperatures. A professional application of desensitizing varnish (e.g., Duraphat) by a dentist can also help.",
-      "fr": "Utilisez un dentifrice désensibilisant et évitez les températures extrêmes. Une application professionnelle de vernis désensibilisant (par ex. Duraphat) par un dentiste peut également aider.",
-      "ar": "استخدم معجون أسنان مضاد للحساسية وتجنب المشروبات أو الأطعمة الباردة جدًا أو الساخنة. يمكن لطبيب الأسنان أيضًا وضع ورنيش مزيل للحساسية (مثل دورافهات) بشكل احترافي للمساعدة.",
-      "de": "Verwenden Sie Zahnpasta für empfindliche Zähne und meiden Sie extreme Temperaturen. Zusätzlich kann das Auftragen von Desensibilisierungslack (z.B. Dulaphat) beim Zahnarzt helfen."
+      "en": "A new filling is required.",
+      "de": "Eine neue Füllung ist erforderlich.",
+      "fr": "Une nouvelle obturation est nécessaire.",
+      "ar": "يلزم وضع حشوة جديدة."
+    }
+  },
+  {
+    "id": "crownFell",
+    "title": {
+      "en": "Crown Fell Off",
+      "de": "Krone herausgefallen",
+      "fr": "Couronne tombée",
+      "ar": "سقوط التاج"
+    },
+    "explanation": {
+      "en": "The crown has fallen off, exposing the underlying tooth structure.",
+      "de": "Die Krone ist herausgefallen und legt die darunterliegende Zahnstruktur frei.",
+      "fr": "La couronne est tombée, exposant la structure dentaire sous-jacente.",
+      "ar": "سقط التاج، مما يكشف عن بنية السن الأساسية."
+    },
+    "treatment": {
+      "en": "The crown must be reattached or replaced. Keep the crown and see a dentist.",
+      "de": "Die Krone muss wieder befestigt oder ersetzt werden. Bewahren Sie die Krone auf und suchen Sie einen Zahnarzt auf.",
+      "fr": "La couronne doit être recollée ou remplacée. Conservez la couronne et consultez un dentiste.",
+      "ar": "يجب إعادة تثبيت التاج أو استبداله. احتفظ بالتاج وراجع طبيب الأسنان."
+    }
+  },
+  {
+    "id": "crownBroken",
+    "title": {
+      "en": "Broken Crown",
+      "de": "Krone gebrochen",
+      "fr": "Couronne cassée",
+      "ar": "تاج مكسور"
+    },
+    "explanation": {
+      "en": "The crown is broken, which can have sharp edges and no longer protects the tooth.",
+      "de": "Die Krone ist beschädigt, was scharfe Kanten haben kann und den Zahn nicht mehr schützt.",
+      "fr": "La couronne est cassée, ce qui peut présenter des bords tranchants et ne protège plus la dent.",
+      "ar": "التاج مكسور، مما قد يكون له حواف حادة ولم يعد يحمي السن."
+    },
+    "treatment": {
+      "en": "A new crown must be made.",
+      "de": "Eine neue Krone muss angefertigt werden.",
+      "fr": "Une nouvelle couronne doit être fabriquée.",
+      "ar": "يجب عمل تاج جديد."
+    }
+  },
+  {
+    "id": "rctFinishedStillPain",
+    "title": {
+      "en": "Root Canal Treated Tooth with Persistent Issues",
+      "fr": "Dent traitée par canal avec problèmes persistants",
+      "de": "Wurzelkanalbehandelter Zahn mit anhaltenden Problemen",
+      "ar": "سن معالج بقناة الجذر بمشاكل مستمرة"
+    },
+    "explanation": {
+      "en": "Despite completed root canal treatment, the tooth still presents issues, possibly indicating a need for retreatment or extraction.",
+      "fr": "Malgré un traitement de canal terminé, la dent présente toujours des problèmes, indiquant peut-être un besoin de retraitement ou d'extraction.",
+      "de": "Trotz abgeschlossener Wurzelkanalbehandlung weist der Zahn weiterhin Probleme auf, was möglicherweise auf die Notwendigkeit einer Revision oder Extraktion hindeutet.",
+      "ar": "على الرغم من اكتمال علاج قناة الجذر، لا يزال السن يعاني من مشاكل، مما قد يشير إلى الحاجة إلى إعادة العلاج أو الخلع."
+    },
+    "treatment": {
+      "en": "A dentist may consider prescribing antibiotics. This would be followed by a root canal revision or tooth extraction. Antibiotics should only be taken as prescribed by a dentist.",
+      "fr": "Un dentiste peut envisager de prescrire des antibiotiques. Ceci serait suivi d'une révision du traitement de canal ou d'une extraction dentaire. Les antibiotiques ne doivent être pris que sur prescription d'un dentiste.",
+      "de": "Ein Zahnarzt kann die Verschreibung von Antibiotika in Betracht ziehen. Darauf würde eine Wurzelkanalrevision oder eine Zahnextraktion folgen. Antibiotika dürfen nur nach zahnärztlicher Vorschrift eingenommen werden.",
+      "ar": "قد يرى طبيب الأسنان وصف المضادات الحيوية. ويلي ذلك إعادة علاج قناة الجذر أو خلع السن. لا يجب تناول المضادات الحيوية إلا بوصفة طبية."
     }
   },
   {
     "id": "gingivitis",
     "title": {
-      "en": "Gingivitis",
-      "fr": "Gingivite",
-      "ar": "التهاب اللثة",
-      "de": "Gingivitis"
+      "en": "Gingivitis (Gum Inflammation)",
+      "fr": "Gingivite (Inflammation des gencives)",
+      "de": "Gingivitis (Zahnfleischentzündung)",
+      "ar": "التهاب اللثة"
     },
     "explanation": {
-      "en": "Inflammation of the gums caused by plaque buildup. Gums may be red, swollen, and bleed easily.",
-      "fr": "Inflammation des gencives causée par l'accumulation de plaque. Les gencives peuvent être rouges, enflées et saigner facilement.",
-      "ar": "التهاب في اللثة ناتج عن تراكم البلاك. قد تكون اللثة حمراء أو متورمة وتنزف بسهولة.",
-      "de": "Entzündung des Zahnfleisches durch Plaqueansammlung. Das Zahnfleisch ist oft gerötet, geschwollen und blutet leicht."
+      "en": "Gingivitis is a common and mild form of gum disease that causes irritation, redness and swelling of your gingiva, the part of your gum around the base of your teeth.",
+      "fr": "La gingivite est une forme courante et bénigne de maladie des gencives qui provoque une irritation, une rougeur et un gonflement de votre gencive, la partie de votre gencive autour de la base de vos dents.",
+      "de": "Gingivitis ist eine häufige und milde Form der Zahnfleischerkrankung, die Reizungen, Rötungen und Schwellungen Ihres Zahnfleisches, des Teils Ihres Zahnfleisches um die Basis Ihrer Zähne, verursacht.",
+      "ar": "التهاب اللثة هو شكل شائع وخفيف من أمراض اللثة يسبب تهيجًا واحمرارًا وتورمًا في اللثة، وهو الجزء من اللثة حول قاعدة الأسنان."
     },
     "treatment": {
-      "en": "Professional cleaning and improved oral hygiene are needed.",
-      "fr": "Un nettoyage professionnel et une meilleure hygiène bucco-dentaire sont nécessaires.",
-      "ar": "يجب تنظيف الأسنان عند الطبيب وتحسين العناية بالفم.",
-      "de": "Professionelle Zahnreinigung und verbesserte Mundhygiene sind notwendig."
+      "en": "Improved oral hygiene, including regular brushing and flossing, and professional dental cleaning.",
+      "fr": "Amélioration de l'hygiène bucco-dentaire, y compris un brossage et une utilisation du fil dentaire réguliers, et un nettoyage dentaire professionnel.",
+      "de": "Verbesserte Mundhygiene, einschließlich regelmäßigem Zähneputzen und Zahnseide, sowie professionelle Zahnreinigung.",
+      "ar": "تحسين نظافة الفم، بما في ذلك تنظيف الأسنان بالفرشاة والخيط بانتظام، وتنظيف الأسنان الاحترافي."
     }
   },
   {
-    "id": "mild_gingivitis",
+    "id": "periodontitis",
     "title": {
-      "en": "Mild Gingivitis",
-      "fr": "Gingivite légère",
-      "ar": "التهاب لثة خفيف",
-      "de": "Leichte Gingivitis"
+      "en": "Periodontitis (Advanced Gum Disease)",
+      "fr": "Parodontite (Maladie des gencives avancée)",
+      "de": "Parodontitis (Fortgeschrittene Zahnfleischerkrankung)",
+      "ar": "التهاب دواعم السن (مرض اللثة المتقدم)"
     },
     "explanation": {
-      "en": "Early stage of gum inflammation. Usually no pain, but gums may bleed slightly.",
-      "fr": "Stade précoce de l'inflammation des gencives. Peu de douleur mais légers saignements possibles.",
-      "ar": "مرحلة مبكرة من التهاب اللثة. عادةً لا يوجد ألم، ولكن قد يحدث نزيف بسيط.",
-      "de": "Frühes Stadium einer Zahnfleischentzündung. Meist keine Schmerzen, aber gelegentliches Bluten."
+      "en": "Periodontitis is a serious gum infection that damages the soft tissue and, without treatment, can destroy the bone that supports your teeth. It can lead to tooth loss.",
+      "fr": "La parodontite est une infection grave des gencives qui endommage les tissus mous et, sans traitement, peut détruire l'os qui soutient vos dents. Elle peut entraîner la perte des dents.",
+      "de": "Parodontitis ist eine schwere Zahnfleischentzündung, die das Weichgewebe schädigt und ohne Behandlung den Knochen zerstören kann, der Ihre Zähne stützt. Sie kann zu Zahnverlust führen.",
+      "ar": "التهاب دواعم السن هو عدوى خطيرة في اللثة تلحق الضرر بالأنسجة الرخوة، وبدون علاج، يمكن أن تدمر العظم الذي يدعم أسنانك. يمكن أن يؤدي إلى فقدان الأسنان."
     },
     "treatment": {
-      "en": "Improve brushing and flossing. Professional check-up is advised.",
-      "fr": "Améliorer le brossage et le fil dentaire. Un contrôle professionnel est recommandé.",
-      "ar": "تحسين التنظيف بالخيط والفرشاة. يُنصح بمراجعة الطبيب.",
-      "de": "Bessere Zahnpflege und ein Besuch beim Zahnarzt werden empfohlen."
+      "en": "Deep cleaning (scaling and root planing), medication, and possibly surgery. Regular follow-up with a periodontist.",
+      "fr": "Nettoyage en profondeur (détartrage et surfaçage radiculaire), médicaments et éventuellement chirurgie. Suivi régulier avec un parodontiste.",
+      "de": "Tiefenreinigung (Scaling und Root Planing), Medikamente und möglicherweise Operation. Regelmäßige Nachsorge bei einem Parodontologen.",
+      "ar": "تنظيف عميق (تقليح وكشط الجذور)، أدوية، وربما جراحة. متابعة منتظمة مع أخصائي اللثة."
     }
   },
   {
@@ -109,125 +172,209 @@
     "title": {
       "en": "TMJ Disorder",
       "fr": "Trouble de l'ATM",
-      "ar": "اضطراب مفصل الفك",
-      "de": "Kiefergelenksstörung"
+      "de": "Kiefergelenkstörung",
+      "ar": "اضطراب المفصل الفكي الصدغي"
     },
     "explanation": {
-      "en": "A disorder of the jaw joint causing clicking, pain, and limited movement.",
-      "fr": "Un trouble de l'articulation de la mâchoire provoquant des claquements, des douleurs et une mobilité limitée.",
-      "ar": "اضطراب في مفصل الفك يسبب طقطقة، ألم، وصعوبة في الحركة.",
-      "de": "Erkrankung des Kiefergelenks mit Knacken, Schmerzen und eingeschränkter Beweglichkeit."
+      "en": "TMJ disorders are conditions that cause pain and dysfunction in the jaw joint and the muscles that control jaw movement.",
+      "fr": "Les troubles de l'ATM sont des affections qui causent de la douleur et un dysfonctionnement de l'articulation de la mâchoire et des muscles qui contrôlent le mouvement de la mâchoire.",
+      "de": "Kiefergelenkstörungen sind Zustände, die Schmerzen und Funktionsstörungen im Kiefergelenk und den Muskeln verursachen, die die Kieferbewegung steuern.",
+      "ar": "اضطرابات المفصل الفكي الصدغي هي حالات تسبب الألم والخلل الوظيفي في مفصل الفك والعضلات التي تتحكم في حركة الفك."
     },
     "treatment": {
-      "en": "Use a night guard, apply warm compresses, and avoid hard foods. Physical therapy may help.",
-      "fr": "Utilisez une gouttière nocturne, appliquez des compresses chaudes, évitez les aliments durs. La kinésithérapie peut aider.",
-      "ar": "استخدم واقيًا ليليًا، ضع كمادات دافئة، وتجنب الأطعمة القاسية. يمكن أن تساعد جلسات العلاج الطبيعي.",
-      "de": "Tragen Sie eine Aufbissschiene, benutzen Sie warme Kompressen und meiden Sie harte Speisen. Physiotherapie kann hilfreich sein."
+      "en": "Pain relievers, muscle relaxants, oral splints or mouthguards, physical therapy, and lifestyle changes. In some cases, surgery might be considered.",
+      "fr": "Analgésiques, relaxants musculaires, gouttières occlusales ou protège-dents, physiothérapie et changements de mode de vie. Dans certains cas, la chirurgie peut être envisagée.",
+      "de": "Schmerzmittel, Muskelrelaxantien, Aufbissschienen oder Mundschutz, Physiotherapie und Änderungen des Lebensstils. In einigen Fällen kann eine Operation in Betracht gezogen werden.",
+      "ar": "مسكنات الألم، مرخيات العضلات، جبائر الفم أو واقيات الفم، العلاج الطبيعي، وتغييرات نمط الحياة. في بعض الحالات، قد يتم النظر في الجراحة."
     }
   },
   {
-    "id": "tmj_muscle_pain",
+    "id": "mobility_grade_1",
     "title": {
-      "en": "TMJ Muscle Pain",
-      "fr": "Douleur musculaire de l'ATM",
-      "ar": "ألم عضلات مفصل الفك",
-      "de": "Muskulärer Kiefergelenksschmerz"
+      "en": "Slight Tooth Mobility (Grade 1)",
+      "de": "Leichte Zahnbeweglichkeit (Grad 1)",
+      "fr": "Mobilité dentaire légère (Grade 1)",
+      "ar": "حركة طفيفة في السن (درجة 1)"
     },
     "explanation": {
-      "en": "Jaw pain caused by muscle tension, often from stress or clenching.",
-      "fr": "Douleur de la mâchoire causée par une tension musculaire, souvent due au stress ou au grincement des dents.",
-      "ar": "ألم في الفك ناتج عن توتر عضلي، غالبًا بسبب التوتر أو الضغط على الأسنان.",
-      "de": "Kieferschmerzen durch Muskelverspannungen, oft ausgelöst durch Stress oder Zähnepressen."
+      "en": "The tooth has slightly more movement than normal. This is often an early sign of gum disease or excessive biting forces (occlusal trauma).",
+      "de": "Der Zahn hat etwas mehr Bewegung als normal. Dies ist oft ein frühes Anzeichen für eine Zahnfleischerkrankung oder übermäßige Bisskräfte (okklusales Trauma).",
+      "fr": "La dent a un mouvement légèrement supérieur à la normale. C'est souvent un signe précoce de maladie des gencives ou de forces de morsure excessives (traumatisme occlusal).",
+      "ar": "السن لديه حركة أكثر بقليل من المعتاد. هذه غالباً علامة مبكرة على مرض اللثة أو قوى العض المفرطة (صدمة إطباقية)."
     },
     "treatment": {
-      "en": "Stress reduction, jaw relaxation exercises, and sometimes medication.",
-      "fr": "Réduction du stress, exercices de relaxation de la mâchoire et parfois médicaments.",
-      "ar": "تقليل التوتر، تمارين استرخاء الفك، وأحيانًا أدوية.",
-      "de": "Stressabbau, Kieferentspannungsübungen und ggf. medikamentöse Therapie."
+      "en": "A professional dental cleaning (scaling) is necessary. The bite might need to be adjusted. Sometimes, splinting the tooth to its neighbors can provide stability.",
+      "de": "Eine professionelle Zahnreinigung (Scaling) ist notwendig. Möglicherweise muss der Biss angepasst werden. Manchmal kann das Schienen des Zahnes an seine Nachbarn für Stabilität sorgen.",
+      "fr": "Un nettoyage dentaire professionnel (détartrage) est nécessaire. L'occlusion peut nécessiter un ajustement. Parfois, la contention (solidarisation) de la dent à ses voisines peut aider à la stabiliser.",
+      "ar": "من الضروري إجراء تنظيف احترافي للأسنان (إزالة الجير). قد يحتاج الإطباق إلى تعديل. في بعض الأحيان، يمكن أن يساعد تثبيت السن بالأسنان المجاورة على استقراره."
     }
   },
   {
-    "id": "healthy_gums",
+    "id": "mobility_grade_2",
     "title": {
-      "en": "Healthy Gums",
-      "fr": "Gencives saines",
-      "ar": "لثة صحية",
-      "de": "Gesundes Zahnfleisch"
+      "en": "Moderate Tooth Mobility (Grade 2)",
+      "de": "Mäßige Zahnbeweglichkeit (Grad 2)",
+      "fr": "Mobilité dentaire modérée (Grade 2)",
+      "ar": "حركة متوسطة في السن (درجة 2)"
     },
     "explanation": {
-      "en": "Your gums appear to be healthy. No signs of disease detected.",
-      "fr": "Vos gencives semblent saines. Aucun signe de maladie détecté.",
-      "ar": "لثتك تبدو صحية. لا توجد علامات على وجود مرض.",
-      "de": "Ihr Zahnfleisch scheint gesund zu sein. Keine Krankheitsanzeichen festgestellt."
+      "en": "The tooth has noticeable movement (up to 1mm horizontally). This indicates significant loss of bone support, usually due to advanced gum disease (periodontitis).",
+      "de": "Der Zahn hat eine merkliche Bewegung (bis zu 1 mm horizontal). Dies deutet auf einen erheblichen Verlust des Knochenhalts hin, normalerweise aufgrund einer fortgeschrittenen Zahnfleischerkrankung (Parodontitis).",
+      "fr": "La dent a un mouvement notable (jusqu'à 1 mm horizontalement). Cela indique une perte significative de soutien osseux, généralement due à une maladie des gencives avancée (parodontite).",
+      "ar": "السن لديه حركة ملحوظة (تصل إلى 1 مم أفقيًا). هذا يشير إلى فقدان كبير في دعم العظام، وعادة ما يكون بسبب مرض اللثة المتقدم (التهاب دواعم السن)."
     },
     "treatment": {
-      "en": "Keep up with regular oral hygiene and routine dental check-ups.",
-      "fr": "Maintenez une bonne hygiène bucco-dentaire et des contrôles réguliers chez le dentiste.",
-      "ar": "استمر في العناية الجيدة بالفم وزيارات منتظمة لطبيب الأسنان.",
-      "de": "Behalten Sie Ihre Mundhygiene bei und machen Sie regelmäßige Zahnarztbesuche."
+      "en": "Requires immediate dental intervention. This includes deep cleaning (scaling and root planing) and splinting the tooth to adjacent teeth. Periodontal surgery may be required.",
+      "de": "Erfordert sofortige zahnärztliche Behandlung. Dies umfasst eine Tiefenreinigung (Scaling und Root Planing) und das Schienen des Zahnes an benachbarte Zähne. Möglicherweise ist eine Parodontalchirurgie erforderlich.",
+      "fr": "Nécessite une intervention dentaire immédiate. Cela comprend un nettoyage en profondeur (détartrage et surfaçage radiculaire) et la ligature de la dent aux dents adjacentes. Une chirurgie parodontale peut être nécessaire.",
+      "ar": "يتطلب تدخلًا فوريًا من طبيب الأسنان. يشمل ذلك التنظيف العميق (تقليح وكشط الجذور) وربط السن بالأسنان المجاورة. قد تكون هناك حاجة لجراحة اللثة."
     }
   },
   {
-    "id": "no_tmj_disorder",
+    "id": "mobility_grade_3",
     "title": {
-      "en": "No TMJ Disorder Detected",
-      "fr": "Aucun trouble de l'ATM détecté",
-      "ar": "لا يوجد اضطراب في مفصل الفك",
-      "de": "Kein Kiefergelenksproblem festgestellt"
+      "en": "Severe Tooth Mobility (Grade 3)",
+      "de": "Starke Zahnbeweglichkeit (Grad 3)",
+      "fr": "Mobilité dentaire sévère (Grade 3)",
+      "ar": "حركة شديدة في السن (درجة 3)"
     },
     "explanation": {
-      "en": "Your symptoms do not suggest any temporomandibular joint disorder.",
-      "fr": "Vos symptômes ne suggèrent aucun trouble de l'articulation temporo-mandibulaire.",
-      "ar": "أعراضك لا تشير إلى وجود اضطراب في مفصل الفك.",
-      "de": "Ihre Symptome deuten nicht auf eine Kiefergelenkerkrankung hin."
+      "en": "The tooth is very loose, moves more than 1mm horizontally, and can be moved vertically. The prognosis is very poor due to extreme bone loss.",
+      "de": "Der Zahn ist sehr locker, bewegt sich mehr als 1 mm horizontal und kann vertikal bewegt werden. Die Prognose ist aufgrund des extremen Knochenverlusts sehr schlecht.",
+      "fr": "La dent est très mobile, se déplace de plus de 1 mm horizontalement et peut être déplacée verticalement. Le pronostic est très mauvais en raison d'une perte osseuse extrême.",
+      "ar": "السن فضفاض جدًا، يتحرك أكثر من 1 مم أفقيًا، ويمكن تحريكه عموديًا. التكهن سيء للغاية بسبب الفقدان الشديد للعظام."
     },
     "treatment": {
-      "en": "No treatment is required at this time.",
-      "fr": "Aucun traitement n'est requis pour le moment.",
-      "ar": "لا حاجة للعلاج في الوقت الحالي.",
-      "de": "Es ist derzeit keine Behandlung erforderlich."
+      "en": "Extraction of the tooth is the most common and often necessary treatment to prevent further complications. After extraction, options for replacement like an implant, a bridge, or a partial denture should be discussed.",
+      "de": "Die Extraktion des Zahnes ist die häufigste und oft notwendige Behandlung, um weitere Komplikationen zu verhindern. Nach der Extraktion sollten Optionen für einen Ersatz wie ein Implantat, eine Brücke oder eine Teilprothese besprochen werden.",
+      "fr": "L'extraction de la dent est le traitement le plus courant et souvent nécessaire pour prévenir d'autres complications. Après l'extraction, des options de remplacement comme un implant, un pont ou une prothèse partielle doivent être discutées.",
+      "ar": "خلع السن هو العلاج الأكثر شيوعًا وغالبًا ما يكون ضروريًا لمنع المزيد من المضاعفات. بعد الخلع، يجب مناقشة خيارات الاستبدال مثل الزرع أو الجسر أو طقم الأسنان الجزئي."
+    }
+  },
+  {
+    "id": "irreversible_pulpitis",
+    "title": {
+      "en": "Irreversible Pulpitis",
+      "fr": "Pulpite irréversible",
+      "de": "Irreversible Pulpitis",
+      "ar": "التهاب لب السن اللاعكوس"
+    },
+    "explanation": {
+      "en": "Spontaneous, lingering pain indicates a severe inflammation of the tooth's nerve (pulp). This condition will not heal on its own and requires intervention.",
+      "fr": "Une douleur spontanée et persistante indique une inflammation sévère du nerf de la dent (pulpe). Cette condition ne guérira pas d'elle-même et nécessite une intervention.",
+      "de": "Spontane, anhaltende Schmerzen deuten auf eine schwere Entzündung des Zahnnervs (Pulpa) hin. Dieser Zustand heilt nicht von selbst und erfordert einen Eingriff.",
+      "ar": "يشير الألم التلقائي والمستمر إلى التهاب حاد في عصب السن (اللب). هذه الحالة لن تلتئم من تلقاء نفسها وتتطلب تدخلاً."
+    },
+    "treatment": {
+      "en": "A root canal treatment is necessary to remove the inflamed nerve, clean the canal, and save the tooth.",
+      "fr": "Un traitement de canal est nécessaire pour retirer le nerf enflammé, nettoyer le canal et sauver la dent.",
+      "de": "Eine Wurzelkanalbehandlung ist notwendig, um den entzündeten Nerv zu entfernen, den Kanal zu reinigen und den Zahn zu erhalten.",
+      "ar": "علاج قناة الجذر ضروري لإزالة العصب الملتهب وتنظيف القناة وإنقاذ السن."
+    }
+  },
+  {
+    "id": "CARIE_PROFUNDA",
+    "title": {
+      "en": "Deep Caries",
+      "fr": "Carie Profonde",
+      "de": "Tiefe Karies",
+      "ar": "تسوس عميق"
+    },
+    "explanation": {
+      "en": "Deep caries has reached close to the nerve of the tooth, causing inflammation.",
+      "fr": "La carie profonde a atteint une zone proche du nerf de la dent, provoquant une inflammation.",
+      "de": "Eine tiefe Karies hat den Nerv des Zahnes fast erreicht und verursacht eine Entzündung.",
+      "ar": "وصل التسوس العميق بالقرب من عصب السن، مما يسبب التهابًا."
+    },
+    "treatment": {
+       "en": "Treatment involves the complete removal of all decayed tissue. Then, a biocompatible and protective filling is placed to seal the cavity. Because the decay was close to the nerve, mild sensitivity may persist for a few days. If the pain increases or does not subside, a follow-up evaluation by a dentist is necessary to rule out pulp inflammation that may require root canal treatment.",
+    "fr": "Le traitement consiste à éliminer complètement tous les tissus cariés. Ensuite, une obturation biocompatible et protectrice est placée pour sceller la cavité. Comme la carie était proche du nerf, une légère sensibilité peut persister quelques jours. Si la douleur augmente ou ne disparaît pas, une évaluation de suivi par un dentiste est nécessaire pour exclure une inflammation pulpaire nécessitant un traitement de canal.",
+    "de": "Die Behandlung umfasst die vollständige Entfernung des kariösen Gewebes. Anschließend wird eine biokompatible, schützende Füllung zum Versiegeln der Kavität gelegt. Da die Karies nervnah war, kann für einige Tage eine leichte Empfindlichkeit bestehen bleiben. Sollten die Schmerzen zunehmen oder nicht abklingen, ist eine zahnärztliche Nachuntersuchung erforderlich, um eine Pulpitis auszuschließen, die eine Wurzelkanalbehandlung erfordern könnte.",
+    "ar": "يتضمن العلاج الإزالة الكاملة لجميع الأنسجة المسوسة. بعد ذلك، توضع حشوة واقية ومتوافقة حيوياً لإغلاق التجويف. نظرًا لأن التسوس كان قريبًا من العصب، قد تستمر حساسية طفيفة لبضعة أيام. إذا زاد الألم أو لم يهدأ، فمن الضروري إجراء تقييم متابعة من قبل طبيب الأسنان لاستبعاد التهاب اللب الذي قد يتطلب علاج قناة الجذر."
     }
   },
   {
     "id": "dent_necrosis",
     "title": {
-      "en": "Dental Necrosis",
-      "fr": "Nécrose dentaire",
-      "de": "Zahnnerv-Nekrose",
-      "ar": "نخر الأسنان"
+      "en": "Tooth Necrosis with Abscess",
+      "fr": "Nécrose dentaire avec abcès",
+      "de": "Zahnnekrose mit Abszess",
+      "ar": "نخر السن مع خراج"
     },
     "explanation": {
-      "en": "The nerve inside the tooth has died, which often leads to an infection or abscess at the root tip.",
-      "fr": "Le nerf à l'intérieur de la dent est mort, ce qui entraîne souvent une infection ou un abcès à l'extrémité de la racine.",
-      "de": "Der Nerv im Zahn ist abgestorben, was oft zu einer Infektion oder einem Abszess an der Wurzelspitze führt.",
-      "ar": "مات العصب داخل السن، مما يؤدي غالبًا إلى عدوى أو خراج في طرف الجذر."
+      "en": "The presence of a pimple on the gum (abscess) indicates that the nerve inside the tooth is dead (necrotic) and an infection has formed at the root tip.",
+      "fr": "La présence d'un bouton sur la gencive (abcès) indique que le nerf à l'intérieur de la dent est mort (nécrosé) et qu'une infection s'est formée à l'extrémité de la racine.",
+      "de": "Das Vorhandensein einer Beule am Zahnfleisch (Abszess) deutet darauf hin, dass der Nerv im Zahn abgestorben (nekrotisch) ist und sich eine Infektion an der Wurzelspitze gebildet hat.",
+      "ar": "يشير وجود بثرة على اللثة (خراج) إلى أن العصب داخل السن قد مات (نخر) وأن عدوى قد تكونت عند طرف الجذر."
     },
     "treatment": {
-      "en": "A root canal treatment is necessary. Antibiotics might be needed, but do not take them without consulting a dentist first.",
-      "fr": "Un traitement de canal est nécessaire. Des antibiotiques peuvent être nécessaires, mais ne les prenez pas sans consulter d'abord un dentiste.",
-      "de": "Eine Wurzelbehandlung ist notwendig. Antibiotika können erforderlich sein, aber nehmen Sie diese nicht ohne vorherige Rücksprache mit einem Zahnarzt ein.",
-      "ar": "علاج قناة الجذر ضروري. قد تكون هناك حاجة إلى مضادات حيوية، ولكن لا تتناولها دون استشارة طبيب الأسنان أولاً."
-    }
+    "en": "A root canal treatment is required to clean the infected tooth and resolve the abscess. A dentist may also prescribe antibiotics, which should only be taken as directed.",
+      "fr": "Un traitement de canal est nécessaire pour nettoyer la dent infectée et résorber l'abcès. Un dentiste peut également prescrire des antibiotiques, qui ne doivent être pris que selon ses instructions.",
+      "de": "Eine Wurzelkanalbehandlung ist erforderlich, um den infizierten Zahn zu reinigen und den Abszess zu beseitigen. Ein Zahnarzt kann ebenfalls Antibiotika verschreiben, die nur nach Anweisung eingenommen werden dürfen.",
+      "ar": "علاج قناة الجذر مطلوب لتنظيف السن المصاب وحل الخراج. قد يصف طبيب الأسنان أيضًا مضادات حيوية، والتي يجب تناولها فقط حسب التوجيهات."
+     }
   },
   {
     "id": "healthy_tooth",
     "title": {
-      "en": "Healthy Tooth",
-      "fr": "Dent saine",
-      "de": "Gesunder Zahn",
-      "ar": "سن سليم"
+      "en": "Healthy Tooth / No Obvious Issue",
+      "fr": "Dent saine / Aucun problème évident",
+      "de": "Gesunder Zahn / Kein offensichtliches Problem",
+      "ar": "سن سليم / لا توجد مشكلة واضحة"
     },
     "explanation": {
-      "en": "Based on your answers, there are no signs of a common dental problem.",
-      "fr": "D'après vos réponses, il n'y a aucun signe d'un problème dentaire courant.",
-      "de": "Basierend auf Ihren Antworten gibt es keine Anzeichen für ein häufiges Zahnproblem.",
-      "ar": "بناءً على إجاباتك، لا توجد علامات على وجود مشكلة أسنان شائعة."
+      "en": "Based on the provided answers, there are no signs of common dental problems that cause pain. The tooth appears to be healthy from this assessment.",
+      "fr": "Sur la base des réponses fournies, il n'y a aucun signe de problèmes dentaires courants qui causent de la douleur. La dent semble être saine d'après cette évaluation.",
+      "de": "Basierend auf den gegebenen Antworten gibt es keine Anzeichen für häufige Zahnprobleme, die Schmerzen verursachen. Der Zahn scheint nach dieser Einschätzung gesund zu sein.",
+      "ar": "بناءً على الإجابات المقدمة، لا توجد علامات على مشاكل الأسنان الشائعة التي تسبب الألم. يبدو السن سليمًا من هذا التقييم."
     },
     "treatment": {
-      "en": "Continue with good oral hygiene and regular dental check-ups.",
-      "fr": "Continuez avec une bonne hygiène bucco-dentaire et des contrôles dentaires réguliers.",
-      "de": "Fahren Sie mit einer guten Mundhygiene und regelmäßigen zahnärztlichen Kontrollen fort.",
-      "ar": "استمر في نظافة الفم الجيدة والفحوصات الدورية للأسنان."
+      "en": "Continue with good oral hygiene. If pain or sensitivity persists, a clinical examination by a dentist is necessary to check for issues not covered by these questions (e.g., hairline cracks, bite issues).",
+      "fr": "Continuez avec une bonne hygiène bucco-dentaire. Si la douleur ou la sensibilité persiste, un examen clinique par un dentiste est nécessaire pour vérifier les problèmes non couverts par ces questions (par ex. fissures fines, problèmes d'occlusion).",
+      "de": "Fahren Sie mit einer guten Mundhygiene fort. Wenn Schmerzen oder Empfindlichkeit anhalten, ist eine klinische Untersuchung durch einen Zahnarzt erforderlich, um Probleme zu prüfen, die nicht durch diese Fragen abgedeckt sind (z.B. Haarrisse, Bissprobleme).",
+      "ar": "استمر في نظافة الفم الجيدة. إذا استمر الألم أو الحساسية، فإن الفحص السريري من قبل طبيب الأسنان ضروري للتحقق من المشاكل التي لا تغطيها هذه الأسئلة (مثل الشقوق الشعرية، مشاكل العض)."
+    }
+  },
+  {
+    "id": "dentin_hypersensitivity",
+    "title": {
+      "en": "Dentin Hypersensitivity",
+      "fr": "Hypersensibilité dentinaire",
+      "de": "Dentin-Hypersensibilität",
+      "ar": "حساسية العاج"
+    },
+    "explanation": {
+      "en": "A short, sharp pain in response to stimuli (like cold or sweet) is a classic sign of exposed dentin, the sensitive layer beneath the tooth's enamel. This is often caused by gum recession or enamel wear.",
+      "fr": "Une douleur brève et aiguë en réponse à des stimuli (comme le froid ou le sucré) est un signe classique de la dentine exposée, la couche sensible sous l'émail de la dent. Ceci est souvent causé par une récession gingivale ou l'usure de l'émail.",
+      "de": "Ein kurzer, scharfer Schmerz als Reaktion auf Reize (wie Kälte oder Süßes) ist ein klassisches Zeichen für freiliegendes Dentin, die empfindliche Schicht unter dem Zahnschmelz. Dies wird oft durch Zahnfleischrückgang oder Schmelzabnutzung verursacht.",
+      "ar": "الألم القصير والحاد استجابة للمنبهات (مثل البرد أو الحلو) هو علامة كلاسيكية على العاج المكشوف، وهي الطبقة الحساسة تحت مينا السن. يحدث هذا غالبًا بسبب انحسار اللثة أو تآكل المينا."
+    },
+    "treatment": {
+      "en": "Use a toothpaste specifically for sensitive teeth. Avoid acidic foods and drinks. A dentist can apply fluoride varnishes or bonding agents to cover the exposed areas.",
+      "fr": "Utilisez un dentifrice spécifique pour les dents sensibles. Évitez les aliments et boissons acides. Un dentiste peut appliquer des vernis fluorés ou des agents de liaison pour couvrir les zones exposées.",
+      "de": "Verwenden Sie eine Zahnpasta speziell für empfindliche Zähne. Vermeiden Sie saure Speisen und Getränke. Ein Zahnarzt kann Fluoridlacke oder Haftvermittler auftragen, um die freiliegenden Bereiche abzudecken.",
+      "ar": "استخدم معجون أسنان مخصص للأسنان الحساسة. تجنب الأطعمة والمشروبات الحمضية. يمكن لطبيب الأسنان تطبيق ورنيش الفلورايد أو مواد لاصقة لتغطية المناطق المكشوفة."
+    }
+  },
+  {
+    "id": "septal_syndrome",
+    "title": {
+      "en": "Septal Syndrome (Food Impaction)",
+      "fr": "Syndrome septal (Tassement alimentaire)",
+      "de": "Septales Syndrom (Speiseimpaktion)",
+      "ar": "متلازمة الحاجز (انحشار الطعام)"
+    },
+    "explanation": {
+      "en": "This describes pain caused by food getting stuck between two teeth, putting pressure on the gum and bone. It often happens if there's a gap or a poor contact point between teeth.",
+      "fr": "Ceci décrit une douleur causée par des aliments coincés entre deux dents, exerçant une pression sur la gencive et l'os. Cela se produit souvent s'il y a un espace ou un mauvais point de contact entre les dents.",
+      "de": "Dies beschreibt Schmerzen, die durch Speisereste verursacht werden, die zwischen zwei Zähnen stecken bleiben und Druck auf Zahnfleisch und Knochen ausüben. Dies geschieht oft, wenn eine Lücke oder ein schlechter Kontaktpunkt zwischen den Zähnen besteht.",
+      "ar": "يصف هذا ألمًا ناتجًا عن انحشار الطعام بين سنين، مما يضع ضغطًا على اللثة والعظم. يحدث هذا غالبًا إذا كانت هناك فجوة أو نقطة تلامس سيئة بين الأسنان."
+    },
+    "treatment": {
+      "en": "Thoroughly clean the area with dental floss. A dentist needs to check the contact between the teeth and may need to adjust or replace a filling to prevent it from happening again.",
+      "fr": "Nettoyez soigneusement la zone avec du fil dentaire. Un dentiste doit vérifier le contact entre les dents et pourrait avoir besoin d'ajuster ou de remplacer une obturation pour éviter que cela ne se reproduise.",
+      "de": "Reinigen Sie den Bereich gründlich mit Zahnseide. Ein Zahnarzt muss den Kontakt zwischen den Zähnen überprüfen und möglicherweise eine Füllung anpassen oder ersetzen, um ein erneutes Auftreten zu verhindern.",
+      "ar": "نظف المنطقة جيدًا بخيط الأسنان. يحتاج طبيب الأسنان إلى فحص التلامس بين الأسنان وقد يحتاج إلى تعديل أو استبدال حشوة لمنع حدوث ذلك مرة أخرى."
     }
   }
 ]

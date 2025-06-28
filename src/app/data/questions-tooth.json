@@ -21,8 +21,8 @@
       "ar": "هل يستمر الألم لأكثر من 5 ثوان؟"
     },
     "options": [
-      { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "diagnosisId": "irreversible_pulpitis" },
-      { "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" }, "diagnosisId": "reversible_pulpitis" }
+      { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "next": "q6" },
+      { "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" }, "diagnosisId": "CARIE_PROFUNDA" }
     ]
   },
   {
@@ -31,7 +31,7 @@
       "en": "Is there a pimple on the gum (abscess) or is pus coming out?",
       "fr": "Y a-t-il un bouton sur la gencive (abcès) ou du pus qui sort ?",
       "de": "Gibt es eine Beule am Zahnfleisch (Abszess) oder tritt Eiter aus?",
-      "ar": "هل يوجد خراج على اللثة أو يخرج صديد؟"
+      "ar": "هل يوجد خراج على اللثة أو يخرج قيح؟"
     },
     "options": [
       { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "diagnosisId": "dent_necrosis" },
@@ -61,7 +61,21 @@
     },
     "options": [
       { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "diagnosisId": "dentin_hypersensitivity" },
-      { "label": { "en": "No, it's more of a dull ache", "fr": "Non, c'est plutôt une douleur sourde", "de": "Nein, es ist eher ein dumpfer Schmerz", "ar": "لا، إنه أشبه بألم خفيف" }, "diagnosisId": "reversible_pulpitis" }
+      { "label": { "en": "No, it's more of a dull ache", "fr": "Non, c'est plutôt une douleur sourde", "de": "Nein, es ist eher ein dumpfer Schmerz", "ar": "لا، إنه أشبه بألم خفيف" }, "diagnosisId": "CARIE_PROFUNDA" }
+    ]
+  }
+  ,
+  {
+    "id": "q6",
+    "text": {
+      "en": "Do you have a gum pocket or gum problems where the tooth is located?",
+      "fr": "Avez-vous une poche gingivale ou des problèmes de gencives à l'endroit de la dent ?",
+      "de": "Haben Sie eine Zahnfleischtasche oder Zahnfleischprobleme, wo der Zahn liegt?",
+      "ar": "هل لديك جيب لثوي أو مشاكل في اللثة في مكان السن؟"
+    },
+    "options": [
+      { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "diagnosisId": "septal_syndrome" },
+      { "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" }, "next": "q5" }
     ]
   }
 ]

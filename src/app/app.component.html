@@ -1,4 +1,4 @@
-<app-language-selector (languageChanged)="onLanguageChanged($event)"></app-language-selector>
+<app-language-selector [currentLang]="selectedLanguage" (languageChanged)="onLanguageChanged($event)"></app-language-selector>
 
 <!-- Step 1: Pain Type Selection -->
 <div *ngIf="!selectedPainType && !finalDiagnosis">
@@ -28,7 +28,7 @@
 </app-tooth-status-flow>
 
 <!-- Step 4: General Question Flow (for gum/tmj OR after tooth status flow) -->
-<app-question-flow 
+<app-question-flow        
   *ngIf="!finalDiagnosis && ((selectedPainType === 'gum' || selectedPainType === 'tmj') || isToothStatusFlowComplete)" 
   [painType]="selectedPainType!" 
   [language]="selectedLanguage"
@@ -36,16 +36,17 @@
   (diagnosisReady)="onDiagnosisReady($event)">
 </app-question-flow>
 
+
 <!-- Final Diagnosis Display -->
 <div *ngIf="finalDiagnosis" class="diagnosis-card">
-  <h2 class="diagnosis-title">{{ finalDiagnosis.title }}</h2>
+  <h2 class="diagnosis-title">{{ finalDiagnosis.title[selectedLanguage] }}</h2>
   <div class="diagnosis-content">
-    <h3>Explanation</h3>
-    <p>{{ finalDiagnosis.explanation }}</p>
-    <h3>Suggested Treatment</h3>
-    <p>{{ finalDiagnosis.treatment }}</p>
+    <h3>{{ diagnosisExplanationLabel[selectedLanguage] }}</h3>
+    <p>{{ finalDiagnosis.explanation[selectedLanguage] }}</p>
+    <h3>{{ diagnosisTreatmentLabel[selectedLanguage] }}</h3>
+    <p>{{ finalDiagnosis.treatment[selectedLanguage] }}</p>
   </div>
-  <button (click)="resetSelection()" class="reset-button">Start Over</button>
+  <button (click)="resetSelection()" class="reset-button">{{ startOverButtonLabel[selectedLanguage] }}</button>
 </div>
 
 <!-- Global Back Button (hidden when diagnosis is shown) -->

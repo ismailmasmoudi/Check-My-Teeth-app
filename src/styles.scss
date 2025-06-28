@@ -1,1 +1,101 @@
-/* You can add global styles to this file, and also import other style files */
+.questionnaire-container {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  background-color: #f8f9fa;
+  transition: all 0.3s ease-in-out;
+}
+
+.loading-indicator, .error-message {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: #6c757d;
+}
+
+.error-message {
+  color: #d9534f;
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+  border-radius: 4px;
+}
+
+.question-card, .diagnosis-card {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.question-text {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #212529;
+  font-weight: 500;
+}
+
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.option-button, .reset-button {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  text-align: left;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.option-button:hover {
+  background-color: #e9ecef;
+  transform: translateY(-2px);
+  border-color: #adb5bd;
+}
+
+.diagnosis-title {
+  font-size: 1.8rem;
+  color: #0d6efd;
+  border-bottom: 2px solid #0d6efd;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.diagnosis-content h3 {
+  font-size: 1.2rem;
+  color: #495057;
+  margin-top: 1.5rem;
+}
+
+.diagnosis-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #343a40;
+  white-space: pre-wrap; /* Ensure newlines are respected */
+}
+
+.reset-button {
+  margin-top: 2rem;
+  background-color: #198754;
+  color: white;
+  text-align: center;
+  border-color: #198754;
+}
+
+.reset-button:hover {
+  background-color: #157347;
+}
+
+

@@ -2,27 +2,40 @@
   {
     "id": "q1",
     "text": {
-      "en": "Do your gums bleed during brushing?",
-      "fr": "Vos gencives saignent-elles lors du brossage ?",
-      "de": "Bluten Ihre Zahnfleisch beim Zähneputzen?",
-      "ar": "هل تنزف لثتك أثناء تنظيف الأسنان؟"
+      "en": "Do your gums bleed when you brush or floss?",
+      "fr": "Vos gencives saignent-elles lorsque vous vous brossez les dents ou utilisez du fil dentaire ?",
+      "de": "Blutet Ihr Zahnfleisch beim Zähneputzen oder bei der Verwendung von Zahnseide?",
+      "ar": "هل تنزف لثتك عند تنظيف أسنانك بالفرشاة أو الخيط؟"
     },
     "options": [
-      { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "next": "q2" },
-      { "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" }, "diagnosisId": "healthy_gums" }
+      { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "next": "q3" },
+      { "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" }, "next": "q2" }
     ]
   },
   {
     "id": "q2",
     "text": {
-      "en": "Do you have red, swollen or painful gums?",
-      "fr": "Vos gencives sont-elles rouges, enflées ou douloureuses ?",
-      "de": "Sind Ihre Zahnfleisch gerötet, geschwollen oder schmerzhaft?",
-      "ar": "هل لثتك حمراء أو متورمة أو مؤلمة؟"
+      "en": "Are your gums red, swollen, or tender to the touch?",
+      "fr": "Vos gencives sont-elles rouges, enflées ou sensibles au toucher ?",
+      "de": "Ist Ihr Zahnfleisch gerötet, geschwollen oder berührungsempfindlich?",
+      "ar": "هل لثتك حمراء أو متورمة أو مؤلمة عند اللمس؟"
     },
     "options": [
       { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "diagnosisId": "gingivitis" },
-      { "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" }, "diagnosisId": "mild_gingivitis" }
+      { "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" }, "diagnosisId": "healthy_gums" }
+    ]
+  },
+  {
+    "id": "q3",
+    "text": {
+      "en": "Are any of your teeth loose, or do your gums seem to be pulling away from your teeth (receding)?",
+      "fr": "Certaines de vos dents sont-elles mobiles, ou vos gencives semblent-elles se rétracter de vos dents ?",
+      "de": "Sind einige Ihrer Zähne locker oder scheint sich Ihr Zahnfleisch von den Zähnen zurückzuziehen?",
+      "ar": "هل أي من أسنانك متحركة، أو هل تبدو لثتك وكأنها تنحسر عن أسنانك؟"
+    },
+    "options": [
+      { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "diagnosisId": "periodontitis" },
+      { "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" }, "diagnosisId": "gingivitis" }
     ]
   }
 ]

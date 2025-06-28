@@ -168,6 +168,27 @@
     }
   },
   {
+    "id": "healthy_gums",
+    "title": {
+      "en": "Healthy Gums",
+      "fr": "Gencives saines",
+      "de": "Gesundes Zahnfleisch",
+      "ar": "لثة صحية"
+    },
+    "explanation": {
+      "en": "Based on your answers, your gums appear to be healthy. There are no signs of common gum diseases.",
+      "fr": "D'après vos réponses, vos gencives semblent être en bonne santé. Il n'y a aucun signe de maladie des gencives courante.",
+      "de": "Basierend auf Ihren Antworten scheint Ihr Zahnfleisch gesund zu sein. Es gibt keine Anzeichen für häufige Zahnfleischerkrankungen.",
+      "ar": "بناءً على إجاباتك، تبدو لثتك صحية. لا توجد علامات على أمراض اللثة الشائعة."
+    },
+    "treatment": {
+      "en": "Continue with good oral hygiene, including regular brushing and flossing, to maintain gum health.",
+      "fr": "Continuez avec une bonne hygiène bucco-dentaire, y compris un brossage et une utilisation du fil dentaire réguliers, pour maintenir la santé de vos gencives.",
+      "de": "Fahren Sie mit einer guten Mundhygiene fort, einschließlich regelmäßigem Zähneputzen und Verwendung von Zahnseide, um die Gesundheit Ihres Zahnfleisches zu erhalten.",
+      "ar": "استمر في نظافة الفم الجيدة، بما في ذلك تنظيف الأسنان بالفرشاة والخيط بانتظام، للحفاظ على صحة لثتك."
+    }
+  },
+  {
     "id": "bruxism",
     "title": {
       "en": "Bruxism (Teeth Grinding)",

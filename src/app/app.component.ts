@@ -109,10 +109,10 @@ export class AppComponent {
       ar: 'ألم اللثة',
     },
     tmj: {
-      en: 'TMJ pain',
-      fr: "Douleur de l'ATM",
+      en: 'Jaw Joint Pain',
+      fr: "Douleur à l'articulation de la mâchoire",
       de: 'Kiefergelenkschmerzen',
-      ar: 'ألم مفصل الفك',
+      ar: 'ألم في مفصل الفك',
     },
   };
 

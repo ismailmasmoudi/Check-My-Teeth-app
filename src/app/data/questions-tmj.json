@@ -2,18 +2,68 @@
   {
     "id": "q1",
     "text": {
-      "en": "Do you feel pain in front of the ear or when chewing?",
-      "fr": "Ressentez-vous une douleur devant l'oreille ou en mâchant ?",
-      "de": "Haben Sie Schmerzen vor dem Ohr oder beim Kauen?",
-      "ar": "هل تشعر بألم أمام الأذن أو عند المضغ؟"
+      "en": "Do you grind your teeth or have pain when you wake up in the morning?",
+      "fr": "Grincez-vous des dents ou avez-vous des douleurs au réveil le matin ?",
+      "de": "Knirschen Sie mit den Zähnen oder haben Sie Schmerzen, wenn Sie morgens aufwachen?",
+      "ar": "هل تعض على أسنانك ليلا أو تشعر بألم في الأسنان عند الاستيقاظ في الصباح؟"
     },
     "options": [
-      { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "next": "q2" },
-      { "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" }, "diagnosisId": "no_tmj_disorder" }
+      {
+        "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" },
+        "next": "q2"
+      },
+      {
+        "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" },
+        "next": "q3"
+      }
     ]
   },
   {
     "id": "q2",
+    "text": {
+      "en": "In addition to grinding, do you have other symptoms such as jaw pain, limited mouth opening, or jaw clicking?",
+      "fr": "En plus du grincement, avez-vous d'autres symptômes tels que des douleurs à la mâchoire, une ouverture de la bouche limitée ou des craquements de la mâchoire ?",
+      "de": "Haben Sie zusätzlich zum Knirschen weitere Beschwerden wie Kieferschmerzen, eine eingeschränkte Mundöffnung oder Kieferknacken?",
+      "ar": "بالإضافة إلى طحن الأسنان، هل لديك أعراض أخرى مثل ألم في الفك، أو فتحة فم محدودة، أو طقطقة في الفك؟"
+    },
+    "options": [
+      {
+        "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" },
+        "diagnosisId": "tmj_disorder"
+      },
+      {
+        "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" },
+        "diagnosisId": "bruxism"
+      }
+    ]
+  },
+ 
+  {
+    "id": "q3",
+    "text": {
+      "en": "Can you open your mouth wide enough?",
+      "fr": "Pouvez-vous ouvrir la bouche suffisamment grand ?",
+      "de": "Können Sie Ihren Mund weit genug öffnen?",
+      "ar": "هل يمكنك فتح فمك بشكل كافٍ؟"
+    },
+    "options": [
+      {
+        "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" },
+        "next": "q4"
+      },
+      {
+        "label": {
+          "en": "No, it feels limited or locked",
+          "fr": "Non, l'ouverture semble limitée ou bloquée",
+          "de": "Nein, es fühlt sich eingeschränkt oder blockiert an",
+          "ar": "لا، أشعر بأنها محدودة أو مقفلة"
+        },
+        "diagnosisId": "tmj_disorder_with_limitation"
+      }
+    ]
+  },
+  {
+    "id": "q4",
     "text": {
       "en": "Do you hear clicking or popping sounds when opening your mouth?",
       "fr": "Entendez-vous des clics ou des craquements en ouvrant la bouche ?",
@@ -21,8 +71,14 @@
       "ar": "هل تسمع أصوات طقطقة أو فرقعة عند فتح الفم؟"
     },
     "options": [
-      { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "diagnosisId": "tmj_disorder" },
-      { "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" }, "diagnosisId": "tmj_muscle_pain" }
+      {
+        "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" },
+        "diagnosisId": "tmj_disorder"
+      },
+      {
+        "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" },
+        "diagnosisId": "no_tmj_disorder"
+      }
     ]
   }
 ]

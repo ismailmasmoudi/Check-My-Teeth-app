@@ -168,24 +168,108 @@
     }
   },
   {
+    "id": "bruxism",
+    "title": {
+      "en": "Bruxism (Teeth Grinding)",
+      "fr": "Bruxisme (Grincement des dents)",
+      "de": "Bruxismus (Zähneknirschen)",
+      "ar": "صريف الأسنان (طحن الأسنان)"
+    },
+    "explanation": {
+      "en": "Bruxism is a condition in which you grind, gnash or clench your teeth. This can happen during the day or, more commonly, during sleep. It often leads to jaw pain, headaches, and worn-down teeth.",
+      "fr": "Le bruxisme est une condition dans laquelle vous grincez, serrez ou serrez les dents. Cela peut se produire pendant la journée ou, plus communément, pendant le sommeil. Il entraîne souvent des douleurs à la mâchoire, des maux de tête et une usure des dents.",
+      "de": "Bruxismus ist ein Zustand, bei dem Sie mit den Zähnen knirschen, mahlen oder pressen. Dies kann tagsüber oder, häufiger, im Schlaf geschehen. Es führt oft zu Kieferschmerzen, Kopfschmerzen und abgenutzten Zähnen.",
+      "ar": "صريف الأسنان هو حالة تقوم فيها بطحن أو صرير أو إطباق أسنانك. يمكن أن يحدث هذا خلال النهار أو، بشكل أكثر شيوعًا، أثناء النوم. غالبًا ما يؤدي إلى ألم في الفك وصداع وتآكل الأسنان."
+    },
+    "treatment": {
+      "en": "The primary treatment is a custom-made night guard (occlusal splint) to protect your teeth from grinding. If symptoms persist, physiotherapy may be recommended to relieve muscle tension.",
+      "fr": "Le traitement principal est une gouttière occlusale sur mesure pour protéger vos dents du grincement. Si les symptômes persistent, la physiothérapie peut être recommandée pour soulager la tension musculaire.",
+      "de": "Die primäre Behandlung ist eine individuell angefertigte Knirschschiene (Okklusionsschiene), um Ihre Zähne vor dem Knirschen zu schützen. Wenn die Symptome anhalten, kann Physiotherapie empfohlen werden, um Muskelverspannungen zu lösen.",
+      "ar": "العلاج الأساسي هو واقي ليلي مصنوع خصيصًا (جبيرة إطباقية) لحماية أسنانك من الطحن. إذا استمرت الأعراض، فقد يوصى بالعلاج الطبيعي لتخفيف توتر العضلات."
+    }
+  },
+  {
     "id": "tmj_disorder",
     "title": {
-      "en": "TMJ Disorder",
-      "fr": "Trouble de l'ATM",
-      "de": "Kiefergelenkstörung",
+      "en": "Temporomandibular Joint Disorder",
+      "fr": "Trouble de l'articulation temporo-mandibulaire",
+      "de": "Kiefergelenkerkrankung",
       "ar": "اضطراب المفصل الفكي الصدغي"
     },
     "explanation": {
-      "en": "TMJ disorders are conditions that cause pain and dysfunction in the jaw joint and the muscles that control jaw movement.",
-      "fr": "Les troubles de l'ATM sont des affections qui causent de la douleur et un dysfonctionnement de l'articulation de la mâchoire et des muscles qui contrôlent le mouvement de la mâchoire.",
-      "de": "Kiefergelenkstörungen sind Zustände, die Schmerzen und Funktionsstörungen im Kiefergelenk und den Muskeln verursachen, die die Kieferbewegung steuern.",
-      "ar": "اضطرابات المفصل الفكي الصدغي هي حالات تسبب الألم والخلل الوظيفي في مفصل الفك والعضلات التي تتحكم في حركة الفك."
+      "en": "Your symptoms, such as pain and clicking, are typical for a temporomandibular joint disorder.",
+      "fr": "Vos symptômes, tels que la douleur et les claquements, sont typiques d'un trouble de l'articulation temporo-mandibulaire.",
+      "de": "Ihre Symptome wie Schmerzen und Kieferknacken sind typisch für eine Kiefergelenkerkrankung.",
+      "ar": "أعراضك، مثل الألم والطقطقة، نموذجية لاضطراب المفصل الفكي الصدغي."
     },
     "treatment": {
-      "en": "Pain relievers, muscle relaxants, oral splints or mouthguards, physical therapy, and lifestyle changes. In some cases, surgery might be considered.",
-      "fr": "Analgésiques, relaxants musculaires, gouttières occlusales ou protège-dents, physiothérapie et changements de mode de vie. Dans certains cas, la chirurgie peut être envisagée.",
-      "de": "Schmerzmittel, Muskelrelaxantien, Aufbissschienen oder Mundschutz, Physiotherapie und Änderungen des Lebensstils. In einigen Fällen kann eine Operation in Betracht gezogen werden.",
-      "ar": "مسكنات الألم، مرخيات العضلات، جبائر الفم أو واقيات الفم، العلاج الطبيعي، وتغييرات نمط الحياة. في بعض الحالات، قد يتم النظر في الجراحة."
+      "en": "Physiotherapy and massages can help relieve the symptoms. A custom-made night guard (occlusal splint) can also be beneficial. Please consult a dentist for an accurate diagnosis and treatment plan.",
+      "fr": "La physiothérapie et les massages peuvent aider à soulager les symptômes. Une gouttière occlusale sur mesure peut également être bénéfique. Veuillez consulter un dentiste pour un diagnostic précis et un plan de traitement.",
+      "de": "Physiotherapie und Massagen können helfen, die Symptome zu lindern. Eine individuell angefertigte Knirschschiene kann ebenfalls nützlich sein. Bitte konsultieren Sie einen Zahnarzt für eine genaue Diagnose und einen Behandlungsplan.",
+      "ar": "يمكن أن يساعد العلاج الطبيعي والتدليك في تخفيف الأعراض. يمكن أن يكون واقي الأسنان الليلي المصنوع خصيصًا مفيدًا أيضًا. يرجى استشارة طبيب الأسنان للحصول على تشخيص دقيق وخطة علاج."
+    }
+  },
+  {
+    "id": "tmj_disorder_with_limitation",
+    "title": {
+      "en": "Temporomandibular Joint Disorder with Limited Opening",
+      "fr": "Trouble de l'articulation temporo-mandibulaire avec ouverture limitée",
+      "de": "Kiefergelenkerkrankung mit eingeschränkter Mundöffnung",
+      "ar": "اضطراب المفصل الفكي الصدغي مع فتحة محدودة"
+    },
+    "explanation": {
+      "en": "Your symptoms, especially the limited mouth opening, indicate a temporomandibular joint disorder. This can be caused by a displacement of the articular disc.",
+      "fr": "Vos symptômes, en particulier l'ouverture limitée de la bouche, indiquent un trouble de l'articulation temporo-mandibulaire. Cela peut être dû à un déplacement du disque articulaire.",
+      "de": "Ihre Symptome, insbesondere die eingeschränkte Mundöffnung, deuten auf eine Kiefergelenkerkrankung hin. Dies kann durch eine Verlagerung der Gelenkscheibe (Diskus) verursacht werden.",
+      "ar": "أعراضك، وخاصة فتحة الفم المحدودة، تشير إلى اضطراب في المفصل الفكي الصدغي. يمكن أن يكون سبب ذلك هو إزاحة القرص المفصلي."
+    },
+    "treatment": {
+      "en": "It is strongly recommended to see a dentist. Possible treatments include physiotherapy, special splints, or other dental procedures.",
+      "fr": "Il est fortement recommandé de consulter un dentiste. Les traitements possibles comprennent la physiothérapie, des gouttières spéciales ou d'autres procédures dentaires.",
+      "de": "Es wird dringend empfohlen, einen Zahnarzt aufzusuchen. Mögliche Behandlungen umfassen Physiotherapie, spezielle Schienen oder andere zahnärztliche Eingriffe.",
+      "ar": "يوصى بشدة بزيارة طبيب الأسنان. تشمل العلاجات الممكنة العلاج الطبيعي أو الجبائر الخاصة أو عمليات جراحية في  طب الأسنان الأخرى."
+    }
+  },
+  {
+    "id": "tmj_muscle_pain",
+    "title": {
+      "en": "Myofascial Pain (Muscle Pain)",
+      "fr": "Douleur myofasciale (Douleur musculaire)",
+      "de": "Myofaszialer Schmerz (Muskelschmerz)",
+      "ar": "الألم العضلي الليفي (ألم العضلات)"
+    },
+    "explanation": {
+      "en": "Your pain seems to originate mainly from the chewing muscles. This is a common form of temporomandibular joint disorder.",
+      "fr": "Votre douleur semble provenir principalement des muscles de la mastication. C'est une forme courante de trouble de l'articulation temporo-mandibulaire.",
+      "de": "Ihre Schmerzen scheinen hauptsächlich von den Kaumuskeln auszugehen. Dies ist eine häufige Form von Kiefergelenksbeschwerden.",
+      "ar": "يبدو أن ألمك ينشأ بشكل أساسي من عضلات المضغ. هذا شكل شائع من اضطراب المفصل الفكي الصدغي."
+    },
+    "treatment": {
+      "en": "Relaxation exercises, gentle massage of the jaw muscles, and heat applications can provide relief. For persistent pain, splint therapy or physiotherapy may be useful. Consult your dentist.",
+      "fr": "Des exercices de relaxation, un massage doux des muscles de la mâchoire et des applications de chaleur peuvent apporter un soulagement. En cas de douleur persistante, une thérapie par gouttière ou la physiothérapie peuvent être utiles. Consultez votre dentiste.",
+      "de": "Entspannungsübungen, sanfte Massagen der Kaumuskulatur und Wärmeanwendungen können Linderung verschaffen. Bei anhaltenden Schmerzen kann eine Schienentherapie oder Physiotherapie sinnvoll sein. Konsultieren Sie Ihren Zahnarzt.",
+      "ar": "يمكن أن توفر تمارين الاسترخاء والتدليك اللطيف لعضلات الفك وتطبيقات الحرارة الراحة. بالنسبة للألم المستمر، قد يكون العلاج بالجبيرة أو العلاج الطبيعي مفيدًا. استشر طبيب أسنانك."
+    }
+  },
+  {
+    "id": "no_tmj_disorder",
+    "title": {
+      "en": "No Temporomandibular Joint Disorder indicated",
+      "fr": "Aucun trouble de l'articulation temporo-mandibulaire indiqué",
+      "de": "Keine Kiefergelenksbeschwerden",
+      "ar": "لا يوجد ما يشير إلى اضطراب المفصل الفكي الصدغي"
+    },
+    "explanation": {
+      "en": "Based on your answers, there are no typical symptoms of a temporomandibular joint disorder.",
+      "fr": "D'après vos réponses, il n'y a pas de symptômes typiques d'un trouble de l'articulation temporo-mandibulaire.",
+      "de": "Basierend auf Ihren Antworten scheinen keine typischen Symptome einer Kiefergelenkerkrankung vorzuliegen.",
+      "ar": "بناءً على إجاباتك، لا توجد أعراض نموذجية لاضطراب المفصل الفكي الصدغي."
+    },
+    "treatment": {
+      "en": "No treatment is necessary. However, if you still have concerns, please consult your dentist.",
+      "fr": "Aucun traitement n'est nécessaire. Cependant, si vous avez toujours des inquiétudes, veuillez consulter votre dentiste.",
+      "de": "Keine Behandlung erforderlich. Wenn Sie dennoch Bedenken haben, konsultieren Sie bitte Ihren Zahnarzt.",
+      "ar": "لا حاجة للعلاج. ومع ذلك، إذا كان لا يزال لديك مخاوف، يرجى استشارة طبيب أسنانك."
     }
   },
   {

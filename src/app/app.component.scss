@@ -1,14 +1,267 @@
-.diagnosis-card .diagnosis-content p {
-  white-space: pre-wrap; /* This will respect newlines in the text */
+
+:host {
+  display: block; // Wichtig, damit es die volle Höhe einnehmen kann
+  // Die app-root Komponente wird durch die body-Styles zentriert.
+  // Wir brauchen hier keine weiteren Container-Styles.
 }
 
-.disclaimer {
-  margin-top: 1.5rem;
-  padding: 1rem;
-  background-color: #fcf8e3;
-  border: 1px solid #faebcc;
-  border-radius: 4px;
-  color: #8a6d3b;
-  font-size: 0.9rem;
-  line-height: 1.5;
+/* 2- In der mitte von Bildschirm wird den ganzen content gezeigt */
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+
+}
+.title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.content-box {
+  /* 3- Hintergrund von dem content ist das bild : ContentChatBackground.png */
+  background-image: url("/img/ContentChatBackground.png");
+  background-size: cover;
+  background-position: center;
+  // width: 675px;
+  // height: 260px;
+  width: 902px;
+  height: 360px;
+  padding-bottom: 34px;
+  /* WICHTIG: Fügt eine Scrollleiste hinzu, wenn der Inhalt zu hoch ist */
+  overflow-y: auto;
+
+  /* Sorgt für einen inneren Abstand, damit der Inhalt nicht am Rand klebt */
+  padding: 20px;
+
+  position: relative; // Wichtig für die Positionierung der Sprachauswahl
+  /* Zentriert die inneren Elemente (Titel, Bild) */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* Neue Schriftart für den gesamten Inhalt der Box */
+  font-family: "Chakra Petch", sans-serif;
+  text-align: center;
+}
+
+/* General Styling for Form Elements inside content-box */
+.content-box {
+  // Container for a question/prompt and its input
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    margin-bottom: 1.5rem;
+
+    p {
+      font-size: 1.2rem;
+      color: black;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+
+  // Modern styling for text inputs and select dropdowns
+  input[type="text"],
+  select {
+    width: 80%;
+    max-width: 350px;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-sizing: border-box;
+
+    &:hover:not(:focus) {
+      border-color: #a0a0a0; /* Dezente Rahmenfarbe bei Hover */
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--primary-color); // Blue on focus
+      box-shadow: 0 0 8px rgba(33, 150, 243, 0.3);
+    }
+  }
+
+  // Custom styling for the select dropdown arrow
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%232196F3%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 12px;
+    cursor: pointer;
+  }
+
+  // General button styling for primary actions
+  .name-input-container button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+
+    &:hover {
+      /* Ein etwas dunkleres, satteres Blau für den Hover-Effekt */
+      background-color: #1976D2;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4);
+    }
+  }
+}
+
+/* 5- Oben der Headrobot, wird Title von der App wird gezeigt "Check my Tooth Robot" */
+.app-title {
+  /* Neue Schriftart "Tektur" für einen Roboter-Look */
+  font-family: "Tektur", sans-serif;
+  font-weight: 600; /* SemiBold, wie gewünscht */
+  font-size: 3rem; /* Etwas größer, um die neue Schrift hervorzuheben */
+  margin: 0;
+
+  /* Moderner Roboter-Stil mit der sekundären (grünen) Farbe */
+  color: #f0f0f0; /* Sehr helles Grau, fast weiß, für maximalen Kontrast zum Leuchten */
+  text-shadow:
+    0 0 5px #fff, /* Ein subtiler weißer innerer Schein */
+    0 0 10px var(--secondary-color), /* Grüner Neonschein */
+    0 0 20px var(--secondary-color), /* Verstärkter grüner Schein */
+    0 0 30px var(--secondary-color); /* Breiter, weicherer grüner Schein */
+}
+
+/* 4- Oben von dem Content in der Mitte ein bild (Headrobot.png) */
+.head-robot-img {
+  width: 250px;
+  height: auto;
+}
+
+/* Die Sprachauswahl wird jetzt hier gestyled, da sie Teil der Komponente ist */
+::ng-deep app-language-selector {
+  position: absolute !important;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+
+  // Modernes "Pill-Button" Design
+  button {
+    background-color: transparent !important;
+    border: 1px solid var(--secondary-color) !important; // Green border
+    color: var(--secondary-color) !important; // Green text
+    padding: 6px 12px !important;
+    font-size: 0.8rem !important;
+    font-weight: bold !important;
+    border-radius: 20px !important; // Pill shape
+    cursor: pointer !important;
+    transition: all 0.3s !important;
+
+    &:hover {
+      background-color: var(--secondary-color) !important;
+      color: white !important;
+      transform: none !important; // Override general button hover
+    }
+  }
+}
+
+/* Responsive Design für mobile Geräte bis 320px */
+@media (max-width: 768px) {
+  .app-title {
+    font-size: 2rem; /* Kleinere Schrift auf kleineren Bildschirmen */
+  }
+
+  .head-robot-img {
+    width: 120px;
+  }
+
+  .content-box {
+    padding: 30px 15px;
+  }
+}
+
+/* Styling für den neuen "Zurück"-Button als Icon */
+.back-button-icon {
+ position: absolute;
+    bottom: 60px;
+    left: 60px;  /* Passt zum Padding der content-box */
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+
+  img {
+    width: 35px; /* Eine gute Größe für ein Icon */
+    height: auto;
+  }
+
+  &:hover {
+    transform: scale(1.1); /* Leichter Zoom-Effekt bei Hover */
+  }
+}
+
+/* 
+  Styling für die Diagnose-Karte, um horizontales Scrollen zu verhindern 
+  und das Design an die Farbpalette anzupassen.
+*/
+.diagnosis-card {
+  width: 100%; // Stellt sicher, dass die Karte die volle Breite des Containers nutzt
+  box-sizing: border-box;
+  padding: 0 30px;
+
+  .diagnosis-title {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+  }
+
+  .diagnosis-content {
+    text-align: left; // Bessere Lesbarkeit für längere Texte
+    font-size: 0.9rem;
+
+    h3 {
+      font-size: 1rem;
+      color: black;
+      margin-top: 0.75rem;
+      margin-bottom: 0.25rem;
+    }
+
+    p {
+      color: #333;
+      line-height: 1.5;
+      
+      /* WICHTIG: Dies verhindert, dass lange Wörter einen horizontalen Scrollbalken verursachen */
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+  }
+
+  .disclaimer {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background-color: rgba(255, 248, 225, 0.85);
+    border-radius: 8px;
+    font-size: 0.8rem;
+    text-align: left;
+  }
+
+  .reset-button {
+    margin-top: 1rem;
+    background-color: var(--secondary-color); // Green for reset/secondary action
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #257247; // Darker green
+    }
+  }
 }

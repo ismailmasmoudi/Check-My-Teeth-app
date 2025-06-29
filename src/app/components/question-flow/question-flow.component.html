@@ -1,8 +1,12 @@
-<div *ngIf="currentQuestion">
-  <h3>{{ currentQuestion.text[language] }}</h3>
-  <ul>
-    <li *ngFor="let option of currentQuestion.options">
-      <button (click)="selectOption(option)">{{ option.label[language] }}</button>
-    </li>
-  </ul>
+<div *ngIf="currentQuestion" class="question-flow-container">
+  <h3 class="question-text">{{ currentQuestion.text[language] }}</h3>
+  <div class="options-list">
+    <button
+      *ngFor="let option of currentQuestion.options"
+      (click)="selectOption(option)"
+      class="option-button"
+    >
+      {{ option.label[language] }}
+    </button>
+  </div>
 </div>

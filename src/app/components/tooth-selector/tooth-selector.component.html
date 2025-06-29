@@ -7,7 +7,7 @@
       <div class="teeth-row">
         <button
           *ngFor="let tooth of teeth.upperRight"
-          [class.selected]="toothIdentifier === tooth.toString()"
+          [class.selected]="toothIdentifier?.toString() === tooth.toString()"
           (click)="selectTooth(tooth)"
         >
           {{ tooth }}
@@ -20,7 +20,7 @@
       <div class="teeth-row">
         <button
           *ngFor="let tooth of teeth.upperLeft"
-          [class.selected]="toothIdentifier === tooth.toString()"
+          [class.selected]="toothIdentifier?.toString() === tooth.toString()"
           (click)="selectTooth(tooth)"
         >
           {{ tooth }}
@@ -33,7 +33,7 @@
       <div class="teeth-row">
         <button
           *ngFor="let tooth of teeth.lowerLeft"
-          [class.selected]="toothIdentifier === tooth.toString()"
+          [class.selected]="toothIdentifier?.toString() === tooth.toString()"
           (click)="selectTooth(tooth)"
         >
           {{ tooth }}
@@ -46,7 +46,7 @@
       <div class="teeth-row">
         <button
           *ngFor="let tooth of teeth.lowerRight"
-          [class.selected]="toothIdentifier === tooth.toString()"
+          [class.selected]="toothIdentifier?.toString() === tooth.toString()"
           (click)="selectTooth(tooth)"
         >
           {{ tooth }}

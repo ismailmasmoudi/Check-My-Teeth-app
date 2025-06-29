@@ -1,9 +1,83 @@
-label {
+@use "../../../styles.scss" as theme;
+
+:host {
   display: block;
-  margin: 0.3rem 0;
+  width: 100%;
+  text-align: left;
+  font-size: 0.9rem;
+  color: black;
 }
 
-button {
+.flow-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; // Kompakter Abstand
+}
+
+h3 {
+  font-size: 1.1rem;
+  color: black;
+  text-align: center;
+  margin: 0 0 0.5rem 0;
+}
+
+.question-block {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.question-text {
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+  cursor: pointer;
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    accent-color: var(--primary-color); // #2196F3
+  }
+}
+
+hr {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0.5rem 0;
+}
+
+.indented {
+  margin-left: 1rem;
+  border-left: 3px solid var(--primary-color);
+}
+
+.submit-button {
+  display: block;
+  width: 100%;
   margin-top: 1rem;
-  padding: 0.5rem;
+  background-color: var(--secondary-color); // #2E8B57
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+
+  &:hover:not(:disabled) {
+    background-color: #257247;
+  }
+
+  &:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+  }
 }

@@ -1,0 +1,53 @@
+@use "../../../styles.scss" as theme;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.question-flow-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.question-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: black;
+  text-align: center;
+  margin: 0;
+}
+
+.options-list {
+  display: flex;
+  flex-direction: row;
+  gap: 2.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.option-button {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--primary-color);
+  color: black;
+  padding: 10px;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-align: center;
+  width: 30%;
+
+  &:hover {
+    background-color: var(--primary-color);
+    color: white;
+  }
+
+  &.selected {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+  }
+}

@@ -1,97 +1,119 @@
-.tooth-selector-container {
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  margin-top: 20px;
-  text-align: center;
+// Wir verwenden die globalen Farbvariablen für Konsistenz
+@use '../../../styles.scss' as theme;
 
+// :host selektiert das Wurzelelement der Komponente
+:host {
+  display: block;
+  width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.tooth-selector-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem; // Noch kleinerer Abstand für ein kompakteres Layout
+
+  // Titel der Komponente
   h2 {
-    color: #333;
-    margin-bottom: 20px;
+    font-size: 1rem; // Weiter verkleinert, um Höhe zu sparen
+    color: black;
+    font-weight: 600;
+    margin: 0 0 0.25rem 0;
   }
 }
 
+// Das Haupt-Grid für die vier Quadranten
 .tooth-schema {
   display: grid;
-  grid-template-columns: 1fr 1fr; // Two columns for upper/lower quadrants
-  gap: 20px;
-  margin-bottom: 20px;
+  grid-template-columns: 1fr 1fr; // 2x2 Grid-Layout spart Platz
+  gap: 0.5rem; // Reduzierter Abstand zwischen den Quadranten
+  width: 100%;
+  max-width: 450px; // Begrenzt die Breite des Schemas
+  margin: 0 auto;
 }
 
 .quadrant {
-  border: 1px solid #eee;
-  padding: 10px;
-  border-radius: 5px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 0.25rem;
 }
 
 .quadrant-label {
+  font-size: 0.65rem; // Sehr kleiner Text für die Beschriftung
   font-weight: bold;
-  margin-bottom: 10px;
-  color: #555;
+  text-align: center;
+  color: black;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
 }
 
 .teeth-row {
   display: flex;
-  flex-wrap: wrap; // Allow buttons to wrap if too many
-  gap: 5px;
+  flex-wrap: wrap;
   justify-content: center;
+  gap: 4px; // Kleiner Abstand zwischen den Zahn-Buttons
 }
 
+// Allgemeines Styling für die Zahn-Buttons
 .teeth-row button {
-  padding: 8px 12px;
-  border: 1px solid #007bff;
+  background-color: transparent;
+  border: 1px solid black;
+  color: black;
+  padding: 3px 6px; // Minimales Padding
+  font-size: 0.8rem; // Kleinere Schrift
   border-radius: 4px;
-  background-color: #007bff;
-  color: white;
-  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.2s, border-color 0.2s, transform 0.1s;
+  transition: all 0.2s ease-in-out;
+  min-width: 30px;
 
   &:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
-    transform: translateY(-1px);
+    background-color: rgba(0, 0, 0, 0.1);
   }
 
+  // Ausgewählter Zustand mit der primären blauen Farbe
   &.selected {
-    background-color: #28a745; // Green for selected
-    border-color: #28a745;
+    background-color: var(--primary-color); // #2196F3
+    color: white;
+    border-color: var(--primary-color);
     font-weight: bold;
-    transform: scale(1.05);
   }
 }
 
+// Styling für den Bestätigungs-Bereich
 .selection-info {
-  margin-top: 20px;
+  margin-top: 0.5rem; // Weniger Abstand oben
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+
   p {
-    font-size: 1.1rem;
-    color: #444;
-    margin-bottom: 15px;
-  }
-  strong {
-    color: #007bff;
-  }
-}
-
-.selection-info button {
-  padding: 10px 20px;
-  background-color: #6c757d;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  transition: background-color 0.2s;
-
-  &:hover:not(:disabled) {
-    background-color: #5a6268;
+    margin: 0;
+    font-size: 0.85rem;
+    color: black;
   }
 
-  &:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
+  // Bestätigungs-Button mit der sekundären grünen Farbe
+  button {
+    background-color: var(--secondary-color); // #2E8B57
+    color: white;
+    border: none;
+    padding: 6px 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #257247; // Etwas dunkleres Grün
+    }
+
+    &:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
   }
 }

@@ -8,8 +8,14 @@
       "ar": "هل تشعر بألم في الأسنان بدون سبب واضح؟"
     },
     "options": [
-      { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "next": "q2" },
-      { "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" }, "next": "q3" }
+      {
+        "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" },
+        "next": "q2"
+      },
+      {
+        "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" },
+        "next": "q3"
+      }
     ]
   },
   {
@@ -21,8 +27,14 @@
       "ar": "هل يستمر الألم لأكثر من 5 ثوان؟"
     },
     "options": [
-      { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "next": "q6" },
-      { "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" }, "diagnosisId": "CARIE_PROFUNDA" }
+      {
+        "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" },
+        "next": "q6"
+      },
+      {
+        "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" },
+        "next": "q4"
+      }
     ]
   },
   {
@@ -34,8 +46,14 @@
       "ar": "هل يوجد خراج على اللثة أو يخرج قيح؟"
     },
     "options": [
-      { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "diagnosisId": "dent_necrosis" },
-      { "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" }, "next": "q4" }
+      {
+        "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" },
+        "diagnosisId": "dent_necrosis"
+      },
+      {
+        "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" },
+        "next": "q5"
+      }
     ]
   },
   {
@@ -47,8 +65,14 @@
       "ar": "هل السن حساس للبرد أو الحلو أو الحامض؟"
     },
     "options": [
-      { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "next": "q5" },
-      { "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" }, "diagnosisId": "healthy_tooth" }
+      {
+        "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" },
+        "diagnosisId": "CARIE_PROFUNDA"
+      },
+      {
+        "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" },
+        "next": "q3"
+      }
     ]
   },
   {
@@ -60,11 +84,21 @@
       "ar": "هل الألم عبارة عن صدمة قصيرة وحادة تختفي بسرعة؟"
     },
     "options": [
-      { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "diagnosisId": "dentin_hypersensitivity" },
-      { "label": { "en": "No, it's more of a dull ache", "fr": "Non, c'est plutôt une douleur sourde", "de": "Nein, es ist eher ein dumpfer Schmerz", "ar": "لا، إنه أشبه بألم خفيف" }, "diagnosisId": "CARIE_PROFUNDA" }
+      {
+        "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" },
+        "diagnosisId": "dentin_hypersensitivity"
+      },
+      {
+        "label": {
+          "en": "No, it's more of a dull ache",
+          "fr": "Non, c'est plutôt une douleur sourde",
+          "de": "Nein, es ist eher ein dumpfer Schmerz",
+          "ar": "لا، إنه أشبه بألم خفيف"
+        },
+        "diagnosisId": "CARIE_PROFUNDA"
+      }
     ]
-  }
-  ,
+  },
   {
     "id": "q6",
     "text": {
@@ -74,8 +108,40 @@
       "ar": "هل لديك جيب لثوي أو مشاكل في اللثة في مكان السن؟"
     },
     "options": [
-      { "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" }, "diagnosisId": "septal_syndrome" },
-      { "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" }, "next": "q5" }
+      {
+        "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" },
+        "condition": {
+          "toothNumbers": [18, 28, 38, 48],
+          "ifTrue": { "next": "q7" },
+          "ifFalse": { "diagnosisId": "septal_syndrome" }
+        }
+      },
+      {
+        "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" },
+        "diagnosisId": "irreversible_pulpitis"
+      }
+    ]
+  },
+  {
+    "id": "q7",
+    "condition": {
+      "toothNumbers": [18, 28, 38, 48]
+    },
+    "text": {
+      "en": "Has the wisdom tooth already fully come out, without any gum covering it?",
+      "fr": "La dent de sagesse est-elle déjà complètement sortie, sans gencive qui la recouvre ?",
+      "de": "Ist der Weisheitszahn bereits vollständig durchgebrochen, ohne dass noch Zahnfleisch darüber liegt?",
+      "ar": "هل خرج ضرس العقل بالكامل بالفعل، دون أن يغطيه أي نسيج لثوي؟"
+    },
+    "options": [
+      {
+        "label": { "en": "Yes", "fr": "Oui", "de": "Ja", "ar": "نعم" },
+        "diagnosisId": "septal_syndrome"
+      },
+      {
+        "label": { "en": "No", "fr": "Non", "de": "Nein", "ar": "لا" },
+        "diagnosisId": "pericoronitis"
+      }
     ]
   }
 ]

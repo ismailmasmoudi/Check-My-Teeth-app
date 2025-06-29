@@ -136,13 +136,13 @@
     "explanation": {
       "en": "Gingivitis is a common and mild form of gum disease that causes irritation, redness and swelling of your gingiva, the part of your gum around the base of your teeth.",
       "fr": "La gingivite est une forme courante et bénigne de maladie des gencives qui provoque une irritation, une rougeur et un gonflement de votre gencive, la partie de votre gencive autour de la base de vos dents.",
-      "de": "Gingivitis ist eine häufige und milde Form der Zahnfleischerkrankung, die Reizungen, Rötungen und Schwellungen Ihres Zahnfleisches, des Teils Ihres Zahnfleisches um die Basis Ihrer Zähne, verursacht.",
+      "de": "Gingivitis ist eine häufige und milde Form der Zahnfleischerkrankung. Sie verursacht Reizungen, Rötungen und Schwellungen des Zahnfleisches, insbesondere am Zahnfleischsaum.",
       "ar": "التهاب اللثة هو شكل شائع وخفيف من أمراض اللثة يسبب تهيجًا واحمرارًا وتورمًا في اللثة، وهو الجزء من اللثة حول قاعدة الأسنان."
     },
     "treatment": {
       "en": "Improved oral hygiene, including regular brushing and flossing, and professional dental cleaning.",
       "fr": "Amélioration de l'hygiène bucco-dentaire, y compris un brossage et une utilisation du fil dentaire réguliers, et un nettoyage dentaire professionnel.",
-      "de": "Verbesserte Mundhygiene, einschließlich regelmäßigem Zähneputzen und Zahnseide, sowie professionelle Zahnreinigung.",
+      "de": "Eine verbesserte Mundhygiene ist erforderlich. Dazu gehören regelmäßiges Zähneputzen, die Verwendung von Zahnseide und eine professionelle Zahnreinigung.",
       "ar": "تحسين نظافة الفم، بما في ذلك تنظيف الأسنان بالفرشاة والخيط بانتظام، وتنظيف الأسنان الاحترافي."
     }
   },
@@ -163,7 +163,7 @@
     "treatment": {
       "en": "Deep cleaning (scaling and root planing), medication, and possibly surgery. Regular follow-up with a periodontist.",
       "fr": "Nettoyage en profondeur (détartrage et surfaçage radiculaire), médicaments et éventuellement chirurgie. Suivi régulier avec un parodontiste.",
-      "de": "Tiefenreinigung (Scaling und Root Planing), Medikamente und möglicherweise Operation. Regelmäßige Nachsorge bei einem Parodontologen.",
+      "de": "Eine Tiefenreinigung (Scaling und Root Planing), Medikamente und eventuell chirurgische Eingriffe sind notwendig. Regelmäßige Kontrolltermine bei einem Zahnarzt oder Parodontologen sind entscheidend.",
       "ar": "تنظيف عميق (تقليح وكشط الجذور)، أدوية، وربما جراحة. متابعة منتظمة مع أخصائي اللثة."
     }
   },
@@ -184,7 +184,7 @@
     "treatment": {
       "en": "Continue with good oral hygiene, including regular brushing and flossing, to maintain gum health.",
       "fr": "Continuez avec une bonne hygiène bucco-dentaire, y compris un brossage et une utilisation du fil dentaire réguliers, pour maintenir la santé de vos gencives.",
-      "de": "Fahren Sie mit einer guten Mundhygiene fort, einschließlich regelmäßigem Zähneputzen und Verwendung von Zahnseide, um die Gesundheit Ihres Zahnfleisches zu erhalten.",
+      "de": "Führen Sie Ihre gute Mundhygiene fort. Dazu gehören regelmäßiges Zähneputzen und die Verwendung von Zahnseide, um die Gesundheit Ihres Zahnfleisches zu erhalten.",
       "ar": "استمر في نظافة الفم الجيدة، بما في ذلك تنظيف الأسنان بالفرشاة والخيط بانتظام، للحفاظ على صحة لثتك."
     }
   },
@@ -248,7 +248,7 @@
       "en": "It is strongly recommended to see a dentist. Possible treatments include physiotherapy, special splints, or other dental procedures.",
       "fr": "Il est fortement recommandé de consulter un dentiste. Les traitements possibles comprennent la physiothérapie, des gouttières spéciales ou d'autres procédures dentaires.",
       "de": "Es wird dringend empfohlen, einen Zahnarzt aufzusuchen. Mögliche Behandlungen umfassen Physiotherapie, spezielle Schienen oder andere zahnärztliche Eingriffe.",
-      "ar": "يوصى بشدة بزيارة طبيب الأسنان. تشمل العلاجات الممكنة العلاج الطبيعي أو الجبائر الخاصة أو عمليات جراحية في  طب الأسنان الأخرى."
+      "ar": "يوصى بشدة بزيارة طبيب الأسنان. تشمل العلاجات الممكنة العلاج الطبيعي أو الجبائر الخاصة أو إجراءات طب الأسنان الأخرى."
     }
   },
   {
@@ -309,7 +309,7 @@
     },
     "treatment": {
       "en": "A professional dental cleaning (scaling) is necessary. The bite might need to be adjusted. Sometimes, splinting the tooth to its neighbors can provide stability.",
-      "de": "Eine professionelle Zahnreinigung (Scaling) ist notwendig. Möglicherweise muss der Biss angepasst werden. Manchmal kann das Schienen des Zahnes an seine Nachbarn für Stabilität sorgen.",
+      "de": "Eine professionelle Zahnreinigung (Scaling) ist notwendig. Möglicherweise muss der Biss angepasst werden. Manchmal kann das Schienen des Zahnes an die Nachbarzähne für Stabilität sorgen.",
       "fr": "Un nettoyage dentaire professionnel (détartrage) est nécessaire. L'occlusion peut nécessiter un ajustement. Parfois, la contention (solidarisation) de la dent à ses voisines peut aider à la stabiliser.",
       "ar": "من الضروري إجراء تنظيف احترافي للأسنان (إزالة الجير). قد يحتاج الإطباق إلى تعديل. في بعض الأحيان، يمكن أن يساعد تثبيت السن بالأسنان المجاورة على استقراره."
     }
@@ -330,7 +330,7 @@
     },
     "treatment": {
       "en": "Requires immediate dental intervention. This includes deep cleaning (scaling and root planing) and splinting the tooth to adjacent teeth. Periodontal surgery may be required.",
-      "de": "Erfordert sofortige zahnärztliche Behandlung. Dies umfasst eine Tiefenreinigung (Scaling und Root Planing) und das Schienen des Zahnes an benachbarte Zähne. Möglicherweise ist eine Parodontalchirurgie erforderlich.",
+      "de": "Erfordert eine sofortige zahnärztliche Behandlung. Diese umfasst eine Tiefenreinigung (Scaling und Root Planing) und das Schienen des Zahnes an die Nachbarzähne. Möglicherweise ist eine Parodontalchirurgie erforderlich.",
       "fr": "Nécessite une intervention dentaire immédiate. Cela comprend un nettoyage en profondeur (détartrage et surfaçage radiculaire) et la ligature de la dent aux dents adjacentes. Une chirurgie parodontale peut être nécessaire.",
       "ar": "يتطلب تدخلًا فوريًا من طبيب الأسنان. يشمل ذلك التنظيف العميق (تقليح وكشط الجذور) وربط السن بالأسنان المجاورة. قد تكون هناك حاجة لجراحة اللثة."
     }
@@ -480,6 +480,27 @@
       "fr": "Nettoyez soigneusement la zone avec du fil dentaire. Un dentiste doit vérifier le contact entre les dents et pourrait avoir besoin d'ajuster ou de remplacer une obturation pour éviter que cela ne se reproduise.",
       "de": "Reinigen Sie den Bereich gründlich mit Zahnseide. Ein Zahnarzt muss den Kontakt zwischen den Zähnen überprüfen und möglicherweise eine Füllung anpassen oder ersetzen, um ein erneutes Auftreten zu verhindern.",
       "ar": "نظف المنطقة جيدًا بخيط الأسنان. يحتاج طبيب الأسنان إلى فحص التلامس بين الأسنان وقد يحتاج إلى تعديل أو استبدال حشوة لمنع حدوث ذلك مرة أخرى."
+    }
+  },
+  {
+    "id": "pericoronitis",
+    "title": {
+      "en": "Pericoronitis (Wisdom Tooth Inflammation)",
+      "de": "Perikoronitis (Weisheitszahnentzündung)",
+      "fr": "Péricoronarite (Inflammation de la dent de sagesse)",
+      "ar": "التهاب حوائط التاج (التهاب ضرس العقل)"
+    },
+    "explanation": {
+      "en": "Pericoronitis is the inflammation of the gum tissue surrounding a partially erupted tooth, most commonly a wisdom tooth. Food and bacteria get trapped under the gum flap, causing swelling, pain, and infection.",
+      "de": "Perikoronitis ist die Entzündung des Zahnfleischgewebes, das einen nur teilweise durchgebrochenen Zahn, meist einen Weisheitszahn, umgibt. Speisereste und Bakterien sammeln sich unter der Zahnfleischkappe an und verursachen Schwellungen, Schmerzen und Infektionen.",
+      "fr": "La péricoronarite est l'inflammation du tissu gingival entourant une dent partiellement sortie, le plus souvent une dent de sagesse. La nourriture et les bactéries se coincent sous le capuchon gingival, provoquant un gonflement, des douleurs et une infection.",
+      "ar": "التهاب حوائط التاج هو التهاب في أنسجة اللثة المحيطة بالسن الذي بزغ جزئيًا، وغالبًا ما يكون ضرس العقل. ينحشر الطعام والبكتيريا تحت غطاء اللثة، مما يسبب تورمًا وألمًا وعدوى."
+    },
+    "treatment": {
+      "en": "Treatment involves cleaning the area under the gum flap (irrigation). An antibiotic may be prescribed to fight the infection. In many cases, the definitive treatment is the extraction of the wisdom tooth.",
+      "de": "Die Behandlung umfasst die Reinigung des Bereichs unter der Zahnfleischkappe (Spülung). Zur Bekämpfung der Infektion kann ein Antibiotikum verschrieben werden. In vielen Fällen ist die endgültige Behandlung die Extraktion des Weisheitszahnes.",
+      "fr": "Le traitement consiste à nettoyer la zone sous le capuchon gingival (irrigation). Un antibiotique peut être prescrit pour combattre l'infection. Dans de nombreux cas, le traitement définitif est l'extraction de la dent de sagesse.",
+      "ar": "يشمل العلاج تنظيف المنطقة تحت غطاء اللثة (الغسل). قد يتم وصف مضاد حيوي لمكافحة العدوى. في كثير من الحالات، يكون العلاج النهائي هو خلع ضرس العقل."
     }
   }
 ]

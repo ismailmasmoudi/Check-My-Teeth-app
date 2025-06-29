@@ -16,7 +16,6 @@ import { ToothStatusFlowComponent } from './components/tooth-status-flow/tooth-s
     CommonModule,
     ToothSelectorComponent,
     LanguageSelectorComponent,
-
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -30,20 +29,20 @@ export class AppComponent {
   greeting: string = '';
 
   selectedPainType: string | null = null;
-  selectedTooth: string | null = null;
+  selectedTooth: number | null = null;
   finalDiagnosis: Diagnosis | null = null;
   isToothStatusFlowComplete = false;
 
-    constructor(
+  constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2
   ) {}
 
   namePromptText = {
-    en: 'To get started, please tell me your name.',
-    de: 'Um zu beginnen, sagen Sie mir bitte Ihren Namen.',
-    fr: 'Pour commencer, veuillez me dire votre nom.',
-    ar: 'للبدء، من فضلك قل لي اسمك.',
+    en: 'Hi there! Before we begin, may I kindly ask for your name?',
+    de: 'Hallo! Bevor wir starten, darf ich bitte Ihren Namen wissen?',
+    fr: 'Bonjour ! Avant de commencer, puis-je vous demander votre prénom ?',
+    ar: 'مرحبًا! قبل أن نبدأ، هل لي أن أعرف اسمك من فضلك؟',
   };
 
   nameInputPlaceholder = {
@@ -144,15 +143,14 @@ export class AppComponent {
     ar: 'البدء من جديد',
   };
 
-   disclaimerText = {
+  disclaimerText = {
     en: 'The diagnosis shown here is based on the information you have provided and is approximately 80 % accurate. However, a clinical examination in a dental practice is necessary for an exact diagnosis. If necessary, an X-ray should also be taken.',
     fr: 'Le diagnostic affiché ici est basé sur les informations que vous avez fournies et est correct à environ 80 %. Cependant, un examen clinique dans un cabinet dentaire est nécessaire pour un diagnostic exact. Si nécessaire, une radiographie doit également être réalisée.',
     de: 'Die hier angezeigte Diagnose basiert auf den von Ihnen angegebenen Informationen und ist mit einer Wahrscheinlichkeit von etwa 80 % korrekt. Für eine exakte Diagnose ist jedoch eine klinische Untersuchung in einer Zahnarztpraxis erforderlich. Falls notwendig, sollte zusätzlich ein Röntgenbild angefertigt werden.',
     ar: 'التشخيص المعروض هنا يعتمد على المعلومات التي قدمتها وهو صحيح بنسبة 80 % تقريبًا. ومع ذلك، فإن الفحص السريري في عيادة الأسنان ضروري لتشخيص دقيق. إذا لزم الأمر، يجب أيضًا إجراء صورة أشعة.',
   };
 
-  
- ngOnInit(): void {
+  ngOnInit(): void {
     this.updateHtmlLangAndDir(this.selectedLanguage);
   }
 
@@ -190,7 +188,9 @@ export class AppComponent {
     else if (hour >= 12 && hour < 18) timeOfDay = 'afternoon';
     else timeOfDay = 'evening';
 
-    this.greeting = `${this.greetings[timeOfDay][this.selectedLanguage]} ${this.patientName}!`;
+    this.greeting = `${this.greetings[timeOfDay][this.selectedLanguage]} ${
+      this.patientName
+    }!`;
   }
 
   onDiagnosisReady(result: Diagnosis): void {
@@ -209,7 +209,7 @@ export class AppComponent {
     this.selectedPainType = painType;
   }
 
-  onToothSelected(toothId: string) {
+  onToothSelected(toothId: number) {
     this.selectedTooth = toothId;
   }
 

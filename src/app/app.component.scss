@@ -1,3 +1,51 @@
+/* Keyframe für den Tipp-Effekt (enthüllt den Text) */
+@keyframes typing {
+  from {
+    max-width: 0;
+  }
+  to {
+    max-width: 100%;
+  }
+}
+
+/* Keyframe für das Blinken des Cursors */
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+/* Keyframe zum Ausblenden des Cursors nach der Animation */
+@keyframes hide-cursor {
+  to {
+    border-color: transparent;
+  }
+}
+
+/* Neue, elegantere Animation für die Präsentation der Diagnosekarte */
+@keyframes diagnosis-presentation {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(0.97);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0px);
+  }
+}
+/* Keyframes für das sanfte Einblenden von Inhaltsblöcken */
+@keyframes content-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
 
 :host {
   display: block; // Wichtig, damit es die volle Höhe einnehmen kann
@@ -13,7 +61,6 @@
   flex-direction: column;
   width: 100%;
   padding: 20px;
-
 }
 .title-container {
   display: flex;
@@ -67,6 +114,25 @@
     }
   }
 
+  /*
+    Styling für die Tipp-Animation. Gilt für alle Elemente mit dieser Klasse
+    innerhalb der content-box.
+  */
+  .typing-animation {
+    /* Variable für die Dauer der Animation.
+       Eine Basisdauer von 0.8s plus 0.04s pro Zeichen.
+       Kurze Texte werden dadurch verhältnismäßig langsamer getippt. */
+    --typing-duration: calc(0.8s + var(--char-count) * 0.04s);
+
+    width: max-content;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid; /* Der blinkende Cursor erbt die Textfarbe (color) */
+    animation: typing var(--typing-duration) steps(var(--char-count)) forwards,
+      blink 0.7s infinite, hide-cursor 1ms var(--typing-duration) forwards;
+  }
+
   // Modern styling for text inputs and select dropdowns
   input[type="text"],
   select {
@@ -95,7 +161,7 @@
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%232196F3%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%232196F3%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
     background-repeat: no-repeat;
     background-position: right 15px center;
     background-size: 12px;
@@ -115,11 +181,42 @@
 
     &:hover {
       /* Ein etwas dunkleres, satteres Blau für den Hover-Effekt */
-      background-color: #1976D2;
+      background-color: #1976d2;
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4);
     }
   }
+}
+
+/*
+  Anwenden der "Fade-in"-Animation auf die Hauptkomponenten,
+  damit jeder neue Schritt elegant erscheint. Gilt jetzt auch
+  für die .input-group Container der ersten Fragen.
+*/
+.input-group,
+::ng-deep app-tooth-selector,
+::ng-deep app-tooth-status-flow,
+::ng-deep app-question-flow {
+  animation: content-fade-in 0.6s ease-out forwards;
+}
+
+/* Styling für die Begrüßung, damit sie auch animiert wird */
+.greeting-header {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: black;
+  margin-bottom: 1.5rem;
+  /* Die Animation wird mit einer kleinen Verzögerung gestartet für einen schönen Effekt */
+  animation: content-fade-in 0.6s ease-out 0.2s backwards;
+}
+
+/*
+  Animation für die einzelnen Frageblöcke innerhalb des Tooth-Status-Flows.
+  Jeder neue Block, der erscheint, wird sanft eingeblendet.
+*/
+::ng-deep app-tooth-status-flow .question-block {
+  animation: content-fade-in 0.5s ease-out forwards;
+  margin-top: 1rem; /* Etwas Abstand zwischen den Blöcken */
 }
 
 /* 5- Oben der Headrobot, wird Title von der App wird gezeigt "Check my Tooth Robot" */
@@ -132,11 +229,10 @@
 
   /* Moderner Roboter-Stil mit der sekundären (grünen) Farbe */
   color: #f0f0f0; /* Sehr helles Grau, fast weiß, für maximalen Kontrast zum Leuchten */
-  text-shadow:
-    0 0 5px #fff, /* Ein subtiler weißer innerer Schein */
-    0 0 10px var(--secondary-color), /* Grüner Neonschein */
-    0 0 20px var(--secondary-color), /* Verstärkter grüner Schein */
-    0 0 30px var(--secondary-color); /* Breiter, weicherer grüner Schein */
+  text-shadow: 0 0 5px #fff,
+    /* Ein subtiler weißer innerer Schein */ 0 0 10px var(--secondary-color),
+    /* Grüner Neonschein */ 0 0 20px var(--secondary-color),
+    /* Verstärkter grüner Schein */ 0 0 30px var(--secondary-color); /* Breiter, weicherer grüner Schein */
 }
 
 /* 4- Oben von dem Content in der Mitte ein bild (Headrobot.png) */
@@ -189,9 +285,11 @@
 
 /* Styling für den neuen "Zurück"-Button als Icon */
 .back-button-icon {
- position: absolute;
-    bottom: 60px;
-    left: 60px;  /* Passt zum Padding der content-box */
+  position: sticky; /* Bleibt beim Scrollen an der Position */
+  bottom: 20px;     /* Abstand vom unteren Rand der content-box */
+  left: 20px;       /* Abstand vom linken Rand der content-box */
+  align-self: flex-start; /* Stellt sicher, dass der Button links bleibt */
+  z-index: 10;      /* Stellt sicher, dass er über anderem Inhalt bleibt */
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
 
@@ -205,63 +303,86 @@
   }
 }
 
-/* 
-  Styling für die Diagnose-Karte, um horizontales Scrollen zu verhindern 
-  und das Design an die Farbpalette anzupassen.
+/*
+  Besonderes Design und Animation für die finale Diagnose-Karte,
+  um sie als Höhepunkt des Flows hervorzuheben.
 */
 .diagnosis-card {
-  width: 100%; // Stellt sicher, dass die Karte die volle Breite des Containers nutzt
+  width: 100%;
+  max-width: 800px;
   box-sizing: border-box;
-  padding: 0 30px;
+  padding: 0;
+  /* Anwenden der neuen, besonderen Animation */
+  animation: diagnosis-presentation 0.7s ease-out forwards;
 
   .diagnosis-title {
-    font-size: 1.3rem;
+    font-size: 1.5rem; // Größerer Titel
     color: var(--primary-color);
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem; // Mehr Abstand nach dem Titel
+    /* Die Tipp-Animation bleibt hier erhalten, was gut ist */
   }
 
   .diagnosis-content {
     text-align: left; // Bessere Lesbarkeit für längere Texte
-    font-size: 0.9rem;
+    font-size: 0.95rem; // Etwas größere Schrift
 
     h3 {
-      font-size: 1rem;
+      font-size: 1.1rem; // Größere Zwischenüberschriften
       color: black;
-      margin-top: 0.75rem;
-      margin-bottom: 0.25rem;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 2px solid var(--secondary-color); // Grüne Unterstreichung
+      padding-bottom: 0.25rem;
     }
 
     p {
-      color: #333;
-      line-height: 1.5;
-      
+      color: var(--text-color-light); // #555
+      line-height: 1.6;
+
       /* WICHTIG: Dies verhindert, dass lange Wörter einen horizontalen Scrollbalken verursachen */
       overflow-wrap: break-word;
       word-wrap: break-word;
     }
   }
 
+
   .disclaimer {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     padding: 0.75rem;
-    background-color: rgba(255, 248, 225, 0.85);
+    background-color: rgba(255, 248, 225, 0.9);
+    border-left: 4px solid #f0ad4e; // Gelber Rand für Warnhinweise
     border-radius: 8px;
     font-size: 0.8rem;
     text-align: left;
   }
 
   .reset-button {
-    margin-top: 1rem;
-    background-color: var(--secondary-color); // Green for reset/secondary action
+    margin-top: 1.5rem;
+    background-color: var(
+      --secondary-color
+    ); // Green for reset/secondary action
     color: white;
     border: none;
-    padding: 10px 24px;
+    padding: 12px 28px; // Größerer Button
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    font-weight: bold; // Fettgedruckt
+    transition: background-color 0.2s, transform 0.2s;
 
     &:hover {
       background-color: #257247; // Darker green
+      transform: translateY(-2px);
+    }
+  }
+   &[dir="rtl"] {
+    .diagnosis-content {
+      text-align: right;
+    }
+
+    .disclaimer {
+      text-align: right;
+      border-left: none;
+      border-right: 4px solid #f0ad4e;
     }
   }
 }

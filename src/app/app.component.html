@@ -14,18 +14,22 @@
   <div class="content-box">
 <!-- Step 0: Name Input -->
 <div *ngIf="!patientName" class="name-input-container input-group">
-  <p>{{ namePromptText[selectedLanguage] }}</p>
+  <p class="typing-animation" [style.--char-count]="namePromptText[selectedLanguage].length">
+    {{ namePromptText[selectedLanguage] }}
+  </p>
   <input #nameInput type="text" [placeholder]="nameInputPlaceholder[selectedLanguage]" (keyup.enter)="onNameSubmitted(nameInput.value)">
   <button (click)="onNameSubmitted(nameInput.value)">{{ continueButtonLabel[selectedLanguage] }}</button>
 </div>
 
       <!-- Main Application Flow (shown only after name is entered) -->
       <div *ngIf="patientName">
-        <h2 *ngIf="greeting" class="greeting-header">{{ greeting }}</h2>
+        <h2 *ngIf="greeting && !finalDiagnosis" class="greeting-header">{{ greeting }}</h2>
 
         <!-- Step 1: Pain Type Selection -->
         <div *ngIf="!selectedPainType && !finalDiagnosis" class="input-group">
-          <p>{{ painTypeQuestionText[selectedLanguage] }}</p>
+          <p class="typing-animation" [style.--char-count]="painTypeQuestionText[selectedLanguage].length">
+            {{ painTypeQuestionText[selectedLanguage] }}
+          </p>
           <select #painTypeSelect (change)="onPainTypeSelected(painTypeSelect.value)">
             <option value="" disabled selected>-- {{ selectPainTypeLabel[selectedLanguage] }} --</option>
             <option value="tooth">{{ painTypesText['tooth'][selectedLanguage] }}</option>
@@ -41,19 +45,22 @@
         <!-- Step 3: Tooth Status Flow -->
         <app-tooth-status-flow
           *ngIf="selectedPainType === 'tooth' && selectedTooth && !isToothStatusFlowComplete && !finalDiagnosis"
-          [selectedTooth]="selectedTooth.toString()" [language]="selectedLanguage"
+          [selectedTooth]="selectedTooth.toString()" [language]="selectedLanguage" [attr.dir]="selectedLanguage === 'ar' ? 'rtl' : 'ltr'"
           (diagnosisReady)="onDiagnosisReady($event)"
           (flowCompletedWithoutDiagnosis)="onToothStatusFlowCompleted()"></app-tooth-status-flow>
 
         <!-- Step 4: General Question Flow -->
         <app-question-flow
           *ngIf="!finalDiagnosis && ((selectedPainType === 'gum' || selectedPainType === 'tmj') || isToothStatusFlowComplete)"
-          [painType]="selectedPainType!" [language]="selectedLanguage" (back)="onQuestionFlowBack()"
+          [painType]="selectedPainType!" [language]="selectedLanguage" [attr.dir]="selectedLanguage === 'ar' ? 'rtl' : 'ltr'"
+          (back)="onQuestionFlowBack()"
           (diagnosisReady)="onDiagnosisReady($event)"></app-question-flow>
 
         <!-- Final Diagnosis Display -->
-        <div *ngIf="finalDiagnosis" class="diagnosis-card">
-          <h2 class="diagnosis-title">{{ finalDiagnosis.title[selectedLanguage] }}</h2>
+        <div *ngIf="finalDiagnosis" class="diagnosis-card"
+          [attr.dir]="selectedLanguage === 'ar' ? 'rtl' : 'ltr'">
+          <h2 class="diagnosis-title typing-animation"
+            [style.--char-count]="finalDiagnosis.title[selectedLanguage].length">{{ finalDiagnosis.title[selectedLanguage] }}</h2>
           <div class="diagnosis-content">
             <h3>{{ diagnosisExplanationLabel[selectedLanguage] }}</h3>
             <p>{{ finalDiagnosis.explanation[selectedLanguage] }}</p>

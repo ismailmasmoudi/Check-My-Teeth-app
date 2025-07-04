@@ -20,7 +20,7 @@ import { ToothStatusFlowComponent } from './components/tooth-status-flow/tooth-s
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   @ViewChild(QuestionFlowComponent)
   questionFlowComponent?: QuestionFlowComponent;
 
@@ -151,6 +151,12 @@ export class AppComponent {
   };
 
   ngOnInit(): void {
+    // Load the patient's name from browser storage when the app starts
+    const storedName = localStorage.getItem('patientName');
+    if (storedName) {
+      this.patientName = storedName;
+      this.setGreeting();
+    }
     this.updateHtmlLangAndDir(this.selectedLanguage);
   }
 
@@ -171,6 +177,8 @@ export class AppComponent {
   onNameSubmitted(name: string): void {
     if (name && name.trim()) {
       this.patientName = name.trim();
+      // Save the name to browser storage for future visits
+      localStorage.setItem('patientName', this.patientName);
       this.setGreeting();
     }
   }
@@ -269,5 +277,7 @@ export class AppComponent {
     this.selectedTooth = null;
     this.finalDiagnosis = null;
     this.isToothStatusFlowComplete = false;
+    // Also clear the name from browser storage
+    localStorage.removeItem('patientName');
   }
 }

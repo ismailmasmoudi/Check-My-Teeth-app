@@ -3,6 +3,9 @@
 
   <div class="question-block">
     <!-- Step 1: Select status -->
+    <label><input type="checkbox" id="isLoose" [(ngModel)]="toothStatus.isLoose"
+            [disabled]="toothStatus.noneOfTheAbove || toothStatus.rootCanal || toothStatus.hasFilling || toothStatus.hasCrown"
+            (change)="onStatusChange('e')" />{{ getTranslation('isLoose') }}</label>
     <label><input type="checkbox" [(ngModel)]="toothStatus.rootCanal"
             [disabled]="toothStatus.noneOfTheAbove || toothStatus.isLoose" (change)="onStatusChange('a')" /> {{
         getTranslation('rootCanal') }}</label>
@@ -12,9 +15,6 @@
     <label><input type="checkbox" [(ngModel)]="toothStatus.hasCrown"
             [disabled]="(toothStatus.rootCanal && rootCanalFinished === false) || toothStatus.noneOfTheAbove || toothStatus.isLoose"
             (change)="onStatusChange('c')" /> {{ getTranslation('hasCrown') }}</label>
-    <label><input type="checkbox" id="isLoose" [(ngModel)]="toothStatus.isLoose"
-            [disabled]="toothStatus.noneOfTheAbove || toothStatus.rootCanal || toothStatus.hasFilling || toothStatus.hasCrown"
-            (change)="onStatusChange('e')" />{{ getTranslation('isLoose') }}</label>
     <hr>
     <label><input type="checkbox" [(ngModel)]="toothStatus.noneOfTheAbove"
             [disabled]="toothStatus.rootCanal || toothStatus.hasFilling || toothStatus.hasCrown || toothStatus.isLoose"

@@ -8,7 +8,7 @@
     (languageChanged)="onLanguageChanged($event)"></app-language-selector>
 
   <div class="title-container">
-    <h1 class="app-title">Check my Tooth Robot</h1>
+    <h1 class="app-title">Check myToothbot</h1>
     <img src="/img/Headrobot.png" alt="Robot Head" class="head-robot-img">
   </div>
   <div class="content-box">
@@ -52,7 +52,7 @@
         <!-- Step 4: General Question Flow -->
         <app-question-flow
           *ngIf="!finalDiagnosis && ((selectedPainType === 'gum' || selectedPainType === 'tmj') || isToothStatusFlowComplete)"
-          [painType]="selectedPainType!" [language]="selectedLanguage" [attr.dir]="selectedLanguage === 'ar' ? 'rtl' : 'ltr'"
+          [painType]="selectedPainType!" [language]="selectedLanguage" [selectedTooth]="selectedTooth" [attr.dir]="selectedLanguage === 'ar' ? 'rtl' : 'ltr'"
           (back)="onQuestionFlowBack()"
           (diagnosisReady)="onDiagnosisReady($event)"></app-question-flow>
 

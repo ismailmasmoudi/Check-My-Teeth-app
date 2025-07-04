@@ -53,10 +53,10 @@
       },
       {
         "label": {
-          "en": "No, it feels limited or locked",
-          "fr": "Non, l'ouverture semble limitée ou bloquée",
-          "de": "Nein, es fühlt sich eingeschränkt oder blockiert an",
-          "ar": "لا، أشعر بأنها محدودة أو مقفلة"
+          "en": "No",
+          "fr": "Non",
+          "de": "Nein",
+          "ar": "لا"
         },
         "diagnosisId": "tmj_disorder_with_limitation"
       }

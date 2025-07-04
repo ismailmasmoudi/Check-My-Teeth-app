@@ -14,9 +14,15 @@
 }
 
 .flow-container {
+  overflow: auto;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem; // Kompakter Abstand
+  gap: 0.75rem;
+  height: 267px;
+  width: 560px;
+  text-align: center;
+  padding: 0 3rem;
+
 }
 
 h3 {
@@ -31,7 +37,6 @@ h3 {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 0.75rem;
-  margin-bottom: 0.5rem;
 }
 
 .question-text {
@@ -74,7 +79,6 @@ hr {
 .submit-button {
   display: block;
   width: 100%;
-  margin-top: 1rem;
   background-color: var(--secondary-color); // #2E8B57
   color: white;
   border: none;
@@ -83,7 +87,7 @@ hr {
   cursor: pointer;
   font-weight: bold;
   transition: background-color 0.2s;
-
+  margin-bottom: 2rem;
   &:hover:not(:disabled) {
     background-color: #257247;
   }

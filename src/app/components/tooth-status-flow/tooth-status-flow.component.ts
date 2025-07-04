@@ -20,9 +20,9 @@ type Language = 'en' | 'fr' | 'de' | 'ar';
   styleUrls: ['./tooth-status-flow.component.scss'],
 })
 export class ToothStatusFlowComponent implements OnChanges {
-isDetailedFormValid() {
-throw new Error('Method not implemented.');
-}
+  isDetailedFormValid() {
+    throw new Error('Method not implemented.');
+  }
   @Input() selectedTooth: string = '';
   @Input() language: Language = 'en';
   @Output() diagnosisReady = new EventEmitter<Diagnosis>();
@@ -45,10 +45,10 @@ throw new Error('Method not implemented.');
       ar: 'معالج بقناة الجذر',
     },
     hasFilling: {
-      en: 'Already has filling',
-      fr: 'A déjà une obturation',
-      de: 'Hat bereits eine Füllung',
-      ar: 'لديه حشوة بالفعل',
+      en: 'Does it already have a definitive filling?',
+      fr: 'A-t-elle déjà une obturation définitive ?',
+      de: 'Hat bereits eine definitive Füllung',
+      ar: 'هل بها حشوة دائمة بالفعل؟',
     },
     hasCrown: {
       en: 'Has crown',
@@ -305,7 +305,10 @@ throw new Error('Method not implemented.');
         isValid = false;
       }
       // If A2 is 'No' (false), then A1 must be answered for the 'Incomplete Root Canal' diagnosis path
-      else if (this.rootCanalFinished === false && this.rootCanalSince === null) {
+      else if (
+        this.rootCanalFinished === false &&
+        this.rootCanalSince === null
+      ) {
         isValid = false;
       }
       // If A2 is 'Yes' (true), then A3 must be answered (A1 is not strictly required for A3's visibility here)
@@ -430,22 +433,27 @@ throw new Error('Method not implemented.');
 
     if (diagnoses.length === 0) {
       // Return an empty Diagnosis object to avoid errors
-      return { id: 'multiple_empty', title: {
-        en: '',
-        fr: '',
-        ar: '',
-        de: ''
-      }, explanation: {
-        en: '',
-        fr: '',
-        ar: '',
-        de: ''
-      }, treatment: {
-        en: '',
-        fr: '',
-        ar: '',
-        de: ''
-      } };
+      return {
+        id: 'multiple_empty',
+        title: {
+          en: '',
+          fr: '',
+          ar: '',
+          de: '',
+        },
+        explanation: {
+          en: '',
+          fr: '',
+          ar: '',
+          de: '',
+        },
+        treatment: {
+          en: '',
+          fr: '',
+          ar: '',
+          de: '',
+        },
+      };
     }
 
     // Create a new Diagnosis object to hold the combined, multilingual texts
@@ -455,19 +463,19 @@ throw new Error('Method not implemented.');
         en: '',
         fr: '',
         ar: '',
-        de: ''
+        de: '',
       },
       explanation: {
         en: '',
         fr: '',
         ar: '',
-        de: ''
+        de: '',
       },
       treatment: {
         en: '',
         fr: '',
         ar: '',
-        de: ''
+        de: '',
       },
     };
 
@@ -475,20 +483,26 @@ throw new Error('Method not implemented.');
 
     // Loop through each language to build the combined texts for that language
     for (const lang of languages) {
-      combinedDiagnosis.title[lang] = this.allTexts['multipleIssuesTitle'][lang];
+      combinedDiagnosis.title[lang] =
+        this.allTexts['multipleIssuesTitle'][lang];
       const andWord = this.allTexts['andWord'][lang];
 
       combinedDiagnosis.explanation[lang] =
         this.allTexts['multipleIssuesExplanationIntro'][lang] +
         '\n\n' +
         diagnoses
-          .map((d, index) => `${index + 1}. ${d.title[lang]}:\n${d.explanation[lang]}`)
+          .map(
+            (d, index) =>
+              `${index + 1}. ${d.title[lang]}:\n${d.explanation[lang]}`
+          )
           .join(`\n\n${andWord}\n\n`);
 
       combinedDiagnosis.treatment[lang] =
         this.allTexts['multipleIssuesTreatmentIntro'][lang] +
         '\n\n' +
-        diagnoses.map((d, index) => `${index + 1}. ${d.treatment[lang]}`).join(`\n\n${andWord}\n\n`);
+        diagnoses
+          .map((d, index) => `${index + 1}. ${d.treatment[lang]}`)
+          .join(`\n\n${andWord}\n\n`);
     }
 
     return combinedDiagnosis;

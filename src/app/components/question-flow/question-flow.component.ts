@@ -6,10 +6,16 @@ import { CommonModule } from '@angular/common';
 
 // For better type safety inside the component
 type Language = 'en' | 'fr' | 'ar' | 'de';
+interface Condition {
+  toothNumbers: number[];
+  ifTrue: { next?: string; diagnosisId?: string };
+  ifFalse: { next?: string; diagnosisId?: string };
+}
 interface Option {
   label: { [key in Language]: string };
   next?: string;
   diagnosisId?: string;
+  condition?: Condition;
 }
 
 @Component({
@@ -22,6 +28,7 @@ interface Option {
 export class QuestionFlowComponent implements OnChanges {
   @Input() painType!: string;
   @Input() language: Language = 'en';
+  @Input() selectedTooth: number | null = null;
   @Output() back = new EventEmitter<void>(); // This remains as is
   @Output() diagnosisReady = new EventEmitter<Diagnosis>(); // Change this to emit the full Diagnosis object
 
@@ -55,17 +62,38 @@ export class QuestionFlowComponent implements OnChanges {
     // Add the current question to our history before moving on
     this.questionHistory.push(this.currentQuestion);
 
-    if (option.diagnosisId) {
-      const diagnosis = this.diagnosisService.getDiagnosisById(option.diagnosisId);
-      if (diagnosis) {
-        this.diagnosisReady.emit(diagnosis); // Emit the full Diagnosis object
+    if (option.condition) {
+      if (this.selectedTooth === null) {
+        console.error('A conditional option was chosen, but no tooth has been selected.');
+        return;
       }
-      this.currentQuestion = null;
+
+      const isWisdomTooth = option.condition.toothNumbers.includes(this.selectedTooth);
+      const branch = isWisdomTooth ? option.condition.ifTrue : option.condition.ifFalse;
+
+      if (branch.diagnosisId) {
+        this.setDiagnosis(branch.diagnosisId);
+      } else if (branch.next) {
+        this.goToNextQuestion(branch.next);
+      }
+    } else if (option.diagnosisId) {
+      this.setDiagnosis(option.diagnosisId);
     } else if (option.next) {
-      this.currentQuestion = this.questionFlowService.getQuestionById(this.painType, option.next) || null;
+      this.goToNextQuestion(option.next);
     }
   }
 
+  private setDiagnosis(diagnosisId: string): void {
+    const diagnosis = this.diagnosisService.getDiagnosisById(diagnosisId);
+    if (diagnosis) {
+      this.diagnosisReady.emit(diagnosis);
+    }
+    this.currentQuestion = null; // End of flow
+  }
+
+  private goToNextQuestion(questionId: string): void {
+    this.currentQuestion = this.questionFlowService.getQuestionById(this.painType, questionId) || null;
+  }
   public goBackInternal(): void {
     // If we are on a question and there's history, go to the previous question
     if (this.questionHistory.length > 0) {

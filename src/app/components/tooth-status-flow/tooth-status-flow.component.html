@@ -78,18 +78,17 @@
   </div>
 
   <!-- Step 4: Crown Questions -->
-  <div *ngIf="toothStatus.hasCrown" class="question-block">
-      <p class="question-text">{{ getTranslation('didCrownFallOff') }}</p>
-      <label><input type="radio" [(ngModel)]="crownFell" name="crownFell" [value]="true" /> {{ getTranslation('yes')
-          }}</label>
-      <label><input type="radio" [(ngModel)]="crownFell" name="crownFell" [value]="false" /> {{ getTranslation('no')
-          }}</label>
+  <div *ngIf="toothStatus.hasCrown" class="question-block indented">
+    <p class="question-text">{{ getTranslation('isCrownBroken') }}</p>
+    <label><input type="radio" [(ngModel)]="crownBroken" name="crownBroken" [value]="true" /> {{ getTranslation('yes') }}</label>
+    <label><input type="radio" [(ngModel)]="crownBroken" name="crownBroken" [value]="false" /> {{ getTranslation('no') }}</label>
 
-      <p class="question-text">{{ getTranslation('isCrownBroken') }}</p>
-      <label><input type="radio" [(ngModel)]="crownBroken" name="crownBroken" [value]="true" /> {{ getTranslation('yes')
-          }}</label>
-      <label><input type="radio" [(ngModel)]="crownBroken" name="crownBroken" [value]="false" /> {{ getTranslation('no')
-          }}</label>
+    <!-- Show this question only if the crown is NOT broken -->
+    <div *ngIf="crownBroken === false">
+      <p class="question-text">{{ getTranslation('didCrownFallOff') }}</p>
+      <label><input type="radio" [(ngModel)]="crownFell" name="crownFell" [value]="true" /> {{ getTranslation('yes') }}</label>
+      <label><input type="radio" [(ngModel)]="crownFell" name="crownFell" [value]="false" /> {{ getTranslation('no') }}</label>
+    </div>
   </div>
 
   <button class="submit-button" (click)="explainDiagnosis()" [disabled]="!isFormValid()">{{ getTranslation('showDiagnosis') }}</button>

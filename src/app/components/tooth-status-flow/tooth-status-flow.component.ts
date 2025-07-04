@@ -161,6 +161,13 @@ export class ToothStatusFlowComponent implements OnChanges {
       ar: 'هل يؤلم عند العض؟',
     },
     andWord: { en: 'and', fr: 'et', de: 'und', ar: 'و' },
+    orWord: { en: 'or', fr: 'ou', de: 'oder', ar: 'أو' },
+    possibleDiagnosesTitle: {
+      en: 'Possible Diagnoses',
+      fr: 'Diagnostics Possibles',
+      de: 'Mögliche Diagnosen',
+      ar: 'تشخيصات محتملة',
+    },
     multipleIssuesTitle: {
       en: 'Multiple Issues Found',
       fr: 'Plusieurs problèmes détectés',
@@ -173,11 +180,23 @@ export class ToothStatusFlowComponent implements OnChanges {
       de: 'Dieser Zahn weist folgende Probleme auf:',
       ar: 'هذا السن يعاني من المشاكل التالية:',
     },
+    possibleDiagnosesExplanationIntro: {
+      en: 'The problem could be one of the following:',
+      fr: "Le problème pourrait être l'un des suivants :",
+      de: 'Das Problem könnte eine der folgenden Ursachen haben:',
+      ar: 'قد تكون المشكلة واحدة مما يلي:',
+    },
     multipleIssuesTreatmentIntro: {
       en: 'The recommended treatment plan is as follows:',
       fr: 'Le plan de traitement recommandé est le suivant :',
       de: 'Der empfohlene Behandlungsplan ist wie folgt:',
       ar: 'خطة العلاج الموصى بها هي كما يلي:',
+    },
+    possibleDiagnosesTreatmentIntro: {
+      en: 'Depending on the diagnosis, the treatment could be one of the following:',
+      fr: "Selon le diagnostic, le traitement pourrait être l'un des suivants :",
+      de: 'Abhängig von der Diagnose könnte die Behandlung eine der folgenden sein:',
+      ar: 'بناءً على التشخيص، قد يكون العلاج أحد الخيارات التالية:',
     },
   };
 
@@ -300,22 +319,14 @@ export class ToothStatusFlowComponent implements OnChanges {
 
     // Validate Root Canal questions if selected
     if (this.toothStatus.rootCanal) {
-      // A2 must always be answered if rootCanal is selected
+      // Q2 (isFullyCompleted) must always be answered
       if (this.rootCanalFinished === null) {
         isValid = false;
       }
-      // If A2 is 'No' (false), then A1 must be answered for the 'Incomplete Root Canal' diagnosis path
-      else if (
-        this.rootCanalFinished === false &&
-        this.rootCanalSince === null
-      ) {
-        isValid = false;
-      }
-      // If A2 is 'Yes' (true), then A3 must be answered (A1 is not strictly required for A3's visibility here)
+      // If Q2 is 'Yes', then Q3 (painOnBiting) must be answered
       else if (this.rootCanalFinished === true && this.painOnBiting === null) {
         isValid = false;
       }
-      // A1 is only required if rootCanalFinished is false (for the "Incomplete Root Canal" diagnosis)
     }
 
     // Validate Filling questions if selected and not skipped by a finished root canal
@@ -329,14 +340,18 @@ export class ToothStatusFlowComponent implements OnChanges {
 
     // Validate Crown questions if selected
     if (this.toothStatus.hasCrown) {
-      if (this.crownFell === null || this.crownBroken === null) {
+      // First question must always be answered
+      if (this.crownBroken === null) {
+        isValid = false;
+      }
+      // Second question is only required if the first answer was 'No'
+      else if (this.crownBroken === false && this.crownFell === null) {
         isValid = false;
       }
     }
 
     return isValid;
   }
-
   explainDiagnosis() {
     // If "none of the above" is selected, go straight to pain questions.
     if (this.toothStatus.noneOfTheAbove) {
@@ -367,31 +382,53 @@ export class ToothStatusFlowComponent implements OnChanges {
       return; // Definitive diagnosis, stop here.
     }
 
+    // Evaluation for Crown (Second Highest Priority)
+    if (this.toothStatus.hasCrown) {
+      // Case 1: Crown is broken. This is the highest priority for crowns.
+      if (this.crownBroken === true) {
+        this.emitDiagnosisById('crownBroken');
+        return; // Definitive diagnosis, stop here.
+      }
+      // Case 2: Crown is NOT broken, but has fallen off.
+      if (this.crownBroken === false && this.crownFell === true) {
+        this.emitDiagnosisById('crownFell');
+        return; // Definitive diagnosis, stop here.
+      }
+      // Case 3: Crown is fine (not broken, not fallen off).
+      // If there are no other issues (filling, rct), proceed to pain questions.
+      if (this.crownBroken === false && this.crownFell === false) {
+        if (!this.toothStatus.hasFilling && !this.toothStatus.rootCanal) {
+          this.flowCompletedWithoutDiagnosis.emit();
+          return;
+        }
+      }
+    }
+
     const foundDiagnosisIds: string[] = [];
 
     // Evaluation A: Root Canal Treated (Highest Priority)
     if (this.toothStatus.rootCanal) {
-      // Case 1: Not Completed
+      // Case 1: Root canal is not completed.
       if (this.rootCanalFinished === false) {
         this.emitDiagnosisById('rootCanalNotFinished');
         return; // Definitive diagnosis, stop here.
       }
-      // Case 2: Completed but still issues (A1 answered AND A2 = "Yes")
-      else if (
-        this.rootCanalFinished === true &&
-        this.rootCanalSince !== null
-      ) {
-        this.emitDiagnosisById('rctFinishedStillPain');
-        return; // Definitive diagnosis, stop here.
-      }
-    }
-
-    // Evaluation C: Crown Issues (only if no direct RCT diagnosis was made)
-    else if (this.toothStatus.hasCrown) {
-      if (this.crownFell === true) foundDiagnosisIds.push('crownFell');
-      // This covers both C1=Yes & C2=Yes, and C1=No & C2=Yes
-      if (this.crownBroken === true) {
-        foundDiagnosisIds.push('crownBroken');
+      // Case 2: Root canal is completed. Now check for pain on biting.
+      if (this.rootCanalFinished === true) {
+        // Subcase 2a: It hurts when biting.
+        if (this.painOnBiting === true) {
+          this.emitDiagnosisById('rctFinishedStillPain');
+          return; // Definitive diagnosis, stop here.
+        }
+        // Subcase 2b: It does NOT hurt when biting.
+        else if (this.painOnBiting === false) {
+          const combinedDiagnosis = this.combineDiagnoses(
+            ['rctFinishedStillPain', 'septal_syndrome'],
+            'or'
+          );
+          this.diagnosisReady.emit(combinedDiagnosis);
+          return; // Definitive diagnosis, stop here.
+        }
       }
     }
 
@@ -413,7 +450,7 @@ export class ToothStatusFlowComponent implements OnChanges {
       this.emitDiagnosisById(foundDiagnosisIds[0]);
     } else {
       // Multiple issues found, combine them
-      const combinedDiagnosis = this.combineDiagnoses(foundDiagnosisIds);
+      const combinedDiagnosis = this.combineDiagnoses(foundDiagnosisIds, 'and');
       this.diagnosisReady.emit(combinedDiagnosis);
     }
   }
@@ -426,7 +463,10 @@ export class ToothStatusFlowComponent implements OnChanges {
     }
   }
 
-  private combineDiagnoses(diagnosisIds: string[]): Diagnosis {
+  private combineDiagnoses(
+    diagnosisIds: string[],
+    conjunction: 'and' | 'or'
+  ): Diagnosis {
     const diagnoses: Diagnosis[] = diagnosisIds
       .map((id) => this.diagnosisService.getDiagnosisById(id))
       .filter((d): d is Diagnosis => !!d);
@@ -481,28 +521,39 @@ export class ToothStatusFlowComponent implements OnChanges {
 
     const languages: Language[] = ['en', 'fr', 'de', 'ar'];
 
+    const isOrLogic = conjunction === 'or';
+    const titleKey = isOrLogic
+      ? 'possibleDiagnosesTitle'
+      : 'multipleIssuesTitle';
+    const explanationIntroKey = isOrLogic
+      ? 'possibleDiagnosesExplanationIntro'
+      : 'multipleIssuesExplanationIntro';
+    const treatmentIntroKey = isOrLogic
+      ? 'possibleDiagnosesTreatmentIntro'
+      : 'multipleIssuesTreatmentIntro';
+    const conjunctionKey = isOrLogic ? 'orWord' : 'andWord';
+
     // Loop through each language to build the combined texts for that language
     for (const lang of languages) {
-      combinedDiagnosis.title[lang] =
-        this.allTexts['multipleIssuesTitle'][lang];
-      const andWord = this.allTexts['andWord'][lang];
+      combinedDiagnosis.title[lang] = this.allTexts[titleKey][lang];
+      const conjunctionWord = this.allTexts[conjunctionKey][lang];
 
       combinedDiagnosis.explanation[lang] =
-        this.allTexts['multipleIssuesExplanationIntro'][lang] +
+        this.allTexts[explanationIntroKey][lang] +
         '\n\n' +
         diagnoses
           .map(
             (d, index) =>
               `${index + 1}. ${d.title[lang]}:\n${d.explanation[lang]}`
           )
-          .join(`\n\n${andWord}\n\n`);
+          .join(`\n\n${conjunctionWord.toLocaleUpperCase()}\n\n`);
 
       combinedDiagnosis.treatment[lang] =
-        this.allTexts['multipleIssuesTreatmentIntro'][lang] +
+        this.allTexts[treatmentIntroKey][lang] +
         '\n\n' +
         diagnoses
           .map((d, index) => `${index + 1}. ${d.treatment[lang]}`)
-          .join(`\n\n${andWord}\n\n`);
+          .join(`\n\n${conjunctionWord.toLocaleUpperCase()}\n\n`);
     }
 
     return combinedDiagnosis;

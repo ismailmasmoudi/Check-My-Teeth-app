@@ -1,119 +1,76 @@
-// Wir verwenden die globalen Farbvariablen für Konsistenz
-@use '../../../styles.scss' as theme;
-
-// :host selektiert das Wurzelelement der Komponente
-:host {
-  display: block;
-  width: 100%;
-  padding: 0 1rem;
-  box-sizing: border-box;
+.selector-container {
+  text-align: center;
+  padding: 0 20px;
 }
 
-.tooth-selector-container {
+.tooth-schema {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.25rem; // Noch kleinerer Abstand für ein kompakteres Layout
-
-  // Titel der Komponente
-  h2 {
-    font-size: 1rem; // Weiter verkleinert, um Höhe zu sparen
-    color: black;
-    font-weight: 600;
-    margin: 0 0 0.25rem 0;
-  }
 }
 
-// Das Haupt-Grid für die vier Quadranten
-.tooth-schema {
-  display: grid;
-  grid-template-columns: 1fr 1fr; // 2x2 Grid-Layout spart Platz
-  gap: 0.5rem; // Reduzierter Abstand zwischen den Quadranten
-  width: 100%;
-  max-width: 450px; // Begrenzt die Breite des Schemas
-  margin: 0 auto;
+.jaw {
+  display: flex;
+  justify-content: center;
 }
 
 .quadrant {
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  padding: 0.25rem;
-}
-
-.quadrant-label {
-  font-size: 0.65rem; // Sehr kleiner Text für die Beschriftung
-  font-weight: bold;
-  text-align: center;
-  color: black;
-  margin-bottom: 0.25rem;
-  text-transform: uppercase;
-}
-
-.teeth-row {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 4px; // Kleiner Abstand zwischen den Zahn-Buttons
 }
 
-// Allgemeines Styling für die Zahn-Buttons
-.teeth-row button {
-  background-color: transparent;
-  border: 1px solid black;
-  color: black;
-  padding: 3px 6px; // Minimales Padding
-  font-size: 0.8rem; // Kleinere Schrift
-  border-radius: 4px;
+.tooth {
   cursor: pointer;
+  padding: 6px;
+  border: 2px solid transparent;
+  border-radius: 5px;
   transition: all 0.2s ease-in-out;
-  min-width: 30px;
+
+  img {
+    width: 30px;
+    height: 50px;
+    display: block;
+    transition: filter 0.3s ease; // Sanfter Übergang für den Filter
+  }
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    // Ein leichter "Lift"-Effekt mit einem warmen Schatten
+    transform: translateY(-2px);
+    img {
+      filter: drop-shadow(0 4px 8px rgba(164, 102, 58, 0.35));
+    }
   }
 
-  // Ausgewählter Zustand mit der primären blauen Farbe
   &.selected {
-    background-color: var(--primary-color); // #2196F3
-    color: white;
-    border-color: var(--primary-color);
-    font-weight: bold;
+    // Behält den Zoom-Effekt bei und wendet einen Schatten direkt auf das Bild an
+    transform: scale(1.1);
+    img {
+      filter: drop-shadow(0 0 10px rgba(251, 120, 27, 0.7));
+    }
   }
 }
 
-// Styling für den Bestätigungs-Bereich
-.selection-info {
-  margin-top: 0.5rem; // Weniger Abstand oben
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.25rem;
-
+.confirmation-section {
+  margin-top: 20px;
   p {
-    margin: 0;
-    font-size: 0.85rem;
-    color: black;
+    font-size: 1.2em;
+    margin-bottom: 10px;
   }
 
-  // Bestätigungs-Button mit der sekundären grünen Farbe
-  button {
-    background-color: var(--secondary-color); // #2E8B57
+  .confirm-button {
+    background-color: var(--secondary-color); // Das Grün aus deinem Theme
     color: white;
     border: none;
-    padding: 6px 20px;
-    font-size: 0.9rem;
-    font-weight: bold;
+    padding: 12px 28px;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s ease;
 
     &:hover {
-      background-color: #257247; // Etwas dunkleres Grün
-    }
-
-    &:disabled {
-      background-color: #aaa;
-      cursor: not-allowed;
+      background-color: #257247; // Ein dunkleres Grün
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
   }
 }

@@ -502,5 +502,47 @@
       "fr": "Le traitement consiste à nettoyer la zone sous le capuchon gingival (irrigation). Un antibiotique peut être prescrit pour combattre l'infection. Dans de nombreux cas, le traitement définitif est l'extraction de la dent de sagesse.",
       "ar": "يشمل العلاج تنظيف المنطقة تحت غطاء اللثة (الغسل). قد يتم وصف مضاد حيوي لمكافحة العدوى. في كثير من الحالات، يكون العلاج النهائي هو خلع ضرس العقل."
     }
+  },
+  {
+    "id": "loose_tooth_with_pain_extraction",
+    "title": {
+      "en": "Loose Tooth with Pain and Infection",
+      "de": "Lockerer Zahn mit Schmerzen und Infektion",
+      "fr": "Dent mobile avec douleur et infection",
+      "ar": "سن متحرك مع ألم وعدوى"
+    },
+    "explanation": {
+      "en": "A loose tooth accompanied by pain is a strong indicator of a severe infection around the tooth root, which has destroyed the supporting bone.",
+      "de": "Ein lockerer Zahn, der von Schmerzen begleitet wird, ist ein starkes Anzeichen für eine schwere Infektion um die Zahnwurzel, die den Halteknochen zerstört hat.",
+      "fr": "Une dent mobile accompagnée de douleur est un indicateur fort d'une infection sévère autour de la racine de la dent, qui a détruit l'os de soutien.",
+      "ar": "السن المتحرك المصحوب بألم هو مؤشر قوي على وجود عدوى شديدة حول جذر السن، مما أدى إلى تدمير العظم الداعم."
+    },
+    "treatment": {
+      "en": "Extraction of the tooth is necessary to eliminate the infection. A dentist may prescribe antibiotics to manage the infection. This should only be taken as prescribed.",
+      "de": "Die Extraktion des Zahnes ist notwendig, um die Infektion zu beseitigen. Ein Zahnarzt kann Antibiotika verschreiben, um die Infektion zu behandeln. Diese sollten nur nach Anweisung eingenommen werden.",
+      "fr": "L'extraction de la dent est nécessaire pour éliminer l'infection. Un dentiste peut prescrire des antibiotiques pour gérer l'infection. Ceux-ci ne doivent être pris que sur prescription.",
+      "ar": "خلع السن ضروري للقضاء على العدوى. قد يصف طبيب الأسنان مضادات حيوية للسيطرة على العدوى. يجب تناولها فقط حسب الوصفة الطبية."
+    }
+  },
+  {
+    "id": "weisheitszahnziehen",
+    "title": {
+      "en": "Wisdom Tooth Extraction Recommended",
+      "de": "Weisheitszahnziehen empfohlen",
+      "fr": "Extraction de la dent de sagesse recommandée",
+      "ar": "يوصى بخلع ضرس العقل"
+    },
+    "explanation": {
+      "en": "A loose wisdom tooth often has a poor prognosis due to its position and difficulty in cleaning. The infection or bone loss causing the mobility is best treated by removing the tooth.",
+      "de": "Ein lockerer Weisheitszahn hat aufgrund seiner Position und der schwierigen Reinigung oft eine schlechte Prognose. Die Infektion oder der Knochenverlust, der die Beweglichkeit verursacht, wird am besten durch die Entfernung des Zahnes behandelt.",
+      "fr": "Une dent de sagesse mobile a souvent un mauvais pronostic en raison de sa position et de la difficulté de nettoyage. L'infection ou la perte osseuse causant la mobilité est mieux traitée en retirant la dent.",
+      "ar": "غالبًا ما يكون لضرس العقل المتحرك تشخيص سيء بسبب موقعه وصعوبة تنظيفه. أفضل علاج للعدوى أو فقدان العظام الذي يسبب الحركة هو إزالة السن."
+    },
+    "treatment": {
+      "en": "Extraction of the wisdom tooth is the recommended treatment to resolve the issue and prevent future complications.",
+      "de": "Die Extraktion des Weisheitszahnes ist die empfohlene Behandlung, um das Problem zu lösen und zukünftige Komplikationen zu vermeiden.",
+      "fr": "L'extraction de la dent de sagesse est le traitement recommandé pour résoudre le problème et prévenir les complications futures.",
+      "ar": "خلع ضرس العقل هو العلاج الموصى به لحل المشكلة ومنع المضاعفات المستقبلية."
+    }
   }
 ]

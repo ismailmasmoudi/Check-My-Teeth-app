@@ -23,18 +23,26 @@
 
 
   <!-- NEW CONDITIONAL QUESTION -->
-  <div *ngIf="toothStatus.isLoose" class="question-block indented">
-      <p class="question-text">{{ getTranslation('mobilityGradeQuestion') }}</p>
-      <label><input type="radio" id="grade1" name="mobilityGrade" [value]="1" [(ngModel)]="mobilityGrade"> {{
-          getTranslation('grade1') }}</label>
-      <label><input type="radio" id="grade2" name="mobilityGrade" [value]="2" [(ngModel)]="mobilityGrade"> {{
-          getTranslation('grade2') }}</label>
-      <label><input type="radio" id="grade3" name="mobilityGrade" [value]="3" [(ngModel)]="mobilityGrade"> {{
-          getTranslation('grade3') }}</label>
+  <div *ngIf="toothStatus.isLoose && !isWisdomTooth" class="question-block indented">
+    <p class="question-text">{{ getTranslation('painWithLooseToothQuestion') }}</p>
+    <label><input type="radio" name="painWithLooseTooth" [value]="true" [(ngModel)]="painWithLooseTooth"> {{
+        getTranslation('yes') }}</label>
+    <label><input type="radio" name="painWithLooseTooth" [value]="false" [(ngModel)]="painWithLooseTooth"> {{
+        getTranslation('no') }}</label>
 
+    <!-- Mobility grade question only shows if there is NO pain -->
+    <div *ngIf="painWithLooseTooth === false">
+        <p class="question-text">{{ getTranslation('mobilityGradeQuestion') }}</p>
+        <label><input type="radio" id="grade1" name="mobilityGrade" [value]="1" [(ngModel)]="mobilityGrade"> {{
+            getTranslation('grade1') }}</label>
+        <label><input type="radio" id="grade2" name="mobilityGrade" [value]="2" [(ngModel)]="mobilityGrade"> {{
+            getTranslation('grade2') }}</label>
+        <label><input type="radio" id="grade3" name="mobilityGrade" [value]="3" [(ngModel)]="mobilityGrade"> {{
+            getTranslation('grade3') }}</label>
+    </div>
   </div>
   <!-- Step 2: Root Canal Questions -->
-  <div *ngIf="toothStatus.rootCanal" class="question-block">
+  <div *ngIf="toothStatus.rootCanal" class="question-block indented">
       <p class="question-text">{{ getTranslation('howLongAgo') }}</p>
       <label><input type="radio" [(ngModel)]="rootCanalSince" name="rootCanalSince" value="less" /> {{
           getTranslation('lessThan3Months') }}</label>
@@ -63,7 +71,7 @@
 
 
   <!-- Step 3: Filling Questions -->
-  <div *ngIf="toothStatus.hasFilling && !(toothStatus.rootCanal && rootCanalFinished === true)" class="question-block">
+  <div *ngIf="toothStatus.hasFilling && !(toothStatus.rootCanal && rootCanalFinished === true)" class="question-block indented">
       <p class="question-text">{{ getTranslation('wasFillingDeep') }}</p>
       <label><input type="radio" [(ngModel)]="fillingDeep" name="fillingDeep" [value]="true" /> {{ getTranslation('yes')
           }}</label>

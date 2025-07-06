@@ -25,13 +25,6 @@ export class ToothSelectorComponent {
     ar: 'اختر السن المصاب:'
   };
 
-  quadrantLabels = {
-    upperRight: { en: 'Upper Right', fr: 'Supérieur Droit', de: 'Oben Rechts', ar: 'العلوي الأيمن' },
-    upperLeft: { en: 'Upper Left', fr: 'Supérieur Gauche', de: 'Oben Links', ar: 'العلوي الأيسر' },
-    lowerLeft: { en: 'Lower Left', fr: 'Inférieur Gauche', de: 'Unten Links', ar: 'السفلي الأيسر' },
-    lowerRight: { en: 'Lower Right', fr: 'Inférieur Droit', de: 'Unten Rechts', ar: 'السفلي الأيمن' }
-  };
-
   selectedToothText = {
     en: 'Selected Tooth:',
     fr: 'Dent sélectionnée :',
@@ -54,6 +47,24 @@ export class ToothSelectorComponent {
     lowerLeft: [31, 32, 33, 34, 35, 36, 37, 38],   // Quadrant 3: Patient's Lower Left
     lowerRight: [48, 47, 46, 45, 44, 43, 42, 41]  // Quadrant 4: Patient's Lower Right
   };
+
+  // Method to get the image path for a tooth
+  getToothImagePath(toothId: number): string {
+    const lastDigit = toothId % 10;
+    return `/img/Teeth/T${lastDigit}.png`;
+  }
+
+  // Method to get the CSS transform style for flipping the tooth image
+  getToothImageTransform(toothId: number): string {
+    const quadrant = Math.floor(toothId / 10);
+    switch (quadrant) {
+      case 1: return 'none'; // Upper Right, no transform
+      case 2: return 'scaleX(-1)'; // Upper Left, horizontal flip
+      case 3: return 'scale(-1, -1)'; // Lower Left, horizontal and vertical flip
+      case 4: return 'scaleY(-1)'; // Lower Right, vertical flip
+      default: return 'none';
+    }
+  }
 
   // Method to select a tooth from the schema
   selectTooth(toothId: number): void {

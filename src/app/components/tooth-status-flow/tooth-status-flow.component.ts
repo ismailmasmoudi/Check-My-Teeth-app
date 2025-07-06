@@ -160,6 +160,12 @@ export class ToothStatusFlowComponent implements OnChanges {
       de: 'Tut es weh beim Beißen?',
       ar: 'هل يؤلم عند العض؟',
     },
+    painWithLooseToothQuestion: {
+      en: 'Do you have pain?',
+      fr: 'Avez-vous des douleurs ?',
+      de: 'Haben Sie Schmerzen?',
+      ar: 'هل تشعر بألم؟',
+    },
     andWord: { en: 'and', fr: 'et', de: 'und', ar: 'و' },
     orWord: { en: 'or', fr: 'ou', de: 'oder', ar: 'أو' },
     possibleDiagnosesTitle: {
@@ -203,9 +209,18 @@ export class ToothStatusFlowComponent implements OnChanges {
   // --- Multilingual Texts ---
   titleText: string = '';
 
+  // New properties for wisdom tooth logic
+  isWisdomTooth = false;
+  private readonly wisdomTeeth = [18, 28, 38, 48];
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['language'] || changes['selectedTooth']) {
       this.updateTexts();
+      if (this.selectedTooth) {
+        this.isWisdomTooth = this.wisdomTeeth.includes(
+          parseInt(this.selectedTooth, 10)
+        );
+      }
     }
   }
 
@@ -238,6 +253,7 @@ export class ToothStatusFlowComponent implements OnChanges {
 
   // Loose tooth question
   mobilityGrade: 1 | 2 | 3 | null = null;
+  painWithLooseTooth: boolean | null = null;
 
   // New question A3
   painOnBiting: boolean | null = null;
@@ -281,6 +297,7 @@ export class ToothStatusFlowComponent implements OnChanges {
     // If isLoose is unchecked manually, reset its question
     if (!this.toothStatus.isLoose) {
       this.mobilityGrade = null;
+      this.painWithLooseTooth = null;
     }
 
     // New Logic: If 'a' and 'b' are selected, automatically set A2 to 'Yes'
@@ -310,10 +327,18 @@ export class ToothStatusFlowComponent implements OnChanges {
 
     // Validate Loose Tooth question if selected
     if (this.toothStatus.isLoose) {
-      if (this.mobilityGrade === null) {
+      // Special case for wisdom teeth: no further questions needed
+      if (this.isWisdomTooth) {
+        return true;
+      }
+      if (this.painWithLooseTooth === null) {
+        isValid = false;
+      } else if (
+        this.painWithLooseTooth === false &&
+        this.mobilityGrade === null
+      ) {
         isValid = false;
       }
-      // If valid, we can return true because it's a definitive path
       return isValid;
     }
 
@@ -360,80 +385,66 @@ export class ToothStatusFlowComponent implements OnChanges {
     }
 
     if (!this.isFormValid()) {
-      // This case should ideally not be reached if the button is disabled,
-      // but it's a good safeguard.
       console.warn('Form is not valid. Cannot explain diagnosis.');
+      return;
+    }
+
+    // Special case for loose wisdom teeth
+    if (this.toothStatus.isLoose && this.isWisdomTooth) {
+      this.emitDiagnosisById('weisheitszahnziehen');
       return;
     }
 
     // Evaluation for Loose Tooth (Highest Priority)
     if (this.toothStatus.isLoose) {
-      switch (this.mobilityGrade) {
-        case 1:
-          this.emitDiagnosisById('mobility_grade_1');
-          break;
-        case 2:
-          this.emitDiagnosisById('mobility_grade_2');
-          break;
-        case 3:
-          this.emitDiagnosisById('mobility_grade_3');
-          break;
+      if (this.painWithLooseTooth === true) {
+        this.emitDiagnosisById('loose_tooth_with_pain_extraction');
+        return;
       }
-      return; // Definitive diagnosis, stop here.
-    }
 
-    // Evaluation for Crown (Second Highest Priority)
-    if (this.toothStatus.hasCrown) {
-      // Case 1: Crown is broken. This is the highest priority for crowns.
-      if (this.crownBroken === true) {
-        this.emitDiagnosisById('crownBroken');
-        return; // Definitive diagnosis, stop here.
-      }
-      // Case 2: Crown is NOT broken, but has fallen off.
-      if (this.crownBroken === false && this.crownFell === true) {
-        this.emitDiagnosisById('crownFell');
-        return; // Definitive diagnosis, stop here.
-      }
-      // Case 3: Crown is fine (not broken, not fallen off).
-      // If there are no other issues (filling, rct), proceed to pain questions.
-      if (this.crownBroken === false && this.crownFell === false) {
-        if (!this.toothStatus.hasFilling && !this.toothStatus.rootCanal) {
-          this.flowCompletedWithoutDiagnosis.emit();
-          return;
+      // Only evaluate grade if there is no pain
+      if (this.painWithLooseTooth === false)
+        switch (this.mobilityGrade) {
+          case 1:
+            this.emitDiagnosisById('mobility_grade_1');
+            break;
+          case 2:
+            this.emitDiagnosisById('mobility_grade_2');
+            break;
+          case 3:
+            this.emitDiagnosisById('mobility_grade_3');
+            break;
         }
-      }
+      return; // Definitive diagnosis, stop here.
     }
 
     const foundDiagnosisIds: string[] = [];
 
-    // Evaluation A: Root Canal Treated (Highest Priority)
-    if (this.toothStatus.rootCanal) {
-      // Case 1: Root canal is not completed.
-      if (this.rootCanalFinished === false) {
-        this.emitDiagnosisById('rootCanalNotFinished');
-        return; // Definitive diagnosis, stop here.
-      }
-      // Case 2: Root canal is completed. Now check for pain on biting.
-      if (this.rootCanalFinished === true) {
-        // Subcase 2a: It hurts when biting.
-        if (this.painOnBiting === true) {
-          this.emitDiagnosisById('rctFinishedStillPain');
-          return; // Definitive diagnosis, stop here.
-        }
-        // Subcase 2b: It does NOT hurt when biting.
-        else if (this.painOnBiting === false) {
-          const combinedDiagnosis = this.combineDiagnoses(
-            ['rctFinishedStillPain', 'septal_syndrome'],
-            'or'
-          );
-          this.diagnosisReady.emit(combinedDiagnosis);
-          return; // Definitive diagnosis, stop here.
-        }
+    // --- Collect all concurrent diagnoses ---
+
+    // 1. Evaluate Crown Issues
+    if (this.toothStatus.hasCrown) {
+      if (this.crownBroken === true) {
+        foundDiagnosisIds.push('crownBroken');
+      } else if (this.crownFell === true) {
+        // This implies crownBroken is false from the UI logic
+        foundDiagnosisIds.push('crownFell');
       }
     }
 
-    // Evaluation B: Filling Issues
-    // This runs only if no direct RCT or Crown diagnosis was made, AND it's not skipped by a finished root canal.
+    // 2. Evaluate Root Canal Issues
+    if (this.toothStatus.rootCanal) {
+      if (this.rootCanalFinished === false) {
+        foundDiagnosisIds.push('rootCanalNotFinished');
+      } else if (this.rootCanalFinished === true) {
+        if (this.painOnBiting === true) {
+          foundDiagnosisIds.push('rctFinishedStillPain');
+        }
+        // The "OR" case (painOnBiting === false) is handled later if no other issues are found.
+      }
+    }
+
+    // 3. Evaluate Filling Issues
     const isFillingSkippedByRCT =
       this.toothStatus.rootCanal && this.rootCanalFinished === true;
     if (this.toothStatus.hasFilling && !isFillingSkippedByRCT) {
@@ -441,17 +452,37 @@ export class ToothStatusFlowComponent implements OnChanges {
       if (this.fillingBroken === true) foundDiagnosisIds.push('fillingBroken');
     }
 
-    // Now, process the collected diagnoses
-    if (foundDiagnosisIds.length === 0) {
-      // No direct diagnosis, signal to parent to continue to the next flow
-      this.flowCompletedWithoutDiagnosis.emit();
-    } else if (foundDiagnosisIds.length === 1) {
-      // Only one issue found, emit it directly
-      this.emitDiagnosisById(foundDiagnosisIds[0]);
-    } else {
-      // Multiple issues found, combine them
-      const combinedDiagnosis = this.combineDiagnoses(foundDiagnosisIds, 'and');
+    // --- Process the collected diagnoses ---
+
+    // If we have found one or more "AND" problems, process them.
+    if (foundDiagnosisIds.length > 0) {
+      if (foundDiagnosisIds.length === 1) {
+        this.emitDiagnosisById(foundDiagnosisIds[0]);
+      } else {
+        const combinedDiagnosis = this.combineDiagnoses(foundDiagnosisIds, 'and');
+        this.diagnosisReady.emit(combinedDiagnosis);
+      }
+      return; // We are done.
+    }
+
+    // If no "AND" problems were found, check for the special "OR" case from RCT.
+    if (
+      this.toothStatus.rootCanal &&
+      this.rootCanalFinished === true &&
+      this.painOnBiting === false
+    ) {
+      const combinedDiagnosis = this.combineDiagnoses(
+        ['rctFinishedStillPain', 'septal_syndrome'],
+        'or'
+      );
       this.diagnosisReady.emit(combinedDiagnosis);
+      return;
+    }
+
+    // If we reach here, it means no specific diagnosis was found (e.g., crown is fine).
+    // We should proceed to the general pain questions.
+    if (foundDiagnosisIds.length === 0) {
+      this.flowCompletedWithoutDiagnosis.emit();
     }
   }
 

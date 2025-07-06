@@ -1,5 +1,55 @@
-select {
-  padding: 0.5rem;
-  font-size: 1rem;
-  margin-bottom: 1rem;
+.language-selector-wrapper {
+  position: relative;
+  display: inline-block;
+
+  // Custom arrow using a character and the secondary color
+  &::after {
+    content: '▼';
+    font-size: 10px; // A bit smaller for a finer look
+    color: var(--secondary-color);
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: all 0.3s ease; // Transition color as well
+  }
+
+  select {
+    // Reset browser default appearance
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent; // Transparent background
+
+    // Modern "Ghost Button" / Pill design
+    padding: 8px 35px 8px 15px; // Space for text and arrow
+    border: 2px solid var(--secondary-color);
+    border-radius: 25px; // Pill shape
+    color: var(--secondary-color); // Green text
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: var(--secondary-color);
+      color: white;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.25); // Soft green glow
+    }
+  }
+
+  // When the select is hovered, the wrapper's pseudo-element should change
+  &:hover::after {
+    color: white;
+  }
+
+  // Rotate arrow when dropdown is open
+  &:focus-within::after {
+    transform: translateY(-50%) rotate(180deg);
+  }
 }

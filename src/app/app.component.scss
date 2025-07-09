@@ -245,8 +245,8 @@
 ::ng-deep app-language-selector {
   position: absolute !important;
   top: 20px;
-  right: 20px;
-  z-index: 10;
+  left: 20px;
+  z-index: 1000;
 
   // Modernes "Pill-Button" Design
   button {
@@ -268,16 +268,14 @@
   }
 }
 
-
-
 /* Styling für den neuen "Zurück"-Button als Icon */
 .back-button-icon {
-   position: absolute;
-    bottom: 60px;
-    left: 60px;
-    z-index: 10;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
+  position: absolute;
+  bottom: 60px;
+  left: 60px;
+  z-index: 10;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
 
   img {
     width: 35px; /* Eine gute Größe für ein Icon */
@@ -295,13 +293,13 @@
 */
 .diagnosis-card {
   width: 100%;
-    max-width: 800px;
-    max-height: 339px;
-    overflow: auto;
-    height: 100%;
-    box-sizing: border-box;
-    padding-bottom: 20px;
-    padding: 10px 40px;
+  max-width: 800px;
+  max-height: 339px;
+  overflow: auto;
+  height: 100%;
+  box-sizing: border-box;
+  padding-bottom: 20px;
+  padding: 10px 40px;
   animation: diagnosis-presentation 0.7s ease-out forwards;
 
   .diagnosis-title {
@@ -334,7 +332,6 @@
     }
   }
 
-
   .disclaimer {
     margin-top: 1.5rem;
     padding: 0.75rem;
@@ -363,7 +360,7 @@
       transform: translateY(-2px);
     }
   }
-   &[dir="rtl"] {
+  &[dir="rtl"] {
     .diagnosis-content {
       text-align: right;
     }

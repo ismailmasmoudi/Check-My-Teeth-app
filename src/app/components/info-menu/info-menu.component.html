@@ -1,0 +1,24 @@
+<div class="info-menu-container">
+  <!-- Menu Trigger (Icon) -->
+  <button class="menu-trigger" (click)="toggleMenu()">
+    <img src="/img/Menu-icon.jpg" alt="Menu" />
+  </button>
+
+  <!-- Menu Items (Overlay) -->
+  <div class="menu-overlay" *ngIf="isOpen">
+    <ul class="menu-list">
+      <li (click)="openPage('imprint')">{{ getTranslation('imprint') }}</li>
+      <li (click)="openPage('privacy')">{{ getTranslation('privacy') }}</li>
+      <li (click)="openPage('disclaimer')">{{ getTranslation('disclaimer') }}</li>
+      <li (click)="openPage('about')">{{ getTranslation('about') }}</li>
+    </ul>
+  </div>
+
+  <!-- Content Area (inside the main container) -->
+  <div *ngIf="selectedPage" class="info-content" [innerHTML]="
+    selectedPage === 'imprint' ? imprintContent[language] :
+    selectedPage === 'privacy' ? privacyContent[language] :
+    selectedPage === 'disclaimer' ? disclaimerContent[language] :
+    selectedPage === 'about' ? aboutContent[language] : ''">
+  </div>
+</div>

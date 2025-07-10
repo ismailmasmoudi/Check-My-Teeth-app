@@ -3,6 +3,9 @@
   Er enthält die "content-box", die das Design mit dem Hintergrundbild hat.
 -->
 <div class="main-container">
+
+  <!-- Info Menu oben rechts -->
+  <app-info-menu [language]="selectedLanguage"></app-info-menu>
   <!-- Die Sprachauswahl wird jetzt von app.component.scss gesteuert -->
   <app-language-selector [currentLang]="selectedLanguage"
     (languageChanged)="onLanguageChanged($event)"></app-language-selector>

@@ -1,0 +1,70 @@
+.info-menu-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  font-family: sans-serif;
+
+  .menu-trigger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.3s ease; // For the button animation
+
+    img {
+      width: 30px;
+      height: auto;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3)); // Subtle shadow
+    }
+
+    &:hover {
+      transform: scale(1.1); // Subtle zoom on hover
+    }
+  }
+
+  .menu-overlay {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden; // For rounded corners
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+
+    // Show the overlay when the menu is open
+    &.open {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .menu-list {
+      list-style: none;
+      padding: 10px;
+      margin: 0;
+
+      li {
+        padding: 8px 15px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+          background-color: #f0f0f0;
+        }
+      }
+    }
+  }
+
+  .info-content {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+    animation: fadeIn 0.3s ease-out;
+  }
+}

@@ -35,6 +35,9 @@ export class AppComponent implements OnInit {
   finalDiagnosis: Diagnosis | null = null;
   isToothStatusFlowComplete = false;
 
+  // Zustand für den neuen Splash-Screen
+  splashState: 'visible' | 'hiding' | 'hidden' = 'visible';
+
   // Eigenschaft zum Speichern des HTML-Inhalts aus dem Info-Menü
   infoContentHtml: string | null = null;
 
@@ -171,6 +174,16 @@ export class AppComponent implements OnInit {
       this.setGreeting();
     }
     this.updateHtmlLangAndDir(this.selectedLanguage);
+
+    // Logik für den Splash-Screen
+    // Startet die Ausblende-Animation nach 1.5 Sekunden
+    setTimeout(() => {
+      this.splashState = 'hiding';
+      // Versteckt das Element komplett, nachdem die Animation (500ms) abgeschlossen ist
+      setTimeout(() => {
+        this.splashState = 'hidden';
+      }, 500);
+    }, 1500);
   }
 
   private getInitialLanguage(): 'en' | 'fr' | 'de' | 'ar' {

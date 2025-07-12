@@ -1,9 +1,17 @@
+<!-- Splash Screen, der am Anfang gezeigt wird -->
+<div
+  class="splash-screen"
+  *ngIf="splashState !== 'hidden'"
+  [class.hiding]="splashState === 'hiding'"
+>
+  <img src="/img/logo.png" alt="CheckMyToothBot Logo" class="splash-logo" />
+</div>
+
 <!-- 
   Der Hauptcontainer, der durch Flexbox im Body zentriert wird.
   Er enthält die "content-box", die das Design mit dem Hintergrundbild hat.
 -->
-<div class="main-container">
-
+<div class="main-container" [class.app-blurred]="splashState !== 'hidden'">
   <!-- Info Menu oben rechts -->
   <app-info-menu [language]="selectedLanguage" (pageContentChanged)="onInfoPageChange($event)"></app-info-menu>
   <!-- Die Sprachauswahl wird jetzt von app.component.scss gesteuert -->

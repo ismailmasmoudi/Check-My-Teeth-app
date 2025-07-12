@@ -6,6 +6,7 @@ import { ToothSelectorComponent } from './components/tooth-selector/tooth-select
 import { Diagnosis } from './services/diagnosis.service';
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component'; // Import PainTypeSelectorComponent
 import { ToothStatusFlowComponent } from './components/tooth-status-flow/tooth-status-flow.component';
+import { InfoMenuComponent } from "./components/info-menu/info-menu.component";
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,8 @@ import { ToothStatusFlowComponent } from './components/tooth-status-flow/tooth-s
     CommonModule,
     ToothSelectorComponent,
     LanguageSelectorComponent,
-  ],
+    InfoMenuComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -32,6 +34,17 @@ export class AppComponent implements OnInit {
   selectedTooth: number | null = null;
   finalDiagnosis: Diagnosis | null = null;
   isToothStatusFlowComplete = false;
+
+  // Eigenschaft zum Speichern des HTML-Inhalts aus dem Info-Menü
+  infoContentHtml: string | null = null;
+
+  // Übersetzungen für den neuen Schließen-Button
+  closeButtonLabel = {
+    en: 'Close',
+    fr: 'Fermer',
+    de: 'Schließen',
+    ar: 'إغلاق'
+  };
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -225,6 +238,14 @@ export class AppComponent implements OnInit {
     this.selectedLanguage = lang;
     this.updateHtmlLangAndDir(lang);
     this.setGreeting();
+  }
+
+  /**
+   * Event-Handler zum Empfangen des Inhalts vom Info-Menü.
+   * @param content Der HTML-Inhalt, der angezeigt werden soll, oder null zum Schließen.
+   */
+  onInfoPageChange(content: string | null): void {
+    this.infoContentHtml = content;
   }
 
   private updateHtmlLangAndDir(lang: 'en' | 'fr' | 'de' | 'ar'): void {

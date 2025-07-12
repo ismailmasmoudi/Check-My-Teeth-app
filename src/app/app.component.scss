@@ -373,6 +373,43 @@
   }
 }
 
+.info-page-content {
+  position: relative; /* Für die Positionierung des Schließen-Buttons */
+  padding: 0 20px;
+  animation: fadeIn 0.5s ease-in-out;
+  height: 92%;
+  overflow-y: auto;
+  width: 90%;
+
+  .close-info-btn {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 5px;
+
+    &:hover {
+      color: #333;
+    }
+  }
+
+  /* Stile für den Inhalt, der über innerHTML kommt */
+  h2 {
+    margin-top: 0;
+    color: var(--primary-color);
+  }
+
+  p {
+    line-height: 1.6;
+  }
+}
+
 /* Responsive Design für mobile Geräte bis 320px */
 @media (max-width: 768px) {
   .app-title {

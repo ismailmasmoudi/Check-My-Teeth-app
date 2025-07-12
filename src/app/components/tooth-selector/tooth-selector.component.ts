@@ -25,6 +25,33 @@ export class ToothSelectorComponent {
     ar: 'اختر السن المصاب:'
   };
 
+   quadrantLabels = {
+    upperRight: {
+      en: 'Upper Right',
+      de: 'Oben Rechts',
+      fr: 'Supérieur Droit',
+      ar: 'أعلى يمين',
+    },
+    upperLeft: {
+      en: 'Upper Left',
+      de: 'Oben Links',
+      fr: 'Supérieur Gauche',
+      ar: 'أعلى يسار',
+    },
+    lowerRight: {
+      en: 'Lower Right',
+      de: 'Unten Rechts',
+      fr: 'Inférieur Droit',
+      ar: 'أسفل يمين',
+    },
+    lowerLeft: {
+      en: 'Lower Left',
+      de: 'Unten Links',
+      fr: 'Inférieur Gauche',
+      ar: 'أسفل يسار',
+    },
+  };
+
   selectedToothText = {
     en: 'Selected Tooth:',
     fr: 'Dent sélectionnée :',

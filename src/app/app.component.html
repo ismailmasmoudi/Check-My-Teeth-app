@@ -33,7 +33,7 @@
       </div>
       <!-- Main Application Flow (shown only after name is entered) -->
         <div *ngIf="patientName">
-          <h2 *ngIf="greeting && !finalDiagnosis" class="greeting-header">{{ greeting }}</h2>
+          <h2 *ngIf="greeting && !selectedPainType && !finalDiagnosis" class="greeting-header">{{ greeting }}</h2>
 
 
       <!-- Step 1: Pain Type Selection -->

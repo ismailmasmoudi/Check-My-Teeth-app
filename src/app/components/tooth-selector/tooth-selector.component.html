@@ -5,15 +5,21 @@
     <!-- Upper Jaw -->
     <div class="jaw upper-jaw">
       <div class="quadrant">
-        <div class="tooth" *ngFor="let tooth of teeth.upperRight" (click)="selectTooth(tooth)"
-          [class.selected]="tooth === toothIdentifier">
-          <img [src]="getToothImagePath(tooth)" [alt]="'Tooth ' + tooth" [style.transform]="getToothImageTransform(tooth)">
+        <div class="quadrant-label">{{ quadrantLabels.upperRight[language] }}</div>
+        <div class="teeth-container">
+          <div class="tooth" *ngFor="let tooth of teeth.upperRight" (click)="selectTooth(tooth)"
+            [class.selected]="tooth === toothIdentifier">
+            <img [src]="getToothImagePath(tooth)" [alt]="'Tooth ' + tooth" [style.transform]="getToothImageTransform(tooth)">
+          </div>
         </div>
       </div>
       <div class="quadrant">
-        <div class="tooth" *ngFor="let tooth of teeth.upperLeft" (click)="selectTooth(tooth)"
-          [class.selected]="tooth === toothIdentifier">
-          <img [src]="getToothImagePath(tooth)" [alt]="'Tooth ' + tooth" [style.transform]="getToothImageTransform(tooth)">
+        <div class="quadrant-label">{{ quadrantLabels.upperLeft[language] }}</div>
+        <div class="teeth-container">
+          <div class="tooth" *ngFor="let tooth of teeth.upperLeft" (click)="selectTooth(tooth)"
+            [class.selected]="tooth === toothIdentifier">
+            <img [src]="getToothImagePath(tooth)" [alt]="'Tooth ' + tooth" [style.transform]="getToothImageTransform(tooth)">
+          </div>
         </div>
       </div>
     </div>
@@ -21,16 +27,22 @@
     <!-- Lower Jaw -->
     <div class="jaw lower-jaw">
       <div class="quadrant">
-        <div class="tooth" *ngFor="let tooth of teeth.lowerRight" (click)="selectTooth(tooth)"
-          [class.selected]="tooth === toothIdentifier">
-          <img [src]="getToothImagePath(tooth)" [alt]="'Tooth ' + tooth" [style.transform]="getToothImageTransform(tooth)">
+        <div class="teeth-container">
+          <div class="tooth" *ngFor="let tooth of teeth.lowerRight" (click)="selectTooth(tooth)"
+            [class.selected]="tooth === toothIdentifier">
+            <img [src]="getToothImagePath(tooth)" [alt]="'Tooth ' + tooth" [style.transform]="getToothImageTransform(tooth)">
+          </div>
         </div>
+        <div class="quadrant-label">{{ quadrantLabels.lowerRight[language] }}</div>
       </div>
       <div class="quadrant">
-        <div class="tooth" *ngFor="let tooth of teeth.lowerLeft" (click)="selectTooth(tooth)"
-          [class.selected]="tooth === toothIdentifier">
-          <img [src]="getToothImagePath(tooth)" [alt]="'Tooth ' + tooth" [style.transform]="getToothImageTransform(tooth)">
+        <div class="teeth-container">
+          <div class="tooth" *ngFor="let tooth of teeth.lowerLeft" (click)="selectTooth(tooth)"
+            [class.selected]="tooth === toothIdentifier">
+            <img [src]="getToothImagePath(tooth)" [alt]="'Tooth ' + tooth" [style.transform]="getToothImageTransform(tooth)">
+          </div>
         </div>
+        <div class="quadrant-label">{{ quadrantLabels.lowerLeft[language] }}</div>
       </div>
     </div>
   </div>

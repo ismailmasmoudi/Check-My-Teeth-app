@@ -180,11 +180,19 @@ export class AppComponent implements OnInit {
       'de',
       'ar',
     ];
-    // Get the primary language code from the browser (e.g., 'de' from 'de-DE')
+
+    // 1. Versuchen, die Sprache aus dem localStorage zu laden
+    const storedLang = localStorage.getItem('selectedLanguage');
+    if (storedLang && supportedLanguages.includes(storedLang as any)) {
+      return storedLang as 'en' | 'fr' | 'de' | 'ar';
+    }
+
+    // 2. Wenn nicht vorhanden, Browsersprache versuchen
     const browserLang = navigator.language.split('-')[0];
-    // Find if the browser language is in our supported list
     const foundLang = supportedLanguages.find((lang) => lang === browserLang);
-    return foundLang || 'en'; // Fallback to English if not supported
+
+    // 3. Fallback auf Englisch
+    return foundLang || 'en';
   }
 
   onNameSubmitted(name: string): void {
@@ -236,6 +244,8 @@ export class AppComponent implements OnInit {
 
   onLanguageChanged(lang: 'en' | 'fr' | 'de' | 'ar') {
     this.selectedLanguage = lang;
+    // Die ausgewählte Sprache im Browser speichern
+    localStorage.setItem('selectedLanguage', lang);
     this.updateHtmlLangAndDir(lang);
     this.setGreeting();
   }

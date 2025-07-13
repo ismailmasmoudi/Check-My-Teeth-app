@@ -7,11 +7,13 @@ import { Diagnosis } from './services/diagnosis.service';
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component'; // Import PainTypeSelectorComponent
 import { ToothStatusFlowComponent } from './components/tooth-status-flow/tooth-status-flow.component';
 import { InfoMenuComponent } from "./components/info-menu/info-menu.component";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
+    FormsModule,
     QuestionFlowComponent,
     ToothStatusFlowComponent,
     CommonModule,
@@ -23,13 +25,15 @@ import { InfoMenuComponent } from "./components/info-menu/info-menu.component";
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  @ViewChild(QuestionFlowComponent)
-  questionFlowComponent?: QuestionFlowComponent;
+  @ViewChild(QuestionFlowComponent) questionFlowComponent?: QuestionFlowComponent;
+  @ViewChild(InfoMenuComponent) infoMenuComponent!: InfoMenuComponent;
 
   selectedLanguage: 'en' | 'fr' | 'de' | 'ar' = this.getInitialLanguage();
   patientName: string | null = null;
   greeting: string = '';
+  privacyConsent = false;
 
+  isDiagnosing = false;
   selectedPainType: string | null = null;
   selectedTooth: number | null = null;
   finalDiagnosis: Diagnosis | null = null;
@@ -166,6 +170,34 @@ export class AppComponent implements OnInit {
     ar: 'التشخيص المعروض هنا يعتمد على المعلومات التي قدمتها وهو صحيح بنسبة 80 % تقريبًا. ومع ذلك، فإن الفحص السريري في عيادة الأسنان ضروري لتشخيص دقيق. إذا لزم الأمر، يجب أيضًا إجراء صورة أشعة.',
   };
 
+  privacyConsentTextParts = {
+    en: ['I have read the ', ' and agree to the processing of my data as described therein.'],
+    de: ['Ich habe die ', ' gelesen und stimme der Verarbeitung meiner Daten wie dort beschrieben zu.'],
+    fr: ["J'ai lu la ", " et j'accepte le traitement de mes données tel qu'il y est décrit."],
+    ar: ['لقد قرأت ', ' وأوافق على معالجة بياناتي كما هو موضح فيها.'],
+  };
+
+  privacyPolicyLinkText = {
+    en: 'privacy policy',
+    de: 'Datenschutzerklärung',
+    fr: 'politique de confidentialité',
+    ar: 'سياسة الخصوصية',
+  };
+
+  importantNoticeText = {
+    en: 'Important:',
+    de: 'Wichtig:',
+    fr: 'Important :',
+    ar: 'مهم:',
+  };
+
+  diagnosingText = {
+    en: 'Creating diagnosis...',
+    de: 'Diagnose wird erstellt...',
+    fr: 'Création du diagnostic...',
+    ar: 'جاري إنشاء التشخيص...',
+  };
+
   ngOnInit(): void {
     // Load the patient's name from browser storage when the app starts
     const storedName = localStorage.getItem('patientName');
@@ -209,6 +241,10 @@ export class AppComponent implements OnInit {
   }
 
   onNameSubmitted(name: string): void {
+    if (!this.privacyConsent) {
+      return;
+    }
+
     if (name && name.trim()) {
       this.patientName = name.trim();
       // Save the name to browser storage for future visits
@@ -237,7 +273,11 @@ export class AppComponent implements OnInit {
 
   onDiagnosisReady(result: Diagnosis): void {
     if (result) {
-      this.finalDiagnosis = result;
+      this.isDiagnosing = true;
+      setTimeout(() => {
+        this.finalDiagnosis = result;
+        this.isDiagnosing = false;
+      }, 5000); // 5 seconds
     }
   }
 
@@ -320,8 +360,14 @@ export class AppComponent implements OnInit {
     this.selectedPainType = null;
     this.selectedTooth = null;
     this.finalDiagnosis = null;
+    this.isDiagnosing = false;
     this.isToothStatusFlowComplete = false;
     // Also clear the name from browser storage
     localStorage.removeItem('patientName');
+  }
+
+  openPrivacyPolicy(event: MouseEvent) {
+    event.preventDefault();
+    this.infoMenuComponent.openPage('privacy');
   }
 }

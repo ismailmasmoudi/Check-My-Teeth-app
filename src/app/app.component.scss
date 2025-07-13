@@ -8,16 +8,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.2); // Leichter Overlay-Effekt
   z-index: 9999; // Stellt sicher, dass es über allem liegt
   pointer-events: none; // Verhindert, dass es Klicks blockiert, wenn es unsichtbar wird
 
   .splash-logo {
     width: 400px; // Passen Sie die Größe nach Bedarf an
     height: auto;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    // Start-Animation
     animation: splash-fade-in 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   }
 
@@ -27,10 +23,11 @@
   }
 }
 
-// Klasse, um den Hauptinhalt weichzuzeichnen
+// Klasse, um den Hauptinhalt weichzuzeichnen und auszublenden
 .main-container.app-blurred {
   filter: blur(8px);
-  transition: filter 0.5s ease-in-out;
+  opacity: 0;
+  pointer-events: none; // Verhindert Interaktion, während es unsichtbar ist
 }
 
 @keyframes splash-fade-in {
@@ -48,6 +45,50 @@
   to {
     opacity: 0;
     transform: scale(0.5);
+  }
+}
+
+@keyframes loading-animation {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.diagnosing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  animation: content-fade-in 0.6s ease-out forwards;
+
+  p {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .progress-bar-container {
+    width: 80%;
+    max-width: 400px;
+    height: 20px;
+    background-color: rgba(var(--primary-color-rgb), 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(var(--primary-color-rgb), 0.2);
+  }
+
+  .progress-bar {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--secondary-color), #4caf50);
+    border-radius: 10px;
+    animation: loading-animation 5s linear forwards;
   }
 }
 
@@ -114,6 +155,10 @@
   flex-direction: column;
   width: 100%;
   padding: 20px;
+  /* Animation für das Einblenden nach dem Splash-Screen */
+  opacity: 1;
+  filter: blur(0px);
+  transition: opacity 0.5s ease-in-out, filter 0.5s ease-in-out;
 }
 .title-container {
   display: flex;
@@ -224,6 +269,7 @@
 
   // General button styling for primary actions
   .name-input-container button {
+    margin-top: 15px; // Add some space above the button
     background-color: var(--primary-color);
     color: white;
     border: none;
@@ -238,6 +284,48 @@
       background-color: #1976d2;
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4);
+    }
+
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+      opacity: 0.7;
+    }
+  }
+
+  .privacy-consent-container {
+    display: flex;
+    align-items: flex-start; // Align items to the top
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    max-width: 85%;
+    text-align: left;
+    font-size: 0.8rem;
+    color: #444;
+
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px; // Align with the first line of text
+      cursor: pointer;
+      accent-color: var(--primary-color);
+      flex-shrink: 0;
+    }
+
+    label {
+      cursor: pointer;
+      line-height: 1.5;
+      a {
+        color: var(--primary-color);
+        text-decoration: underline;
+        font-weight: 500;
+        &:hover {
+          color: var(--secondary-color);
+        }
+      }
     }
   }
 }

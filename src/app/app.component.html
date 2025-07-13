@@ -37,8 +37,20 @@
           {{ namePromptText[selectedLanguage] }}
         </p>
         <input #nameInput type="text" [placeholder]="nameInputPlaceholder[selectedLanguage]" (keyup.enter)="onNameSubmitted(nameInput.value)">
-        <button (click)="onNameSubmitted(nameInput.value)">{{ continueButtonLabel[selectedLanguage] }}</button>
+
+        <!-- Privacy Consent Checkbox -->
+        <div class="privacy-consent-container">
+          <input type="checkbox" id="privacy-consent" [(ngModel)]="privacyConsent">
+          <label for="privacy-consent">
+            <span> <b>{{ importantNoticeText[selectedLanguage] }}</b> {{ privacyConsentTextParts[selectedLanguage][0] }}</span>
+            <a href="#" (click)="openPrivacyPolicy($event)">{{ privacyPolicyLinkText[selectedLanguage] }}</a>
+            <span>{{ privacyConsentTextParts[selectedLanguage][1] }}</span>
+          </label>
+        </div>
+
+        <button (click)="onNameSubmitted(nameInput.value)" [disabled]="!privacyConsent">{{ continueButtonLabel[selectedLanguage] }}</button>
       </div>
+
       <!-- Main Application Flow (shown only after name is entered) -->
         <div *ngIf="patientName">
           <h2 *ngIf="greeting && !selectedPainType && !finalDiagnosis" class="greeting-header">{{ greeting }}</h2>
@@ -75,8 +87,16 @@
             (back)="onQuestionFlowBack()"
             (diagnosisReady)="onDiagnosisReady($event)"></app-question-flow>
 
+          <!-- Diagnosis Loading Bar -->
+          <div *ngIf="isDiagnosing" class="diagnosing-container">
+            <p>{{ diagnosingText[selectedLanguage] }}</p>
+            <div class="progress-bar-container">
+              <div class="progress-bar"></div>
+            </div>
+          </div>
+
           <!-- Final Diagnosis Display -->
-          <div *ngIf="finalDiagnosis" class="diagnosis-card"
+          <div *ngIf="finalDiagnosis && !isDiagnosing" class="diagnosis-card"
             [attr.dir]="selectedLanguage === 'ar' ? 'rtl' : 'ltr'">
             <h2 class="diagnosis-title typing-animation"
               [style.--char-count]="finalDiagnosis.title[selectedLanguage].length">{{ finalDiagnosis.title[selectedLanguage] }}</h2>
@@ -91,8 +111,8 @@
             </div>
             <button (click)="resetSelection()" class="reset-button">{{ startOverButtonLabel[selectedLanguage] }}</button>
           </div>
-     <!-- Global Back Button als Icon unten links -->
-          <a *ngIf="selectedPainType && !finalDiagnosis" (click)="triggerBackAction()" class="back-button-icon" [title]="backButtonLabel[selectedLanguage]">
+     <!-- Global Back Button (hidden during diagnosis) -->
+          <a *ngIf="selectedPainType && !finalDiagnosis && !isDiagnosing" (click)="triggerBackAction()" class="back-button-icon" [title]="backButtonLabel[selectedLanguage]">
             <img src="/img/icons/back.png" alt="Back">
           </a>
     </div>

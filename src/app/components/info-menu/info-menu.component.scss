@@ -6,20 +6,29 @@
   font-family: sans-serif;
 
   .menu-trigger {
-    background: none;
-    border: none;
+    // Stilvoller, kreisförmiger Button, der zum Design der Seite passt
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(var(--primary-color-rgb, 33, 150, 243), 0.5);
+    border-radius: 50%; // Runder Button
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    padding: 0;
-    transition: transform 0.3s ease; // For the button animation
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease-in-out;
 
     img {
-      width: 30px;
+      width: 22px; // Icon etwas kleiner machen
       height: auto;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3)); // Subtle shadow
+      filter: none; // Der Button hat jetzt den Schatten
     }
 
     &:hover {
-      transform: scale(1.1); // Subtle zoom on hover
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 4px 12px rgba(var(--primary-color-rgb, 33, 150, 243), 0.25);
+      background-color: white;
     }
   }
 

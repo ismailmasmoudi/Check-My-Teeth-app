@@ -118,3 +118,44 @@
     }
   }
 }
+
+@media (max-width: 1000px) {
+  .teeth-container {
+    gap: 0px;
+  }
+
+  .tooth {
+    padding: 6px;
+    img {
+      width: 20px;
+      height: 40px;
+    }
+  }
+  .confirmation-section {
+    margin-top: 10px;
+    p {
+      font-size: 0.8em;
+      margin-bottom: 05px;
+    }
+    .confirm-button {
+      padding: 5px 24px;
+      font-size: 0.8rem;
+    }
+  }
+
+  .selector-container {
+    h3 {
+      margin-block-start: 0;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .tooth {
+    padding: 1px;
+    img {
+      width: 23px;
+      height: 45px;
+    }
+  }
+}

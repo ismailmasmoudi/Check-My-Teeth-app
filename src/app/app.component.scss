@@ -222,10 +222,10 @@
        Kurze Texte werden dadurch verhältnismäßig langsamer getippt. */
     --typing-duration: calc(0.8s + var(--char-count) * 0.04s);
 
-    width: max-content;
-    max-width: 100%;
+    width: 100%;
+    display: block;
     overflow: hidden;
-    white-space: nowrap;
+    white-space: pre-line; /* Text bricht um, Zeilenumbrüche werden beachtet */
     border-right: 3px solid; /* Der blinkende Cursor erbt die Textfarbe (color) */
     animation: typing var(--typing-duration) steps(var(--char-count)) forwards,
       blink 0.7s infinite, hide-cursor 1ms var(--typing-duration) forwards;
@@ -366,7 +366,8 @@
   font-family: "Tektur", sans-serif;
   font-weight: 600; /* SemiBold, wie gewünscht */
   font-size: 3rem; /* Etwas größer, um die neue Schrift hervorzuheben */
-  margin: 0;
+  margin-bottom: 20px;
+  margin-top: 15px;
 
   /* Moderner Roboter-Stil mit der sekundären (grünen) Farbe */
   color: #f0f0f0; /* Sehr helles Grau, fast weiß, für maximalen Kontrast zum Leuchten */
@@ -385,7 +386,7 @@
 /* Die Sprachauswahl wird jetzt hier gestyled, da sie Teil der Komponente ist */
 ::ng-deep app-language-selector {
   position: absolute !important;
-  top: 20px;
+  top: 0px;
   left: 20px;
   z-index: 1000;
 
@@ -551,17 +552,116 @@
   }
 }
 
-/* Responsive Design für mobile Geräte bis 320px */
-@media (max-width: 768px) {
-  .app-title {
-    font-size: 2rem; /* Kleinere Schrift auf kleineren Bildschirmen */
+@media (max-width: 1000px) {
+  .content-box {
+    width: 700px;
+    height: 277px;
   }
 
   .head-robot-img {
-    width: 120px;
+    width: 200px;
+  }
+  .back-button-icon {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+  }
+  .diagnosis-card {
+    max-height: 262px;
+    padding: 0px 40px;
+    padding-bottom: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-box {
+    width: 500px;
+    height: 500px;
+    background-image: url("/img/ContentChatBackground500px.png");
+  }
+  .content-box .input-group {
+    p {
+      font-size: 1rem;
+      white-space: normal;
+    }
+  }
+  .app-title {
+    margin: 50px 0;
+  }
+  .back-button-icon {
+    bottom: 70px;
+    left: 30px;
+  }
+  .diagnosis-card {
+    max-height: 460px;
+    max-width: 500px;
+    padding: 0px 20px;
+    padding-bottom: 10px;
+    .diagnosis-title {
+      font-size: 1.3rem;
+       white-space: normal;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+  }
+}
+
+@media (max-width: 570px) {
+  .app-title {
+    font-size: 2.5rem;
   }
 
+  .content-box .input-group {
+    max-height: 280px;
+  }
   .content-box {
-    padding: 30px 15px;
+    width: 300px;
+    height: 300px;
+    select {
+      font-size: 0.6rem;
+      width: 200px;
+    }
+  }
+  .diagnosis-card {
+    max-height: 280px;
+    padding: 0px 0px;
+    padding-bottom: 10px;
+    max-width: 300px;
+    .disclaimer {
+      margin-top: 0.5rem;
+      padding: 0.6rem;
+      font-size: 0.6rem;
+    }
+    .reset-button {
+      margin-top: 0.5rem;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 10px;
+    }
+    .diagnosis-title {
+      font-size: 1.2rem;
+      white-space: normal;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+    .diagnosis-content {
+      font-size: 0.65rem;
+      h3 {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .app-title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 370px) {
+  .content-box {
+    width: 250px;
+    height: 250px;
   }
 }

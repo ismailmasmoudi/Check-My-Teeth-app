@@ -75,14 +75,14 @@
 
        <!-- Step 3: Tooth Status Flow -->
           <app-tooth-status-flow
-            *ngIf="selectedPainType === 'tooth' && selectedTooth && !isToothStatusFlowComplete && !finalDiagnosis"
+            *ngIf="selectedPainType === 'tooth' && selectedTooth && !isToothStatusFlowComplete && !finalDiagnosis && !isDiagnosing"
             [selectedTooth]="selectedTooth.toString()" [language]="selectedLanguage" [attr.dir]="selectedLanguage === 'ar' ? 'rtl' : 'ltr'"
             (diagnosisReady)="onDiagnosisReady($event)"
             (flowCompletedWithoutDiagnosis)="onToothStatusFlowCompleted()"></app-tooth-status-flow>
 
        <!-- Step 4: General Question Flow -->
           <app-question-flow
-            *ngIf="!finalDiagnosis && ((selectedPainType === 'gum' || selectedPainType === 'tmj') || isToothStatusFlowComplete)"
+            *ngIf="!finalDiagnosis && !isDiagnosing && ((selectedPainType === 'gum' || selectedPainType === 'tmj') || isToothStatusFlowComplete)"
             [painType]="selectedPainType!" [language]="selectedLanguage" [selectedTooth]="selectedTooth" [attr.dir]="selectedLanguage === 'ar' ? 'rtl' : 'ltr'"
             (back)="onQuestionFlowBack()"
             (diagnosisReady)="onDiagnosisReady($event)"></app-question-flow>

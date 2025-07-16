@@ -1,14 +1,14 @@
 .info-menu-container {
   position: absolute;
-  top: 20px;
+  top: 0px;
   right: 20px;
   z-index: 1000;
   font-family: sans-serif;
 
   .menu-trigger {
     // Stilvoller, kreisförmiger Button, der zum Design der Seite passt
-    background-color: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(var(--primary-color-rgb, 33, 150, 243), 0.5);
+    background-color: transparent;
+    border: none;
     border-radius: 50%; // Runder Button
     width: 42px;
     height: 42px;
@@ -16,19 +16,19 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    box-shadow: none; // Kein Schatten im Normalzustand
     transition: all 0.2s ease-in-out;
 
     img {
       width: 22px; // Icon etwas kleiner machen
       height: auto;
-      filter: none; // Der Button hat jetzt den Schatten
+      filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3)); // Schatten für das Icon
     }
 
     &:hover {
       transform: translateY(-2px) scale(1.05);
-      box-shadow: 0 4px 12px rgba(var(--primary-color-rgb, 33, 150, 243), 0.25);
-      background-color: white;
+      background-color: rgba(255, 255, 255, 0.1); // Leichter Hintergrund bei Hover
+      backdrop-filter: blur(4px); // "Frosted Glass"-Effekt bei Hover
     }
   }
 

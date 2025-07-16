@@ -570,9 +570,9 @@
     max-height: 262px;
     padding: 0px 40px;
     padding-bottom: 10px;
-  }
+    overflow-x: hidden;
 }
-
+}
 @media (max-width: 768px) {
   .content-box {
     width: 500px;
@@ -594,12 +594,13 @@
   }
   .diagnosis-card {
     max-height: 460px;
-    max-width: 500px;
+    max-width: 100%;
     padding: 0px 20px;
     padding-bottom: 10px;
+    overflow-x: hidden;
     .diagnosis-title {
       font-size: 1.3rem;
-       white-space: normal;
+      white-space: normal;
       word-break: break-word;
       overflow-wrap: break-word;
     }

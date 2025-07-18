@@ -1,18 +1,19 @@
 .language-selector-wrapper {
   position: relative;
   display: inline-block;
+  perspective: 800px;
 
-  // Custom arrow using a character and the secondary color
+  // Custom arrow using a character and the secondary color (immer grün)
   &::after {
     content: '▼';
-    font-size: 10px; // A bit smaller for a finer look
-    color: var(--secondary-color);
+    font-size: 12px;
+    color: var(--secondary-color); // bleibt immer grün
     position: absolute;
     top: 50%;
-    right: 15px;
-    transform: translateY(-50%);
+    right: 18px;
+    transform: translateY(-50%) rotate(0deg); /* Standard: nicht gedreht */
     pointer-events: none;
-    transition: all 0.3s ease; // Transition color as well
+    transition: color 0.3s, transform 0.3s;
   }
 
   select {
@@ -20,36 +21,64 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background-color: transparent; // Transparent background
+    background: linear-gradient(135deg, rgb(166,217,233) 70%, #2196F3 100%); // Gradient background
 
     // Modern "Ghost Button" / Pill design
-    padding: 8px 35px 8px 15px; // Space for text and arrow
-    border: 2px solid var(--secondary-color);
-    border-radius: 25px; // Pill shape
-    color: var(--secondary-color); // Green text
+    padding: 10px 38px 10px 18px; // Space for text and arrow
+    border: none;
+    border-radius: 26px; // Pill shape
+    color: var(--secondary-color); // Text immer grün
     font-weight: bold;
     cursor: pointer;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
+    font-size: 1rem;
+    box-shadow: 0 6px 18px rgba(166,217,233, 0.35), 0 1.5px 6px rgba(33,150,243,0.18);
+    transition: all 0.25s cubic-bezier(.4,2,.3,1), box-shadow 0.2s;
+    outline: none;
+    min-width: 120px;
+    max-width: 180px;
+    width: auto; // <-- Wichtig: Breite passt sich dem Inhalt an
 
-    &:hover {
-      background-color: var(--secondary-color);
-      color: white;
+    &:hover,
+    &:active {
+      background: linear-gradient(135deg, #2196F3, rgb(166,217,233) 100%);
+      color: var(--secondary-color);
+      box-shadow: 0 12px 32px rgba(76, 175, 80, 0.25), 0 2px 8px rgba(33,150,243,0.22);
+      transform: translateY(-2px) scale(1.05) rotateY(8deg);
     }
 
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.25); // Soft green glow
+    // Sprache-Liste (Optionen) stylen
+    option {
+      background: #eaf6fb;
+      color: #1565c0;
+      font-weight: 500;
+      padding: 8px 0;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+      font-size: 1rem;
     }
   }
 
-  // When the select is hovered, the wrapper's pseudo-element should change
+  // Der Pfeil bleibt immer grün, dreht sich nur beim Hover
   &:hover::after {
-    color: white;
-  }
-
-  // Rotate arrow when dropdown is open
-  &:focus-within::after {
+    color: var(--secondary-color);
     transform: translateY(-50%) rotate(180deg);
+  }
+}
+
+// Responsive
+@media (max-width: 600px) {
+  .language-selector-wrapper {
+    select {
+      font-size: 0.95rem;
+      padding: 8px 32px 8px 12px;
+      border-radius: 20px;
+      min-width: 90px;
+      max-width: 98vw;
+      width: auto; // <-- Auch hier: Breite passt sich an
+    }
+    &::after {
+      right: 12px;
+      font-size: 11px;
+    }
   }
 }

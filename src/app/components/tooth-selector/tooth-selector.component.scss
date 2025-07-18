@@ -159,3 +159,11 @@
     }
   }
 }
+
+:host-context([dir="rtl"]) .teeth-container {
+  flex-direction: row-reverse;
+}
+
+:host-context([dir="rtl"]) .jaw {
+  flex-direction: row-reverse;
+}

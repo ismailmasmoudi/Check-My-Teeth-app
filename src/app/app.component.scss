@@ -191,6 +191,21 @@
   /* Neue Schriftart für den gesamten Inhalt der Box */
   font-family: "Chakra Petch", sans-serif;
   text-align: center;
+
+  .typing-animation {
+    /* Variable für die Dauer der Animation.
+       Eine Basisdauer von 0.8s plus 0.04s pro Zeichen.
+       Kurze Texte werden dadurch verhältnismäßig langsamer getippt. */
+    --typing-duration: calc(0.8s + var(--char-count) * 0.04s);
+
+    width: max-content;      // <-- passt sich der Textlänge an
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;     // Nur horizontal, kein Umbruch
+    border-right: 3px solid;
+    animation: typing var(--typing-duration) steps(var(--char-count)) forwards,
+      blink 0.7s infinite, hide-cursor 1ms var(--typing-duration) forwards;
+  }
 }
 
 /* General Styling for Form Elements inside content-box */
@@ -225,8 +240,8 @@
     width: 100%;
     display: block;
     overflow: hidden;
-    white-space: pre-line; /* Text bricht um, Zeilenumbrüche werden beachtet */
-    border-right: 3px solid; /* Der blinkende Cursor erbt die Textfarbe (color) */
+    white-space: nowrap; /* <-- Nur eine Zeile, horizontal */
+    border-right: 3px solid;
     animation: typing var(--typing-duration) steps(var(--char-count)) forwards,
       blink 0.7s infinite, hide-cursor 1ms var(--typing-duration) forwards;
   }
@@ -299,7 +314,7 @@
     display: flex;
     align-items: flex-start; // Align items to the top
     justify-content: center;
-    gap: 10px;
+    gap: 0px;
     margin-top: 20px;
     max-width: 85%;
     text-align: left;
@@ -429,6 +444,11 @@
   }
 }
 
+.input-group {
+  p {
+    text-align: center;
+  }
+}
 /*
   Besonderes Design und Animation für die finale Diagnose-Karte,
   um sie als Höhepunkt des Flows hervorzuheben.
@@ -436,13 +456,14 @@
 .diagnosis-card {
   width: 100%;
   max-width: 800px;
-  max-height: 339px;
+  max-height: 335px;
   overflow: auto;
   height: 100%;
   box-sizing: border-box;
   padding-bottom: 20px;
   padding: 10px 40px;
   animation: diagnosis-presentation 0.7s ease-out forwards;
+  overflow-x: hidden;
 
   .diagnosis-title {
     font-size: 1.5rem; // Größerer Titel
@@ -525,8 +546,8 @@
 
   .close-info-btn {
     position: absolute;
-    top: 10px;
-    right: 30px;
+    top: 0px;
+    right: 10px;
     background: none;
     border: none;
     font-size: 24px;
@@ -571,7 +592,7 @@
     padding: 0px 40px;
     padding-bottom: 10px;
     overflow-x: hidden;
-}
+  }
 }
 @media (max-width: 768px) {
   .content-box {
@@ -664,5 +685,29 @@
   .content-box {
     width: 250px;
     height: 250px;
+  }
+}
+
+/* RTL-Unterstützung für Arabisch */
+:host-context([dir="rtl"]) .content-box,
+:host-context([dir="rtl"]) .content-box .privacy-consent-container label {
+  text-align: right;
+}
+
+/* Fehleranzeige für Eingabefelder */
+.input-error {
+  color: #d32f2f;
+  font-size: 0.95em;
+  margin-top: 6px;
+  margin-bottom: 4px;
+  padding-left: 2px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .input-error {
+    font-size: 0.9em;
+    padding-left: 0;
+    text-align: center;
   }
 }

@@ -37,6 +37,9 @@
           {{ namePromptText[selectedLanguage] }}
         </p>
         <input #nameInput type="text" [placeholder]="nameInputPlaceholder[selectedLanguage]" (keyup.enter)="onNameSubmitted(nameInput.value)">
+        <div *ngIf="showNameError" class="input-error">
+          {{ nameErrorText[selectedLanguage] }}
+        </div>
 
         <!-- Privacy Consent Checkbox -->
         <div class="privacy-consent-container">

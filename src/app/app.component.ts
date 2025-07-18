@@ -6,7 +6,7 @@ import { ToothSelectorComponent } from './components/tooth-selector/tooth-select
 import { Diagnosis } from './services/diagnosis.service';
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component'; // Import PainTypeSelectorComponent
 import { ToothStatusFlowComponent } from './components/tooth-status-flow/tooth-status-flow.component';
-import { InfoMenuComponent } from "./components/info-menu/info-menu.component";
+import { InfoMenuComponent } from './components/info-menu/info-menu.component';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -19,13 +19,14 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     ToothSelectorComponent,
     LanguageSelectorComponent,
-    InfoMenuComponent
-],
+    InfoMenuComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  @ViewChild(QuestionFlowComponent) questionFlowComponent?: QuestionFlowComponent;
+  @ViewChild(QuestionFlowComponent)
+  questionFlowComponent?: QuestionFlowComponent;
   @ViewChild(InfoMenuComponent) infoMenuComponent!: InfoMenuComponent;
 
   selectedLanguage: 'en' | 'fr' | 'de' | 'ar' = this.getInitialLanguage();
@@ -50,7 +51,7 @@ export class AppComponent implements OnInit {
     en: 'Close',
     fr: 'Fermer',
     de: 'Schließen',
-    ar: 'إغلاق'
+    ar: 'إغلاق',
   };
 
   constructor(
@@ -171,9 +172,18 @@ export class AppComponent implements OnInit {
   };
 
   privacyConsentTextParts = {
-    en: ['I have read the ', ' and agree to the processing of my data as described therein.'],
-    de: ['Ich habe die ', ' gelesen und stimme der Verarbeitung meiner Daten wie dort beschrieben zu.'],
-    fr: ["J'ai lu la ", " et j'accepte le traitement de mes données tel qu'il y est décrit."],
+    en: [
+      'I have read the ',
+      ' and agree to the processing of my data as described therein.',
+    ],
+    de: [
+      'Ich habe die ',
+      ' gelesen und stimme der Verarbeitung meiner Daten wie dort beschrieben zu.',
+    ],
+    fr: [
+      "J'ai lu la ",
+      " et j'accepte le traitement de mes données tel qu'il y est décrit.",
+    ],
     ar: ['لقد قرأت ', ' وأوافق على معالجة بياناتي كما هو موضح فيها.'],
   };
 
@@ -196,6 +206,14 @@ export class AppComponent implements OnInit {
     de: 'Diagnose wird erstellt...',
     fr: 'Création du diagnostic...',
     ar: 'جاري إنشاء التشخيص...',
+  };
+
+  showNameError = false;
+  nameErrorText = {
+    de: 'Bitte geben Sie einen gültigen Namen ein. Zahlen und Sonderzeichen sind nicht erlaubt.',
+    en: 'Please enter a valid name. Numbers and special characters are not allowed.',
+    ar: 'يرجى إدخال اسم صحيح. الأرقام والرموز غير مسموح بها.',
+    fr: 'Veuillez entrer un nom valide. Les chiffres et les caractères spéciaux ne sont pas autorisés.',
   };
 
   ngOnInit(): void {
@@ -245,12 +263,22 @@ export class AppComponent implements OnInit {
       return;
     }
 
-    if (name && name.trim()) {
-      this.patientName = name.trim();
-      // Save the name to browser storage for future visits
-      localStorage.setItem('patientName', this.patientName);
-      this.setGreeting();
+    // Name muss mindestens 2 Buchstaben enthalten und darf nicht nur Zahlen sein
+    const trimmed = name ? name.trim() : '';
+    const isValid =
+      trimmed.length >= 2 &&
+      /[a-zA-Z\u0600-\u06FF]/.test(trimmed) && // mind. ein Buchstabe (auch Arabisch)
+      !/^\d+$/.test(trimmed); // nicht nur Zahlen
+
+    if (!isValid) {
+      this.showNameError = true;
+      return;
     }
+    this.showNameError = false;
+
+    this.patientName = trimmed;
+    localStorage.setItem('patientName', this.patientName);
+    this.setGreeting();
   }
 
   private setGreeting(): void {

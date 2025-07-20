@@ -37,6 +37,9 @@ export class QuestionFlowComponent implements OnChanges {
 
   // History for internal back-navigation
   private questionHistory: Question[] = [];
+  
+  // Store answered questions and selected options for reporting
+  private answeredQuestions: { question: string; answer: string }[] = [];
 
   constructor(
     private questionFlowService: QuestionFlowService,
@@ -60,6 +63,14 @@ export class QuestionFlowComponent implements OnChanges {
 
     // Add the current question to our history before moving on
     this.questionHistory.push(this.currentQuestion);
+    
+    // Store the question and answer for reporting
+    if (this.currentQuestion && option.label) {
+      this.answeredQuestions.push({
+        question: this.currentQuestion.text[this.language] || '',
+        answer: option.label[this.language] || ''
+      });
+    }
 
     if (option.condition) {
       if (this.selectedTooth === null) {
@@ -108,5 +119,20 @@ export class QuestionFlowComponent implements OnChanges {
     this.currentQuestion = null;
     this.allQuestions = [];
     this.questionHistory = [];
+    this.answeredQuestions = [];
+  }
+  
+  /**
+   * Gibt die beantworteten Fragen und Antworten als formatierten String zurück
+   * für die Speicherung in Google Sheets
+   */
+  getAnsweredQuestions(): string {
+    let result = '';
+    
+    for (const qa of this.answeredQuestions) {
+      result += `Frage: ${qa.question}\nAntwort: ${qa.answer}\n\n`;
+    }
+    
+    return result;
   }
 }

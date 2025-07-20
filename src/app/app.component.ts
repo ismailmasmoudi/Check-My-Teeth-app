@@ -7,6 +7,7 @@ import { LanguageSelectorComponent } from './components/language-selector/langua
 import { ToothStatusFlowComponent } from './components/tooth-status-flow/tooth-status-flow.component';
 import { InfoMenuComponent } from './components/info-menu/info-menu.component';
 import { FormsModule } from '@angular/forms';
+import { DataLoggerService, DiagnosisData } from './services/data-logger.service';
 
 @Component({
   selector: 'app-root',
@@ -52,10 +53,15 @@ export class AppComponent implements OnInit {
     de: 'Schließen',
     ar: 'إغلاق',
   };
+  collectedSymptoms: string = '';
+  diagnosisTitle: string = '';
+  diagnosisExplanation: string = '';
+  diagnosisTreatment: string = '';
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private dataLoggerService: DataLoggerService
   ) {}
 
   namePromptText = {
@@ -220,7 +226,12 @@ export class AppComponent implements OnInit {
     { value: 'gum', label: { de: 'Zahnfleisch', en: 'Gum', fr: 'Gencive', ar: 'لثة' } },
     { value: 'tmj', label: { de: 'Kiefergelenk', en: 'Jaw joint', fr: 'Articulation', ar: 'مفصل الفك' } }
   ];
+
   painTypeIndex = 0;
+
+  // Dies ist die URL deiner Google Apps Script Web App, die die Daten in Google Sheets speichert
+  // Die URL enthält deine Script-ID und endet mit /exec
+  private readonly scriptUrl = 'https://script.google.com/macros/s/AKfycbwXmTkgKfV8cJhORv0TRq7GBYd6RcmFqbsMUuk9riItOZasAYeWM0kf53yIVG4QP6ef/exec';
 
   ngOnInit(): void {
     // Load the patient's name from browser storage when the app starts
@@ -311,6 +322,19 @@ export class AppComponent implements OnInit {
       setTimeout(() => {
         this.finalDiagnosis = result;
         this.isDiagnosing = false;
+        
+        // Speichere die relevanten Diagnose-Informationen
+        this.diagnosisTitle = result.title[this.selectedLanguage];
+        this.diagnosisExplanation = result.explanation[this.selectedLanguage];
+        this.diagnosisTreatment = result.treatment[this.selectedLanguage];
+        
+        // Sammle Symptome aus den beantworteten Fragen
+        if (this.questionFlowComponent) {
+          this.collectedSymptoms = this.questionFlowComponent.getAnsweredQuestions();
+        }
+        
+        // Speichere die Diagnose in Google Sheets
+        this.saveDiagnosis();
       }, 5000); // 5 seconds
     }
   }
@@ -396,6 +420,11 @@ export class AppComponent implements OnInit {
     this.finalDiagnosis = null;
     this.isDiagnosing = false;
     this.isToothStatusFlowComplete = false;
+    // Auch die Diagnose-Daten zurücksetzen
+    this.collectedSymptoms = '';
+    this.diagnosisTitle = '';
+    this.diagnosisExplanation = '';
+    this.diagnosisTreatment = '';
     // Also clear the name from browser storage
     localStorage.removeItem('patientName');
   }
@@ -411,5 +440,20 @@ export class AppComponent implements OnInit {
 
   selectNextPainType() {
     this.painTypeIndex = (this.painTypeIndex + 1) % this.painTypes.length;
+  }
+
+  saveDiagnosis() {
+    const diagnosisData: DiagnosisData = {
+      timestamp: new Date().toISOString(),
+      name: this.patientName,
+      language: this.selectedLanguage,
+      painType: this.selectedPainType,
+      toothNumber: this.selectedTooth,
+      symptoms: this.collectedSymptoms,
+      diagnosisTitle: this.diagnosisTitle,
+      diagnosisExplanation: this.diagnosisExplanation,
+      diagnosisTreatment: this.diagnosisTreatment
+    };
+    this.dataLoggerService.logDiagnosis(diagnosisData);
   }
 }

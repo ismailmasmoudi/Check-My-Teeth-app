@@ -64,13 +64,20 @@
             <p class="typing-animation" [style.--char-count]="painTypeQuestionText[selectedLanguage].length">
               {{ painTypeQuestionText[selectedLanguage] }}
             </p>
-            <div class="pain-type-slider">
-              <img src="img/icons/arrow-left-blue.png" alt="Vorherige Schmerzart" class="arrow-img left"
+            <div class="pain-type-slider" [attr.dir]="selectedLanguage === 'ar' ? 'rtl' : 'ltr'">
+              <!-- Wenn Arabisch: Rechts-Pfeil für "Zurück", Links-Pfeil für "Weiter" -->
+              <img *ngIf="selectedLanguage !== 'ar'" src="img/icons/arrow-left-blue.png" alt="Vorherige Schmerzart" class="arrow-img left"
                    (click)="selectPrevPainType()" />
+              <img *ngIf="selectedLanguage === 'ar'" src="img/icons/arrow-right-blue.png" alt="Vorherige Schmerzart" class="arrow-img left"
+                   (click)="selectPrevPainType()" />
+                   
               <div class="pain-type-label">
                 {{ painTypes[painTypeIndex].label[selectedLanguage] }}
               </div>
-              <img src="img/icons/arrow-right-blue.png" alt="Nächste Schmerzart" class="arrow-img right"
+              
+              <img *ngIf="selectedLanguage !== 'ar'" src="img/icons/arrow-right-blue.png" alt="Nächste Schmerzart" class="arrow-img right"
+                   (click)="selectNextPainType()" />
+              <img *ngIf="selectedLanguage === 'ar'" src="img/icons/arrow-left-blue.png" alt="Nächste Schmerzart" class="arrow-img right"
                    (click)="selectNextPainType()" />
             </div>
             <button class="pain-type-confirm-btn" (click)="onPainTypeSelected(painTypes[painTypeIndex].value)">

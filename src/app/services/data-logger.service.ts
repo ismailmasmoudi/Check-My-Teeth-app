@@ -1,45 +1,138 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
 
+/**
+ * Struktur der Diagnosedaten für die Übermittlung an Google Sheets
+ */
 export interface DiagnosisData {
   timestamp: string;
   name: string | null;
   language: string;
   painType: string | null;
   toothNumber: number | null;
-  symptoms: string; // Neues Feld für die Antworten als formatierter Text
- diagnosisTitle: string;
- diagnosisExplanation: string;
- diagnosisTreatment: string;
+  symptoms: string;
+  diagnosisTitle: string;
+  diagnosisExplanation: string;
+  diagnosisTreatment: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataLoggerService {
-  // WICHTIG: Ersetzen Sie diese URL durch die URL Ihrer Google Apps Script Web App.
- private readonly scriptUrl = 'https://script.google.com/u/2/home/projects/125_CAin5lS6mp3oFWK8JNsHv1zVOB6lzoiD9QetOe7G4X46w_apo_4p6/edit';
+  /**
+   * URL der Google Apps Script Web App
+   * Diese URL verweist auf ein Google Apps Script, das die Daten in Google Sheets speichert
+   */
+  private readonly scriptUrl = 'https://script.google.com/macros/s/AKfycbwXmTkgKfV8cJhORv0TRq7GBYd6RcmFqbsMUuk9riItOZasAYeWM0kf53yIVG4QP6ef/exec';
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   logDiagnosis(data: DiagnosisData) {
-    if (!this.scriptUrl || this.scriptUrl.includes('ismail.masmoudi.you@gmail.com')) {
-      console.warn('DataLoggerService: Google Apps Script URL ist nicht gesetzt. Daten werden nicht protokolliert.');
+    if (!this.scriptUrl) {
       return;
     }
 
-    // Google Apps Script erwartet POST-Anfragen mit dem Content-Type 'text/plain'.
-    this.http.post(this.scriptUrl, JSON.stringify(data), {
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-    }).pipe(
-      catchError(error => {
-        console.error('Fehler beim Protokollieren der Daten in Google Sheet:', error);
-        return of(null); // Fehler elegant behandeln
-     })
-    ).subscribe(response => {
-      console.log('Daten erfolgreich protokolliert:', response);
+    // Create JSON string from data (als Fallback)
+    const jsonData = JSON.stringify(data);
+    
+    // Importiere die Diagnosedaten zur Referenz (dynamischer Import)
+    import('../data/diagnoses.json').then(diagnosesModule => {
+      const diagnoses = diagnosesModule.default;
+      
+      try {
+        // Finde die Diagnose anhand des Titels
+        const diagnosisId = this.findDiagnosisIdByTitle(diagnoses, data.diagnosisTitle, data.language);
+        
+        if (diagnosisId) {
+          // Finde die englischen Texte für diese Diagnose
+          const diagnosisEntry = diagnoses.find(d => d.id === diagnosisId);
+          
+          if (diagnosisEntry) {
+            // Erstelle eine Kopie der Daten mit englischen Diagnosefeldern
+            // Speichere die Originalwerte und überschreibe die Diagnosefelder mit englischen Werten
+            const dataWithEnglishDiagnosis = {
+              ...data,
+              // Originale Felder in separaten Feldern speichern
+              diagnosisTitle_original: data.diagnosisTitle,
+              diagnosisExplanation_original: data.diagnosisExplanation,
+              diagnosisTreatment_original: data.diagnosisTreatment,
+              symptoms_original: data.symptoms,
+              
+              // Hauptfelder mit englischen Werten überschreiben
+              diagnosisTitle: diagnosisEntry.title.en,
+              diagnosisExplanation: diagnosisEntry.explanation.en,
+              diagnosisTreatment: diagnosisEntry.treatment.en,
+              
+              // Für Symptome eine Kennzeichnung hinzufügen, dass sie aus der Originalsprache stammen
+              symptoms: data.language !== 'en' 
+                ? `[Original in ${data.language}] ${data.symptoms}` 
+                : data.symptoms
+            };
+            
+            // Sende Daten mit englischen Feldern
+            const enhancedJsonData = JSON.stringify(dataWithEnglishDiagnosis);
+            this.submitData(enhancedJsonData);
+            return;
+          }
+        }
+      } catch (error) {
+        // Fehler beim Zugriff auf englische Diagnosetexte - stille Fehlerbehandlung
+      }
+      
+      // Fallback: Verwende die ursprünglichen Daten, wenn keine englische Version gefunden wird
+      this.submitData(jsonData);
+    }).catch(() => {
+      // Im Fehlerfall die Originaldaten verwenden
+      this.submitData(jsonData);
     });
+  }
+  
+  /**
+   * Findet die Diagnose-ID anhand des Titels in der angegebenen Sprache
+   */
+  private findDiagnosisIdByTitle(diagnoses: any[], title: string, language: string): string | null {
+    const selectedLanguage = language.toLowerCase();
+    const supportedLanguages = ['en', 'de', 'fr', 'ar'];
+    const lang = supportedLanguages.includes(selectedLanguage) ? selectedLanguage : 'en';
+    
+    const diagnosis = diagnoses.find(d => 
+      d.title[lang] && d.title[lang].toLowerCase() === title.toLowerCase()
+    );
+    
+    return diagnosis ? diagnosis.id : null;
+  }
+  
+  /**
+   * Sendet die Daten via Formular an Google Sheets
+   */
+  private submitData(jsonData: string): void {
+    // Hidden iframe für die Formularübermittlung erstellen
+    const iframeId = 'hidden-form-iframe';
+    let iframe = document.getElementById(iframeId) as HTMLIFrameElement;
+    
+    if (!iframe) {
+      iframe = document.createElement('iframe');
+      iframe.setAttribute('id', iframeId);
+      iframe.setAttribute('name', iframeId);
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+    }
+    
+    // Formular erstellen und konfigurieren
+    const form = document.createElement('form');
+    form.setAttribute('method', 'POST');
+    form.setAttribute('action', this.scriptUrl);
+    form.setAttribute('target', iframeId);
+    
+    // Verstecktes Eingabefeld für die Daten
+    const hiddenField = document.createElement('input');
+    hiddenField.setAttribute('type', 'hidden');
+    hiddenField.setAttribute('name', 'data');
+    hiddenField.setAttribute('value', jsonData);
+    form.appendChild(hiddenField);
+    
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
   }
 }

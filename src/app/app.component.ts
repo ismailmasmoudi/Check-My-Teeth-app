@@ -328,8 +328,10 @@ export class AppComponent implements OnInit {
         this.diagnosisExplanation = result.explanation[this.selectedLanguage];
         this.diagnosisTreatment = result.treatment[this.selectedLanguage];
         
-        // Symptome werden jetzt via symptomSummary Event übergeben
-        console.log('App: Symptome aus symptomSummary Event:', this.collectedSymptoms);
+        // Sammle Symptome aus den beantworteten Fragen
+        if (this.questionFlowComponent) {
+          this.collectedSymptoms = this.questionFlowComponent.getAnsweredQuestions();
+        }
         
         // Speichere die Diagnose in Google Sheets
         this.saveDiagnosis();
@@ -441,18 +443,13 @@ export class AppComponent implements OnInit {
   }
 
   saveDiagnosis() {
-    console.log('Speichere Diagnose mit Symptomen', { 
-      symptomLength: this.collectedSymptoms?.length || 0,
-      symptomPreview: this.collectedSymptoms?.substring(0, 50) + '...'
-    });
-    
     const diagnosisData: DiagnosisData = {
       timestamp: new Date().toISOString(),
       name: this.patientName,
       language: this.selectedLanguage,
       painType: this.selectedPainType,
       toothNumber: this.selectedTooth,
-      symptoms: this.collectedSymptoms || 'Patient reported no specific symptoms',
+      symptoms: this.collectedSymptoms,
       diagnosisTitle: this.diagnosisTitle,
       diagnosisExplanation: this.diagnosisExplanation,
       diagnosisTreatment: this.diagnosisTreatment

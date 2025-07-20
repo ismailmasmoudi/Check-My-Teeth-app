@@ -30,7 +30,6 @@ export class QuestionFlowComponent implements OnChanges {
   @Input() selectedTooth: number | null = null;
   @Output() back = new EventEmitter<void>(); // This remains as is
   @Output() diagnosisReady = new EventEmitter<Diagnosis>(); // Change this to emit the full Diagnosis object
-  @Output() symptomSummary = new EventEmitter<string>();
 
   // Component State
   allQuestions: Question[] = [];
@@ -67,16 +66,9 @@ export class QuestionFlowComponent implements OnChanges {
     
     // Store the question and answer for reporting
     if (this.currentQuestion && option.label) {
-      // Speichere Frage und Antwort immer auf Englisch
-      const questionTextEn = this.currentQuestion.text.en;
-      const answerTextEn = option.label.en;
-      console.log('Speichere Frage/Antwort (EN):', {
-        question: questionTextEn.substring(0, 30),
-        answer: answerTextEn
-      });
       this.answeredQuestions.push({
-        question: questionTextEn,
-        answer: answerTextEn
+        question: this.currentQuestion.text[this.language] || '',
+        answer: option.label[this.language] || ''
       });
     }
 
@@ -103,9 +95,6 @@ export class QuestionFlowComponent implements OnChanges {
 
   private setDiagnosis(diagnosisId: string): void {
     const diagnosis = this.diagnosisService.getDiagnosisById(diagnosisId);
-    // Emit Symptom-Zusammenfassung bevor DiagnoseEnde
-    const summary = this.getAnsweredQuestions();
-    this.symptomSummary.emit(summary);
     if (diagnosis) {
       this.diagnosisReady.emit(diagnosis);
     }
@@ -131,101 +120,19 @@ export class QuestionFlowComponent implements OnChanges {
     this.allQuestions = [];
     this.questionHistory = [];
     this.answeredQuestions = [];
-    console.log('Zustand zurückgesetzt - alle Fragen und Antworten gelöscht');
-  }
-  
-  /**
-   * Erstellt eine kurze Zusammenfassung der wichtigsten Symptome
-   * @returns Eine Kurzfassung der Symptome für die Übersicht
-   */
-  private createSymptomSummary(): string {
-    if (this.answeredQuestions.length === 0) {
-      return 'Patient reported no specific symptoms';
-    }
-    
-    // Finde positive Antworten (Ja, Schmerzen, etc.)
-    const positiveAnswers = this.answeredQuestions.filter(qa => {
-      const answer = qa.answer.toLowerCase();
-      const isPositive = 
-        answer.includes('ja') || 
-        answer.includes('yes') || 
-        answer.includes('oui') || 
-        answer.includes('نعم') ||
-        answer.includes('schmerz') || 
-        answer.includes('pain') || 
-        answer.includes('douleur') ||
-        !answer.includes('nein') && 
-        !answer.includes('no') && 
-        !answer.includes('non') &&
-        !answer.includes('لا');
-      
-      return isPositive;
-    });
-    
-    // Erstelle eine Übersicht der positiven Symptome
-    let keySymptoms = [];
-    
-    if (positiveAnswers.length > 0) {
-      // Extrahiere wichtige Schlüsselwörter aus den Fragen
-      for (const qa of positiveAnswers) {
-        const question = qa.question.toLowerCase();
-        
-        // Suche nach wichtigen Symptomen in der Frage
-        if (question.includes('schmerz') || question.includes('pain') || question.includes('douleur') || question.includes('ألم')) {
-          keySymptoms.push('Pain');
-        }
-        if (question.includes('schwellung') || question.includes('swelling') || question.includes('gonflement') || question.includes('تورم')) {
-          keySymptoms.push('Swelling');
-        }
-        if (question.includes('blut') || question.includes('blood') || question.includes('sang') || question.includes('دم')) {
-          keySymptoms.push('Bleeding');
-        }
-        if (question.includes('kalt') || question.includes('cold') || question.includes('froid') || question.includes('بارد')) {
-          keySymptoms.push('Cold sensitivity');
-        }
-        if (question.includes('heiß') || question.includes('warm') || question.includes('hot') || question.includes('chaud') || question.includes('ساخن')) {
-          keySymptoms.push('Hot sensitivity');
-        }
-        if (question.includes('zahn') || question.includes('tooth') || question.includes('dent') || question.includes('سن')) {
-          keySymptoms.push('Tooth issues');
-        }
-        if (question.includes('zahnfleisch') || question.includes('gum') || question.includes('gencive') || question.includes('لثة')) {
-          keySymptoms.push('Gum issues');
-        }
-      }
-    }
-    
-    // Entferne Duplikate
-    keySymptoms = [...new Set(keySymptoms)];
-    
-    // Erstelle die Zusammenfassung
-    if (keySymptoms.length > 0) {
-      return `SUMMARY: Patient reports ${keySymptoms.join(', ')}`;
-    } else if (positiveAnswers.length > 0) {
-      return `SUMMARY: Patient reports ${positiveAnswers.length} positive symptoms`;
-    } else {
-      return `SUMMARY: Patient reports dental concerns with ${this.answeredQuestions.length} symptoms`;
-    }
   }
   
   /**
    * Gibt die beantworteten Fragen und Antworten als formatierten String zurück
-   * für die Speicherung in Google Sheets, mit einer kurzen Zusammenfassung
+   * für die Speicherung in Google Sheets
    */
   getAnsweredQuestions(): string {
-    // Wenn keine Fragen beantwortet wurden, gebe Schmerztyp zurück
-    // Wenn keine Fragen beantwortet wurden, gib Schmerztyp auf Englisch zurück
-    if (!this.answeredQuestions || this.answeredQuestions.length === 0) {
-      return `Pain type: ${this.painType}`;
+    let result = '';
+    
+    for (const qa of this.answeredQuestions) {
+      result += `Frage: ${qa.question}\nAntwort: ${qa.answer}\n\n`;
     }
-
-    // Kurze Zusammenfassung: Frage- und Antwort-Paare ordentlich formatiert
-    // Verwende immer englische Labels für Speicherung
-    const l = { question: 'Question', answer: 'Answer' };
-    const summary = this.answeredQuestions
-      .map(qa => `${l.question}: ${qa.question}; ${l.answer}: ${qa.answer}`)
-      .join(' | ');
-    console.log('Symptom-Zusammenfassung (Frage & Antwort):', summary);
-    return summary;
+    
+    return result;
   }
 }

@@ -101,7 +101,6 @@
             *ngIf="!finalDiagnosis && !isDiagnosing && ((selectedPainType === 'gum' || selectedPainType === 'tmj') || isToothStatusFlowComplete)"
             [painType]="selectedPainType!" [language]="selectedLanguage" [selectedTooth]="selectedTooth" [attr.dir]="selectedLanguage === 'ar' ? 'rtl' : 'ltr'"
             (back)="onQuestionFlowBack()"
-            (symptomSummary)="collectedSymptoms = $event"
             (diagnosisReady)="onDiagnosisReady($event)"></app-question-flow>
 
           <!-- Diagnosis Loading Bar -->

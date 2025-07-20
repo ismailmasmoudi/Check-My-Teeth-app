@@ -1,12 +1,12 @@
 .info-menu-container {
   position: absolute;
-  top: 0px;
-  right: 20px;
+  top: 10px;
+  right: 12px;
   z-index: 1000;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
 
   .menu-trigger {
-    background: linear-gradient(135deg, rgb(166,217,233) 70%, #2196F3 100%);
+    background: linear-gradient(135deg, rgb(166, 217, 233) 70%, #2196f3 100%);
     border: none;
     border-radius: 50%;
     width: 52px;
@@ -15,8 +15,9 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 6px 18px rgba(166,217,233, 0.35), 0 1.5px 6px rgba(33,150,243,0.18);
-    transition: all 0.25s cubic-bezier(.4,2,.3,1);
+    box-shadow: 0 6px 18px rgba(166, 217, 233, 0.35),
+      0 1.5px 6px rgba(33, 150, 243, 0.18);
+    transition: all 0.25s cubic-bezier(0.4, 2, 0.3, 1);
     perspective: 800px;
 
     img {
@@ -28,11 +29,12 @@
 
     &:hover {
       transform: translateY(-2px) scale(1.05);
-      box-shadow: 0 12px 32px rgba(76, 175, 80, 0.45), 0 2px 8px rgba(33,150,243,0.22); // Grün als Akzent
-      background: linear-gradient(135deg, #2196F3 40%, rgb(166,217,233) 100%);
+      box-shadow: 0 12px 32px rgba(76, 175, 80, 0.45),
+        0 2px 8px rgba(33, 150, 243, 0.22); // Grün als Akzent
+      background: linear-gradient(135deg, #2196f3 40%, rgb(166, 217, 233) 100%);
 
       img {
-        filter: drop-shadow(0 4px 6px rgba(76,175,80,0.25));
+        filter: drop-shadow(0 4px 6px rgba(76, 175, 80, 0.25));
       }
     }
   }
@@ -43,11 +45,11 @@
     max-width: 340px;
     top: calc(100% + 10px);
     right: 0;
-    background: linear-gradient(120deg, rgb(166,217,233) 80%, #2196F3 100%);
+    background: linear-gradient(120deg, rgb(166, 217, 233) 80%, #2196f3 100%);
     backdrop-filter: blur(8px);
-    border: 1px solid #2196F3;
+    border: 1px solid #2196f3;
     border-radius: 18px;
-    box-shadow: 0 8px 25px rgba(166,217,233, 0.18);
+    box-shadow: 0 8px 25px rgba(166, 217, 233, 0.18);
     overflow: hidden;
     visibility: hidden;
     opacity: 0;
@@ -78,8 +80,8 @@
         color: #1565c0;
         font-weight: 500;
         border-radius: 10px;
-        background: rgba(255,255,255,0.18);
-        box-shadow: 0 2px 8px rgba(166,217,233,0.10);
+        background: rgba(255, 255, 255, 0.18);
+        box-shadow: 0 2px 8px rgba(166, 217, 233, 0.1);
         transition: background 0.2s, color 0.2s, transform 0.15s;
         opacity: 0;
         transform: translateX(15px);
@@ -92,7 +94,7 @@
         }
 
         &:hover {
-          background: #2196F3;
+          background: #2196f3;
           color: #fff;
           transform: translateX(5px) scale(1.05);
         }

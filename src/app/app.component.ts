@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { QuestionFlowComponent } from './components/question-flow/question-flow.component';
 import { CommonModule, DOCUMENT } from '@angular/common';
-
 import { ToothSelectorComponent } from './components/tooth-selector/tooth-selector.component';
 import { Diagnosis } from './services/diagnosis.service';
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component'; // Import PainTypeSelectorComponent
@@ -216,6 +215,13 @@ export class AppComponent implements OnInit {
     fr: 'Veuillez entrer un nom valide. Les chiffres et les caractères spéciaux ne sont pas autorisés.',
   };
 
+  painTypes = [
+    { value: 'tooth', label: { de: 'Zahn', en: 'Tooth', fr: 'Dent', ar: 'سن' } },
+    { value: 'gum', label: { de: 'Zahnfleisch', en: 'Gum', fr: 'Gencive', ar: 'لثة' } },
+    { value: 'tmj', label: { de: 'Kiefergelenk', en: 'Jaw joint', fr: 'Articulation', ar: 'مفصل الفك' } }
+  ];
+  painTypeIndex = 0;
+
   ngOnInit(): void {
     // Load the patient's name from browser storage when the app starts
     const storedName = localStorage.getItem('patientName');
@@ -397,5 +403,13 @@ export class AppComponent implements OnInit {
   openPrivacyPolicy(event: MouseEvent) {
     event.preventDefault();
     this.infoMenuComponent.openPage('privacy');
+  }
+
+  selectPrevPainType() {
+    this.painTypeIndex = (this.painTypeIndex - 1 + this.painTypes.length) % this.painTypes.length;
+  }
+
+  selectNextPainType() {
+    this.painTypeIndex = (this.painTypeIndex + 1) % this.painTypes.length;
   }
 }

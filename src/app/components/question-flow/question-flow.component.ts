@@ -1,4 +1,3 @@
-
 import { Component, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { QuestionFlowService, Question } from '../../services/question-flow.service';
 import { DiagnosisService, Diagnosis } from '../../services/diagnosis.service';

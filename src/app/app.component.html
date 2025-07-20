@@ -64,12 +64,18 @@
             <p class="typing-animation" [style.--char-count]="painTypeQuestionText[selectedLanguage].length">
               {{ painTypeQuestionText[selectedLanguage] }}
             </p>
-            <select #painTypeSelect (change)="onPainTypeSelected(painTypeSelect.value)">
-              <option value="" disabled selected>-- {{ selectPainTypeLabel[selectedLanguage] }} --</option>
-              <option value="tooth">{{ painTypesText['tooth'][selectedLanguage] }}</option>
-              <option value="gum">{{ painTypesText['gum'][selectedLanguage] }}</option>
-              <option value="tmj">{{ painTypesText['tmj'][selectedLanguage] }}</option>
-            </select>
+            <div class="pain-type-slider">
+              <img src="img/icons/arrow-left-blue.png" alt="Vorherige Schmerzart" class="arrow-img left"
+                   (click)="selectPrevPainType()" />
+              <div class="pain-type-label">
+                {{ painTypes[painTypeIndex].label[selectedLanguage] }}
+              </div>
+              <img src="img/icons/arrow-right-blue.png" alt="Nächste Schmerzart" class="arrow-img right"
+                   (click)="selectNextPainType()" />
+            </div>
+            <button class="pain-type-confirm-btn" (click)="onPainTypeSelected(painTypes[painTypeIndex].value)">
+              {{ continueButtonLabel[selectedLanguage] }}
+            </button>
           </div>
 
            <!-- Step 2: Tooth Selection -->

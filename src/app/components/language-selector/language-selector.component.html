@@ -1,8 +1,7 @@
-<div class="language-selector-wrapper">
-  <select [value]="currentLang" (change)="changeLanguage($event)">
-    <option value="en">English</option>
-    <option value="fr">Français</option>
-    <option value="de">Deutsch</option>
-    <option value="ar">العربية</option>
-  </select>
+<div class="flag-selector-wrapper">
+  <img src="img/icons/arrow-left.png" alt="Vorherige Sprache" class="arrow-img left" (click)="selectPrevLang()" />
+  <div class="flag-flip" [class.flipped]="isFlipped">
+    <img [src]="flagIcons[selectedLanguage]" [alt]="selectedLanguage" class="flag-img" />
+  </div>
+  <img src="img/icons/arrow-right.png" alt="Nächste Sprache" class="arrow-img right" (click)="selectNextLang()" />
 </div>

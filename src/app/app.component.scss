@@ -196,7 +196,7 @@
        Kurze Texte werden dadurch verhältnismäßig langsamer getippt. */
     --typing-duration: calc(0.8s + var(--char-count) * 0.04s);
 
-    width: max-content;
+    width: 90%;
     max-width: 100%;
     overflow: hidden;
     white-space: nowrap;
@@ -405,7 +405,7 @@
 ::ng-deep app-language-selector {
   position: absolute !important;
   top: 0px;
-  left: 20px;
+  left: 0px;
   z-index: 1000;
 
   // Modernes "Pill-Button" Design
@@ -689,8 +689,8 @@
     max-height: 280px;
   }
   .content-box {
-    width: 300px;
-    height: 300px;
+    width: 340px;
+    height: 340px;
     select {
       font-size: 0.6rem;
       width: 200px;
@@ -732,7 +732,7 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 412px) {
   .app-title {
     font-size: 2.2rem;
   }

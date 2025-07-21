@@ -159,6 +159,10 @@
     }
   }
 }
+.selector-container {
+  text-align: center;
+  padding: 90px 20px;
+}
 
 :host-context([dir="rtl"]) .teeth-container {
   flex-direction: row-reverse;

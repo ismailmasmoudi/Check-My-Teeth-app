@@ -149,10 +149,10 @@
   {
     "id": "periodontitis",
     "title": {
-      "en": "Periodontitis (Advanced Gum Disease)",
-      "fr": "Parodontite (Maladie des gencives avancée)",
-      "de": "Parodontitis (Fortgeschrittene Zahnfleischerkrankung)",
-      "ar": "التهاب دواعم السن (مرض اللثة المتقدم)"
+      "en": "Periodontitis",
+      "fr": "Parodontite",
+      "de": "Parodontitis",
+      "ar": "التهاب دواعم السن"
     },
     "explanation": {
       "en": "Periodontitis is a serious gum infection that damages the soft tissue and, without treatment, can destroy the bone that supports your teeth. It can lead to tooth loss.",

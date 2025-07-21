@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // Define the specific language type to ensure type safety throughout the component.
@@ -12,7 +12,7 @@ type SupportedLang = 'de' | 'en' | 'fr' | 'ar';
   templateUrl: './language-selector.component.html',
   styleUrls: ['./language-selector.component.scss'] // Assuming a SCSS file exists
 })
-export class LanguageSelectorComponent {
+export class LanguageSelectorComponent implements OnInit, OnChanges {
   // The current language can be passed in, and it's also strongly typed.
   @Input() currentLang: Language = 'en';
 
@@ -29,6 +29,18 @@ export class LanguageSelectorComponent {
   languages = ['de', 'en', 'fr', 'ar'];
   selectedLanguage: SupportedLang = 'de';
   isFlipped = false;
+
+  ngOnInit(): void {
+    // Set initial selectedLanguage to the input currentLang so the flag matches
+    this.selectedLanguage = this.currentLang as SupportedLang;
+  }
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    // Update the flag when the input currentLang changes
+    if (changes['currentLang'] && changes['currentLang'].currentValue) {
+      this.selectedLanguage = changes['currentLang'].currentValue as SupportedLang;
+    }
+  }
 
   changeLanguage(event: Event) {
     const selectElement = event.target as HTMLSelectElement;

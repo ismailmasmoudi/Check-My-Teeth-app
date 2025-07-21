@@ -154,8 +154,6 @@
   align-items: center;
   flex-direction: column;
   width: 100%;
-  padding: 20px;
-  /* Animation für das Einblenden nach dem Splash-Screen */
   opacity: 1;
   filter: blur(0px);
   transition: opacity 0.5s ease-in-out, filter 0.5s ease-in-out;
@@ -198,13 +196,15 @@
        Kurze Texte werden dadurch verhältnismäßig langsamer getippt. */
     --typing-duration: calc(0.8s + var(--char-count) * 0.04s);
 
-    width: max-content;      // <-- passt sich der Textlänge an
-    display: block;
+    width: max-content;
+    max-width: 100%;
     overflow: hidden;
-    white-space: nowrap;     // Nur horizontal, kein Umbruch
-    border-right: 3px solid;
+    white-space: nowrap;
+    border-right: 3px solid; /* Der blinkende Cursor erbt die Textfarbe (color) */
     animation: typing var(--typing-duration) steps(var(--char-count)) forwards,
       blink 0.7s infinite, hide-cursor 1ms var(--typing-duration) forwards;
+    writing-mode: horizontal-tb;
+    display: inline-block;
   }
 }
 
@@ -237,13 +237,15 @@
        Kurze Texte werden dadurch verhältnismäßig langsamer getippt. */
     --typing-duration: calc(0.8s + var(--char-count) * 0.04s);
 
-    width: 100%;
-    display: block;
+    width: max-content;
+    max-width: 100%;
     overflow: hidden;
-    white-space: nowrap; /* <-- Nur eine Zeile, horizontal */
-    border-right: 3px solid;
+    white-space: nowrap;
+    border-right: 3px solid; /* Der blinkende Cursor erbt die Textfarbe (color) */
     animation: typing var(--typing-duration) steps(var(--char-count)) forwards,
       blink 0.7s infinite, hide-cursor 1ms var(--typing-duration) forwards;
+    writing-mode: horizontal-tb;
+    display: inline-block;
   }
 
   // Modern styling for text inputs and select dropdowns
@@ -365,6 +367,7 @@
   margin-bottom: 0.5rem;
   /* Die Animation wird mit einer kleinen Verzögerung gestartet für einen schönen Effekt */
   animation: content-fade-in 0.6s ease-out 0.2s backwards;
+  text-align: center;
 }
 
 /*
@@ -601,7 +604,7 @@
   padding: 8px 16px;
   border-radius: 12px;
   background: #eaf6fb;
-  box-shadow: 0 2px 8px rgba(33,150,243,0.08);
+  box-shadow: 0 2px 8px rgba(33, 150, 243, 0.08);
 }
 
 .pain-type-confirm-btn {
@@ -653,8 +656,11 @@
     }
   }
   .app-title {
-    margin: 50px 0;
+    margin-top: 80px;
+    margin-bottom: 10px;
+    font-size: 3.4rem;
   }
+
   .back-button-icon {
     bottom: 70px;
     left: 30px;
@@ -662,7 +668,7 @@
   .diagnosis-card {
     max-height: 460px;
     max-width: 100%;
-    padding: 0px 20px;
+    padding: 0px 30px;
     padding-bottom: 10px;
     overflow-x: hidden;
     .diagnosis-title {
@@ -719,6 +725,11 @@
       }
     }
   }
+  .splash-screen {
+    .splash-logo {
+      width: 300px; // Passen Sie die Größe nach Bedarf an
+    }
+  }
 }
 
 @media (max-width: 400px) {
@@ -731,6 +742,11 @@
   .content-box {
     width: 250px;
     height: 250px;
+  }
+  .splash-screen {
+    .splash-logo {
+      width: 250px; // Passen Sie die Größe nach Bedarf an
+    }
   }
 }
 

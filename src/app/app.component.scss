@@ -196,7 +196,7 @@
        Kurze Texte werden dadurch verhältnismäßig langsamer getippt. */
     --typing-duration: calc(0.8s + var(--char-count) * 0.04s);
 
-    width: 90%;
+    width: max-content;
     max-width: 100%;
     overflow: hidden;
     white-space: nowrap;
@@ -545,6 +545,7 @@
   animation: fadeIn 0.5s ease-in-out;
   height: 92%;
   overflow-y: auto;
+  overflow-x: hidden;
   width: 90%;
 
   .close-info-btn {
@@ -622,10 +623,28 @@
     background: #1976d2;
   }
 }
+
+/* RTL-Unterstützung für Arabisch */
+:host-context([dir="rtl"]) .content-box,
+:host-context([dir="rtl"]) .content-box .privacy-consent-container label {
+  text-align: right;
+}
+
+/* Fehleranzeige für Eingabefelder */
+.input-error {
+  color: #d32f2f;
+  font-size: 0.95em;
+  margin-top: 6px;
+  margin-bottom: 4px;
+  padding-left: 2px;
+  text-align: center;
+}
+
 @media (max-width: 1000px) {
   .content-box {
     width: 700px;
     height: 277px;
+    overflow-x: hidden;
   }
 
   .head-robot-img {
@@ -637,7 +656,9 @@
     left: 40px;
   }
   .diagnosis-card {
-    max-height: 262px;
+    width: 98%;
+
+    max-height: 255px;
     padding: 0px 40px;
     padding-bottom: 10px;
     overflow-x: hidden;
@@ -667,7 +688,6 @@
   }
   .diagnosis-card {
     max-height: 460px;
-    max-width: 100%;
     padding: 0px 30px;
     padding-bottom: 10px;
     overflow-x: hidden;
@@ -683,24 +703,47 @@
 @media (max-width: 570px) {
   .app-title {
     font-size: 2.5rem;
-  }
-
-  .content-box .input-group {
-    max-height: 280px;
+    margin-top: 16%;
   }
   .content-box {
-    width: 340px;
-    height: 340px;
+    input[type="text"],
+    select {
+      width: 80%;
+      max-width: 300px;
+    }
+
+    .privacy-consent-container {
+      max-width: 300px;
+    }
+  }
+
+  .input-error {
+    font-size: 0.7em;
+    padding-left: 0;
+    text-align: center;
+  }
+  .content-box .input-group {
+    max-height: 280px;
+    gap: 0.25rem;
+    p {
+      width: fit-content !important;
+    }
+  }
+  .content-box {
+    width: 320px;
+    height: 320px;
     select {
       font-size: 0.6rem;
       width: 200px;
     }
   }
   .diagnosis-card {
-    max-height: 280px;
-    padding: 0px 0px;
+    max-height: 300px;
+    padding: 0px 16px;
     padding-bottom: 10px;
-    max-width: 300px;
+    width: 297px;
+    overflow-x: hidden;
+
     .disclaimer {
       margin-top: 0.5rem;
       padding: 0.6rem;
@@ -730,15 +773,28 @@
       width: 300px; // Passen Sie die Größe nach Bedarf an
     }
   }
+
+  .back-button-icon {
+    bottom: 40px;
+    left: 30px;
+
+    img {
+      width: 25px; /* Eine gute Größe für ein Icon */
+      height: auto;
+    }
+  }
 }
 
-@media (max-width: 412px) {
+@media (max-width: 400px) {
   .app-title {
-    font-size: 2.2rem;
+    font-size: 2.3rem;
   }
 }
 
 @media (max-width: 370px) {
+  .app-title {
+    font-size: 1.9rem;
+  }
   .content-box {
     width: 250px;
     height: 250px;
@@ -748,28 +804,46 @@
       width: 250px; // Passen Sie die Größe nach Bedarf an
     }
   }
-}
+  .title-container {
+    margin-top: 30px;
+  }
+  .diagnosis-card {
+    max-height: 238px;
+    width: 250px;
+  }
+  .back-button-icon {
+    bottom: 30px;
+    left: 16px;
+  }
 
-/* RTL-Unterstützung für Arabisch */
-:host-context([dir="rtl"]) .content-box,
-:host-context([dir="rtl"]) .content-box .privacy-consent-container label {
-  text-align: right;
-}
+  .back-button-icon {
+    img {
+      width: 20px;
+      height: auto;
+    }
+  }
+  
+  .content-box {
+    input[type="text"],
+    select {
+      padding: 6px 10px;
+      font-size: 0.8rem;
+    }
 
-/* Fehleranzeige für Eingabefelder */
-.input-error {
-  color: #d32f2f;
-  font-size: 0.95em;
-  margin-top: 6px;
-  margin-bottom: 4px;
-  padding-left: 2px;
-  text-align: center;
-}
+    .privacy-consent-container {
+      font-size: 0.6rem;
+    }
+  }
 
-@media (max-width: 600px) {
-  .input-error {
-    font-size: 0.9em;
-    padding-left: 0;
-    text-align: center;
+  .content-box .input-group {
+    p {
+      font-size: 0.8rem;
+      margin-bottom: 6px;
+    }
+  }
+
+  .name-input-container button {
+    margin-top: 6px;
+    padding: 8px 14px;
   }
 }

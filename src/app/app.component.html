@@ -26,7 +26,7 @@
    <!-- Info Page Content (wird angezeigt, wenn eine Seite aus dem Menü ausgewählt wurde) -->
     <div *ngIf="infoContentHtml" class="info-page-content">
       <button class="close-info-btn" (click)="onInfoPageChange(null)" [title]="closeButtonLabel[selectedLanguage]">×</button>
-      <div [innerHTML]="infoContentHtml"></div>
+      <div [innerHTML]="infoContentHtml" class="info-page-text"></div>
     </div>
 
     <!-- Main Application Flow (wird angezeigt, wenn keine Info-Seite aktiv ist) -->

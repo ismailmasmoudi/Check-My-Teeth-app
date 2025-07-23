@@ -113,6 +113,15 @@
   }
 }
 
+
+// Keyframe-Animation für das Einblenden der Listeneinträge
+@keyframes listItemFadeIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 @media (max-width: 1000px) {
   .info-menu-container {
     right: 6px;
@@ -135,18 +144,35 @@
 @media (max-width: 768px) {
   .info-menu-container {
     right: 0;
-
+    top: 8px;
     .menu-trigger {
       width: 36px;
       height: 36px;
     }
+    .menu-overlay {
+      width: 40vw;
+      .menu-list li {
+        padding: 8px 10px;
+        cursor: pointer;
+        color: #1565c0;
+        font-weight: 500;
+        font-size: 12px;
+      }
+    }
   }
 }
 
-// Keyframe-Animation für das Einblenden der Listeneinträge
-@keyframes listItemFadeIn {
-  to {
-    opacity: 1;
-    transform: translateX(0);
+
+
+@media (max-width: 570px) {
+  .info-menu-container .menu-overlay {
+    width: 50vw;
+    .menu-list li {
+      padding: 8px 10px;
+
+      font-size: 12px;
+    }
   }
 }
+
+

@@ -64,6 +64,9 @@
 
 
 @media (max-width: 768px) {
+  .flag-selector-wrapper {
+    margin: 0;
+  }
   app-language-selector {
     left: 0;
   }

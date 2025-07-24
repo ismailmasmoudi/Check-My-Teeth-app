@@ -38,6 +38,7 @@ export class InfoMenuComponent implements OnChanges {
   @Output() pageContentChanged = new EventEmitter<string | null>();
   isOpen = false;
   private _selectedPageKey: keyof typeof this.pages | null = null;
+  private currentKey: string | null = null;
 
   // Helper to get keys for the template to iterate over
   get pageKeys() {
@@ -70,6 +71,14 @@ export class InfoMenuComponent implements OnChanges {
   private clearPage() {
     this._selectedPageKey = null;
     this.pageContentChanged.emit(null);
+  }
+
+  clearSelection() {
+    this._selectedPageKey = null;
+  }
+
+  selectItem(key: string) {
+    this.currentKey = key;
   }
 
   // --- Multilingual Texts ---

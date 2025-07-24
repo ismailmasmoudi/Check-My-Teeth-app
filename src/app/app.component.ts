@@ -233,6 +233,9 @@ export class AppComponent implements OnInit {
   // Die URL enthält deine Script-ID und endet mit /exec
   private readonly scriptUrl = 'https://script.google.com/macros/s/AKfycbwXmTkgKfV8cJhORv0TRq7GBYd6RcmFqbsMUuk9riItOZasAYeWM0kf53yIVG4QP6ef/exec';
 
+  // Füge diese neue Eigenschaft hinzu (nach den anderen Eigenschaften)
+  infoManuallyClosed = false;
+
   ngOnInit(): void {
     // Load the patient's name from browser storage when the app starts
     const storedName = localStorage.getItem('patientName');
@@ -353,10 +356,14 @@ export class AppComponent implements OnInit {
 
   onLanguageChanged(lang: 'en' | 'fr' | 'de' | 'ar') {
     this.selectedLanguage = lang;
-    // Die ausgewählte Sprache im Browser speichern
     localStorage.setItem('selectedLanguage', lang);
     this.updateHtmlLangAndDir(lang);
     this.setGreeting();
+    
+    // Wenn Info-Seite manuell geschlossen wurde, bleibt sie geschlossen
+    if (this.infoManuallyClosed) {
+      this.infoContentHtml = null;
+    }
   }
 
   /**
@@ -364,7 +371,18 @@ export class AppComponent implements OnInit {
    * @param content Der HTML-Inhalt, der angezeigt werden soll, oder null zum Schließen.
    */
   onInfoPageChange(content: string | null): void {
-    this.infoContentHtml = content;
+    if (content === null) {
+      // Info-Seite schließen
+      this.infoContentHtml = null;
+      this.infoManuallyClosed = true; // Markieren als manuell geschlossen
+      if (this.infoMenuComponent) {
+        this.infoMenuComponent.clearSelection();
+      }
+    } else {
+      // Neue Info-Seite öffnen - das Flag zurücksetzen
+      this.infoContentHtml = content;
+      this.infoManuallyClosed = false;
+    }
   }
 
   private updateHtmlLangAndDir(lang: 'en' | 'fr' | 'de' | 'ar'): void {
@@ -425,6 +443,9 @@ export class AppComponent implements OnInit {
     this.diagnosisTreatment = '';
     // Also clear the name from browser storage
     localStorage.removeItem('patientName');
+
+    // Füge diese Zeile am Ende hinzu:
+    this.infoManuallyClosed = false;
   }
 
   openPrivacyPolicy(event: MouseEvent) {

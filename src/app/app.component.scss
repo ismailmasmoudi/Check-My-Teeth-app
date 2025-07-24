@@ -189,24 +189,24 @@
   /* Neue Schriftart für den gesamten Inhalt der Box */
   font-family: "Chakra Petch", sans-serif;
   text-align: center;
-
-  .typing-animation {
-    /* Variable für die Dauer der Animation.
-       Eine Basisdauer von 0.8s plus 0.04s pro Zeichen.
-       Kurze Texte werden dadurch verhältnismäßig langsamer getippt. */
-    --typing-duration: calc(0.8s + var(--char-count) * 0.04s);
-
-    width: max-content;
-    max-width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 3px solid; /* Der blinkende Cursor erbt die Textfarbe (color) */
-    animation: typing var(--typing-duration) steps(var(--char-count)) forwards,
-      blink 0.7s infinite, hide-cursor 1ms var(--typing-duration) forwards;
-    writing-mode: horizontal-tb;
-    display: inline-block;
-  }
 }
+//   .typing-animation {
+//     /* Variable für die Dauer der Animation.
+//        Eine Basisdauer von 0.8s plus 0.04s pro Zeichen.
+//        Kurze Texte werden dadurch verhältnismäßig langsamer getippt. */
+//     --typing-duration: calc(0.8s + var(--char-count) * 0.04s);
+
+//     width: max-content;
+//     max-width: 100%;
+//     overflow: hidden;
+//     white-space: nowrap;
+//     border-right: 3px solid; /* Der blinkende Cursor erbt die Textfarbe (color) */
+//     animation: typing var(--typing-duration) steps(var(--char-count)) forwards,
+//       blink 0.7s infinite, hide-cursor 1ms var(--typing-duration) forwards;
+//     writing-mode: horizontal-tb;
+//     display: inline-block;
+//   }
+// }
 
 /* General Styling for Form Elements inside content-box */
 .content-box {
@@ -237,7 +237,7 @@
        Kurze Texte werden dadurch verhältnismäßig langsamer getippt. */
     --typing-duration: calc(0.8s + var(--char-count) * 0.04s);
 
-    width: max-content;
+    width: fit-content;
     max-width: 100%;
     overflow: hidden;
     white-space: nowrap;

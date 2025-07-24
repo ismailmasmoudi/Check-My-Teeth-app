@@ -489,7 +489,7 @@
     }
 
     p {
-      color: var(--text-color-light); // #555
+      color: black;
       line-height: 1.6;
 
       /* WICHTIG: Dies verhindert, dass lange Wörter einen horizontalen Scrollbalken verursachen */
@@ -674,6 +674,8 @@
     p {
       font-size: 1rem;
       white-space: normal;
+      gap: 1rem;
+      margin: 20px 0;
     }
   }
   .app-title {
@@ -714,6 +716,9 @@
 
     .privacy-consent-container {
       max-width: 300px;
+      input[type="checkbox"] {
+        width: 14px;
+      }
     }
   }
 
@@ -724,9 +729,9 @@
   }
   .content-box .input-group {
     max-height: 280px;
-    gap: 0.25rem;
     p {
       width: fit-content !important;
+      margin: 12px 0;
     }
   }
   .content-box {
@@ -792,6 +797,9 @@
 }
 
 @media (max-width: 370px) {
+  .pain-type-confirm-btn {
+    margin-top: 0px;
+  }
   .app-title {
     font-size: 1.9rem;
   }
@@ -822,7 +830,7 @@
       height: auto;
     }
   }
-  
+
   .content-box {
     input[type="text"],
     select {
@@ -832,10 +840,15 @@
 
     .privacy-consent-container {
       font-size: 0.6rem;
+      input[type="checkbox"] {
+        width: 12px;
+      }
     }
   }
 
   .content-box .input-group {
+    gap: 0.7rem;
+    margin: 10px 0;
     p {
       font-size: 0.8rem;
       margin-bottom: 6px;
@@ -845,5 +858,9 @@
   .name-input-container button {
     margin-top: 6px;
     padding: 8px 14px;
+  }
+
+  .info-page-content {
+    padding: 0 16px;
   }
 }

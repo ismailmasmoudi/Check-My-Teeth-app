@@ -358,7 +358,7 @@ La version actuelle est disponible dans l'application et sur notre site.
 </p>
 `,
         de: `
-<h2>Datenschutzerklärung</h2>
+<h2>Datenschutz</h2>
 
 <h3>1. Informationen zur Erhebung personenbezogener Daten</h3>
 <p>

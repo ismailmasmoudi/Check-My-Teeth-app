@@ -12,6 +12,10 @@ import { Diagnosis, DiagnosisService } from '../../services/diagnosis.service';
 
 type Language = 'en' | 'fr' | 'de' | 'ar';
 
+/**
+ * Component for handling tooth status evaluation and diagnosis flow
+ * Manages the diagnostic process for individual teeth based on their current condition
+ */
 @Component({
   selector: 'app-tooth-status-flow',
   standalone: true,
@@ -28,10 +32,11 @@ export class ToothStatusFlowComponent implements OnChanges {
   @Output() diagnosisReady = new EventEmitter<Diagnosis>();
   @Output() flowCompletedWithoutDiagnosis = new EventEmitter<void>();
 
-  // --- Translation Dictionary ---
-  // Moved here for efficiency. It's created only once per component instance.
+  /**
+   * Translation dictionary containing all multilingual text content
+   * Organized by key with translations for each supported language
+   */
   private readonly allTexts: Record<string, Record<Language, string>> = {
-    // Template Texts
     title: {
       en: 'Status for tooth',
       fr: 'Statut pour la dent',
@@ -206,13 +211,16 @@ export class ToothStatusFlowComponent implements OnChanges {
     },
   };
 
-  // --- Multilingual Texts ---
   titleText: string = '';
 
-  // New properties for wisdom tooth logic
   isWisdomTooth = false;
   private readonly wisdomTeeth = [18, 28, 38, 48];
 
+  /**
+   * Lifecycle hook that responds to input property changes
+   * Updates text translations and wisdom tooth status when inputs change
+   * @param changes Object containing the changed properties
+   */
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['language'] || changes['selectedTooth']) {
       this.updateTexts();
@@ -224,13 +232,18 @@ export class ToothStatusFlowComponent implements OnChanges {
     }
   }
 
+  /**
+   * Updates component text content based on current language and selected tooth
+   */
   private updateTexts(): void {
     this.titleText = `${this.getTranslation('title')} #${this.selectedTooth}`;
   }
 
   constructor(private diagnosisService: DiagnosisService) {}
 
-  // Tooth status checkboxes
+  /**
+   * Object tracking the current status/condition of the selected tooth
+   */
   toothStatus = {
     rootCanal: false,
     hasFilling: false,
@@ -239,50 +252,49 @@ export class ToothStatusFlowComponent implements OnChanges {
     noneOfTheAbove: false,
   };
 
-  // Root canal questions
   rootCanalSince: 'less' | 'more' | null = null;
   rootCanalFinished: boolean | null = null;
 
-  // Filling questions
   fillingDeep: boolean | null = null;
   fillingBroken: boolean | null = null;
 
-  // Crown questions
   crownFell: boolean | null = null;
   crownBroken: boolean | null = null;
 
-  // Loose tooth question
   mobilityGrade: 1 | 2 | 3 | null = null;
   painWithLooseTooth: boolean | null = null;
 
-  // New question A3
   painOnBiting: boolean | null = null;
 
+  /**
+   * Handles changes to root canal treatment status
+   * Manages dependencies between root canal completion and other treatments
+   */
   onRootCanalStatusChange(): void {
-    // If root canal is checked AND it's explicitly marked as NOT completed (false),
-    // then disable and uncheck filling/crown options.
     if (this.toothStatus.rootCanal && this.rootCanalFinished === false) {
       this.toothStatus.hasFilling = false;
       this.toothStatus.hasCrown = false;
     }
   }
 
+  /**
+   * Handles changes to tooth status checkboxes
+   * Manages mutual exclusivity and logical dependencies between different status options
+   * @param changedStatus The specific status option that was changed
+   */
   onStatusChange(changedStatus: 'a' | 'b' | 'c' | 'd' | 'e'): void {
     if (changedStatus === 'd' && this.toothStatus.noneOfTheAbove) {
-      // If "none" is checked, uncheck others
       this.toothStatus.rootCanal = false;
       this.toothStatus.hasFilling = false;
       this.toothStatus.hasCrown = false;
       this.toothStatus.isLoose = false;
-      this.mobilityGrade = null; // Reset grade
+      this.mobilityGrade = null;
     } else if (changedStatus === 'e' && this.toothStatus.isLoose) {
-      // If "isLoose" is checked, uncheck others
       this.toothStatus.rootCanal = false;
       this.toothStatus.hasFilling = false;
       this.toothStatus.hasCrown = false;
       this.toothStatus.noneOfTheAbove = false;
     } else if (['a', 'b', 'c'].includes(changedStatus)) {
-      // If any of a, b, or c is checked, uncheck "none" and "isLoose"
       if (
         this.toothStatus.rootCanal ||
         this.toothStatus.hasFilling ||
@@ -290,23 +302,24 @@ export class ToothStatusFlowComponent implements OnChanges {
       ) {
         this.toothStatus.noneOfTheAbove = false;
         this.toothStatus.isLoose = false;
-        this.mobilityGrade = null; // Reset grade
+        this.mobilityGrade = null;
       }
     }
 
-    // If isLoose is unchecked manually, reset its question
     if (!this.toothStatus.isLoose) {
       this.mobilityGrade = null;
       this.painWithLooseTooth = null;
     }
 
-    // New Logic: If 'a' and 'b' are selected, automatically set A2 to 'Yes'
     if (this.toothStatus.rootCanal && this.toothStatus.hasFilling) {
       this.rootCanalFinished = true;
     }
   }
 
-  // New method to check if all relevant questions are answered
+  /**
+   * Validates that all relevant form questions have been answered
+   * @returns True if form is complete and valid for submission
+   */
   isFormValid(): boolean {
     let isValid = true;
 
@@ -320,14 +333,11 @@ export class ToothStatusFlowComponent implements OnChanges {
       return false;
     }
 
-    // If "none of the above" is selected, the form is valid to proceed.
     if (this.toothStatus.noneOfTheAbove) {
       return true;
     }
 
-    // Validate Loose Tooth question if selected
     if (this.toothStatus.isLoose) {
-      // Special case for wisdom teeth: no further questions needed
       if (this.isWisdomTooth) {
         return true;
       }
@@ -342,19 +352,15 @@ export class ToothStatusFlowComponent implements OnChanges {
       return isValid;
     }
 
-    // Validate Root Canal questions if selected
     if (this.toothStatus.rootCanal) {
-      // Q2 (isFullyCompleted) must always be answered
       if (this.rootCanalFinished === null) {
         isValid = false;
       }
-      // If Q2 is 'Yes', then Q3 (painOnBiting) must be answered
       else if (this.rootCanalFinished === true && this.painOnBiting === null) {
         isValid = false;
       }
     }
 
-    // Validate Filling questions if selected and not skipped by a finished root canal
     const isFillingSkipped =
       this.toothStatus.rootCanal && this.rootCanalFinished === true;
     if (this.toothStatus.hasFilling && !isFillingSkipped) {
@@ -363,13 +369,10 @@ export class ToothStatusFlowComponent implements OnChanges {
       }
     }
 
-    // Validate Crown questions if selected
     if (this.toothStatus.hasCrown) {
-      // First question must always be answered
       if (this.crownBroken === null) {
         isValid = false;
       }
-      // Second question is only required if the first answer was 'No'
       else if (this.crownBroken === false && this.crownFell === null) {
         isValid = false;
       }
@@ -377,32 +380,32 @@ export class ToothStatusFlowComponent implements OnChanges {
 
     return isValid;
   }
+  
+  /**
+   * Processes the current tooth status and generates appropriate diagnosis
+   * Handles different diagnostic paths based on tooth condition and symptoms
+   */
   explainDiagnosis() {
-    // If "none of the above" is selected, go straight to pain questions.
     if (this.toothStatus.noneOfTheAbove) {
       this.flowCompletedWithoutDiagnosis.emit();
       return;
     }
 
     if (!this.isFormValid()) {
-      console.warn('Form is not valid. Cannot explain diagnosis.');
       return;
     }
 
-    // Special case for loose wisdom teeth
     if (this.toothStatus.isLoose && this.isWisdomTooth) {
       this.emitDiagnosisById('weisheitszahnziehen');
       return;
     }
 
-    // Evaluation for Loose Tooth (Highest Priority)
     if (this.toothStatus.isLoose) {
       if (this.painWithLooseTooth === true) {
         this.emitDiagnosisById('loose_tooth_with_pain_extraction');
         return;
       }
 
-      // Only evaluate grade if there is no pain
       if (this.painWithLooseTooth === false)
         switch (this.mobilityGrade) {
           case 1:
@@ -415,24 +418,19 @@ export class ToothStatusFlowComponent implements OnChanges {
             this.emitDiagnosisById('mobility_grade_3');
             break;
         }
-      return; // Definitive diagnosis, stop here.
+      return;
     }
 
     const foundDiagnosisIds: string[] = [];
 
-    // --- Collect all concurrent diagnoses ---
-
-    // 1. Evaluate Crown Issues
     if (this.toothStatus.hasCrown) {
       if (this.crownBroken === true) {
         foundDiagnosisIds.push('crownBroken');
       } else if (this.crownFell === true) {
-        // This implies crownBroken is false from the UI logic
         foundDiagnosisIds.push('crownFell');
       }
     }
 
-    // 2. Evaluate Root Canal Issues
     if (this.toothStatus.rootCanal) {
       if (this.rootCanalFinished === false) {
         foundDiagnosisIds.push('rootCanalNotFinished');
@@ -440,11 +438,9 @@ export class ToothStatusFlowComponent implements OnChanges {
         if (this.painOnBiting === true) {
           foundDiagnosisIds.push('rctFinishedStillPain');
         }
-        // The "OR" case (painOnBiting === false) is handled later if no other issues are found.
       }
     }
 
-    // 3. Evaluate Filling Issues
     const isFillingSkippedByRCT =
       this.toothStatus.rootCanal && this.rootCanalFinished === true;
     if (this.toothStatus.hasFilling && !isFillingSkippedByRCT) {
@@ -452,20 +448,19 @@ export class ToothStatusFlowComponent implements OnChanges {
       if (this.fillingBroken === true) foundDiagnosisIds.push('fillingBroken');
     }
 
-    // --- Process the collected diagnoses ---
-
-    // If we have found one or more "AND" problems, process them.
     if (foundDiagnosisIds.length > 0) {
       if (foundDiagnosisIds.length === 1) {
         this.emitDiagnosisById(foundDiagnosisIds[0]);
       } else {
-        const combinedDiagnosis = this.combineDiagnoses(foundDiagnosisIds, 'and');
+        const combinedDiagnosis = this.combineDiagnoses(
+          foundDiagnosisIds,
+          'and'
+        );
         this.diagnosisReady.emit(combinedDiagnosis);
       }
-      return; // We are done.
+      return;
     }
 
-    // If no "AND" problems were found, check for the special "OR" case from RCT.
     if (
       this.toothStatus.rootCanal &&
       this.rootCanalFinished === true &&
@@ -479,21 +474,29 @@ export class ToothStatusFlowComponent implements OnChanges {
       return;
     }
 
-    // If we reach here, it means no specific diagnosis was found (e.g., crown is fine).
-    // We should proceed to the general pain questions.
     if (foundDiagnosisIds.length === 0) {
       this.flowCompletedWithoutDiagnosis.emit();
     }
   }
 
+  /**
+   * Emits a diagnosis event based on the provided diagnosis ID
+   * @param id The diagnosis identifier to look up and emit
+   */
   private emitDiagnosisById(id: string): void {
     const diagnosis = this.diagnosisService.getDiagnosisById(id);
     if (diagnosis) {
-      // Emit the entire diagnosis object, not just the translated strings
       this.diagnosisReady.emit(diagnosis);
     }
   }
 
+  /**
+   * Combines multiple diagnoses into a single comprehensive diagnosis object
+   * Supports both "and" and "or" logical combinations with multilingual content
+   * @param diagnosisIds Array of diagnosis IDs to combine
+   * @param conjunction The logical connector ("and" or "or")
+   * @returns Combined diagnosis object with multilingual content
+   */
   private combineDiagnoses(
     diagnosisIds: string[],
     conjunction: 'and' | 'or'
@@ -503,7 +506,6 @@ export class ToothStatusFlowComponent implements OnChanges {
       .filter((d): d is Diagnosis => !!d);
 
     if (diagnoses.length === 0) {
-      // Return an empty Diagnosis object to avoid errors
       return {
         id: 'multiple_empty',
         title: {
@@ -527,7 +529,6 @@ export class ToothStatusFlowComponent implements OnChanges {
       };
     }
 
-    // Create a new Diagnosis object to hold the combined, multilingual texts
     const combinedDiagnosis: Diagnosis = {
       id: 'multiple_issues',
       title: {
@@ -564,7 +565,6 @@ export class ToothStatusFlowComponent implements OnChanges {
       : 'multipleIssuesTreatmentIntro';
     const conjunctionKey = isOrLogic ? 'orWord' : 'andWord';
 
-    // Loop through each language to build the combined texts for that language
     for (const lang of languages) {
       combinedDiagnosis.title[lang] = this.allTexts[titleKey][lang];
       const conjunctionWord = this.allTexts[conjunctionKey][lang];
@@ -590,7 +590,11 @@ export class ToothStatusFlowComponent implements OnChanges {
     return combinedDiagnosis;
   }
 
-  // This method is now public so it can be accessed by the template.
+  /**
+   * Retrieves translated text for a given key in the current language
+   * @param key The translation key to look up
+   * @returns The translated text or a missing key indicator
+   */
   public getTranslation(key: string): string {
     return this.allTexts[key]?.[this.language] ?? `Missing: ${key}`;
   }

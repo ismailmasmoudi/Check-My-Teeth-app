@@ -3,11 +3,35 @@ import { QuestionFlowComponent } from './components/question-flow/question-flow.
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { ToothSelectorComponent } from './components/tooth-selector/tooth-selector.component';
 import { Diagnosis } from './services/diagnosis.service';
-import { LanguageSelectorComponent } from './components/language-selector/language-selector.component'; // Import PainTypeSelectorComponent
+import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
 import { ToothStatusFlowComponent } from './components/tooth-status-flow/tooth-status-flow.component';
 import { InfoMenuComponent } from './components/info-menu/info-menu.component';
 import { FormsModule } from '@angular/forms';
-import { DataLoggerService, DiagnosisData } from './services/data-logger.service';
+import {
+  DataLoggerService,
+  DiagnosisData,
+} from './services/data-logger.service';
+import {
+  NAME_PROMPT_TEXT,
+  NAME_INPUT_PLACEHOLDER,
+  CONTINUE_BUTTON_LABEL,
+  GREETINGS,
+  PAIN_TYPE_QUESTION_TEXT,
+  SELECT_PAIN_TYPE_LABEL,
+  PAIN_TYPES_TEXT,
+  BACK_BUTTON_LABEL,
+  START_OVER_BUTTON_LABEL,
+  DISCLAIMER_TEXT,
+  NAME_ERROR_TEXT,
+  PAIN_TYPES,
+  CLOSE_BUTTON_LABEL,
+  DIAGNOSIS_EXPLANATION_LABEL,
+  DIAGNOSIS_TREATMENT_LABEL,
+  PRIVACY_CONSENT_TEXT_PARTS,
+  PRIVACY_POLICY_LINK_TEXT,
+  IMPORTANT_NOTICE_TEXT,
+  DIAGNOSING_TEXT,
+} from './translations';
 
 @Component({
   selector: 'app-root',
@@ -33,30 +57,40 @@ export class AppComponent implements OnInit {
   patientName: string | null = null;
   greeting: string = '';
   privacyConsent = false;
-
   isDiagnosing = false;
   selectedPainType: string | null = null;
   selectedTooth: number | null = null;
   finalDiagnosis: Diagnosis | null = null;
   isToothStatusFlowComplete = false;
-
-  // Zustand für den neuen Splash-Screen
   splashState: 'visible' | 'hiding' | 'hidden' = 'visible';
-
-  // Eigenschaft zum Speichern des HTML-Inhalts aus dem Info-Menü
   infoContentHtml: string | null = null;
-
-  // Übersetzungen für den neuen Schließen-Button
-  closeButtonLabel = {
-    en: 'Close',
-    fr: 'Fermer',
-    de: 'Schließen',
-    ar: 'إغلاق',
-  };
   collectedSymptoms: string = '';
   diagnosisTitle: string = '';
   diagnosisExplanation: string = '';
   diagnosisTreatment: string = '';
+  showNameError = false;
+  painTypeIndex = 0;
+  infoManuallyClosed = false;
+
+  namePromptText = NAME_PROMPT_TEXT;
+  nameInputPlaceholder = NAME_INPUT_PLACEHOLDER;
+  continueButtonLabel = CONTINUE_BUTTON_LABEL;
+  greetings = GREETINGS;
+  painTypeQuestionText = PAIN_TYPE_QUESTION_TEXT;
+  selectPainTypeLabel = SELECT_PAIN_TYPE_LABEL;
+  painTypesText = PAIN_TYPES_TEXT;
+  backButtonLabel = BACK_BUTTON_LABEL;
+  startOverButtonLabel = START_OVER_BUTTON_LABEL;
+  disclaimerText = DISCLAIMER_TEXT;
+  nameErrorText = NAME_ERROR_TEXT;
+  painTypes = PAIN_TYPES;
+  closeButtonLabel = CLOSE_BUTTON_LABEL;
+  diagnosisExplanationLabel = DIAGNOSIS_EXPLANATION_LABEL;
+  diagnosisTreatmentLabel = DIAGNOSIS_TREATMENT_LABEL;
+  privacyConsentTextParts = PRIVACY_CONSENT_TEXT_PARTS;
+  privacyPolicyLinkText = PRIVACY_POLICY_LINK_TEXT;
+  importantNoticeText = IMPORTANT_NOTICE_TEXT;
+  diagnosingText = DIAGNOSING_TEXT;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -64,180 +98,11 @@ export class AppComponent implements OnInit {
     private dataLoggerService: DataLoggerService
   ) {}
 
-  namePromptText = {
-    en: 'Hi there! Before we begin, may I kindly ask for your name?',
-    de: 'Hallo! Bevor wir starten, darf ich bitte Ihren Namen wissen?',
-    fr: 'Bonjour ! Avant de commencer, puis-je vous demander votre prénom ?',
-    ar: 'مرحبًا! قبل أن نبدأ، هل لي أن أعرف اسمك من فضلك؟',
-  };
-
-  nameInputPlaceholder = {
-    en: 'Your name',
-    de: 'Ihr Name',
-    fr: 'Votre nom',
-    ar: 'اسمك',
-  };
-
-  continueButtonLabel = {
-    en: 'Continue',
-    de: 'Weiter',
-    fr: 'Continuer',
-    ar: 'متابعة',
-  };
-
-  greetings = {
-    morning: {
-      en: 'Good morning,',
-      de: 'Guten Morgen,',
-      fr: 'Bonjour,',
-      ar: 'صباح الخير،',
-    },
-    afternoon: {
-      en: 'Good afternoon,',
-      de: 'Guten Tag,',
-      fr: 'Bonjour,', // French uses Bonjour for both
-      ar: 'مساء الخير،',
-    },
-    evening: {
-      en: 'Good evening,',
-      de: 'Guten Abend,',
-      fr: 'Bonsoir,',
-      ar: 'مساء الخير،',
-    },
-  };
-
-  painTypeQuestionText = {
-    en: 'What type of pain do you have?',
-    fr: 'Quel type de douleur avez-vous ?',
-    de: 'Welche Art von Schmerzen haben Sie?',
-    ar: 'ما نوع الألم الذي تعاني منه؟',
-  };
-
-  selectPainTypeLabel = {
-    en: 'Select pain type',
-    fr: 'Sélectionnez le type de douleur',
-    de: 'Schmerzart auswählen',
-    ar: 'اختر نوع الألم',
-  };
-
-  painTypesText = {
-    tooth: {
-      en: 'Tooth pain',
-      fr: 'Douleur dentaire',
-      de: 'Zahnschmerzen',
-      ar: 'ألم الأسنان',
-    },
-    gum: {
-      en: 'Gum pain',
-      fr: 'Douleur des gencives',
-      de: 'Zahnfleischschmerzen',
-      ar: 'ألم اللثة',
-    },
-    tmj: {
-      en: 'Jaw Joint Pain',
-      fr: "Douleur à l'articulation de la mâchoire",
-      de: 'Kiefergelenkschmerzen',
-      ar: 'ألم في مفصل الفك',
-    },
-  };
-
-  backButtonLabel = {
-    en: 'Back',
-    fr: 'Retour',
-    de: 'Zurück',
-    ar: 'رجوع',
-  };
-
-  diagnosisExplanationLabel: { [key: string]: string } = {
-    en: 'Explanation',
-    fr: 'Explication',
-    de: 'Erklärung',
-    ar: 'شرح',
-  };
-
-  diagnosisTreatmentLabel: { [key: string]: string } = {
-    en: 'Suggested Treatment',
-    fr: 'Traitement Suggéré',
-    de: 'Vorgeschlagene Behandlung',
-    ar: 'العلاج المقترح',
-  };
-
-  startOverButtonLabel = {
-    en: 'Start Over',
-    fr: 'Recommencer',
-    de: 'Von vorne beginnen',
-    ar: 'البدء من جديد',
-  };
-
-  disclaimerText = {
-    en: 'The diagnosis shown here is based on the information you have provided and is approximately 80 % accurate. However, a clinical examination in a dental practice is necessary for an exact diagnosis. If necessary, an X-ray should also be taken.',
-    fr: 'Le diagnostic affiché ici est basé sur les informations que vous avez fournies et est correct à environ 80 %. Cependant, un examen clinique dans un cabinet dentaire est nécessaire pour un diagnostic exact. Si nécessaire, une radiographie doit également être réalisée.',
-    de: 'Die hier angezeigte Diagnose basiert auf den von Ihnen angegebenen Informationen und ist mit einer Wahrscheinlichkeit von etwa 80 % korrekt. Für eine exakte Diagnose ist jedoch eine klinische Untersuchung in einer Zahnarztpraxis erforderlich. Falls notwendig, sollte zusätzlich ein Röntgenbild angefertigt werden.',
-    ar: 'التشخيص المعروض هنا يعتمد على المعلومات التي قدمتها وهو صحيح بنسبة 80 % تقريبًا. ومع ذلك، فإن الفحص السريري في عيادة الأسنان ضروري لتشخيص دقيق. إذا لزم الأمر، يجب أيضًا إجراء صورة أشعة.',
-  };
-
-  privacyConsentTextParts = {
-    en: [
-      'I have read the ',
-      ' and agree to the processing of my data as described therein.',
-    ],
-    de: [
-      'Ich habe die ',
-      ' gelesen und stimme der Verarbeitung meiner Daten wie dort beschrieben zu.',
-    ],
-    fr: [
-      "J'ai lu la ",
-      " et j'accepte le traitement de mes données tel qu'il y est décrit.",
-    ],
-    ar: ['لقد قرأت ', ' وأوافق على معالجة بياناتي كما هو موضح فيها.'],
-  };
-
-  privacyPolicyLinkText = {
-    en: 'privacy policy',
-    de: 'Datenschutzerklärung',
-    fr: 'politique de confidentialité',
-    ar: 'سياسة الخصوصية',
-  };
-
-  importantNoticeText = {
-    en: 'Important:',
-    de: 'Wichtig:',
-    fr: 'Important :',
-    ar: 'مهم:',
-  };
-
-  diagnosingText = {
-    en: 'Creating diagnosis...',
-    de: 'Diagnose wird erstellt...',
-    fr: 'Création du diagnostic...',
-    ar: 'جاري إنشاء التشخيص...',
-  };
-
-  showNameError = false;
-  nameErrorText = {
-    de: 'Bitte geben Sie einen gültigen Namen ein. Zahlen und Sonderzeichen sind nicht erlaubt.',
-    en: 'Please enter a valid name. Numbers and special characters are not allowed.',
-    ar: 'يرجى إدخال اسم صحيح. الأرقام والرموز غير مسموح بها.',
-    fr: 'Veuillez entrer un nom valide. Les chiffres et les caractères spéciaux ne sont pas autorisés.',
-  };
-
-  painTypes = [
-    { value: 'tooth', label: { de: 'Zahn', en: 'Tooth', fr: 'Dent', ar: 'سن' } },
-    { value: 'gum', label: { de: 'Zahnfleisch', en: 'Gum', fr: 'Gencive', ar: 'لثة' } },
-    { value: 'tmj', label: { de: 'Kiefergelenk', en: 'Jaw joint', fr: 'Articulation', ar: 'مفصل الفك' } }
-  ];
-
-  painTypeIndex = 0;
-
-  // Dies ist die URL deiner Google Apps Script Web App, die die Daten in Google Sheets speichert
-  // Die URL enthält deine Script-ID und endet mit /exec
-  private readonly scriptUrl = 'https://script.google.com/macros/s/AKfycbwXmTkgKfV8cJhORv0TRq7GBYd6RcmFqbsMUuk9riItOZasAYeWM0kf53yIVG4QP6ef/exec';
-
-  // Füge diese neue Eigenschaft hinzu (nach den anderen Eigenschaften)
-  infoManuallyClosed = false;
-
+  /**
+   * Component initialization lifecycle hook
+   * Loads stored patient name, sets up language preferences, and manages splash screen animation
+   */
   ngOnInit(): void {
-    // Load the patient's name from browser storage when the app starts
     const storedName = localStorage.getItem('patientName');
     if (storedName) {
       this.patientName = storedName;
@@ -245,17 +110,18 @@ export class AppComponent implements OnInit {
     }
     this.updateHtmlLangAndDir(this.selectedLanguage);
 
-    // Logik für den Splash-Screen
-    // Startet die Ausblende-Animation nach 1.5 Sekunden
     setTimeout(() => {
       this.splashState = 'hiding';
-      // Versteckt das Element komplett, nachdem die Animation (500ms) abgeschlossen ist
       setTimeout(() => {
         this.splashState = 'hidden';
       }, 500);
     }, 1500);
   }
 
+  /**
+   * Determines the initial language based on localStorage or browser preferences
+   * @returns The selected language code
+   */
   private getInitialLanguage(): 'en' | 'fr' | 'de' | 'ar' {
     const supportedLanguages: ('en' | 'fr' | 'de' | 'ar')[] = [
       'en',
@@ -264,31 +130,32 @@ export class AppComponent implements OnInit {
       'ar',
     ];
 
-    // 1. Versuchen, die Sprache aus dem localStorage zu laden
     const storedLang = localStorage.getItem('selectedLanguage');
     if (storedLang && supportedLanguages.includes(storedLang as any)) {
       return storedLang as 'en' | 'fr' | 'de' | 'ar';
     }
 
-    // 2. Wenn nicht vorhanden, Browsersprache versuchen
     const browserLang = navigator.language.split('-')[0];
     const foundLang = supportedLanguages.find((lang) => lang === browserLang);
 
-    // 3. Fallback auf Englisch
     return foundLang || 'en';
   }
 
+  /**
+   * Handles patient name submission with validation
+   * Validates name format and saves to localStorage if valid
+   * @param name The submitted patient name
+   */
   onNameSubmitted(name: string): void {
     if (!this.privacyConsent) {
       return;
     }
 
-    // Name muss mindestens 2 Buchstaben enthalten und darf nicht nur Zahlen sein
     const trimmed = name ? name.trim() : '';
     const isValid =
       trimmed.length >= 2 &&
-      /[a-zA-Z\u0600-\u06FF]/.test(trimmed) && // mind. ein Buchstabe (auch Arabisch)
-      !/^\d+$/.test(trimmed); // nicht nur Zahlen
+      /[a-zA-Z\u0600-\u06FF]/.test(trimmed) &&
+      !/^\d+$/.test(trimmed);
 
     if (!isValid) {
       this.showNameError = true;
@@ -301,6 +168,10 @@ export class AppComponent implements OnInit {
     this.setGreeting();
   }
 
+  /**
+   * Sets the appropriate greeting based on time of day and patient name
+   * Updates the greeting message according to current hour and selected language
+   */
   private setGreeting(): void {
     if (!this.patientName) {
       this.greeting = '';
@@ -319,72 +190,90 @@ export class AppComponent implements OnInit {
     }!`;
   }
 
+  /**
+   * Handles the completion of diagnosis process
+   * Displays diagnosis animation and saves result to data service
+   * @param result The completed diagnosis object
+   */
   onDiagnosisReady(result: Diagnosis): void {
     if (result) {
       this.isDiagnosing = true;
       setTimeout(() => {
         this.finalDiagnosis = result;
         this.isDiagnosing = false;
-        
-        // Speichere die relevanten Diagnose-Informationen
+
         this.diagnosisTitle = result.title[this.selectedLanguage];
         this.diagnosisExplanation = result.explanation[this.selectedLanguage];
         this.diagnosisTreatment = result.treatment[this.selectedLanguage];
-        
-        // Symptome werden jetzt via symptomSummary Event übergeben
-        console.log('App: Symptome aus symptomSummary Event:', this.collectedSymptoms);
-        
-        // Speichere die Diagnose in Google Sheets
+
         this.saveDiagnosis();
-      }, 5000); // 5 seconds
+      }, 5000);
     }
   }
 
+  /**
+   * Handles completion of tooth status flow when no diagnosis is found
+   * Transitions to general pain questions for further diagnosis
+   */
   onToothStatusFlowCompleted() {
-    // The tooth status flow is done, but no diagnosis was found.
-    // We now need to show the general pain questions.
     this.isToothStatusFlowComplete = true;
   }
 
+  /**
+   * Handles pain type selection from user input
+   * @param painType The selected pain type (tooth, gum, or tmj)
+   */
   onPainTypeSelected(painType: string) {
     this.selectedPainType = painType;
   }
 
+  /**
+   * Handles tooth selection from tooth selector component
+   * @param toothId The selected tooth identification number
+   */
   onToothSelected(toothId: number) {
     this.selectedTooth = toothId;
   }
 
+  /**
+   * Handles language change events
+   * Updates language preferences and resets info page if manually closed
+   * @param lang The selected language code
+   */
   onLanguageChanged(lang: 'en' | 'fr' | 'de' | 'ar') {
     this.selectedLanguage = lang;
     localStorage.setItem('selectedLanguage', lang);
     this.updateHtmlLangAndDir(lang);
     this.setGreeting();
-    
-    // Wenn Info-Seite manuell geschlossen wurde, bleibt sie geschlossen
+
     if (this.infoManuallyClosed) {
       this.infoContentHtml = null;
     }
   }
 
   /**
-   * Event-Handler zum Empfangen des Inhalts vom Info-Menü.
-   * @param content Der HTML-Inhalt, der angezeigt werden soll, oder null zum Schließen.
+   * Handles info page content changes from info menu component
+   * Manages info page display state and manual close tracking
+   * @param content The HTML content to display, or null to close
    */
   onInfoPageChange(content: string | null): void {
     if (content === null) {
-      // Info-Seite schließen
       this.infoContentHtml = null;
-      this.infoManuallyClosed = true; // Markieren als manuell geschlossen
+      this.infoManuallyClosed = true;
       if (this.infoMenuComponent) {
         this.infoMenuComponent.clearSelection();
       }
     } else {
-      // Neue Info-Seite öffnen - das Flag zurücksetzen
       this.infoContentHtml = content;
       this.infoManuallyClosed = false;
     }
   }
 
+  /**
+   * Updates HTML document language and direction attributes
+   * Sets proper RTL/LTR text direction based on selected language
+   * @param lang The language code to apply
+   */
   private updateHtmlLangAndDir(lang: 'en' | 'fr' | 'de' | 'ar'): void {
     this.renderer.setAttribute(this.document.documentElement, 'lang', lang);
     if (lang === 'ar') {
@@ -394,40 +283,43 @@ export class AppComponent implements OnInit {
     }
   }
 
+  /**
+   * Handles back navigation through different application states
+   * Manages navigation between question flows, tooth selection, and pain type selection
+   */
   triggerBackAction() {
-    // Case 1: The user is in the general question flow.
-    // Delegate the back action to the component. It will either go back one question
-    // or emit an event if it's at the beginning.
     if (this.questionFlowComponent) {
       this.questionFlowComponent.goBackInternal();
       return;
     }
 
-    // Case 2: The user is in the tooth status flow. Go back to the tooth selector.
     if (this.selectedPainType === 'tooth' && this.selectedTooth) {
       this.selectedTooth = null;
       return;
     }
 
-    // Case 3: The user is on the tooth selector screen. Go back to pain type selection.
     if (this.selectedPainType === 'tooth' && !this.selectedTooth) {
       this.selectedPainType = null;
       return;
     }
   }
 
+  /**
+   * Handles back navigation from question flow component
+   * Manages transition between tooth status flow and pain type selection
+   */
   onQuestionFlowBack() {
-    // This event is fired by QuestionFlowComponent when trying to go "back" from the first question.
-
-    // If we came from the tooth status flow, go back to it.
     if (this.selectedPainType === 'tooth' && this.isToothStatusFlowComplete) {
-      this.isToothStatusFlowComplete = false; // This hides QuestionFlow and shows ToothStatusFlow again.
+      this.isToothStatusFlowComplete = false;
     } else {
-      // For 'gum' or 'tmj' pain, go back to the pain type selection screen.
       this.selectedPainType = null;
     }
   }
 
+  /**
+   * Resets all application state to initial values
+   * Clears patient data, selections, and diagnosis results from memory and storage
+   */
   resetSelection() {
     this.patientName = null;
     this.greeting = '';
@@ -436,47 +328,55 @@ export class AppComponent implements OnInit {
     this.finalDiagnosis = null;
     this.isDiagnosing = false;
     this.isToothStatusFlowComplete = false;
-    // Auch die Diagnose-Daten zurücksetzen
     this.collectedSymptoms = '';
     this.diagnosisTitle = '';
     this.diagnosisExplanation = '';
     this.diagnosisTreatment = '';
-    // Also clear the name from browser storage
     localStorage.removeItem('patientName');
 
-    // Füge diese Zeile am Ende hinzu:
     this.infoManuallyClosed = false;
   }
 
+  /**
+   * Opens the privacy policy page through the info menu component
+   * @param event The mouse click event (prevented to avoid default link behavior)
+   */
   openPrivacyPolicy(event: MouseEvent) {
     event.preventDefault();
     this.infoMenuComponent.openPage('privacy');
   }
 
+  /**
+   * Navigates to the previous pain type in the selection carousel
+   */
   selectPrevPainType() {
-    this.painTypeIndex = (this.painTypeIndex - 1 + this.painTypes.length) % this.painTypes.length;
+    this.painTypeIndex =
+      (this.painTypeIndex - 1 + this.painTypes.length) % this.painTypes.length;
   }
 
+  /**
+   * Navigates to the next pain type in the selection carousel
+   */
   selectNextPainType() {
     this.painTypeIndex = (this.painTypeIndex + 1) % this.painTypes.length;
   }
 
+  /**
+   * Saves the current diagnosis data to the data logging service
+   * Collects all patient information and diagnosis results for storage
+   */
   saveDiagnosis() {
-    console.log('Speichere Diagnose mit Symptomen', { 
-      symptomLength: this.collectedSymptoms?.length || 0,
-      symptomPreview: this.collectedSymptoms?.substring(0, 50) + '...'
-    });
-    
     const diagnosisData: DiagnosisData = {
       timestamp: new Date().toISOString(),
       name: this.patientName,
       language: this.selectedLanguage,
       painType: this.selectedPainType,
       toothNumber: this.selectedTooth,
-      symptoms: this.collectedSymptoms || 'Patient reported no specific symptoms',
+      symptoms:
+        this.collectedSymptoms || 'Patient reported no specific symptoms',
       diagnosisTitle: this.diagnosisTitle,
       diagnosisExplanation: this.diagnosisExplanation,
-      diagnosisTreatment: this.diagnosisTreatment
+      diagnosisTreatment: this.diagnosisTreatment,
     };
     this.dataLoggerService.logDiagnosis(diagnosisData);
   }

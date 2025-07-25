@@ -90,10 +90,10 @@
       },
       {
         "label": {
-          "en": "No, it's more of a dull ache",
-          "fr": "Non, c'est plutôt une douleur sourde",
-          "de": "Nein, es ist eher ein dumpfer Schmerz",
-          "ar": "لا، إنه أشبه بألم خفيف"
+          "en": "No",
+          "fr": "Non",
+          "de": "Nein",
+          "ar": "لا"
         },
         "diagnosisId": "CARIE_PROFUNDA"
       }

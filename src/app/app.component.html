@@ -1,20 +1,9 @@
-<!-- Splash Screen, der am Anfang gezeigt wird -->
-<div
-  class="splash-screen"
-  *ngIf="splashState !== 'hidden'"
-  [class.hiding]="splashState === 'hiding'"
->
+<div class="splash-screen" *ngIf="splashState !== 'hidden'" [class.hiding]="splashState === 'hiding'">
   <img src="/img/logo.png" alt="CheckMyToothBot Logo" class="splash-logo" />
 </div>
 
-<!-- 
-  Der Hauptcontainer, der durch Flexbox im Body zentriert wird.
-  Er enthält die "content-box", die das Design mit dem Hintergrundbild hat.
--->
 <div class="main-container" [class.app-blurred]="splashState !== 'hidden'">
-  <!-- Info Menu oben rechts -->
   <app-info-menu [language]="selectedLanguage" (pageContentChanged)="onInfoPageChange($event)"></app-info-menu>
-  <!-- Die Sprachauswahl wird jetzt von app.component.scss gesteuert -->
   <app-language-selector [currentLang]="selectedLanguage"
     (languageChanged)="onLanguageChanged($event)"></app-language-selector>
 
@@ -23,116 +12,108 @@
     <img src="/img/Headrobot.png" alt="Robot Head" class="head-robot-img">
   </div>
   <div class="content-box">
-   <!-- Info Page Content (wird angezeigt, wenn eine Seite aus dem Menü ausgewählt wurde) -->
     <div *ngIf="infoContentHtml" class="info-page-content">
-      <button class="close-info-btn" (click)="onInfoPageChange(null)" [title]="closeButtonLabel[selectedLanguage]">×</button>
+      <button class="close-info-btn" (click)="onInfoPageChange(null)"
+        [title]="closeButtonLabel[selectedLanguage]">×</button>
       <div [innerHTML]="infoContentHtml" class="info-page-text"></div>
     </div>
 
-    <!-- Main Application Flow (wird angezeigt, wenn keine Info-Seite aktiv ist) -->
     <div *ngIf="!infoContentHtml">
-      <!-- Step 0: Name Input -->
       <div *ngIf="!patientName" class="name-input-container input-group">
         <p class="typing-animation" [style.--char-count]="namePromptText[selectedLanguage].length">
           {{ namePromptText[selectedLanguage] }}
         </p>
-        <input #nameInput type="text" [placeholder]="nameInputPlaceholder[selectedLanguage]" (keyup.enter)="onNameSubmitted(nameInput.value)">
+        <input #nameInput type="text" [placeholder]="nameInputPlaceholder[selectedLanguage]"
+          (keyup.enter)="onNameSubmitted(nameInput.value)">
         <div *ngIf="showNameError" class="input-error">
           {{ nameErrorText[selectedLanguage] }}
         </div>
 
-        <!-- Privacy Consent Checkbox -->
         <div class="privacy-consent-container">
           <input type="checkbox" id="privacy-consent" [(ngModel)]="privacyConsent">
           <label for="privacy-consent">
-            <span> <b>{{ importantNoticeText[selectedLanguage] }}</b> {{ privacyConsentTextParts[selectedLanguage][0] }}</span>
+            <span> <b>{{ importantNoticeText[selectedLanguage] }}</b> {{ privacyConsentTextParts[selectedLanguage][0]
+              }}</span>
             <a href="#" (click)="openPrivacyPolicy($event)">{{ privacyPolicyLinkText[selectedLanguage] }}</a>
             <span>{{ privacyConsentTextParts[selectedLanguage][1] }}</span>
           </label>
         </div>
 
-        <button (click)="onNameSubmitted(nameInput.value)" [disabled]="!privacyConsent">{{ continueButtonLabel[selectedLanguage] }}</button>
+        <button (click)="onNameSubmitted(nameInput.value)" [disabled]="!privacyConsent">{{
+          continueButtonLabel[selectedLanguage] }}</button>
       </div>
 
-      <!-- Main Application Flow (shown only after name is entered) -->
-        <div *ngIf="patientName">
-          <h2 *ngIf="greeting && !selectedPainType && !finalDiagnosis" class="greeting-header">{{ greeting }}</h2>
+      <div *ngIf="patientName">
+        <h2 *ngIf="greeting && !selectedPainType && !finalDiagnosis" class="greeting-header">{{ greeting }}</h2>
 
+        <div *ngIf="!selectedPainType && !finalDiagnosis" class="input-group">
+          <p class="typing-animation" [style.--char-count]="painTypeQuestionText[selectedLanguage].length">
+            {{ painTypeQuestionText[selectedLanguage] }}
+          </p>
+          <div class="pain-type-slider" [attr.dir]="selectedLanguage === 'ar' ? 'rtl' : 'ltr'">
+            <img *ngIf="selectedLanguage !== 'ar'" src="img/icons/arrow-left-blue.png" alt="Vorherige Schmerzart"
+              class="arrow-img left" (click)="selectPrevPainType()" />
+            <img *ngIf="selectedLanguage === 'ar'" src="img/icons/arrow-right-blue.png" alt="Vorherige Schmerzart"
+              class="arrow-img left" (click)="selectPrevPainType()" />
 
-      <!-- Step 1: Pain Type Selection -->
-          <div *ngIf="!selectedPainType && !finalDiagnosis" class="input-group">
-            <p class="typing-animation" [style.--char-count]="painTypeQuestionText[selectedLanguage].length">
-              {{ painTypeQuestionText[selectedLanguage] }}
-            </p>
-            <div class="pain-type-slider" [attr.dir]="selectedLanguage === 'ar' ? 'rtl' : 'ltr'">
-              <!-- Wenn Arabisch: Rechts-Pfeil für "Zurück", Links-Pfeil für "Weiter" -->
-              <img *ngIf="selectedLanguage !== 'ar'" src="img/icons/arrow-left-blue.png" alt="Vorherige Schmerzart" class="arrow-img left"
-                   (click)="selectPrevPainType()" />
-              <img *ngIf="selectedLanguage === 'ar'" src="img/icons/arrow-right-blue.png" alt="Vorherige Schmerzart" class="arrow-img left"
-                   (click)="selectPrevPainType()" />
-                   
-              <div class="pain-type-label">
-                {{ painTypes[painTypeIndex].label[selectedLanguage] }}
-              </div>
-              
-              <img *ngIf="selectedLanguage !== 'ar'" src="img/icons/arrow-right-blue.png" alt="Nächste Schmerzart" class="arrow-img right"
-                   (click)="selectNextPainType()" />
-              <img *ngIf="selectedLanguage === 'ar'" src="img/icons/arrow-left-blue.png" alt="Nächste Schmerzart" class="arrow-img right"
-                   (click)="selectNextPainType()" />
+            <div class="pain-type-label">
+              {{ painTypes[painTypeIndex].label[selectedLanguage] }}
             </div>
-            <button class="pain-type-confirm-btn" (click)="onPainTypeSelected(painTypes[painTypeIndex].value)">
-              {{ continueButtonLabel[selectedLanguage] }}
-            </button>
+
+            <img *ngIf="selectedLanguage !== 'ar'" src="img/icons/arrow-right-blue.png" alt="Nächste Schmerzart"
+              class="arrow-img right" (click)="selectNextPainType()" />
+            <img *ngIf="selectedLanguage === 'ar'" src="img/icons/arrow-left-blue.png" alt="Nächste Schmerzart"
+              class="arrow-img right" (click)="selectNextPainType()" />
           </div>
+          <button class="pain-type-confirm-btn" (click)="onPainTypeSelected(painTypes[painTypeIndex].value)">
+            {{ continueButtonLabel[selectedLanguage] }}
+          </button>
+        </div>
 
-           <!-- Step 2: Tooth Selection -->
-          <app-tooth-selector *ngIf="selectedPainType === 'tooth' && !selectedTooth && !finalDiagnosis"
-            (toothSelected)="onToothSelected($event)" [language]="selectedLanguage"></app-tooth-selector>
+        <app-tooth-selector *ngIf="selectedPainType === 'tooth' && !selectedTooth && !finalDiagnosis"
+          (toothSelected)="onToothSelected($event)" [language]="selectedLanguage"></app-tooth-selector>
 
-       <!-- Step 3: Tooth Status Flow -->
-          <app-tooth-status-flow
-            *ngIf="selectedPainType === 'tooth' && selectedTooth && !isToothStatusFlowComplete && !finalDiagnosis && !isDiagnosing"
-            [selectedTooth]="selectedTooth.toString()" [language]="selectedLanguage" [attr.dir]="selectedLanguage === 'ar' ? 'rtl' : 'ltr'"
-            (diagnosisReady)="onDiagnosisReady($event)"
-            (flowCompletedWithoutDiagnosis)="onToothStatusFlowCompleted()"></app-tooth-status-flow>
+        <app-tooth-status-flow
+          *ngIf="selectedPainType === 'tooth' && selectedTooth && !isToothStatusFlowComplete && !finalDiagnosis && !isDiagnosing"
+          [selectedTooth]="selectedTooth.toString()" [language]="selectedLanguage"
+          [attr.dir]="selectedLanguage === 'ar' ? 'rtl' : 'ltr'" (diagnosisReady)="onDiagnosisReady($event)"
+          (flowCompletedWithoutDiagnosis)="onToothStatusFlowCompleted()"></app-tooth-status-flow>
 
-       <!-- Step 4: General Question Flow -->
-          <app-question-flow
-            *ngIf="!finalDiagnosis && !isDiagnosing && ((selectedPainType === 'gum' || selectedPainType === 'tmj') || isToothStatusFlowComplete)"
-            [painType]="selectedPainType!" [language]="selectedLanguage" [selectedTooth]="selectedTooth" [attr.dir]="selectedLanguage === 'ar' ? 'rtl' : 'ltr'"
-            (back)="onQuestionFlowBack()"
-            (symptomSummary)="collectedSymptoms = $event"
-            (diagnosisReady)="onDiagnosisReady($event)"></app-question-flow>
+        <app-question-flow
+          *ngIf="!finalDiagnosis && !isDiagnosing && ((selectedPainType === 'gum' || selectedPainType === 'tmj') || isToothStatusFlowComplete)"
+          [painType]="selectedPainType!" [language]="selectedLanguage" [selectedTooth]="selectedTooth"
+          [attr.dir]="selectedLanguage === 'ar' ? 'rtl' : 'ltr'" (back)="onQuestionFlowBack()"
+          (symptomSummary)="collectedSymptoms = $event" (diagnosisReady)="onDiagnosisReady($event)"></app-question-flow>
 
-          <!-- Diagnosis Loading Bar -->
-          <div *ngIf="isDiagnosing" class="diagnosing-container">
-            <p>{{ diagnosingText[selectedLanguage] }}</p>
-            <div class="progress-bar-container">
-              <div class="progress-bar"></div>
-            </div>
+        <div *ngIf="isDiagnosing" class="diagnosing-container">
+          <p>{{ diagnosingText[selectedLanguage] }}</p>
+          <div class="progress-bar-container">
+            <div class="progress-bar"></div>
           </div>
+        </div>
 
-          <!-- Final Diagnosis Display -->
-          <div *ngIf="finalDiagnosis && !isDiagnosing" class="diagnosis-card"
-            [attr.dir]="selectedLanguage === 'ar' ? 'rtl' : 'ltr'">
-            <h2 class="diagnosis-title typing-animation"
-              [style.--char-count]="finalDiagnosis.title[selectedLanguage].length">{{ finalDiagnosis.title[selectedLanguage] }}</h2>
-            <div class="diagnosis-content">
-              <h3>{{ diagnosisExplanationLabel[selectedLanguage] }}</h3>
-              <p>{{ finalDiagnosis.explanation[selectedLanguage] }}</p>
-              <h3>{{ diagnosisTreatmentLabel[selectedLanguage] }}</h3>
-              <p>{{ finalDiagnosis.treatment[selectedLanguage] }}</p>
-            </div>
-            <div class="disclaimer">
-              <p>{{ disclaimerText[selectedLanguage] }}</p>
-            </div>
-            <button (click)="resetSelection()" class="reset-button">{{ startOverButtonLabel[selectedLanguage] }}</button>
+        <div *ngIf="finalDiagnosis && !isDiagnosing" class="diagnosis-card"
+          [attr.dir]="selectedLanguage === 'ar' ? 'rtl' : 'ltr'">
+          <h2 class="diagnosis-title typing-animation"
+            [style.--char-count]="finalDiagnosis.title[selectedLanguage].length">{{
+            finalDiagnosis.title[selectedLanguage] }}</h2>
+          <div class="diagnosis-content">
+            <h3>{{ diagnosisExplanationLabel[selectedLanguage] }}</h3>
+            <p>{{ finalDiagnosis.explanation[selectedLanguage] }}</p>
+            <h3>{{ diagnosisTreatmentLabel[selectedLanguage] }}</h3>
+            <p>{{ finalDiagnosis.treatment[selectedLanguage] }}</p>
           </div>
-     <!-- Global Back Button (hidden during diagnosis) -->
-          <a *ngIf="selectedPainType && !finalDiagnosis && !isDiagnosing" (click)="triggerBackAction()" class="back-button-icon" [title]="backButtonLabel[selectedLanguage]">
-            <img src="/img/icons/back.png" alt="Back">
-          </a>
+          <div class="disclaimer">
+            <p>{{ disclaimerText[selectedLanguage] }}</p>
+          </div>
+          <button (click)="resetSelection()" class="reset-button">{{ startOverButtonLabel[selectedLanguage] }}</button>
+        </div>
+
+        <a *ngIf="selectedPainType && !finalDiagnosis && !isDiagnosing" (click)="triggerBackAction()"
+          class="back-button-icon" [title]="backButtonLabel[selectedLanguage]">
+          <img src="/img/icons/back.png" alt="Back">
+        </a>
+      </div>
     </div>
-  </div>
 
-</div>
+  </div>

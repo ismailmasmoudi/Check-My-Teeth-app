@@ -62,7 +62,6 @@
   }
 }
 
-
 @media (max-width: 768px) {
   .flag-selector-wrapper {
     margin: 0;
@@ -70,45 +69,17 @@
   app-language-selector {
     left: 0;
   }
-  .arrow-img{
+  .arrow-img {
     width: 16px;
     height: 16px;
-} 
+  }
 
- .flag-flip .flag-img {
+  .flag-flip .flag-img {
     width: 36px;
     height: 36px;
   }
-
 }
 
-// // Responsive
-// @media (max-width: 600px) {
-//   .language-selector-wrapper {
-//     select {
-//       font-size: 0.95rem;
-//       padding: 8px 32px 8px 12px;
-//       border-radius: 20px;
-//       min-width: 90px;
-//       max-width: 98vw;
-//       width: auto; // <-- Auch hier: Breite passt sich an
-//     }
-//     &::after {
-//       right: 12px;
-//       font-size: 11px;
-//     }
-//   }
-//   .flag-flip .flag-img {
-//     width: 36px;
-//     height: 36px;
-//   }
-//   .arrow-img {
-//     width: 24px;
-//     height: 24px;
-//   }
-// }
-
-// RTL Support
 :host-context([dir="rtl"]) .flag-selector-wrapper {
   flex-direction: row-reverse;
 }

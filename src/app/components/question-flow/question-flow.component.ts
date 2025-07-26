@@ -3,7 +3,6 @@ import { QuestionFlowService, Question } from '../../services/question-flow.serv
 import { DiagnosisService, Diagnosis } from '../../services/diagnosis.service';
 import { CommonModule } from '@angular/common';
 
-// For better type safety inside the component
 type Language = 'en' | 'fr' | 'ar' | 'de';
 interface Condition {
   toothNumbers: number[];
@@ -28,18 +27,15 @@ export class QuestionFlowComponent implements OnChanges {
   @Input() painType!: string;
   @Input() language: Language = 'en';
   @Input() selectedTooth: number | null = null;
-  @Output() back = new EventEmitter<void>(); // This remains as is
-  @Output() diagnosisReady = new EventEmitter<Diagnosis>(); // Change this to emit the full Diagnosis object
+  @Output() back = new EventEmitter<void>();
+  @Output() diagnosisReady = new EventEmitter<Diagnosis>();
   @Output() symptomSummary = new EventEmitter<string>();
 
-  // Component State
   allQuestions: Question[] = [];
   currentQuestion: Question | null = null;
 
-  // History for internal back-navigation
   private questionHistory: Question[] = [];
   
-  // Store answered questions and selected options for reporting
   private answeredQuestions: { question: string; answer: string }[] = [];
 
   constructor(
@@ -53,21 +49,23 @@ export class QuestionFlowComponent implements OnChanges {
     }
   }
 
+  /**
+   * Resets component state and initializes questions based on pain type
+   */
   private resetAndStart(): void {
     this.resetState();
     this.allQuestions = this.questionFlowService.getQuestions(this.painType);
     this.currentQuestion = this.allQuestions.length > 0 ? this.allQuestions[0] : null;
   }
 
+  /**
+   * Handles option selection and navigation through the question flow
+   * @param option The selected option containing next question or diagnosis
+   */
   selectOption(option: Option): void {
     if (!this.currentQuestion) return;
-
-    // Add the current question to our history before moving on
-    this.questionHistory.push(this.currentQuestion);
-    
-    // Store the question and answer for reporting
+    this.questionHistory.push(this.currentQuestion);   
     if (this.currentQuestion && option.label) {
-      // Speichere Frage und Antwort immer auf Englisch
       const questionTextEn = this.currentQuestion.text.en;
       const answerTextEn = option.label.en;
       console.log('Speichere Frage/Antwort (EN):', {
@@ -101,31 +99,43 @@ export class QuestionFlowComponent implements OnChanges {
     }
   }
 
+  /**
+   * Sets final diagnosis and emits symptom summary and diagnosis
+   * @param diagnosisId The ID of the diagnosis to set
+   */
   private setDiagnosis(diagnosisId: string): void {
     const diagnosis = this.diagnosisService.getDiagnosisById(diagnosisId);
-    // Emit Symptom-Zusammenfassung bevor DiagnoseEnde
     const summary = this.getAnsweredQuestions();
     this.symptomSummary.emit(summary);
     if (diagnosis) {
       this.diagnosisReady.emit(diagnosis);
     }
-    this.currentQuestion = null; // End of flow
+    this.currentQuestion = null;
   }
 
+  /**
+   * Navigates to the next question in the flow
+   * @param questionId The ID of the next question
+   */
   private goToNextQuestion(questionId: string): void {
     this.currentQuestion = this.questionFlowService.getQuestionById(this.painType, questionId) || null;
   }
+
+  /**
+   * Handles backward navigation through the question flow
+   */
   public goBackInternal(): void {
-    // If we are on a question and there's history, go to the previous question
     if (this.questionHistory.length > 0) {
       this.currentQuestion = this.questionHistory.pop() || null;
     }
-    // If there's no more history, tell the parent component to take over
     else {
       this.back.emit();
     }
   }
 
+  /**
+   * Resets all component state to initial values
+   */
   private resetState(): void {
     this.currentQuestion = null;
     this.allQuestions = [];
@@ -135,15 +145,14 @@ export class QuestionFlowComponent implements OnChanges {
   }
   
   /**
-   * Erstellt eine kurze Zusammenfassung der wichtigsten Symptome
-   * @returns Eine Kurzfassung der Symptome für die Übersicht
+   * Creates a brief summary of the main symptoms based on answered questions
+   * @returns A short summary of symptoms for overview
    */
   private createSymptomSummary(): string {
     if (this.answeredQuestions.length === 0) {
       return 'Patient reported no specific symptoms';
     }
     
-    // Finde positive Antworten (Ja, Schmerzen, etc.)
     const positiveAnswers = this.answeredQuestions.filter(qa => {
       const answer = qa.answer.toLowerCase();
       const isPositive = 
@@ -162,15 +171,12 @@ export class QuestionFlowComponent implements OnChanges {
       return isPositive;
     });
     
-    // Erstelle eine Übersicht der positiven Symptome
     let keySymptoms = [];
     
     if (positiveAnswers.length > 0) {
-      // Extrahiere wichtige Schlüsselwörter aus den Fragen
       for (const qa of positiveAnswers) {
         const question = qa.question.toLowerCase();
         
-        // Suche nach wichtigen Symptomen in der Frage
         if (question.includes('schmerz') || question.includes('pain') || question.includes('douleur') || question.includes('ألم')) {
           keySymptoms.push('Pain');
         }
@@ -195,10 +201,8 @@ export class QuestionFlowComponent implements OnChanges {
       }
     }
     
-    // Entferne Duplikate
     keySymptoms = [...new Set(keySymptoms)];
     
-    // Erstelle die Zusammenfassung
     if (keySymptoms.length > 0) {
       return `SUMMARY: Patient reports ${keySymptoms.join(', ')}`;
     } else if (positiveAnswers.length > 0) {
@@ -209,18 +213,14 @@ export class QuestionFlowComponent implements OnChanges {
   }
   
   /**
-   * Gibt die beantworteten Fragen und Antworten als formatierten String zurück
-   * für die Speicherung in Google Sheets, mit einer kurzen Zusammenfassung
+   * Returns answered questions and answers as formatted string for Google Sheets storage
+   * @returns Formatted string with question-answer pairs
    */
   getAnsweredQuestions(): string {
-    // Wenn keine Fragen beantwortet wurden, gebe Schmerztyp zurück
-    // Wenn keine Fragen beantwortet wurden, gib Schmerztyp auf Englisch zurück
     if (!this.answeredQuestions || this.answeredQuestions.length === 0) {
       return `Pain type: ${this.painType}`;
     }
 
-    // Kurze Zusammenfassung: Frage- und Antwort-Paare ordentlich formatiert
-    // Verwende immer englische Labels für Speicherung
     const l = { question: 'Question', answer: 'Answer' };
     const summary = this.answeredQuestions
       .map(qa => `${l.question}: ${qa.question}; ${l.answer}: ${qa.answer}`)

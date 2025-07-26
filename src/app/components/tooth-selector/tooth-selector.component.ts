@@ -4,28 +4,31 @@ import { FormsModule } from '@angular/forms';
 
 type Language = 'en' | 'fr' | 'de' | 'ar';
 
+/**
+ * Component for selecting individual teeth using FDI World Dental Federation notation
+ * Displays an interactive dental chart where users can click on teeth to select them
+ */
 @Component({
   selector: 'app-tooth-selector',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './tooth-selector.component.html',
-  styleUrls: ['./tooth-selector.component.scss']
+  styleUrls: ['./tooth-selector.component.scss'],
 })
 export class ToothSelectorComponent {
   @Input() language: Language = 'en';
   @Output() toothSelected = new EventEmitter<number>();
-  
-  toothIdentifier: number | null = null; // Stores the currently selected tooth (e.g., 18)
 
-  // Multilingual text objects
+  toothIdentifier: number | null = null;
+
   titleText = {
     en: 'Select the affected tooth:',
     fr: 'Sélectionnez la dent affectée :',
     de: 'Wählen Sie den betroffenen Zahn aus:',
-    ar: 'اختر السن المصاب:'
+    ar: 'اختر السن المصاب:',
   };
 
-   quadrantLabels = {
+  quadrantLabels = {
     upperRight: {
       en: 'Upper Right',
       de: 'Oben Rechts',
@@ -56,48 +59,65 @@ export class ToothSelectorComponent {
     en: 'Selected Tooth:',
     fr: 'Dent sélectionnée :',
     de: 'Ausgewählter Zahn:',
-    ar: 'السن المختار:'
+    ar: 'السن المختار:',
   };
 
   confirmButtonText = {
     en: 'Confirm Selection',
     fr: 'Confirmer la sélection',
     de: 'Auswahl bestätigen',
-    ar: 'تأكيد الاختيار'
+    ar: 'تأكيد الاختيار',
   };
 
-  // FDI World Dental Federation notation for permanent teeth
-  // Organized by quadrant for easier rendering in the template
   teeth = {
-    upperRight: [18, 17, 16, 15, 14, 13, 12, 11], // From wisdom tooth to central incisor
-    upperLeft: [21, 22, 23, 24, 25, 26, 27, 28],  // From central incisor to wisdom tooth
-    lowerLeft: [31, 32, 33, 34, 35, 36, 37, 38],   // Quadrant 3: Patient's Lower Left
-    lowerRight: [48, 47, 46, 45, 44, 43, 42, 41]  // Quadrant 4: Patient's Lower Right
+    upperRight: [18, 17, 16, 15, 14, 13, 12, 11],
+    upperLeft: [21, 22, 23, 24, 25, 26, 27, 28],
+    lowerLeft: [31, 32, 33, 34, 35, 36, 37, 38],
+    lowerRight: [48, 47, 46, 45, 44, 43, 42, 41],
   };
 
-  // Method to get the image path for a tooth
+  /**
+   * Gets the image path for a tooth based on its FDI number
+   * @param toothId The FDI tooth identifier
+   * @returns The relative path to the tooth image
+   */
   getToothImagePath(toothId: number): string {
     const lastDigit = toothId % 10;
     return `/img/Teeth/T${lastDigit}.png`;
   }
 
-  // Method to get the CSS transform style for flipping the tooth image
+  /**
+   * Gets the CSS transform style for orienting tooth images correctly by quadrant
+   * @param toothId The FDI tooth identifier
+   * @returns CSS transform string for proper tooth orientation
+   */
   getToothImageTransform(toothId: number): string {
     const quadrant = Math.floor(toothId / 10);
     switch (quadrant) {
-      case 1: return 'none'; // Upper Right, no transform
-      case 2: return 'scaleX(-1)'; // Upper Left, horizontal flip
-      case 3: return 'scale(-1, -1)'; // Lower Left, horizontal and vertical flip
-      case 4: return 'scaleY(-1)'; // Lower Right, vertical flip
-      default: return 'none';
+      case 1:
+        return 'none';
+      case 2:
+        return 'scaleX(-1)';
+      case 3:
+        return 'scale(-1, -1)';
+      case 4:
+        return 'scaleY(-1)';
+      default:
+        return 'none';
     }
   }
 
-  // Method to select a tooth from the schema
+  /**
+   * Selects a tooth from the dental chart
+   * @param toothId The FDI identifier of the selected tooth
+   */
   selectTooth(toothId: number): void {
     this.toothIdentifier = toothId;
   }
 
+  /**
+   * Confirms the current tooth selection and emits it to parent component
+   */
   confirmSelection(): void {
     if (this.toothIdentifier !== null) {
       this.toothSelected.emit(this.toothIdentifier);

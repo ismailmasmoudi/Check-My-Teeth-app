@@ -40,7 +40,10 @@ export class InfoMenuComponent implements OnChanges {
   private _selectedPageKey: keyof typeof this.pages | null = null;
   private currentKey: string | null = null;
 
-  // Helper to get keys for the template to iterate over
+  /**
+   * Helper function to get page keys for template iteration.
+   * @returns Array of page keys that can be used in the template
+   */
   get pageKeys() {
     return Object.keys(this.pages) as Array<keyof typeof this.pages>;
   }
@@ -51,37 +54,55 @@ export class InfoMenuComponent implements OnChanges {
    * @param changes An object containing the changed properties.
    */
   ngOnChanges(changes: SimpleChanges): void {
-    // Check if the 'language' input has changed and if a page is currently selected.
     if (changes['language'] && this._selectedPageKey) {
-      // If so, re-emit the content for the currently selected page in the new language.
       this.pageContentChanged.emit(this.selectedPageContent);
     }
   }
 
+  /**
+   * Toggles the menu open/close state.
+   */
   toggleMenu() {
     this.isOpen = !this.isOpen;
   }
 
+  /**
+   * Opens a specific page and closes the menu.
+   * @param pageKey The key of the page to open
+   */
   openPage(pageKey: string) {
     this._selectedPageKey = pageKey as keyof typeof this.pages;
-    this.isOpen = false; // Close the menu after selecting a page
+    this.isOpen = false;
     this.pageContentChanged.emit(this.selectedPageContent);
   }
 
-  private clearPage() {
-    this._selectedPageKey = null;
-    this.pageContentChanged.emit(null);
-  }
 
+  /**
+   * Clears the current selection.
+   */
   clearSelection() {
     this._selectedPageKey = null;
   }
 
+  /**
+   * Selects an item by key.
+   * @param key The key of the item to select
+   */
   selectItem(key: string) {
     this.currentKey = key;
   }
 
-  // --- Multilingual Texts ---
+   /**
+   * Gets the content for the currently selected page in the current language.
+   * @returns The page content string or null if no page is selected
+   */
+  private get selectedPageContent(): string | null {
+    if (!this._selectedPageKey) {
+      return null;
+    }
+    return this.pages[this._selectedPageKey].content[this.language];
+  }
+
   pages = {
     imprint: {
       title: {
@@ -619,10 +640,5 @@ Moosburger Straße 10A<br>
     },
   };
 
-  private get selectedPageContent(): string | null {
-    if (!this._selectedPageKey) {
-      return null;
-    }
-    return this.pages[this._selectedPageKey].content[this.language];
-  }
+ 
 }

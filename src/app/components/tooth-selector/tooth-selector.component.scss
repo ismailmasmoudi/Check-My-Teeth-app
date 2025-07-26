@@ -18,7 +18,6 @@
 
 .jaw {
   display: flex;
-  // gap: 15px; /* Abstand zwischen den Quadranten */
   justify-content: center;
 }
 
@@ -29,7 +28,7 @@
   border-radius: 12px;
   background-color: rgba(var(--primary-color-rgb), 0.05);
   border: 1px solid rgba(var(--primary-color-rgb), 0.15);
-  flex: 1; /* Sorgt dafür, dass die Quadranten den gleichen Platz einnehmen */
+  flex: 1;
   transition: all 0.2s ease-in-out;
 
   &:hover {
@@ -46,14 +45,6 @@
   opacity: 0.9;
   text-align: center;
 }
-
-// .upper-jaw .quadrant-label {
-//   margin-bottom: 0px;
-// }
-
-// .lower-jaw .quadrant-label {
-//   margin-top: 15px;
-// }
 
 .teeth-container {
   display: flex;
@@ -73,11 +64,10 @@
     width: 30px;
     height: 50px;
     display: block;
-    transition: filter 0.3s ease; // Sanfter Übergang für den Filter
+    transition: filter 0.3s ease;
   }
 
   &:hover {
-    // Ein leichter "Lift"-Effekt mit einem warmen Schatten
     transform: translateY(-2px);
     img {
       filter: drop-shadow(0 4px 8px rgba(164, 102, 58, 0.35));
@@ -85,7 +75,6 @@
   }
 
   &.selected {
-    // Behält den Zoom-Effekt bei und wendet einen Schatten direkt auf das Bild an
     transform: scale(1.1);
     img {
       filter: drop-shadow(0 0 10px rgba(251, 120, 27, 0.7));
@@ -101,7 +90,7 @@
   }
 
   .confirm-button {
-    background-color: var(--secondary-color); // Das Grün aus deinem Theme
+    background-color: var(--secondary-color);
     color: white;
     border: none;
     padding: 10px 24px;
@@ -112,7 +101,7 @@
     transition: all 0.3s ease;
 
     &:hover {
-      background-color: #257247; // Ein dunkleres Grün
+      background-color: #257247;
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
@@ -212,9 +201,10 @@
     font-size: 0.7em;
   }
 
-  .tooth  {
+  .tooth {
     img {
-    width: 12px;
-    height: 26px;
+      width: 12px;
+      height: 26px;
+    }
   }
-}}
+}

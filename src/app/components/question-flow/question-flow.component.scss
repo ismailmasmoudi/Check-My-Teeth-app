@@ -1,6 +1,5 @@
 @use "../../../styles.scss" as theme;
 
-// Keyframes für das Einblenden der Fragen und Optionen
 @keyframes text-slide-in {
   from {
     opacity: 0;
@@ -41,7 +40,6 @@
   color: black;
   text-align: center;
   margin: 0.5rem;
-  /* Animation für den Fragetext */
   animation: text-slide-in 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
 }
 
@@ -68,12 +66,9 @@
   transition: all 0.2s ease-in-out;
   text-align: center;
   width: 30%;
-
-  /* Animation für die Options-Buttons */
-  opacity: 0; /* Startet unsichtbar, damit die Animation wirkt */
+  opacity: 0;
   animation: option-pop-in 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
 
-  /* Gestaffelte Verzögerung für einen dynamischen Effekt */
   &:nth-child(1) {
     animation-delay: 0.2s;
   }
@@ -112,6 +107,4 @@
   .question-text {
     font-size: 0.9rem;
   }
-
- 
 }

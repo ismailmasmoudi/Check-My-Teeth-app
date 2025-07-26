@@ -7,7 +7,6 @@
   font-size: 0.9rem;
   color: black;
 
-  // RTL-Unterstützung für Arabisch
   &[dir="rtl"] {
     text-align: right;
   }
@@ -133,29 +132,26 @@ hr {
 }
 
 @media (max-width: 370px) {
+  .flow-container {
+    height: 239px;
+    width: 188px;
+    padding: 0 1rem;
+  }
 
-.flow-container {
-        height: 239px;
-        width: 188px;
-        padding: 0 1rem;
-    }
-
-.question-text{
+  .question-text {
     font-weight: 600;
     margin: 0.4rem 0 0.4rem 0;
     font-size: 0.75rem;
     text-align: start;
-}
+  }
 
-
- .question-block
- label{
-        font-size: 0.7rem;
+  .question-block label {
+    font-size: 0.7rem;
     gap: 0.2rem;
-    }
-  
-.submit-button {
+  }
+
+  .submit-button {
     padding: 6px 14px;
     margin-bottom: 1rem;
-}
+  }
 }

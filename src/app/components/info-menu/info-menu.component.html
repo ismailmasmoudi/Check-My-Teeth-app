@@ -1,10 +1,9 @@
 <div class="info-menu-container">
-  <!-- Menu Trigger (Icon) -->
+
   <button class="menu-trigger" (click)="toggleMenu()">
     <img src="/img/icons/Menu-icon.jpg" alt="Menu" />
   </button>
 
-  <!-- Menu Items (Overlay) -->
   <div class="menu-overlay" [class.open]="isOpen">
     <ul class="menu-list">
       <li *ngFor="let key of pageKeys" (click)="openPage(key)">

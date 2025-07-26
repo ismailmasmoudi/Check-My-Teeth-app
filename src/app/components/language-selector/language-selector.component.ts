@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// Define the specific language type to ensure type safety throughout the component.
 type Language = 'en' | 'fr' | 'de' | 'ar';
 type SupportedLang = 'de' | 'en' | 'fr' | 'ar';
 
@@ -10,13 +9,11 @@ type SupportedLang = 'de' | 'en' | 'fr' | 'ar';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './language-selector.component.html',
-  styleUrls: ['./language-selector.component.scss'] // Assuming a SCSS file exists
+  styleUrls: ['./language-selector.component.scss']
 })
 export class LanguageSelectorComponent implements OnInit, OnChanges {
-  // The current language can be passed in, and it's also strongly typed.
   @Input() currentLang: Language = 'en';
 
-  // The EventEmitter is now strongly typed with the Language type.
   @Output() languageChanged = new EventEmitter<Language>();
 
   flagIcons: Record<SupportedLang, string> = {
@@ -30,40 +27,57 @@ export class LanguageSelectorComponent implements OnInit, OnChanges {
   selectedLanguage: SupportedLang = 'de';
   isFlipped = false;
 
+  /**
+   * Initializes the component with the current language setting
+   */
   ngOnInit(): void {
-    // Set initial selectedLanguage to the input currentLang so the flag matches
     this.selectedLanguage = this.currentLang as SupportedLang;
   }
   
+  /**
+   * Updates the selected language when input changes
+   * @param changes Object containing the changed properties
+   */
   ngOnChanges(changes: SimpleChanges): void {
-    // Update the flag when the input currentLang changes
     if (changes['currentLang'] && changes['currentLang'].currentValue) {
       this.selectedLanguage = changes['currentLang'].currentValue as SupportedLang;
     }
   }
 
+  /**
+   * Handles language change from dropdown selection
+   * @param event The change event from the select element
+   */
   changeLanguage(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
-    // We emit its value, asserting it as our specific Language type. This makes the output type-safe.
     this.languageChanged.emit(selectElement.value as Language);
   }
 
+  /**
+   * Selects the previous language in the language array
+   */
   selectPrevLang() {
     const idx = this.languages.indexOf(this.selectedLanguage);
     this.selectedLanguage = this.languages[(idx - 1 + this.languages.length) % this.languages.length] as SupportedLang;
-    this.languageChanged.emit(this.selectedLanguage); // <-- Sprache ändern!
+    this.languageChanged.emit(this.selectedLanguage);
     this.triggerFlip();
   }
 
+  /**
+   * Selects the next language in the language array
+   */
   selectNextLang() {
     const idx = this.languages.indexOf(this.selectedLanguage);
     this.selectedLanguage = this.languages[(idx + 1) % this.languages.length] as SupportedLang;
-    this.languageChanged.emit(this.selectedLanguage); // <-- Sprache ändern!
+    this.languageChanged.emit(this.selectedLanguage);
     this.triggerFlip();
   }
 
+  /**
+   * Triggers the flip animation for language selection
+   */
   triggerFlip() {
     this.isFlipped = true;
-    setTimeout(() => this.isFlipped = false, 400); // Flip-Animation zurücksetzen
+    setTimeout(() => this.isFlipped = false, 400);
   }
 }

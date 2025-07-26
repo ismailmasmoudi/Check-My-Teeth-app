@@ -107,10 +107,10 @@
   {
     "id": "rctFinishedStillPain",
     "title": {
-      "en": "Root Canal Treated Tooth with Persistent Issues",
-      "fr": "Dent traitée par canal avec problèmes persistants",
-      "de": "Wurzelkanalbehandelter Zahn mit anhaltenden Problemen",
-      "ar": "سن معالج بقناة الجذر بمشاكل مستمرة"
+      "en": "Failed Root Canal",
+      "fr": "Échec du traitement de canal",
+      "de": "Misslungene Wurzelbehandlung",
+      "ar": "فشل علاج قناة الجذر"
     },
     "explanation": {
       "en": "Despite completed root canal treatment, the tooth still presents issues, possibly indicating a need for retreatment or extraction.",
@@ -128,9 +128,9 @@
   {
     "id": "gingivitis",
     "title": {
-      "en": "Gingivitis (Gum Inflammation)",
-      "fr": "Gingivite (Inflammation des gencives)",
-      "de": "Gingivitis (Zahnfleischentzündung)",
+      "en": "Gingivitis",
+      "fr": "Gingivite",
+      "de": "Gingivitis",
       "ar": "التهاب اللثة"
     },
     "explanation": {
@@ -191,10 +191,10 @@
   {
     "id": "bruxism",
     "title": {
-      "en": "Bruxism (Teeth Grinding)",
-      "fr": "Bruxisme (Grincement des dents)",
-      "de": "Bruxismus (Zähneknirschen)",
-      "ar": "صريف الأسنان (طحن الأسنان)"
+      "en": "Bruxism",
+      "fr": "Bruxisme",
+      "de": "Bruxismus",
+      "ar": "صريف الأسنان"
     },
     "explanation": {
       "en": "Bruxism is a condition in which you grind, gnash or clench your teeth. This can happen during the day or, more commonly, during sleep. It often leads to jaw pain, headaches, and worn-down teeth.",
@@ -212,10 +212,10 @@
   {
     "id": "tmj_disorder",
     "title": {
-      "en": "Temporomandibular Joint Disorder",
-      "fr": "Trouble de l'articulation temporo-mandibulaire",
-      "de": "Kiefergelenkerkrankung",
-      "ar": "اضطراب المفصل الفكي الصدغي"
+      "en": "TMJ Disorder",
+      "fr": "Trouble ATM",
+      "de": "Kiefergelenkstörung",
+      "ar": "اضطراب المفصل الفكي"
     },
     "explanation": {
       "en": "Your symptoms, such as pain and clicking, are typical for a temporomandibular joint disorder.",
@@ -233,10 +233,10 @@
   {
     "id": "tmj_disorder_with_limitation",
     "title": {
-      "en": "Temporomandibular Joint Disorder with Limited Opening",
-      "fr": "Trouble de l'articulation temporo-mandibulaire avec ouverture limitée",
-      "de": "Kiefergelenkerkrankung mit eingeschränkter Mundöffnung",
-      "ar": "اضطراب المفصل الفكي الصدغي مع فتحة محدودة"
+      "en": "TMJ with Limited Opening",
+      "fr": "ATM avec ouverture limitée",
+      "de": "Kiefergelenk mit Mundsperre",
+      "ar": "اضطراب المفصل مع محدودية الفتح"
     },
     "explanation": {
       "en": "Your symptoms, especially the limited mouth opening, indicate a temporomandibular joint disorder. This can be caused by a displacement of the articular disc.",
@@ -254,10 +254,10 @@
   {
     "id": "tmj_muscle_pain",
     "title": {
-      "en": "Myofascial Pain (Muscle Pain)",
-      "fr": "Douleur myofasciale (Douleur musculaire)",
-      "de": "Myofaszialer Schmerz (Muskelschmerz)",
-      "ar": "الألم العضلي الليفي (ألم العضلات)"
+      "en": "Myofascial Pain",
+      "fr": "Douleur myofasciale",
+      "de": "Myofaszialer Schmerz",
+      "ar": "(ألم العضلات)"
     },
     "explanation": {
       "en": "Your pain seems to originate mainly from the chewing muscles. This is a common form of temporomandibular joint disorder.",
@@ -275,10 +275,10 @@
   {
     "id": "no_tmj_disorder",
     "title": {
-      "en": "No Temporomandibular Joint Disorder indicated",
-      "fr": "Aucun trouble de l'articulation temporo-mandibulaire indiqué",
-      "de": "Keine Kiefergelenksbeschwerden",
-      "ar": "لا يوجد ما يشير إلى اضطراب المفصل الفكي الصدغي"
+      "en": "No TMJ Disorder",
+      "fr": "Pas de trouble ATM",
+      "de": "Keine Kiefergelenksprobleme",
+      "ar": "لا يوجد اضطراب في المفصل"
     },
     "explanation": {
       "en": "Based on your answers, there are no typical symptoms of a temporomandibular joint disorder.",
@@ -296,10 +296,10 @@
   {
     "id": "mobility_grade_1",
     "title": {
-      "en": "Slight Tooth Mobility (Grade 1)",
-      "de": "Leichte Zahnbeweglichkeit (Grad 1)",
-      "fr": "Mobilité dentaire légère (Grade 1)",
-      "ar": "حركة طفيفة في السن (درجة 1)"
+      "en": "Slight Tooth Mobility",
+      "de": "Leichte Zahnbeweglichkeit",
+      "fr": "Mobilité dentaire légère",
+      "ar": "حركة طفيفة في السن"
     },
     "explanation": {
       "en": "The tooth has slightly more movement than normal. This is often an early sign of gum disease or excessive biting forces (occlusal trauma).",
@@ -317,10 +317,10 @@
   {
     "id": "mobility_grade_2",
     "title": {
-      "en": "Moderate Tooth Mobility (Grade 2)",
-      "de": "Mäßige Zahnbeweglichkeit (Grad 2)",
-      "fr": "Mobilité dentaire modérée (Grade 2)",
-      "ar": "حركة متوسطة في السن (درجة 2)"
+      "en": "Moderate Tooth Mobility",
+      "de": "Mäßige Zahnbeweglichkeit",
+      "fr": "Mobilité dentaire modérée",
+      "ar": "حركة متوسطة في السن"
     },
     "explanation": {
       "en": "The tooth has noticeable movement (up to 1mm horizontally). This indicates significant loss of bone support, usually due to advanced gum disease (periodontitis).",
@@ -338,10 +338,10 @@
   {
     "id": "mobility_grade_3",
     "title": {
-      "en": "Severe Tooth Mobility (Grade 3)",
-      "de": "Starke Zahnbeweglichkeit (Grad 3)",
-      "fr": "Mobilité dentaire sévère (Grade 3)",
-      "ar": "حركة شديدة في السن (درجة 3)"
+      "en": "Severe Tooth Mobility",
+      "de": "Starke Zahnbeweglichkeit",
+      "fr": "Mobilité dentaire sévère",
+      "ar": "حركة شديدة في السن"
     },
     "explanation": {
       "en": "The tooth is very loose, moves more than 1mm horizontally, and can be moved vertically. The prognosis is very poor due to extreme bone loss.",
@@ -392,10 +392,10 @@
       "ar": "وصل التسوس العميق بالقرب من عصب السن، مما يسبب التهابًا."
     },
     "treatment": {
-       "en": "Treatment involves the complete removal of all decayed tissue. Then, a biocompatible and protective filling is placed to seal the cavity. Because the decay was close to the nerve, mild sensitivity may persist for a few days. If the pain increases or does not subside, a follow-up evaluation by a dentist is necessary to rule out pulp inflammation that may require root canal treatment.",
-    "fr": "Le traitement consiste à éliminer complètement tous les tissus cariés. Ensuite, une obturation biocompatible et protectrice est placée pour sceller la cavité. Comme la carie était proche du nerf, une légère sensibilité peut persister quelques jours. Si la douleur augmente ou ne disparaît pas, une évaluation de suivi par un dentiste est nécessaire pour exclure une inflammation pulpaire nécessitant un traitement de canal.",
-    "de": "Die Behandlung umfasst die vollständige Entfernung des kariösen Gewebes. Anschließend wird eine biokompatible, schützende Füllung zum Versiegeln der Kavität gelegt. Da die Karies nervnah war, kann für einige Tage eine leichte Empfindlichkeit bestehen bleiben. Sollten die Schmerzen zunehmen oder nicht abklingen, ist eine zahnärztliche Nachuntersuchung erforderlich, um eine Pulpitis auszuschließen, die eine Wurzelkanalbehandlung erfordern könnte.",
-    "ar": "يتضمن العلاج الإزالة الكاملة لجميع الأنسجة المسوسة. بعد ذلك، توضع حشوة واقية ومتوافقة حيوياً لإغلاق التجويف. نظرًا لأن التسوس كان قريبًا من العصب، قد تستمر حساسية طفيفة لبضعة أيام. إذا زاد الألم أو لم يهدأ، فمن الضروري إجراء تقييم متابعة من قبل طبيب الأسنان لاستبعاد التهاب اللب الذي قد يتطلب علاج قناة الجذر."
+      "en": "Treatment involves the complete removal of all decayed tissue. Then, a biocompatible and protective filling is placed to seal the cavity. Because the decay was close to the nerve, mild sensitivity may persist for a few days. If the pain increases or does not subside, a follow-up evaluation by a dentist is necessary to rule out pulp inflammation that may require root canal treatment.",
+      "fr": "Le traitement consiste à éliminer complètement tous les tissus cariés. Ensuite, une obturation biocompatible et protectrice est placée pour sceller la cavité. Comme la carie était proche du nerf, une légère sensibilité peut persister quelques jours. Si la douleur augmente ou ne disparaît pas, une évaluation de suivi par un dentiste est nécessaire pour exclure une inflammation pulpaire nécessitant un traitement de canal.",
+      "de": "Die Behandlung umfasst die vollständige Entfernung des kariösen Gewebes. Anschließend wird eine biokompatible, schützende Füllung zum Versiegeln der Kavität gelegt. Da die Karies nervnah war, kann für einige Tage eine leichte Empfindlichkeit bestehen bleiben. Sollten die Schmerzen zunehmen oder nicht abklingen, ist eine zahnärztliche Nachuntersuchung erforderlich, um eine Pulpitis auszuschließen, die eine Wurzelkanalbehandlung erfordern könnte.",
+      "ar": "يتضمن العلاج الإزالة الكاملة لجميع الأنسجة المسوسة. بعد ذلك، توضع حشوة واقية ومتوافقة حيوياً لإغلاق التجويف. نظرًا لأن التسوس كان قريبًا من العصب، قد تستمر حساسية طفيفة لبضعة أيام. إذا زاد الألم أو لم يهدأ، فمن الضروري إجراء تقييم متابعة من قبل طبيب الأسنان لاستبعاد التهاب اللب الذي قد يتطلب علاج قناة الجذر."
     }
   },
   {
@@ -413,19 +413,19 @@
       "ar": "يشير وجود بثرة على اللثة (خراج) إلى أن العصب داخل السن قد مات (نخر) وأن عدوى قد تكونت عند طرف الجذر."
     },
     "treatment": {
-    "en": "A root canal treatment is required to clean the infected tooth and resolve the abscess. A dentist may also prescribe antibiotics, which should only be taken as directed.",
+      "en": "A root canal treatment is required to clean the infected tooth and resolve the abscess. A dentist may also prescribe antibiotics, which should only be taken as directed.",
       "fr": "Un traitement de canal est nécessaire pour nettoyer la dent infectée et résorber l'abcès. Un dentiste peut également prescrire des antibiotiques, qui ne doivent être pris que selon ses instructions.",
       "de": "Eine Wurzelkanalbehandlung ist erforderlich, um den infizierten Zahn zu reinigen und den Abszess zu beseitigen. Ein Zahnarzt kann ebenfalls Antibiotika verschreiben, die nur nach Anweisung eingenommen werden dürfen.",
       "ar": "علاج قناة الجذر مطلوب لتنظيف السن المصاب وحل الخراج. قد يصف طبيب الأسنان أيضًا مضادات حيوية، والتي يجب تناولها فقط حسب التوجيهات."
-     }
+    }
   },
   {
     "id": "healthy_tooth",
     "title": {
-      "en": "Healthy Tooth / No Obvious Issue",
-      "fr": "Dent saine / Aucun problème évident",
-      "de": "Gesunder Zahn / Kein offensichtliches Problem",
-      "ar": "سن سليم / لا توجد مشكلة واضحة"
+      "en": "Healthy Tooth",
+      "fr": "Dent saine",
+      "de": "Gesunder Zahn",
+      "ar": "سن سليم"
     },
     "explanation": {
       "en": "Based on the provided answers, there are no signs of common dental problems that cause pain. The tooth appears to be healthy from this assessment.",
@@ -464,10 +464,10 @@
   {
     "id": "septal_syndrome",
     "title": {
-      "en": "Septal Syndrome (Food Impaction)",
-      "fr": "Syndrome septal (Tassement alimentaire)",
-      "de": "Septales Syndrom (Speiseimpaktion)",
-      "ar": "متلازمة الحاجز (انحشار الطعام)"
+      "en": "Septal Syndrome",
+      "fr": "Syndrome septal",
+      "de": "Septales Syndrom",
+      "ar": "متلازمة الحاجز"
     },
     "explanation": {
       "en": "This describes pain caused by food getting stuck between two teeth, putting pressure on the gum and bone. It often happens if there's a gap or a poor contact point between teeth.",
@@ -485,10 +485,10 @@
   {
     "id": "pericoronitis",
     "title": {
-      "en": "Pericoronitis (Wisdom Tooth Inflammation)",
-      "de": "Perikoronitis (Weisheitszahnentzündung)",
-      "fr": "Péricoronarite (Inflammation de la dent de sagesse)",
-      "ar": "التهاب حوائط التاج (التهاب ضرس العقل)"
+      "en": "Pericoronitis",
+      "de": "Perikoronitis",
+      "fr": "Péricoronarite",
+      "ar": "التهاب حوائط التاج"
     },
     "explanation": {
       "en": "Pericoronitis is the inflammation of the gum tissue surrounding a partially erupted tooth, most commonly a wisdom tooth. Food and bacteria get trapped under the gum flap, causing swelling, pain, and infection.",
@@ -506,10 +506,10 @@
   {
     "id": "loose_tooth_with_pain_extraction",
     "title": {
-      "en": "Loose Tooth with Pain and Infection",
-      "de": "Lockerer Zahn mit Schmerzen und Infektion",
-      "fr": "Dent mobile avec douleur et infection",
-      "ar": "سن متحرك مع ألم وعدوى"
+      "en": "Loose Painful Tooth",
+      "de": "Lockerer schmerzender Zahn",
+      "fr": "Dent mobile douloureuse",
+      "ar": "سن متحرك مؤلم"
     },
     "explanation": {
       "en": "A loose tooth accompanied by pain is a strong indicator of a severe infection around the tooth root, which has destroyed the supporting bone.",
@@ -527,10 +527,10 @@
   {
     "id": "weisheitszahnziehen",
     "title": {
-      "en": "Wisdom Tooth Extraction Recommended",
-      "de": "Weisheitszahnziehen empfohlen",
-      "fr": "Extraction de la dent de sagesse recommandée",
-      "ar": "يوصى بخلع ضرس العقل"
+      "en": "Wisdom Tooth Extraction",
+      "de": "Weisheitszahn entfernen",
+      "fr": "Extraction dent de sagesse",
+      "ar": "خلع ضرس العقل"
     },
     "explanation": {
       "en": "A loose wisdom tooth often has a poor prognosis due to its position and difficulty in cleaning. The infection or bone loss causing the mobility is best treated by removing the tooth.",

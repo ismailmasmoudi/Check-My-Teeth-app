@@ -1,4 +1,3 @@
-
 .splash-screen {
   position: fixed;
   top: 0;
@@ -103,7 +102,7 @@
 }
 
 .typing-animation {
-  --typing-duration: calc(6s + var(--char-count) * 0.04s);
+  --typing-duration: calc(2s + var(--char-count) * 0.04s);
   width: max-content;
   max-width: 100%;
   overflow-x: hidden;
@@ -111,6 +110,22 @@
   border-right: 3px solid;
   animation: typing var(--typing-duration) steps(var(--char-count)) forwards,
     blink 0.7s infinite, hide-cursor 1ms var(--typing-duration) forwards;
+  writing-mode: horizontal-tb;
+  display: inline-block;
+}
+
+.typing-animation-greeting {
+  --typing-duration: calc(2s + var(--char-count) * 0.03s);
+  width: max-content;
+  max-width: 100%;
+  overflow-x: hidden;
+  white-space: nowrap;
+  border-right: 3px solid;
+  // Animation startet erst nach Splash-Screen (1.8s Verzögerung)
+  animation: typing var(--typing-duration) steps(var(--char-count)) 1.8s
+      forwards,
+    blink 0.7s infinite 1.8s,
+    hide-cursor 1ms calc(var(--typing-duration) + 1.8s) forwards;
   writing-mode: horizontal-tb;
   display: inline-block;
 }
@@ -131,7 +146,8 @@
     }
   }
 
-  input[type="text"], select {
+  input[type="text"],
+  select {
     width: 80%;
     max-width: 350px;
     padding: 12px 15px;
@@ -480,7 +496,6 @@
   text-align: center;
 }
 
-
 @keyframes splash-fade-in {
   from {
     opacity: 0;
@@ -563,13 +578,13 @@
   .head-robot-img {
     width: 200px;
   }
-  
+
   .back-button-icon {
     position: absolute;
     bottom: 40px;
     left: 40px;
   }
-  
+
   .diagnosis-card {
     width: 98%;
     max-height: 255px;
@@ -585,7 +600,7 @@
     height: 500px;
     background-image: url("/img/ContentChatBackground500px.png");
   }
-  
+
   .content-box .input-group {
     p {
       gap: 1rem;
@@ -594,7 +609,7 @@
       white-space: nowrap;
     }
   }
-  
+
   .app-title {
     margin-top: 80px;
     margin-bottom: 10px;
@@ -605,13 +620,13 @@
     bottom: 70px;
     left: 30px;
   }
-  
+
   .diagnosis-card {
-    max-height: 460px;
-    padding: 0px 30px;
+    max-height: 450px;
+    padding: 0px 20px;
     padding-bottom: 10px;
     overflow-x: hidden;
-    
+    max-width: 520px;
     .diagnosis-title {
       font-size: 1.3rem;
       white-space: nowrap;
@@ -626,7 +641,7 @@
     font-size: 2.5rem;
     margin-top: 16%;
   }
-  
+
   .content-box {
     input[type="text"],
     select {
@@ -647,7 +662,7 @@
     padding-left: 0;
     text-align: center;
   }
-  
+
   .content-box .input-group {
     max-height: 280px;
     p {
@@ -655,7 +670,7 @@
       margin: 12px 0;
     }
   }
-  
+
   .content-box {
     width: 320px;
     height: 320px;
@@ -664,42 +679,41 @@
       width: 200px;
     }
   }
-  
+
   .diagnosis-card {
-    max-height: 300px;
+    max-height: 295px;
     padding: 0px 16px;
-    padding-bottom: 10px;
-    width: 297px;
-    overflow-x: hidden;
+    width: 320px;
 
     .disclaimer {
       margin-top: 0.5rem;
       padding: 0.6rem;
       font-size: 0.6rem;
     }
-    
+
     .reset-button {
       margin-top: 0.5rem;
       padding: 10px 18px;
       border-radius: 8px;
       font-size: 10px;
     }
-    
+
     .diagnosis-title {
-      font-size: 1.2rem;
+      font-size: 0.9rem;
       white-space: nowrap;
       word-break: break-word;
       overflow-wrap: break-word;
+      margin-bottom: 0;
     }
-    
+
     .diagnosis-content {
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       h3 {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
       }
     }
   }
-  
+
   .splash-screen {
     .splash-logo {
       width: 300px;
@@ -727,31 +741,39 @@
   .pain-type-confirm-btn {
     margin-top: 0px;
   }
-  
+
   .app-title {
     font-size: 1.9rem;
   }
-  
+
   .content-box {
     width: 250px;
     height: 250px;
   }
-  
+
   .splash-screen {
     .splash-logo {
       width: 250px;
     }
   }
-  
+
   .title-container {
     margin-top: 30px;
   }
-  
-  .diagnosis-card {
-    max-height: 238px;
-    width: 250px;
+
+  .diagnosis-title {
+    font-size: 0.8rem;
   }
-  
+
+  .diagnosis-content {
+    font-size: 0.6rem;
+  }
+
+  .diagnosis-card {
+    max-height: 230px;
+    width: 265px;
+  }
+
   .back-button-icon {
     bottom: 30px;
     left: 16px;

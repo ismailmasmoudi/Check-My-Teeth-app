@@ -115,6 +115,9 @@ hr {
     height: 462px;
     width: 390px;
   }
+    .question-text {
+  font-size: 0.8rem;
+}
 }
 
 @media (max-width: 570px) {
@@ -124,11 +127,14 @@ hr {
     overflow-x: hidden;
     .question-block {
       label {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         text-align: start;
       }
     }
   }
+  .question-text {
+  font-size: 0.7rem;
+}
 }
 
 @media (max-width: 370px) {
@@ -141,12 +147,12 @@ hr {
   .question-text {
     font-weight: 600;
     margin: 0.4rem 0 0.4rem 0;
-    font-size: 0.75rem;
+    font-size: 0.6rem;
     text-align: start;
   }
 
   .question-block label {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     gap: 0.2rem;
   }
 

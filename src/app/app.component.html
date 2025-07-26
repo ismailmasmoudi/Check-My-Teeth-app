@@ -20,7 +20,7 @@
 
     <div *ngIf="!infoContentHtml">
       <div *ngIf="!patientName" class="name-input-container input-group">
-        <p class="typing-animation" [style.--char-count]="namePromptText[selectedLanguage].length">
+        <p class="typing-animation-greeting" [style.--char-count]="namePromptText[selectedLanguage].length">
           {{ namePromptText[selectedLanguage] }}
         </p>
         <input #nameInput type="text" [placeholder]="nameInputPlaceholder[selectedLanguage]"

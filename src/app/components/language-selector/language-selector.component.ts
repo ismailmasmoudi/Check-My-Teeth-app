@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-type Language = 'en' | 'fr' | 'de' | 'ar';
-type SupportedLang = 'de' | 'en' | 'fr' | 'ar';
+type Language = 'de' | 'en' | 'fr' | 'ar';
 
 @Component({
   selector: 'app-language-selector',
@@ -16,7 +15,7 @@ export class LanguageSelectorComponent implements OnInit, OnChanges {
 
   @Output() languageChanged = new EventEmitter<Language>();
 
-  flagIcons: Record<SupportedLang, string> = {
+  flagIcons: Record<Language, string> = {
     de: 'img/icons/german.png',
     en: 'img/icons/englich.png',
     fr: 'img/icons/french.png',
@@ -24,14 +23,14 @@ export class LanguageSelectorComponent implements OnInit, OnChanges {
   };
 
   languages = ['de', 'en', 'fr', 'ar'];
-  selectedLanguage: SupportedLang = 'de';
+  selectedLanguage: Language = 'de';
   isFlipped = false;
 
   /**
    * Initializes the component with the current language setting
    */
   ngOnInit(): void {
-    this.selectedLanguage = this.currentLang as SupportedLang;
+    this.selectedLanguage = this.currentLang as Language;
   }
   
   /**
@@ -40,7 +39,7 @@ export class LanguageSelectorComponent implements OnInit, OnChanges {
    */
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['currentLang'] && changes['currentLang'].currentValue) {
-      this.selectedLanguage = changes['currentLang'].currentValue as SupportedLang;
+      this.selectedLanguage = changes['currentLang'].currentValue as Language;
     }
   }
 
@@ -58,7 +57,7 @@ export class LanguageSelectorComponent implements OnInit, OnChanges {
    */
   selectPrevLang() {
     const idx = this.languages.indexOf(this.selectedLanguage);
-    this.selectedLanguage = this.languages[(idx - 1 + this.languages.length) % this.languages.length] as SupportedLang;
+    this.selectedLanguage = this.languages[(idx - 1 + this.languages.length) % this.languages.length] as Language;
     this.languageChanged.emit(this.selectedLanguage);
     this.triggerFlip();
   }
@@ -68,7 +67,7 @@ export class LanguageSelectorComponent implements OnInit, OnChanges {
    */
   selectNextLang() {
     const idx = this.languages.indexOf(this.selectedLanguage);
-    this.selectedLanguage = this.languages[(idx + 1) % this.languages.length] as SupportedLang;
+    this.selectedLanguage = this.languages[(idx + 1) % this.languages.length] as Language;
     this.languageChanged.emit(this.selectedLanguage);
     this.triggerFlip();
   }

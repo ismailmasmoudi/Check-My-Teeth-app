@@ -38,7 +38,6 @@ export class InfoMenuComponent implements OnChanges {
   @Output() pageContentChanged = new EventEmitter<string | null>();
   isOpen = false;
   private _selectedPageKey: keyof typeof this.pages | null = null;
-  private currentKey: string | null = null;
 
   /**
    * Helper function to get page keys for template iteration.
@@ -76,7 +75,6 @@ export class InfoMenuComponent implements OnChanges {
     this.pageContentChanged.emit(this.selectedPageContent);
   }
 
-
   /**
    * Clears the current selection.
    */
@@ -85,14 +83,6 @@ export class InfoMenuComponent implements OnChanges {
   }
 
   /**
-   * Selects an item by key.
-   * @param key The key of the item to select
-   */
-  selectItem(key: string) {
-    this.currentKey = key;
-  }
-
-   /**
    * Gets the content for the currently selected page in the current language.
    * @returns The page content string or null if no page is selected
    */
@@ -639,6 +629,4 @@ Moosburger Straße 10A<br>
       },
     },
   };
-
- 
 }

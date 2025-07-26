@@ -149,7 +149,7 @@
 
 @media (max-width: 768px) {
   .tooth {
-    padding: 1px;
+    padding: 2px;
     img {
       width: 23px;
       height: 45px;
@@ -157,13 +157,13 @@
   }
   .selector-container {
     text-align: center;
-    padding: 90px 20px;
+    padding: 90px 0px;
   }
 }
 @media (max-width: 570px) {
   .selector-container {
     text-align: center;
-    padding: 20px 10px;
+    padding: 20px 0px;
     h3 {
       font-size: 1rem;
       margin-block-end: 10px;
@@ -171,7 +171,7 @@
   }
 
   .tooth {
-    padding: 0;
+    padding: 1px;
     img {
       width: 14px;
       height: 28px;
@@ -202,6 +202,7 @@
   }
 
   .tooth {
+    padding: 0;
     img {
       width: 12px;
       height: 26px;

@@ -1,59 +1,57 @@
-/* Using a root element to define CSS variables for a modern, maintainable theme */
 :root {
-  --primary-color: #2196F3;   /* The main blue from the palette */
-  --secondary-color: #2E8B57; /* The green from the palette */
-  --background-color: #f4f7f9; /* A light, modern background */
-  --surface-color: #ffffff;   /* For cards and buttons */
-  --text-color: #333;         /* Dark grey for readability */
+  --primary-color: #2196f3;
+  --secondary-color: #2e8b57;
+  --background-color: #f4f7f9;
+  --surface-color: #ffffff;
+  --text-color: #333;
   --text-color-light: #555;
   --border-color: #e0e0e0;
   --error-color: #d32f2f;
   --error-background: #ffcdd2;
   --shadow-color: rgba(0, 0, 0, 0.1);
 
-  /* System font stack for a native feel */
-  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
 }
 
 body {
-  /* 1-Hintergrund von der ganzen Webseite wird ein Bild "Background.png ". */
-  background-image: url('/img/Background.png');
+  background-image: url("/img/Background.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed; /* Keeps background static during scroll */
+  background-attachment: fixed;
   font-family: var(--font-family);
   margin: 0;
   min-height: 100vh;
-  /* 2- In der mitte von Bildschirm wird den ganzen content gezeigt */
   display: flex;
-  flex-direction: column; /* Stack title and container vertically */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem; /* Add some padding on the body for small screens */
+  padding: 1rem;
   box-sizing: border-box;
 
-  /* Firefox scrollbar styling */
   scrollbar-width: thin;
   scrollbar-color: var(--primary-color) transparent;
 }
 
-/* Modern, thin scrollbar design for WebKit browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
-  width: 6px; /* Dünnere Breite für vertikale Scrollbalken */
-  height: 6px; /* Dünnere Höhe für horizontale Scrollbalken */
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent; /* Macht den Hintergrund unsichtbar für einen minimalistischen Look */
+  background: transparent;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--secondary-color); /* Dunkelgrüne Farbe aus der Palette */
+  background-color: var(
+    --secondary-color
+  );
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #257247; /* Ein noch dunkleres Grün bei Hover */
+  background-color: #257247;
 }

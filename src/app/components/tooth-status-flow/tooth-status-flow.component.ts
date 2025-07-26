@@ -9,7 +9,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Diagnosis, DiagnosisService } from '../../services/diagnosis.service';
-import { toothStatusFlowTexts } from './tooth-status-flow.translations';
+import toothStatusFlowTexts from '../../data/tooth-status-flow-translations.json';
 
 type Language = 'en' | 'fr' | 'de' | 'ar';
 
@@ -37,7 +37,7 @@ export class ToothStatusFlowComponent implements OnChanges {
    * Translation dictionary containing all multilingual text content
    * Imported from external translations file for better maintainability
    */
-  private readonly allTexts = toothStatusFlowTexts;
+  private readonly allTexts = toothStatusFlowTexts as Record<string, Record<Language, string>>;
 
   private readonly wisdomTeeth = [18, 28, 38, 48];
   titleText: string = '';

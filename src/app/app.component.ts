@@ -11,27 +11,7 @@ import {
   DataLoggerService,
   DiagnosisData,
 } from './services/data-logger.service';
-import {
-  NAME_PROMPT_TEXT,
-  NAME_INPUT_PLACEHOLDER,
-  CONTINUE_BUTTON_LABEL,
-  GREETINGS,
-  PAIN_TYPE_QUESTION_TEXT,
-  SELECT_PAIN_TYPE_LABEL,
-  PAIN_TYPES_TEXT,
-  BACK_BUTTON_LABEL,
-  START_OVER_BUTTON_LABEL,
-  DISCLAIMER_TEXT,
-  NAME_ERROR_TEXT,
-  PAIN_TYPES,
-  CLOSE_BUTTON_LABEL,
-  DIAGNOSIS_EXPLANATION_LABEL,
-  DIAGNOSIS_TREATMENT_LABEL,
-  PRIVACY_CONSENT_TEXT_PARTS,
-  PRIVACY_POLICY_LINK_TEXT,
-  IMPORTANT_NOTICE_TEXT,
-  DIAGNOSING_TEXT,
-} from './translations';
+import translationsData from './data/translations.json';
 
 @Component({
   selector: 'app-root',
@@ -48,6 +28,7 @@ import {
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
+
 export class AppComponent implements OnInit {
   @ViewChild(QuestionFlowComponent)
   questionFlowComponent?: QuestionFlowComponent;
@@ -72,25 +53,25 @@ export class AppComponent implements OnInit {
   painTypeIndex = 0;
   infoManuallyClosed = false;
 
-  namePromptText = NAME_PROMPT_TEXT;
-  nameInputPlaceholder = NAME_INPUT_PLACEHOLDER;
-  continueButtonLabel = CONTINUE_BUTTON_LABEL;
-  greetings = GREETINGS;
-  painTypeQuestionText = PAIN_TYPE_QUESTION_TEXT;
-  selectPainTypeLabel = SELECT_PAIN_TYPE_LABEL;
-  painTypesText = PAIN_TYPES_TEXT;
-  backButtonLabel = BACK_BUTTON_LABEL;
-  startOverButtonLabel = START_OVER_BUTTON_LABEL;
-  disclaimerText = DISCLAIMER_TEXT;
-  nameErrorText = NAME_ERROR_TEXT;
-  painTypes = PAIN_TYPES;
-  closeButtonLabel = CLOSE_BUTTON_LABEL;
-  diagnosisExplanationLabel = DIAGNOSIS_EXPLANATION_LABEL;
-  diagnosisTreatmentLabel = DIAGNOSIS_TREATMENT_LABEL;
-  privacyConsentTextParts = PRIVACY_CONSENT_TEXT_PARTS;
-  privacyPolicyLinkText = PRIVACY_POLICY_LINK_TEXT;
-  importantNoticeText = IMPORTANT_NOTICE_TEXT;
-  diagnosingText = DIAGNOSING_TEXT;
+  namePromptText = translationsData.NAME_PROMPT_TEXT;
+  nameInputPlaceholder = translationsData.NAME_INPUT_PLACEHOLDER;
+  continueButtonLabel = translationsData.CONTINUE_BUTTON_LABEL;
+  greetings = translationsData.GREETINGS;
+  painTypeQuestionText = translationsData.PAIN_TYPE_QUESTION_TEXT;
+  selectPainTypeLabel = translationsData.SELECT_PAIN_TYPE_LABEL;
+  painTypesText = translationsData.PAIN_TYPES_TEXT;
+  backButtonLabel = translationsData.BACK_BUTTON_LABEL;
+  startOverButtonLabel = translationsData.START_OVER_BUTTON_LABEL;
+  disclaimerText = translationsData.DISCLAIMER_TEXT;
+  nameErrorText = translationsData.NAME_ERROR_TEXT;
+  painTypes = translationsData.PAIN_TYPES;
+  closeButtonLabel = translationsData.CLOSE_BUTTON_LABEL;
+  diagnosisExplanationLabel = translationsData.DIAGNOSIS_EXPLANATION_LABEL;
+  diagnosisTreatmentLabel = translationsData.DIAGNOSIS_TREATMENT_LABEL;
+  privacyConsentTextParts = translationsData.PRIVACY_CONSENT_TEXT_PARTS;
+  privacyPolicyLinkText = translationsData.PRIVACY_POLICY_LINK_TEXT;
+  importantNoticeText = translationsData.IMPORTANT_NOTICE_TEXT;
+  diagnosingText = translationsData.DIAGNOSING_TEXT;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -98,6 +79,7 @@ export class AppComponent implements OnInit {
     private dataLoggerService: DataLoggerService
   ) {}
 
+  
   /**
    * Component initialization lifecycle hook
    * Loads stored patient name, sets up language preferences, and manages splash screen animation

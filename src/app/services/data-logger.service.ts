@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 export interface DiagnosisData {
   timestamp: string;
@@ -19,7 +20,7 @@ export class DataLoggerService {
   private readonly scriptUrl =
     'https://script.google.com/macros/s/AKfycbwXmTkgKfV8cJhORv0TRq7GBYd6RcmFqbsMUuk9riItOZasAYeWM0kf53yIVG4QP6ef/exec';
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   /**
    * Logs diagnosis data to Google Sheets with enhanced formatting and translation
@@ -250,34 +251,41 @@ export class DataLoggerService {
   }
 
   /**
-   * Submits data to Google Sheets via form submission
+   * Submits data to Google Sheets via HTTP POST request
    * @param jsonData The JSON data to submit
    */
   private submitData(jsonData: string): void {
-    const iframeId = 'hidden-form-iframe';
-    let iframe = document.getElementById(iframeId) as HTMLIFrameElement;
+    const formData = new FormData();
+    formData.append('data', jsonData);
 
-    if (!iframe) {
-      iframe = document.createElement('iframe');
-      iframe.setAttribute('id', iframeId);
-      iframe.setAttribute('name', iframeId);
-      iframe.style.display = 'none';
-      document.body.appendChild(iframe);
+    this.http.post(this.scriptUrl, formData)
+      .subscribe({
+        next: (response) => {
+          console.log('Data submitted successfully:', response);
+        },
+        error: (error) => {
+          console.error('Error submitting data:', error);
+          this.saveToLocalStorage(jsonData);
+        }
+      });
+  }
+
+  /**
+   * Speichert Daten lokal wenn Google Sheets nicht erreichbar ist
+   * @param data Die zu speichernden Daten
+   */
+  private saveToLocalStorage(data: string): void {
+    try {
+      const existingData = localStorage.getItem('pendingDiagnoses') || '[]';
+      const pendingDiagnoses = JSON.parse(existingData);
+      pendingDiagnoses.push({
+        timestamp: new Date().toISOString(),
+        data: data
+      });
+      localStorage.setItem('pendingDiagnoses', JSON.stringify(pendingDiagnoses));
+      console.log('Data saved to local storage');
+    } catch (error) {
+      console.error('Error saving to local storage:', error);
     }
-
-    const form = document.createElement('form');
-    form.setAttribute('method', 'POST');
-    form.setAttribute('action', this.scriptUrl);
-    form.setAttribute('target', iframeId);
-
-    const hiddenField = document.createElement('input');
-    hiddenField.setAttribute('type', 'hidden');
-    hiddenField.setAttribute('name', 'data');
-    hiddenField.setAttribute('value', jsonData);
-    form.appendChild(hiddenField);
-
-    document.body.appendChild(form);
-    form.submit();
-    document.body.removeChild(form);
   }
 }

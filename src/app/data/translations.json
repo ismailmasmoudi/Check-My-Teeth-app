@@ -1,0 +1,179 @@
+{
+  "NAME_PROMPT_TEXT": {
+    "en": "Hi! What's your name?",
+    "de": "Hallo! Wie heißen Sie?",
+    "fr": "Salut ! Votre nom ?",
+    "ar": "مرحبًا! ما اسمك؟"
+  },
+  "NAME_INPUT_PLACEHOLDER": {
+    "en": "Your name",
+    "de": "Ihr Name",
+    "fr": "Votre nom",
+    "ar": "اسمك"
+  },
+  "CONTINUE_BUTTON_LABEL": {
+    "en": "Continue",
+    "de": "Weiter",
+    "fr": "Continuer",
+    "ar": "متابعة"
+  },
+  "GREETINGS": {
+    "morning": {
+      "en": "Good morning,",
+      "de": "Guten Morgen,",
+      "fr": "Bonjour,",
+      "ar": "صباح الخير،"
+    },
+    "afternoon": {
+      "en": "Good afternoon,",
+      "de": "Guten Tag,",
+      "fr": "Bonjour,",
+      "ar": "مساء الخير،"
+    },
+    "evening": {
+      "en": "Good evening,",
+      "de": "Guten Abend,",
+      "fr": "Bonsoir,",
+      "ar": "مساء الخير،"
+    }
+  },
+  "PAIN_TYPE_QUESTION_TEXT": {
+    "en": "What type of pain do you have?",
+    "fr": "Quel type de douleur avez-vous ?",
+    "de": "Welche Art von Schmerzen haben Sie?",
+    "ar": "ما نوع الألم الذي تعاني منه؟"
+  },
+  "SELECT_PAIN_TYPE_LABEL": {
+    "en": "Select pain type",
+    "fr": "Sélectionnez le type de douleur",
+    "de": "Schmerzart auswählen",
+    "ar": "اختر نوع الألم"
+  },
+  "PAIN_TYPES_TEXT": {
+    "tooth": {
+      "en": "Tooth pain",
+      "fr": "Douleur dentaire",
+      "de": "Zahnschmerzen",
+      "ar": "ألم الأسنان"
+    },
+    "gum": {
+      "en": "Gum pain",
+      "fr": "Douleur des gencives",
+      "de": "Zahnfleischschmerzen",
+      "ar": "ألم اللثة"
+    },
+    "tmj": {
+      "en": "Jaw Joint Pain",
+      "fr": "Douleur à l'articulation de la mâchoire",
+      "de": "Kiefergelenkschmerzen",
+      "ar": "ألم في مفصل الفك"
+    }
+  },
+  "BACK_BUTTON_LABEL": {
+    "en": "Back",
+    "fr": "Retour",
+    "de": "Zurück",
+    "ar": "رجوع"
+  },
+  "CLOSE_BUTTON_LABEL": {
+    "en": "Close",
+    "fr": "Fermer",
+    "de": "Schließen",
+    "ar": "إغلاق"
+  },
+  "DIAGNOSIS_EXPLANATION_LABEL": {
+    "en": "Explanation",
+    "fr": "Explication",
+    "de": "Erklärung",
+    "ar": "شرح"
+  },
+  "DIAGNOSIS_TREATMENT_LABEL": {
+    "en": "Suggested Treatment",
+    "fr": "Traitement Suggéré",
+    "de": "Vorgeschlagene Behandlung",
+    "ar": "العلاج المقترح"
+  },
+  "START_OVER_BUTTON_LABEL": {
+    "en": "Start Over",
+    "fr": "Recommencer",
+    "de": "Von vorne beginnen",
+    "ar": "البدء من جديد"
+  },
+  "DISCLAIMER_TEXT": {
+    "en": "The diagnosis shown here is based on the information you have provided and is approximately 80 % accurate. However, a clinical examination in a dental practice is necessary for an exact diagnosis. If necessary, an X-ray should also be taken.",
+    "fr": "Le diagnostic affiché ici est basé sur les informations que vous avez fournies et est correct à environ 80 %. Cependant, un examen clinique dans un cabinet dentaire est nécessaire pour un diagnostic exact. Si nécessaire, une radiographie doit également être réalisée.",
+    "de": "Die hier angezeigte Diagnose basiert auf den von Ihnen angegebenen Informationen und ist mit einer Wahrscheinlichkeit von etwa 80 % korrekt. Für eine exakte Diagnose ist jedoch eine klinische Untersuchung in einer Zahnarztpraxis erforderlich. Falls notwendig, sollte zusätzlich ein Röntgenbild angefertigt werden.",
+    "ar": "التشخيص المعروض هنا يعتمد على المعلومات التي قدمتها وهو صحيح بنسبة 80 % تقريبًا. ومع ذلك، فإن الفحص السريري في عيادة الأسنان ضروري لتشخيص دقيق. إذا لزم الأمر، يجب أيضًا إجراء صورة أشعة."
+  },
+  "PRIVACY_CONSENT_TEXT_PARTS": {
+    "en": [
+      "I have read the ",
+      " and agree to the processing of my data as described therein."
+    ],
+    "de": [
+      "Ich habe die ",
+      " gelesen und stimme der Verarbeitung meiner Daten wie dort beschrieben zu."
+    ],
+    "fr": [
+      "J'ai lu la ",
+      " et j'accepte le traitement de mes données tel qu'il y est décrit."
+    ],
+    "ar": [
+      "لقد قرأت ",
+      " وأوافق على معالجة بياناتي كما هو موضح فيها."
+    ]
+  },
+  "PRIVACY_POLICY_LINK_TEXT": {
+    "en": "privacy policy",
+    "de": "Datenschutzerklärung",
+    "fr": "politique de confidentialité",
+    "ar": "سياسة الخصوصية"
+  },
+  "IMPORTANT_NOTICE_TEXT": {
+    "en": "Important:",
+    "de": "Wichtig:",
+    "fr": "Important :",
+    "ar": "مهم:"
+  },
+  "DIAGNOSING_TEXT": {
+    "en": "Creating diagnosis...",
+    "de": "Diagnose wird erstellt...",
+    "fr": "Création du diagnostic...",
+    "ar": "جاري إنشاء التشخيص..."
+  },
+  "NAME_ERROR_TEXT": {
+    "de": "Bitte geben Sie einen gültigen Namen ein. Zahlen und Sonderzeichen sind nicht erlaubt.",
+    "en": "Please enter a valid name. Numbers and special characters are not allowed.",
+    "ar": "يرجى إدخال اسم صحيح. الأرقام والرموز غير مسموح بها.",
+    "fr": "Veuillez entrer un nom valide. Les chiffres et les caractères spéciaux ne sont pas autorisés."
+  },
+  "PAIN_TYPES": [
+    {
+      "value": "tooth",
+      "label": {
+        "de": "Zahn",
+        "en": "Tooth",
+        "fr": "Dent",
+        "ar": "سن"
+      }
+    },
+    {
+      "value": "gum",
+      "label": {
+        "de": "Zahnfleisch",
+        "en": "Gum",
+        "fr": "Gencive",
+        "ar": "لثة"
+      }
+    },
+    {
+      "value": "tmj",
+      "label": {
+        "de": "Kiefergelenk",
+        "en": "Jaw joint",
+        "fr": "Articulation",
+        "ar": "مفصل الفك"
+      }
+    }
+  ]
+}
